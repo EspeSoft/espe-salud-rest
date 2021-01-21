@@ -1,6 +1,6 @@
 package com.espe.salud.mapper;
 
-import com.espe.salud.domain.Parentesco;
+import com.espe.salud.domain.entities.catalogo.Parentesco;
 import com.espe.salud.dto.ParentescoDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;

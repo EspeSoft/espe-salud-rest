@@ -1,6 +1,6 @@
 package com.espe.salud.persistence;
 
-import com.espe.salud.domain.Parentesco;
+import com.espe.salud.domain.entities.catalogo.Parentesco;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.espe.salud.service.catalogo;
 
-import com.espe.salud.domain.Parentesco;
+import com.espe.salud.domain.entities.catalogo.Parentesco;
 import com.espe.salud.dto.ParentescoDTO;
 import com.espe.salud.mapper.ParentescoMapper;
 import com.espe.salud.persistence.ParentescoRepository;
@@ -13,11 +13,16 @@ import java.util.Optional;
 @Service("parentescoServiceImpl")
 public class ParentescoServiceImpl extends GenericCRUDServiceImpl<Parentesco, ParentescoDTO> {
 
-    @Autowired
-    private ParentescoRepository domainRepository;
+    private final ParentescoRepository domainRepository;
+
+    private final ParentescoMapper mapper;
 
     @Autowired
-    private ParentescoMapper mapper;
+    public ParentescoServiceImpl(ParentescoRepository domainRepository,
+                                 ParentescoMapper mapper) {
+        this.domainRepository = domainRepository;
+        this.mapper = mapper;
+    }
 
     @Override
     public Parentesco mapTo(ParentescoDTO domainObject) {

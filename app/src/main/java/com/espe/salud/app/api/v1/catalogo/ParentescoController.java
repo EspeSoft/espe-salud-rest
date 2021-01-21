@@ -2,7 +2,7 @@ package com.espe.salud.app.api.v1.catalogo;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_PAR;
 
-import com.espe.salud.domain.Parentesco;
+import com.espe.salud.domain.entities.catalogo.Parentesco;
 import com.espe.salud.dto.ParentescoDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,9 +23,13 @@ import java.util.List;
 @Tag(name = "Gestiona el cátalodo de parentescos")
 public class ParentescoController {
 
+    private final GenericCRUDService<Parentesco, ParentescoDTO> parentescoService;
+
     @Autowired
-    @Qualifier("parentescoServiceImpl")
-    private GenericCRUDService<Parentesco, ParentescoDTO> parentescoService;
+    public ParentescoController(
+            @Qualifier("parentescoServiceImpl") GenericCRUDService<Parentesco, ParentescoDTO> parentescoService) {
+        this.parentescoService = parentescoService;
+    }
 
     @Operation(summary = "Retorna el listado de todos los parentescos")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
