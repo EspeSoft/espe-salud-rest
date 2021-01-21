@@ -8,7 +8,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = "com.espe.salud")
+@SpringBootApplication
 @ComponentScan(basePackages = {"com.espe.salud"})
 @EnableJpaRepositories(basePackages = {"com.espe.salud.persistence"})
 @EntityScan(basePackages = {"com.espe.salud.domain"})

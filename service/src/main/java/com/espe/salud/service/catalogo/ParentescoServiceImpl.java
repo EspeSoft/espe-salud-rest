@@ -1,10 +1,10 @@
-package com.salud.espe.service.catalogo;
+package com.espe.salud.service.catalogo;
 
 import com.espe.salud.domain.Parentesco;
 import com.espe.salud.dto.ParentescoDTO;
 import com.espe.salud.mapper.ParentescoMapper;
 import com.espe.salud.persistence.ParentescoRepository;
-import com.salud.espe.service.GenericCRUDServiceImpl;
+import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +31,6 @@ public class ParentescoServiceImpl extends GenericCRUDServiceImpl<Parentesco, Pa
 
     @Override
     public Optional<Parentesco> findExisting(ParentescoDTO domainObject) {
-        return domainRepository.findByCodigo(domainObject.getCodigo());
+        return domainRepository.findByCodigo(domainObject.getId());
     }
 }

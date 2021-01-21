@@ -1,4 +1,4 @@
-package com.salud.espe.service;
+package com.espe.salud.service;
 
 import com.espe.salud.common.exception.EspeSaludException;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -4,7 +4,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_PAR;
 
 import com.espe.salud.domain.Parentesco;
 import com.espe.salud.dto.ParentescoDTO;
-import com.salud.espe.service.GenericCRUDService;
+import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,6 @@ public class ParentescoController {
     @Autowired
     @Qualifier("parentescoServiceImpl")
     private GenericCRUDService<Parentesco, ParentescoDTO> parentescoService;
-
 
     @Operation(summary = "Retorna el listado de todos los parentescos")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})

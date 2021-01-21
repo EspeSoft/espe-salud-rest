@@ -13,16 +13,9 @@
 
     <properties>
         <filter.src>${basedir}/..</filter.src>
-        <org.mapstruct.version>1.3.1.Final</org.mapstruct.version>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>${org.mapstruct.version}</version>
-        </dependency>
-
         <!-- Modules -->
         <dependency>
             <groupId>com.espe.salud</groupId>
@@ -36,4 +29,5 @@
         </dependency>
         <!-- Modules -->
     </dependencies>
+
 </project>
