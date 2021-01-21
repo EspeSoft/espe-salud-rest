@@ -37,10 +37,4 @@ public abstract class GenericCRUDServiceImpl<DOMAIN, DTO> implements GenericCRUD
                 .map(this::build)
                 .collect(Collectors.toList());
     }
-
-    @Override
-    public abstract DOMAIN mapTo(DTO domainObject);
-
-    @Override
-    public abstract Optional<DOMAIN> findExisting(DTO domainObject);
 }

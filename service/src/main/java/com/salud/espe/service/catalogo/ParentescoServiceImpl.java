@@ -3,14 +3,14 @@ package com.salud.espe.service.catalogo;
 import com.espe.salud.domain.Parentesco;
 import com.espe.salud.dto.ParentescoDTO;
 import com.espe.salud.mapper.ParentescoMapper;
-import com.espe.salud.persitence.ParentescoRepository;
+import com.espe.salud.persistence.ParentescoRepository;
 import com.salud.espe.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service("userServiceImpl")
+@Service("parentescoServiceImpl")
 public class ParentescoServiceImpl extends GenericCRUDServiceImpl<Parentesco, ParentescoDTO> {
 
     @Autowired

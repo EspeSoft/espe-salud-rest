@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "MZSTPAR")
+@Table(name = "MZSTPAR", schema = "SALUD")
 public class Parentesco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,4 +1,4 @@
-package com.espe.salud.persitence;
+package com.espe.salud.persistence;
 
 import com.espe.salud.domain.Parentesco;
 import org.springframework.data.jpa.repository.JpaRepository;
