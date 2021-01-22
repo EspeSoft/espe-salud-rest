@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "MZSTPAR", schema = "SALUD")
 public class Parentesco {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
