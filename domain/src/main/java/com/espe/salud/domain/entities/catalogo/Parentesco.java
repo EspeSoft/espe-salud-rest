@@ -10,19 +10,19 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTPAR", schema = "SALUD")
+@Table(name = "MZSTCPAR", schema = "SALUD")
 public class Parentesco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTPAR_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTCPAR_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTPAR_NOMBRE")
+    @Column(name = "MZSTCPAR_NOMBRE")
     private String nombre;
 
-    @Column(name = "MZSTPAR_TIPO")
+    @Column(name = "MZSTCPAR_TIPO")
     @Enumerated(EnumType.STRING)
     private TipoParentesco tipo;
 }
