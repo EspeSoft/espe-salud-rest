@@ -1,9 +1,12 @@
 package com.espe.salud.domain.entities.usuario;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
+import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -30,6 +33,9 @@ public class Usuario {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CDIS_USU", insertable = false, updatable = false)
     private Dispensario dispensario;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<NotaEnfermeria> notasEnfermeria;
 
     @PrePersist
     void prePersist(){

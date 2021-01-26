@@ -29,5 +29,5 @@ public interface GenericCRUDService<DOMAIN, DTO> {
      * @return
      */
     public abstract Optional<DOMAIN> findExisting(DTO domainObject);
-
+    public abstract boolean delete(Long id);
 }

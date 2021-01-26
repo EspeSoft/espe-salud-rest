@@ -15,5 +15,6 @@ public class EvolucionDTO implements Serializable {
 
     @Schema(accessMode = AccessMode.READ_ONLY)
     private String id;
+
     private LocalDateTime fechaInicio;
 }
