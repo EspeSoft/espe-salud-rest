@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service("pacienteServiceImpl")
+@Service
 public class PacienteServiceImpl implements PacienteService {
 
     private final PacienteRepository pacienteRepository;
