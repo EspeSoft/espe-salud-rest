@@ -1,4 +1,4 @@
-package com.espe.salud.dto;
+package com.espe.salud.dto.catalogo;
 
 import lombok.Data;
 import lombok.Getter;

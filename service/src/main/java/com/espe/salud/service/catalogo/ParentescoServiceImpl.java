@@ -1,9 +1,9 @@
 package com.espe.salud.service.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.Parentesco;
-import com.espe.salud.dto.ParentescoDTO;
-import com.espe.salud.mapper.ParentescoMapper;
-import com.espe.salud.persistence.ParentescoRepository;
+import com.espe.salud.dto.catalogo.ParentescoDTO;
+import com.espe.salud.mapper.catalogo.ParentescoMapper;
+import com.espe.salud.persistence.catalogo.ParentescoRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

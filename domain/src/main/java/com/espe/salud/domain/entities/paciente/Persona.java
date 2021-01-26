@@ -10,6 +10,13 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "MZSTPER", schema = "SALUD")
 public class Persona {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "MZSTPER_CODIGO", updatable = false, nullable = false)
+    private Long codigo;
+
     @Column(name = "MZSTPER_APELLIDO_PATERNO")
     private String apellidoPaterno;
 

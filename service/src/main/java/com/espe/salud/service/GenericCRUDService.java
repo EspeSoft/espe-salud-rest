@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface GenericCRUDService<DOMAIN, DTO> {
 
-    public void saveOrUpdate(DTO dtoObject);
+    public DTO saveOrUpdate(DTO dtoObject);
 
     public List<DTO> findAll(DTO dtoObject);
 

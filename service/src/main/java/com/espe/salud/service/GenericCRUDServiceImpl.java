@@ -18,11 +18,11 @@ public abstract class GenericCRUDServiceImpl<DOMAIN, DTO> implements GenericCRUD
     private JpaRepository<DOMAIN, Long> repository;
 
     @Override
-    public void saveOrUpdate(DTO dtoObject) {
+    public DTO saveOrUpdate(DTO dtoObject) {
         Optional<DOMAIN> optional = findExisting(dtoObject);
         if (!optional.isPresent()) {
             DOMAIN domainObject = mapTo(dtoObject);
-            repository.save(domainObject);
+            return build(repository.save(domainObject));
         } else {
             throw new EspeSaludException(String.format("El objeto %s ya existe en base de datos", dtoObject));
         }

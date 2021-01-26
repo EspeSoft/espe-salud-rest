@@ -3,7 +3,7 @@ package com.espe.salud.app.api.v1.catalogo;
 import static com.espe.salud.app.common.Constants.URI_API_V1_PAR;
 
 import com.espe.salud.domain.entities.catalogo.Parentesco;
-import com.espe.salud.dto.ParentescoDTO;
+import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
