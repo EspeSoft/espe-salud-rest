@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,5 +15,5 @@ public class EvolucionDTO implements Serializable {
 
     @Schema(accessMode = AccessMode.READ_ONLY)
     private String id;
-    private LocalDate fechaInicio;
+    private LocalDateTime fechaInicio;
 }
