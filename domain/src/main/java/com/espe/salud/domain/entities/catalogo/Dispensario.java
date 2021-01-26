@@ -1,8 +1,10 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,4 +25,7 @@ public class Dispensario {
 
     @Column(name = "MZSTCDIS_UNI_CODIGO")
     private String uniCodigo;
+
+    @OneToMany(mappedBy = "dispensario", cascade = CascadeType.ALL)
+    private List<Usuario> usuarios;
 }

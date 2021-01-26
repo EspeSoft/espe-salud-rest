@@ -5,7 +5,6 @@ import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 import com.espe.salud.mapper.evolucion.EvolucionMapper;
 import com.espe.salud.persistence.evolucion.EvolucionRepository;
-import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,14 +32,14 @@ public class EvolucionServiceImpl implements EvolucionService {
             Evolucion domainObject = toEntity(evolucion);
             return toDTO(evolucionRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe una evolucion registrada para ese código[%s]", evolucion.getCodigo()));
+            throw new ConflictException(String.format("Ya existe una evolucion registrada para ese código[%s]", evolucion.getId()));
         }
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<Evolucion> findExisting(EvolucionDTO evolucionDTO) {
-        return evolucionRepository.findByCodigo(evolucionDTO.getCodigo());
+        return evolucionRepository.findByCodigo(evolucionDTO.getId());
     }
 
     @Override

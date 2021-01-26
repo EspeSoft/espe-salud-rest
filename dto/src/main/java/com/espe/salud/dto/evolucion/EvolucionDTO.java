@@ -1,5 +1,7 @@
 package com.espe.salud.dto.evolucion;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +13,7 @@ import java.time.LocalDate;
 public class EvolucionDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String codigo;
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private String id;
     private LocalDate fechaInicio;
 }

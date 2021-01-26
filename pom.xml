@@ -92,6 +92,14 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Swagger -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.2</version>
+		</dependency>
+		<!-- Swagger -->
+
 		<!-- Modules -->
 		<dependency>
 			<groupId>com.espe.salud</groupId>
