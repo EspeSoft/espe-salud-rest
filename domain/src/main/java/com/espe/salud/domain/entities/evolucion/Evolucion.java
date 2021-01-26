@@ -4,6 +4,7 @@ import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.enums.EstadoNotaEvolucion;
 import com.espe.salud.domain.generators.StringPrefixedSequenceIdGenerator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
