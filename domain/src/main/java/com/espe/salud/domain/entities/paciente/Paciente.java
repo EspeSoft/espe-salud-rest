@@ -40,6 +40,10 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Evolucion> evoluciones;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_PER_PAC", updatable = false, nullable = false)
+    private Persona persona;
+
     @CreatedDate
     @Column(name = "MZSTPAC_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
