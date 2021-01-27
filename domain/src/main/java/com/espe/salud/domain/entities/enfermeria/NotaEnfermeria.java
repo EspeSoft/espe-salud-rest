@@ -6,13 +6,13 @@ import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import com.espe.salud.domain.enums.EstadoNotaEnfermeria;
 import lombok.Data;
+
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -36,12 +36,10 @@ public class NotaEnfermeria {
     @Column(name = "MZSTNOTENF_ESTADO")
     private EstadoNotaEnfermeria estado;
 
-    @Lob
-    @Column(name = "MZSTNOTENF_PRE_CONSULTA")
+    @Column(name = "MZSTNOTENF_PRE_CONSULTA", columnDefinition = "TEXT")
     private String preConsulta;
 
-    @Lob
-    @Column(name = "MZSTNOTENF_POST_CONSULTA")
+    @Column(name = "MZSTNOTENF_POST_CONSULTA", columnDefinition = "TEXT")
     private String postConsulta;
 
     @Embedded
@@ -68,11 +66,11 @@ public class NotaEnfermeria {
 
     @CreatedDate
     @Column(name = "MZSTNOTENF_FECHA_CREACION")
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
     @Column(name = "MZSTNOTENF_FECHA_MODIFICACION")
-    private LocalDate fechaModificacion;
+    private LocalDateTime fechaModificacion;
 
     @CreatedBy
     @Column(name = "MZSTNOTENF_USUARIO_CREACION")
