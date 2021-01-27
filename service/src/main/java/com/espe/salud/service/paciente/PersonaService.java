@@ -8,7 +8,6 @@ import java.util.Optional;
 public interface PersonaService {
     PersonaDTO save(PersonaDTO paciente);
     Optional<Persona> findExisting(PersonaDTO pacienteDTO);
-
     PersonaDTO toDTO(Persona paciente);
     Persona toEntity(PersonaDTO dto);
 }
