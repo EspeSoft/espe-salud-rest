@@ -1,6 +1,11 @@
 package com.espe.salud.domain.entities.paciente;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -9,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -58,10 +64,37 @@ public class Estudiante {
     @NotNull
     private Long idSede;
 
-    //    @OneToOne(mappedBy = "estudiante")
-//    @JsonIgnore
-//    private Persona persona;
+    @OneToOne(mappedBy = "estudiante")
+    @JsonIgnore
+    private Persona persona;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_paciente", referencedColumnName = "MZSTPAC_CODIGO")
     private Paciente paciente;
+
+    @CreatedDate
+    @Column(name = "MZSTEST_FECHA_CREACION")
+    private LocalDateTime fechaCreacion;
+
+    @LastModifiedDate
+    @Column(name = "MZSTEST_FECHA_MODIFICACION")
+    private LocalDateTime fechaModificacion;
+
+    @CreatedBy
+    @Column(name = "MZSTEST_USUARIO_CREACION")
+    private String usuarioCreacion;
+
+    @LastModifiedBy
+    @Column(name = "MZSTEST_USUARIO_MODIFICACION")
+    private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaModificacion = LocalDateTime.now();
+    }
 }

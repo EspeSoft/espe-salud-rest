@@ -3,7 +3,6 @@ package com.espe.salud.dto.paciente;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Getter

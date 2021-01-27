@@ -1,14 +1,21 @@
 package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.enums.Sexo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -121,25 +128,25 @@ public class Persona {
     @Column(name = "MZSTPER_CODIGO_NACIONALIDAD_2")
     private Long idNacionalidad2;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_contacto", referencedColumnName = "id")
-//    private Contacto contacto;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_CON_PER", updatable = false, nullable = false)
+    private Contacto contacto;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_estudiante", referencedColumnName = "id")
-//    private Estudiante estudiante;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_EST_PER", updatable = false, nullable = false)
+    private Estudiante estudiante;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "id_empleado", referencedColumnName = "id")
-//    private Empleado empleado;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_EMP_PER", updatable = false, nullable = false)
+    private Empleado empleado;
 
-//    @OneToOne(mappedBy = "persona")
-//    @JsonIgnore
-//    private Paciente paciente;
-//
-//    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<ContactoEmergencia> contactosEmergencia;
-//
+    @OneToOne(mappedBy = "persona")
+    @JsonIgnore
+    private Paciente paciente;
+
+    @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ContactoEmergencia> contactosEmergencia;
+
 //    public void addToContactoEmergencia(List<ContactoEmergencia> contactos){
 //        if(!contactos.isEmpty()){
 //            for (ContactoEmergencia contacto: contactos) {
@@ -148,4 +155,31 @@ public class Persona {
 //            this.contactosEmergencia = contactos;
 //        }
 //    }
+
+
+    @CreatedDate
+    @Column(name = "MZSTPER_FECHA_CREACION")
+    private LocalDateTime fechaCreacion;
+
+    @LastModifiedDate
+    @Column(name = "MZSTPER_FECHA_MODIFICACION")
+    private LocalDateTime fechaModificacion;
+
+    @CreatedBy
+    @Column(name = "MZSTPER_USUARIO_CREACION")
+    private String usuarioCreacion;
+
+    @LastModifiedBy
+    @Column(name = "MZSTPER_USUARIO_MODIFICACION")
+    private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaModificacion = LocalDateTime.now();
+    }
 }
