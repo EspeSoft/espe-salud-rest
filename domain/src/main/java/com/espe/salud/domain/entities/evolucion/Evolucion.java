@@ -2,6 +2,7 @@ package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.paciente.Paciente;
+import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.enums.EstadoNotaEvolucion;
 import com.espe.salud.domain.generators.StringPrefixedSequenceIdGenerator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -72,12 +73,16 @@ public class Evolucion {
     private Dispensario dispensario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_PAC_EVO", referencedColumnName = "MZSTPAC_CODIGO", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false)
     private Paciente paciente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_EVO_EVO", referencedColumnName = "MZSTEVO_CODIGO")
+    @JoinColumn(name = "FK_EVO_EVO", insertable = false, updatable = false)
     private Evolucion evolucionPadre;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_CARESAL_EVO", insertable = false, updatable = false)
+    private AreaSalud areaSalud;
 
 //    @OneToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "id_nota_enfermeria", referencedColumnName = "id", insertable = false, updatable = false)
