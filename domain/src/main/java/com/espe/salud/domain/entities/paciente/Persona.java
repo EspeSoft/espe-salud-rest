@@ -41,7 +41,6 @@ public class Persona {
     private String segundoNombre;
 
     @Column(name = "MZSTPER_CEDULA", unique = true)
-    @Size(max = 15)
     @NotEmpty
     @NaturalId
     private String cedula;
@@ -57,7 +56,6 @@ public class Persona {
     private String estadoCivil;
 
     @Column(name = "MZSTPER_RELIGION")
-    @Size(max = 20)
     private String religion;
 
     @Column(name = "MZSTPER_ACEPTA_TRANSFUCION")
@@ -65,34 +63,27 @@ public class Persona {
     private boolean aceptaTransfucion;
 
     @Column(name = "MZSTPER_GRUPO_SANGUINEO")
-    @Size(max = 4)
     @NotEmpty
     private String grupoSanguineo;
 
     @Column(name = "MZSTPER_LATERALIDAD")
-    @Size(max = 20)
     @NotEmpty
     private String lateralidad;
 
     @Column(name = "MZSTPER_INSTRUCCION")
-    @Size(max = 50)
     private String instruccion;
 
     @Column(name = "MZSTPER_PRODESION")
-    @Size(max = 50)
     private String profesion;
 
     @Column(name = "MZSTPER_VINCULADO_ESPE")
-    @Size(max = 30)
     @NotEmpty
     private String vinculadoEspe;
 
     @Column(name = "MZSTPER_PUEBLOS")
-    @Size(max = 20)
     private String pueblos;
 
     @Column(name = "MZSTPER_GRUPO_CULTURAL")
-    @Size(max = 20)
     private String grupoCultural;
 
     @Column(name = "MZSTPER_SEGURO_SOCIAL")
@@ -102,7 +93,6 @@ public class Persona {
     private String asociacionAfiliada;
 
     @Column(name = "MZSTPER_CIUO")
-    @Size(max = 50)
     @NotEmpty
     private String ciuo;
 
@@ -128,8 +118,7 @@ public class Persona {
     @Column(name = "MZSTPER_CODIGO_NACIONALIDAD_2")
     private Long idNacionalidad2;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_CON_PER", updatable = false, nullable = false)
+    @Embedded
     private Contacto contacto;
 
     @OneToOne(cascade = CascadeType.ALL)

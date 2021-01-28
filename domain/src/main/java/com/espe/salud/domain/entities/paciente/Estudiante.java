@@ -32,16 +32,13 @@ public class Estudiante {
     private LocalDate fechaIngresoEspe;
 
     @Column(name = "MZSTEST_DEPARTAMENTO")
-    @Size(max = 50)
     @NotEmpty
     private String departamento;
 
     @Column(name = "MZSTEST_ESCUELA")
-    @Size(max = 50)
     private String escuela;
 
     @Column(name = "MZSTEST_CARRERA")
-    @Size(max = 50)
     @NotEmpty
     private String carrera;
 
