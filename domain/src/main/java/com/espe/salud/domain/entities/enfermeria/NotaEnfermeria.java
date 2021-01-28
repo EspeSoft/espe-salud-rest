@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.enfermeria;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
@@ -11,12 +12,14 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTNOTENF", schema = "SALUD")
 public class NotaEnfermeria {
 
@@ -63,6 +66,9 @@ public class NotaEnfermeria {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_USU_NOTENF", insertable = false, updatable = false)
     private Usuario usuario;
+
+    @OneToOne(mappedBy = "notaEnfermeria", cascade = CascadeType.ALL)
+    private Evolucion evolucion;
 
     @CreatedDate
     @Column(name = "MZSTNOTENF_FECHA_CREACION")
