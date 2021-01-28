@@ -40,22 +40,18 @@ public class Empleado {
     private String observacionHorario;
 
     @Column(name = "MZSTEMP_PARROQUIA")
-    @Size(max = 30)
     @NotEmpty
     private String parroquia;
 
     @Column(name = "MZSTEMP_DIRECCION_LABORAL")
-    @Size(max = 200)
     @NotEmpty
     private String direccionLaboral;
 
     @Column(name = "MZSTEMP_AREA_TRABAJO")
-    @Size(max = 100)
     @NotEmpty
     private String areaTrabajo;
 
     @Column(name = "MZSTEMP_CARGO_TRABAJO_ACTUAL")
-    @Size(max = 100)
     private String cargoTrabajoActual;
 
     @Column(name = "MZSTEMP_ACTIVIDADES_RELEVANTE")
