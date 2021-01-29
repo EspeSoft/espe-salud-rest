@@ -22,7 +22,7 @@ public class ContactoEmergencia {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTCODEME_CODIGO")
+    @Column(name = "MZSTCODEME_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTCONEME_NOMBRE_CONTACTO")

@@ -23,7 +23,7 @@ public class RecordLaboral {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTRECLAB_CODIGO")
+    @Column(name="MZSTRECLAB_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTRECLAB_FECHA_REGISTRO")

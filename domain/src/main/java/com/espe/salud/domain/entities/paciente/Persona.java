@@ -118,8 +118,8 @@ public class Persona {
     @Column(name = "MZSTPER_CODIGO_NACIONALIDAD_2")
     private Long idNacionalidad2;
 
-    @Embedded
-    private Contacto contacto;
+//    @Embedded
+//    private Contacto contacto;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_EST_PER", updatable = false, nullable = false)
