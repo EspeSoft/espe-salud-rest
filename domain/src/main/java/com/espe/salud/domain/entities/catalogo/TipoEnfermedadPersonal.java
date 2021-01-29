@@ -14,7 +14,7 @@ public class TipoEnfermedadPersonal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTCTIPENFPER_CODIGO")
+    @Column(name = "MZSTCTIPENFPER_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTCTIPENFPER_NOMBRE")
