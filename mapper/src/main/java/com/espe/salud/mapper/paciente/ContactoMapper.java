@@ -15,7 +15,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ContactoMapper {
     @Mappings({
-            @Mapping(source = "codigo", target = "id")
+//            @Mapping(source = "codigo", target = "id")
     })
     ContactoDTO toContactoDTO(Contacto contacto);
 

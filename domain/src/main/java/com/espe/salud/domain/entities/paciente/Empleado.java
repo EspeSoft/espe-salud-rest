@@ -24,7 +24,7 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTEMP_CODIGO")
+    @Column(name = "MZSTEMP_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTEMP_FECHA_INGRESO_LABORAL")
