@@ -40,6 +40,12 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
+    public PacienteDTO update(PacienteDTO paciente) {
+        Paciente domainObject = toEntity(paciente);
+        return toDTO(pacienteRepository.save(domainObject));
+    }
+
+    @Override
     public Optional<Paciente> findExisting(PacienteDTO pacienteDTO) {
         return pacienteRepository.findByCodigo(pacienteDTO.getId());
     }
@@ -53,8 +59,8 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public List<PacienteDTO> findByCodigo(Long codigo) {
-        return mapper.toPacientesDTO(pacienteRepository.findAllByCodigo(codigo));
+    public Optional<PacienteDTO> findByCodigo(Long codigo) {
+        return pacienteRepository.findByCodigo(codigo).map(paciente -> mapper.toPacienteDTO(paciente));
     }
 
     @Override

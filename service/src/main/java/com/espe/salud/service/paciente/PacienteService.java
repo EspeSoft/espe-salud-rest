@@ -10,11 +10,13 @@ import java.util.Optional;
 
 public interface PacienteService {
     PacienteDTO save(PacienteDTO paciente);
+    PacienteDTO update(PacienteDTO paciente);
     Optional<Paciente> findExisting(PacienteDTO pacienteDTO);
     Boolean delete(Long id);
-    List<PacienteDTO> findByCodigo(Long codigo);
+    Optional<PacienteDTO> findByCodigo(Long codigo);
     PacienteDTO toDTO(Paciente paciente);
     Paciente toEntity(PacienteDTO dto);
     List<PacienteDTO> findAll();
+
 
 }
