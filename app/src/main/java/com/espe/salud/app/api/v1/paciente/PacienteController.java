@@ -27,21 +27,23 @@ public class PacienteController {
         this.pacienteService = pacienteService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los pacientes")
-    @GetMapping(value = "/pacientes", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @Operation(summary = "Retorna el listado un paciente por su código")
+    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<PacienteDTO>> getAll(@RequestParam Long codigo) {
         return new ResponseEntity<>( pacienteService.findAll(codigo), HttpStatus.OK);
     }
 
 
+    @Operation(summary = "Guarda un nuevo paciente")
     @PostMapping("/")
     public ResponseEntity<PacienteDTO> save(@RequestBody PacienteDTO paciente){
         return new ResponseEntity<>(pacienteService.save(paciente), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        pacienteService.delete(id);
+    @Operation(summary = "Elimina un paciente por su código")
+    @DeleteMapping("/{codigo}")
+    public void delete(@PathVariable Long codigo) {
+        pacienteService.delete(codigo);
     }
 
 
