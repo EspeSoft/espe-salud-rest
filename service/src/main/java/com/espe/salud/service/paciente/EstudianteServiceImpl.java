@@ -5,6 +5,7 @@ import com.espe.salud.domain.entities.paciente.Estudiante;
 import com.espe.salud.dto.paciente.EstudianteDTO;
 import com.espe.salud.mapper.paciente.EstudianteMapper;
 import com.espe.salud.persistence.paciente.EstudianteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,6 +15,7 @@ public class EstudianteServiceImpl implements EstudianteService{
     private final EstudianteRepository estudianteRepository;
     private final EstudianteMapper mapper;
 
+    @Autowired
     public EstudianteServiceImpl(EstudianteRepository estudianteRepository, EstudianteMapper mapper) {
         this.estudianteRepository = estudianteRepository;
         this.mapper = mapper;

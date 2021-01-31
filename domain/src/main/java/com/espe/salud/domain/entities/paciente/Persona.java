@@ -129,9 +129,9 @@ public class Persona {
     @JoinColumn(name = "FK_EMP_PER", updatable = false, nullable = false)
     private Empleado empleado;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonIgnore
-    private Paciente paciente;
+//    @OneToOne(mappedBy = "persona")
+//    @JsonIgnore
+//    private Paciente paciente;
 
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ContactoEmergencia> contactosEmergencia;
