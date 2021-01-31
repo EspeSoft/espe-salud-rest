@@ -16,7 +16,7 @@ import java.util.List;
 import static com.espe.salud.app.common.Constants.URI_API_V1_PAC;
 
 @RestController
-@Tag(name = "Gestiona los pacientes de un paciente")
+@Tag(name = "Gestiona los pacientes")
 @RequestMapping(value = {URI_API_V1_PAC})
 public class PacienteController {
     private final PacienteService pacienteService;
