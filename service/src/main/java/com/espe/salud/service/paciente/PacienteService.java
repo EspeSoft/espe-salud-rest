@@ -12,7 +12,9 @@ public interface PacienteService {
     PacienteDTO save(PacienteDTO paciente);
     Optional<Paciente> findExisting(PacienteDTO pacienteDTO);
     Boolean delete(Long id);
-    List<PacienteDTO> findAll(Long codigo);
+    List<PacienteDTO> findByCodigo(Long codigo);
     PacienteDTO toDTO(Paciente paciente);
     Paciente toEntity(PacienteDTO dto);
+    List<PacienteDTO> findAll();
+
 }

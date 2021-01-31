@@ -6,8 +6,12 @@ import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.mapper.paciente.PacienteMapper;
 import com.espe.salud.persistence.paciente.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,8 +53,15 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public List<PacienteDTO> findAll(Long codigo) {
+    public List<PacienteDTO> findByCodigo(Long codigo) {
         return mapper.toPacientesDTO(pacienteRepository.findAllByCodigo(codigo));
+    }
+
+    @Override
+    public List<PacienteDTO> findAll() {
+        List<Paciente> pacientes = new ArrayList<>();
+        pacienteRepository.findAll().forEach(pacientes::add);
+        return mapper.toPacientesDTO(pacientes);
     }
 
 

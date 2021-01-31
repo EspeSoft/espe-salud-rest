@@ -1,6 +1,7 @@
 package com.espe.salud.app.api.v1.paciente;
 
 
+import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.service.paciente.PacienteService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,10 +28,16 @@ public class PacienteController {
         this.pacienteService = pacienteService;
     }
 
+    @Operation(summary = "Retorna el listado de todos los pacientes")
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<PacienteDTO>> getAll() {
+        return new ResponseEntity<>( pacienteService.findAll(), HttpStatus.OK);
+    }
+
     @Operation(summary = "Retorna el listado un paciente por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<PacienteDTO>> getAll(@RequestParam Long codigo) {
-        return new ResponseEntity<>( pacienteService.findAll(codigo), HttpStatus.OK);
+    public ResponseEntity<List<PacienteDTO>> findByCodigo(@RequestParam Long codigo) {
+        return new ResponseEntity<>( pacienteService.findByCodigo(codigo), HttpStatus.OK);
     }
 
 
