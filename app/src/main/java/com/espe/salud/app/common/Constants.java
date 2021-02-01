@@ -12,7 +12,8 @@ public class Constants {
     public static final String URI_API_V1_EMP = URI_API_V1 + "empleados";
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
     public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tiposenfermedadespersonales";
-
+    public static final String URI_API_V1_EXALAB = URI_API_V1 + "exameneslaboratorios";
+    public static final String URI_API_V1_DETEXALAB = URI_API_V1 + "detallesexameneslaboratorios";
 
 
 }
