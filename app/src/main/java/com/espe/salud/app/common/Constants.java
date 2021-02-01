@@ -15,6 +15,8 @@ public class Constants {
     public static final String URI_API_V1_EVO = URI_API_V1 + "evoluciones";
     public static final String URI_API_V1_PAC = URI_API_V1 + "pacientes";
     public static final String URI_API_V1_NOT_ENF = URI_API_V1 + "notas-enfermeria";
+    public static final String URI_API_V1_HIS_CLI_ODO = URI_API_V1 + "historia-clinica-odontologica";
+    public static final String URI_API_V1_ENF_PRO_ACT = URI_API_V1 + "enfermedad-problema-actual";
 
     public static final String URI_API_V1_USU = URI_API_V1 + "usuarios";
     public static final String URI_API_V1_COD_CIUO = URI_API_V1 + "codigos-ciuo";
