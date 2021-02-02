@@ -5,6 +5,7 @@ import com.espe.salud.domain.entities.paciente.Persona;
 import com.espe.salud.dto.paciente.PersonaDTO;
 import com.espe.salud.mapper.paciente.PersonaMapper;
 import com.espe.salud.persistence.paciente.PersonaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ public class PersonaServiceImpl implements PersonaService{
     private final PersonaRepository personaRepository;
     private final PersonaMapper mapper;
 
+    @Autowired
     public PersonaServiceImpl(PersonaRepository personaRepository, PersonaMapper mapper) {
         this.personaRepository = personaRepository;
         this.mapper = mapper;
