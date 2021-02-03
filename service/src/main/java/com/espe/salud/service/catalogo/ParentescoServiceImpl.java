@@ -38,4 +38,5 @@ public class ParentescoServiceImpl extends GenericCRUDServiceImpl<Parentesco, Pa
     public Optional<Parentesco> findExisting(ParentescoDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
     }
+
 }
