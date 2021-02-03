@@ -9,6 +9,7 @@ public interface GenericCRUDService<DOMAIN, DTO> {
 
     public List<DTO> findAll(DTO dtoObject);
 
+
     /**
      * Permite mapear un objeto serializable a un objeto de dominio
      * @param dtoObject
