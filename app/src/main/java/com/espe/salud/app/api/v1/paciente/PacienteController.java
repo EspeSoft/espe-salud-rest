@@ -48,6 +48,7 @@ public class PacienteController {
         Optional<PacienteDTO> newPacienteDTOoptional = pacienteService.findByCodigo(codigo);
         PacienteDTO newPacienteDTO = newPacienteDTOoptional.get();
         newPacienteDTO.setActivo(pacienteDTO.getActivo());
+        newPacienteDTO.setNumeroArchivo(pacienteDTO.getNumeroArchivo());
         newPacienteDTO.setAccesoBanner(pacienteDTO.getAccesoBanner());
         newPacienteDTO.setEsEmpleado(pacienteDTO.getEsEmpleado());
         newPacienteDTO.setEsEstudiante(pacienteDTO.getEsEstudiante());
