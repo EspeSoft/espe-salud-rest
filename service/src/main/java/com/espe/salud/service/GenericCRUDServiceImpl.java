@@ -7,6 +7,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -36,6 +37,13 @@ public abstract class GenericCRUDServiceImpl<DOMAIN, DTO> implements GenericCRUD
         return lstObjs.stream()
                 .map(this::build)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public DTO findById(Long id) {
+        return repository.findById(id)
+                .map(this::build)
+                .orElseThrow(() -> new EntityNotFoundException("No se ha encontrado el recurso para el id: " + id));
     }
 
     @Override

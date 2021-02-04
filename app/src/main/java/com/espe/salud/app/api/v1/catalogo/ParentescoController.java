@@ -30,11 +30,10 @@ public class ParentescoController {
         this.parentescoService = parentescoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los parentescos")
+    @Operation(summary = "Retorna el listado de todos los parentescos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ParentescoDTO>> getAll() {
-        ParentescoDTO parentescoDTO = new ParentescoDTO();
-        return new ResponseEntity<>( parentescoService.findAll(parentescoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( parentescoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @PostMapping("/")

@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("parentescoServiceImpl")
@@ -37,5 +38,10 @@ public class ParentescoServiceImpl extends GenericCRUDServiceImpl<Parentesco, Pa
     @Override
     public Optional<Parentesco> findExisting(ParentescoDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<ParentescoDTO> findAllOrderByNameASC() {
+        return mapper.toParentescosDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 }
