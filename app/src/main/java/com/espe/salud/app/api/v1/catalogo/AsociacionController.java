@@ -37,18 +37,6 @@ public class AsociacionController {
         return new ResponseEntity<>( asociacionService.findAll(asociacionDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    @Operation(summary = "Guarda y retorna un nuevo Asociacion")
-    public ResponseEntity<AsociacionDTO> save(@RequestBody AsociacionDTO asociacionDTO){
-        return new ResponseEntity<>(asociacionService.saveOrUpdate(asociacionDTO), HttpStatus.CREATED);
-    }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina una Asociacion por su ID")
-    public ResponseEntity<Boolean> deleteUser(
-            @Parameter(required = true, description = "El ID de Asociacion", example = "1")
-            @PathVariable Long id) {
-        return new ResponseEntity<>(asociacionService.delete(id), HttpStatus.OK);
-    }
     
 }

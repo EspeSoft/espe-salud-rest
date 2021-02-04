@@ -38,18 +38,6 @@ public class SeguroSaludController {
         return new ResponseEntity<>( segurosaludService.findAll(segurosaludDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    @Operation(summary = "Guarda y retorna un nuevo seguro salud")
-    public ResponseEntity<SeguroSaludDTO> save(@RequestBody SeguroSaludDTO segurosaludDTO){
-        return new ResponseEntity<>(segurosaludService.saveOrUpdate(segurosaludDTO), HttpStatus.CREATED);
-    }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina un seguro salud por su ID")
-    public ResponseEntity<Boolean> deleteUser(
-            @Parameter(required = true, description = "El ID del seguro salud", example = "1")
-            @PathVariable Long id) {
-        return new ResponseEntity<>(segurosaludService.delete(id), HttpStatus.OK);
-    }
 
 }
