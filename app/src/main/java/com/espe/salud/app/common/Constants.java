@@ -13,5 +13,6 @@ public class Constants {
     public static final String URI_API_V1_COD_CIUO = URI_API_V1 + "codigos-ciuo";
     public static final String URI_API_V1_TIP_DIS = URI_API_V1 + "tipos-discapacidad";
     public static final String URI_API_V1_NAC_PUE = URI_API_V1 + "nacionalidades-pueblos";
+    public static final String URI_API_V1_MOT_ATE = URI_API_V1 + "motivos-atencion";
 
 }

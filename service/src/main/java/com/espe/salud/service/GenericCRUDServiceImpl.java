@@ -21,7 +21,7 @@ public abstract class GenericCRUDServiceImpl<DOMAIN, DTO> implements GenericCRUD
     @Override
     public DTO saveOrUpdate(DTO dtoObject) {
         Optional<DOMAIN> optional = findExisting(dtoObject);
-        if (!optional.isPresent()) {
+        if (optional.isEmpty()) {
             DOMAIN domainObject = mapTo(dtoObject);
             return build(repository.save(domainObject));
         } else {
