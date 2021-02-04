@@ -7,6 +7,7 @@ import com.espe.salud.persistence.catalogo.MotivoAtencionRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,11 +34,13 @@ public class MotivoAtencionServiceImpl extends GenericCRUDServiceImpl<MotivoAten
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<MotivoAtencion> findExisting(MotivoAtencionDTO domainObject) {
         return repository.findByCodigo(domainObject.getId());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<MotivoAtencionDTO> findAllOrderByNameASC() {
         return mapper.toMotivosAtencionDTO(repository.findAllByOrderByNombreAsc());
     }

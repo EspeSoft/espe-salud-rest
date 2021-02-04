@@ -7,6 +7,7 @@ import com.espe.salud.persistence.catalogo.TipoDiscapacidadRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,11 +35,13 @@ public class TipoDiscapacidadServiceImpl extends GenericCRUDServiceImpl<TipoDisc
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<TipoDiscapacidad> findExisting(TipoDiscapacidadDTO domainObject) {
         return repository.findByCodigo(domainObject.getId());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<TipoDiscapacidadDTO> findAllOrderByNameASC() {
         return mapper.toTiposDiscapacidadDTO(repository.findAllByOrderByNombreAsc());
     }

@@ -14,5 +14,6 @@ public class Constants {
     public static final String URI_API_V1_TIP_DIS = URI_API_V1 + "tipos-discapacidad";
     public static final String URI_API_V1_NAC_PUE = URI_API_V1 + "nacionalidades-pueblos";
     public static final String URI_API_V1_MOT_ATE = URI_API_V1 + "motivos-atencion";
+    public static final String URI_API_V1_NEC_SOC = URI_API_V1 + "necesidades-sociales";
 
 }

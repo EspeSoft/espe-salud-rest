@@ -10035,3 +10035,9 @@ INSERT INTO MZSTCMOTATE(MZSTCMOTATE_NOMBRE) VALUES('Accidente de trabajo')
 INSERT INTO MZSTCMOTATE(MZSTCMOTATE_NOMBRE) VALUES('Enfermedad profesional')
 INSERT INTO MZSTCMOTATE(MZSTCMOTATE_NOMBRE) VALUES('Maternidad - Lactancia')
 
+/*NECESIDAD SOCIAL*/
+INSERT INTO MZSTCNECSOC(MZSTCNECSOC_NOMBRE) VALUES('¿Cuando consume alcohol, llega a la embriagues?');
+INSERT INTO MZSTCNECSOC(MZSTCNECSOC_NOMBRE) VALUES('¿Alguien cercano a usted le ha sugerido buscar ayuda por el consumo excesivo de alcohol?');
+INSERT INTO MZSTCNECSOC(MZSTCNECSOC_NOMBRE) VALUES('¿Consume en exceso tabaco u otras drogas?');
+INSERT INTO MZSTCNECSOC(MZSTCNECSOC_NOMBRE) VALUES('¿Alguien cercano a usted le ha sugerido buscar ayuda por el consumo excesivo de tabaco?');
+INSERT INTO MZSTCNECSOC(MZSTCNECSOC_NOMBRE) VALUES('¿Desearía pertenecer a un grupo de apoyo para aprender a manejar las drogas sociales?');
