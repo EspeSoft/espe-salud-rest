@@ -2,7 +2,6 @@ package com.espe.salud.service.enfermeria;
 
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
 import com.espe.salud.dto.enfermeria.NotaEnfermeriaDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;

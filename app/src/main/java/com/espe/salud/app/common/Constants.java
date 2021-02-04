@@ -9,5 +9,6 @@ public class Constants {
     public static final String URI_API_V1_EVO = URI_API_V1 + "evoluciones";
     public static final String URI_API_V1_PAC = URI_API_V1 + "pacientes";
     public static final String URI_API_V1_NOT_ENF = URI_API_V1 + "notas-enfermeria";
+    public static final String URI_API_V1_USU = URI_API_V1 + "usuarios";
 
 }

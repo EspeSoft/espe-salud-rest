@@ -24,7 +24,7 @@ public class NotaEnfermeriaController {
     private final NotaEnfermeriaService notaEnfermeriaService;
 
     @Autowired
-    private NotaEnfermeriaController(NotaEnfermeriaService notaEnfermeriaService) {
+    public NotaEnfermeriaController(NotaEnfermeriaService notaEnfermeriaService) {
         this.notaEnfermeriaService = notaEnfermeriaService;
     }
 
