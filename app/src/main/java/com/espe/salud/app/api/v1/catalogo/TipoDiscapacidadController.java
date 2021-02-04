@@ -1,7 +1,6 @@
 package com.espe.salud.app.api.v1.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.TipoDiscapacidad;
-import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.catalogo.TipoDiscapacidadDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_DIS;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIP_DIS})
-@Tag(name = "Gestiona el cátalodo de tipos de discapacidad")
+@Tag(name = "Gestiona el catálogo de tipos de discapacidad")
 public class TipoDiscapacidadController {
     private final GenericCRUDService<TipoDiscapacidad, TipoDiscapacidadDTO> service;
 

@@ -19,7 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_PAR})
-@Tag(name = "Gestiona el cátalodo de parentescos")
+@Tag(name = "Gestiona el catálogo de parentescos")
 public class ParentescoController {
 
     private final GenericCRUDService<Parentesco, ParentescoDTO> parentescoService;
