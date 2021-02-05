@@ -1,7 +1,5 @@
 package com.espe.salud.domain.entities.paciente;
 
-import com.espe.salud.domain.entities.catalogo.Dispensario;
-import com.espe.salud.domain.entities.catalogo.GrupoCultural;
 import com.espe.salud.domain.enums.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
@@ -131,17 +129,12 @@ public class Persona {
     @JoinColumn(name = "FK_EMP_PER", updatable = false, nullable = false)
     private Empleado empleado;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonIgnore
-    private Paciente paciente;
+//    @OneToOne(mappedBy = "persona")
+//    @JsonIgnore
+//    private Paciente paciente;
 
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ContactoEmergencia> contactosEmergencia;
-
-    //Relacion de grupo cultural de catalogo
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "FK_GRU_CUL", insertable = false, updatable = false)
-    //private GrupoCultural grupo_cultural;
 
 //    public void addToContactoEmergencia(List<ContactoEmergencia> contactos){
 //        if(!contactos.isEmpty()){
