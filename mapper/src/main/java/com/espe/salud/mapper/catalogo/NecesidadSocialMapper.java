@@ -11,9 +11,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface NecesidadSocialMapper {
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
+
+    @Mapping(source = "codigo", target = "id")
     NecesidadSocialDTO toNecesidadSocialDTO(NecesidadSocial necesidadSocial);
 
     List<NecesidadSocialDTO> toNecesidadesSocialesDTO(List<NecesidadSocial> necesidades);

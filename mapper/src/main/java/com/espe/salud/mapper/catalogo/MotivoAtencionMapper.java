@@ -11,9 +11,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface MotivoAtencionMapper {
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
+
+    @Mapping(source = "codigo", target = "id")
     MotivoAtencionDTO toMotivoAtencionDTO(MotivoAtencion motivoAtencion);
 
     List<MotivoAtencionDTO> toMotivosAtencionDTO(List<MotivoAtencion> motivosAtencion);

@@ -11,9 +11,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface NacionalidadPuebloMapper {
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
+
+    @Mapping(source = "codigo", target = "id")
     NacionalidadPuebloDTO toNacionalidadPuebloDTO(NacionalidadPueblo nacionalidadPueblo);
 
     List<NacionalidadPuebloDTO> toNacionalidadesPueblosDTO(List<NacionalidadPueblo> nacionalidades);
