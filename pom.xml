@@ -100,13 +100,6 @@
 		</dependency>
 		<!-- Swagger -->
 
-		<!-- Modules -->
-		<dependency>
-			<groupId>com.espe.salud</groupId>
-			<artifactId>common</artifactId>
-			<version>${version}</version>
-		</dependency>
-		<!-- Modules -->
 	</dependencies>
 
 	<profiles>
@@ -142,7 +135,6 @@
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
-					<compilerArgs>--enable-preview</compilerArgs>
 					<annotationProcessorPaths>
 						<path>
 							<groupId>org.projectlombok</groupId>

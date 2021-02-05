@@ -38,5 +38,6 @@ public class PersonaDTO implements Serializable {
     private Long idCantonNacimiento;
     private Long idNacionalidad;
     private Long idNacionalidad2;
+    private ContactoDTO contacto;
 
 }

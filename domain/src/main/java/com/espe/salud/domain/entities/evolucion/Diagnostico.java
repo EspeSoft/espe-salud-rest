@@ -8,7 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Data
@@ -23,24 +23,24 @@ public class Diagnostico {
     @Column(name = "MZSTDIA_CODIGO")
     private Long codigo;
 
-    @NotNull
     @Column(name = "MZSTDIA_CODIGO_CIE")
-    private String codigoCie;
+    @NotEmpty
+    private String codigoCIE; // TODO relacionar
 
-    @NotNull
     @Column(name = "MZSTDIA_PREVENCION")
+    @NotEmpty
     private String prevencion;
 
-    @NotNull
-    @Column(name = "MZSTDIA_MORBILIDAD")
+    @Column(name = "MZSTDIA_PMORBILIDAD")
+    @NotEmpty
     private String morbilidad;
 
-    @NotNull
-    @Column(name = "MZSTDIA_CONDICION_DIAGNOSTICO")
+    @Column(name = "MZSTDIA_CONDICION__DIAGNOSTICO")
+    @NotEmpty
     private String condicionDiagnostico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FX_EVO_DIA", updatable = false, insertable = false)
+    @JoinColumn(name = "FK_EVO_DIA", updatable = false, insertable = false)
     private Evolucion evolucion;
 
     @CreatedDate
@@ -58,4 +58,14 @@ public class Diagnostico {
     @LastModifiedBy
     @Column(name = "MZSTDIA_USUARIO_MODIFICACION")
     private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaModificacion = LocalDateTime.now();
+    }
 }

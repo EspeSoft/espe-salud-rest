@@ -3,7 +3,6 @@ package com.espe.salud.dto.paciente;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Getter
@@ -12,7 +11,6 @@ public class ContactoDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
     private String callePrincipal;
     private String calleSecundaria;
     private String zonaGeografica;
@@ -23,6 +21,6 @@ public class ContactoDTO implements Serializable {
     private String correoInstitucional;
     private String parroquia;
     private String barrio;
-    private Long idCantonResidencia;
-    private Long idProvinciaResidencia;
+//    private Long idCantonResidencia;
+//    private Long idProvinciaResidencia;
 }

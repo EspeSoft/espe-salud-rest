@@ -2,6 +2,10 @@ package com.espe.salud.domain.entities.paciente;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,6 +14,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -18,7 +24,7 @@ public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTEMP_CODIGO")
+    @Column(name = "MZSTEMP_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTEMP_FECHA_INGRESO_LABORAL")
@@ -34,22 +40,18 @@ public class Empleado {
     private String observacionHorario;
 
     @Column(name = "MZSTEMP_PARROQUIA")
-    @Size(max = 30)
     @NotEmpty
     private String parroquia;
 
     @Column(name = "MZSTEMP_DIRECCION_LABORAL")
-    @Size(max = 200)
     @NotEmpty
     private String direccionLaboral;
 
     @Column(name = "MZSTEMP_AREA_TRABAJO")
-    @Size(max = 100)
     @NotEmpty
     private String areaTrabajo;
 
     @Column(name = "MZSTEMP_CARGO_TRABAJO_ACTUAL")
-    @Size(max = 100)
     private String cargoTrabajoActual;
 
     @Column(name = "MZSTEMP_ACTIVIDADES_RELEVANTE")
@@ -91,10 +93,36 @@ public class Empleado {
     @NotNull
     private Long idProvinciaTrabajo;
 
-//    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<RecordLaboral> records;
+    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<RecordLaboral> records;
 
-//    @OneToOne(mappedBy = "empleado")
-//    @JsonIgnore
-//    private Persona persona;
+    @OneToOne(mappedBy = "empleado")
+    @JsonIgnore
+    private Persona persona;
+
+    @CreatedDate
+    @Column(name = "MZSTEMP_FECHA_CREACION")
+    private LocalDateTime fechaCreacion;
+
+    @LastModifiedDate
+    @Column(name = "MZSTEMP_FECHA_MODIFICACION")
+    private LocalDateTime fechaModificacion;
+
+    @CreatedBy
+    @Column(name = "MZSTEMP_USUARIO_CREACION")
+    private String usuarioCreacion;
+
+    @LastModifiedBy
+    @Column(name = "MZSTEMP_USUARIO_MODIFICACION")
+    private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaModificacion = LocalDateTime.now();
+    }
 }

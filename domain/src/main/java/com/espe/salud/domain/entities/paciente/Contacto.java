@@ -2,6 +2,10 @@ package com.espe.salud.domain.entities.paciente;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -9,16 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name = "MZSTCON", schema = "SALUD")
+@Embeddable
 public class Contacto {
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "MZSTCON_CODIGO")
-    private Long codigo;
 
     @Column(name = "MZSTCON_CALL_PRI")
     @NotEmpty
@@ -34,7 +30,7 @@ public class Contacto {
     @NotEmpty
     private String numeroCelular;
 
-    @Column(name = "MZSTCON_NUM_CON")
+    @Column(name = "MZSTCON_NUM_CO-N")
     private String numeroConvencional;
 
     @Column(name = "MZSTCON_EXT")
@@ -54,24 +50,29 @@ public class Contacto {
 
     @Column(name = "MZSTCON_BARRIO")
     private String barrio;
+//  TO DO
+//    @Column(name = "MZSTCON_CODIDO_CANTON_RESIDENCIA")
+//    private Long idCantonResidencia;
+//
+//    @Column(name = "MZSTCON_CODIGO_PROVINCIA_RESIDENCIA")
+//    private Long idProvinciaResidencia;
 
-    @Column(name = "MZSTCON_CODIDO_CANTON_RESIDENCIA")
-    private Long idCantonResidencia;
 
-    @Column(name = "MZSTCON_CODIGO_PROVINCIA_RESIDENCIA")
-    private Long idProvinciaResidencia;
-
-    @Column(name = "MZSTCON_USUARIO_CREACION")
-    private String usuarioCreacion;
-
-    @Column(name = "MZSTCON_USUARIO_MODIFICACION")
-    private String usuarioModificacion;
-
+    @CreatedDate
     @Column(name = "MZSTCON_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
 
+    @LastModifiedDate
     @Column(name = "MZSTCON_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
+
+    @CreatedBy
+    @Column(name = "MZSTCON_USUARIO_CREACION")
+    private String usuarioCreacion;
+
+    @LastModifiedBy
+    @Column(name = "MZSTCON_USUARIO_MODIFICACION")
+    private String usuarioModificacion;
 
     @PrePersist
     public void prePersist() {
@@ -82,8 +83,4 @@ public class Contacto {
     public void preUpdate() {
         fechaModificacion = LocalDateTime.now();
     }
-
-//    @OneToOne(mappedBy = "contacto")
-//    @JsonIgnore
-//    private Persona persona;
 }
