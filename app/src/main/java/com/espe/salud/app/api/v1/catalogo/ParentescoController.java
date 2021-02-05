@@ -37,7 +37,6 @@ public class ParentescoController {
         return new ResponseEntity<>( parentescoService.findAll(parentescoDTO), HttpStatus.OK);
     }
 
-
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo parentesco")
     public ResponseEntity<ParentescoDTO> save(@RequestBody ParentescoDTO parentescoDTO){
@@ -51,7 +50,5 @@ public class ParentescoController {
             @PathVariable Long id) {
         return new ResponseEntity<>(parentescoService.delete(id), HttpStatus.OK);
     }
-
-
 
 }

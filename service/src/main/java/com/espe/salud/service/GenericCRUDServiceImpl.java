@@ -38,7 +38,6 @@ public abstract class GenericCRUDServiceImpl<DOMAIN, DTO> implements GenericCRUD
                 .collect(Collectors.toList());
     }
 
-
     @Override
     public boolean delete(Long id) {
         return repository.findById(id).map(object -> {
