@@ -37,18 +37,6 @@ public class RegionController {
         return new ResponseEntity<>( regionService.findAll(regionDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    @Operation(summary = "Guarda y retorna una nueva region")
-    public ResponseEntity<RegionDTO> save(@RequestBody RegionDTO regionDTO){
-        return new ResponseEntity<>(regionService.saveOrUpdate(regionDTO), HttpStatus.CREATED);
-    }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina una region por su ID")
-    public ResponseEntity<Boolean> deleteUser(
-            @Parameter(required = true, description = "El ID de la region", example = "1")
-            @PathVariable Long id) {
-        return new ResponseEntity<>(regionService.delete(id), HttpStatus.OK);
-    }
 
 }

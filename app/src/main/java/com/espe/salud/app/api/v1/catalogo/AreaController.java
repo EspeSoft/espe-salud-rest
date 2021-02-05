@@ -37,17 +37,5 @@ public class AreaController {
         return new ResponseEntity<>( areaService.findAll(areaDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    @Operation(summary = "Guarda y retorna una nueva area")
-    public ResponseEntity<AreaDTO> save(@RequestBody AreaDTO areaDTO){
-        return new ResponseEntity<>(areaService.saveOrUpdate(areaDTO), HttpStatus.CREATED);
-    }
 
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina un area por su ID")
-    public ResponseEntity<Boolean> deleteUser(
-            @Parameter(required = true, description = "El ID del area", example = "1")
-            @PathVariable Long id) {
-        return new ResponseEntity<>(areaService.delete(id), HttpStatus.OK);
-    }
 }
