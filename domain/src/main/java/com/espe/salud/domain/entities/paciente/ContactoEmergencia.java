@@ -16,55 +16,51 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTCON_EME", schema = "SALUD")
+@Table(name = "MZSTCONEME", schema = "SALUD")
 public class ContactoEmergencia {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTCOD_EME_CODIGO")
+    @Column(name = "MZSTCODEME_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTCON_EME_NOMBRE_CONTACTO")
-    @Size(max = 50)
+    @Column(name = "MZSTCONEME_NOMBRE_CONTACTO")
     private String nombreContacto;
 
-    @Column(name = "MZSTCON_EME_DIRECCION")
-    @Size(max = 50)
+    @Column(name = "MZSTCONEME_DIRECCION")
     private String direccion;
 
-    @Column(name = "MZSTCON_EME_TELEFONO_CELULAR")
-    @Size(max = 20)
+    @Column(name = "MZSTCONEME_TELEFONO_CELULAR")
     @NotEmpty
     private String telefonoCelular;
 
-    @Column(name = "MZSTCON_EME_TELEFONO_CONVENCIONAL")
-    @Size(max = 20)
+    @Column(name = "MZSTCONEME_TELEFONO_CONVENCIONAL")
     private String telefonoConvencional;
 
     @NotEmpty
-    @Column(name = "MZSTCON_EME_PARENTESCO")
+    @Column(name = "MZSTCONEME_PARENTESCO")
     private String parentesco;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_PER_CON_EME", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_PER_CONEME", insertable = false, updatable = false)
     private Persona persona;
 
     @CreatedDate
-    @Column(name = "MZSTCON_EME_FECHA_CREACION")
+    @Column(name = "MZSTCONEME_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
-    @Column(name = "MZSTCON_EME_FECHA_MODIFICACION")
+    @Column(name = "MZSTCONEME_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
 
     @CreatedBy
-    @Column(name = "MZSTCON_EME_USUARIO_CREACION")
+    @Column(name = "MZSTCONEME_USUARIO_CREACION")
     private String usuarioCreacion;
 
     @LastModifiedBy
-    @Column(name = "MZSTCON_EME_USUARIO_MODIFICACION")
+    @Column(name = "MZSTCONEME_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
     @PrePersist

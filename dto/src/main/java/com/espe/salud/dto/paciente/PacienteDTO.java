@@ -12,7 +12,7 @@ public class PacienteDTO implements Serializable {
 
     private Long id;
     private String numeroArchivo;
-    private boolean activo;
+    private Boolean activo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
     private Boolean accesoBanner;
