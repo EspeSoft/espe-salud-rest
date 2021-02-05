@@ -1,11 +1,11 @@
 package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.enums.EstadoNotaEvolucion;
 import com.espe.salud.domain.generators.StringPrefixedSequenceIdGenerator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -15,12 +15,13 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTEVO", schema = "SALUD")
 public class Evolucion {
 
@@ -46,9 +47,6 @@ public class Evolucion {
     @Column(name = "MZSTEVO_FECHA_FINALIZACION")
     private LocalDateTime fechaFinalizacion;
 
-    @Column(name = "MZSTEVO_RESPONSABLE_PIDM")
-    private Long responsablePidm;
-
     @Column(name = "MZSTEVO_OBSERVACION")
     private String observacion;
 
@@ -58,8 +56,7 @@ public class Evolucion {
     @Column(name = "MZSTEVO_MOTIVO_ATENCION")
     private String motivoAtencion;
 
-    @Lob
-    @Column(name = "MZSTEVO_NOTA_EVOLUCION")
+    @Column(name = "MZSTEVO_NOTA_EVOLUCION", columnDefinition = "TEXT")
     private String notaEvolucion;
 
     @Column(name = "MZSTEVO_ES_ENFERMEDAD_OCUPACIONAL")
@@ -84,17 +81,17 @@ public class Evolucion {
     @JoinColumn(name = "FK_CARESAL_EVO", insertable = false, updatable = false)
     private AreaSalud areaSalud;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "id_nota_enfermeria", referencedColumnName = "id", insertable = false, updatable = false)
-//    private NotaEnfermeria notaEnfermeria;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_NOTENF_EVO", insertable = false, updatable = false)
+    private NotaEnfermeria notaEnfermeria;
 
     @CreatedDate
     @Column(name = "MZSTEVO_FECHA_CREACION")
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
     @Column(name = "MZSTEVO_FECHA_MODIFICACION")
-    private LocalDate fechaModificacion;
+    private LocalDateTime fechaModificacion;
 
     @CreatedBy
     @Column(name = "MZSTEVO_USUARIO_CREACION")

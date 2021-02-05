@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_FIS;
 import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_PSI;
 
 @RestController
@@ -31,11 +30,10 @@ public class RiesgoPsicosocialController {
         this.riesgoPsicosocialService = riesgoPsicosocialService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los riesgo psicosociales")
+    @Operation(summary = "Retorna el listado de todos los riesgo psicosociales en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoPsicosocialDTO>> getAll() {
-        RiesgoPsicosocialDTO riesgoPsicosocialDTO = new RiesgoPsicosocialDTO();
-        return new ResponseEntity<>( riesgoPsicosocialService.findAll(riesgoPsicosocialDTO), HttpStatus.OK);
+        return new ResponseEntity<>( riesgoPsicosocialService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 
