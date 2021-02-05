@@ -17,5 +17,7 @@ public class Constants {
     public static final String URI_API_V1_NEC_SOC = URI_API_V1 + "necesidades-sociales";
     public static final String URI_API_V1_TIP_PLA_FAM = URI_API_V1 + "tipos-planificacion-familiar";
     public static final String URI_API_V1_PRO_SOC = URI_API_V1 + "problemas-sociales";
+    public static final String URI_API_V1_TIP_ING = URI_API_V1 + "tipos-ingresos";
+    public static final String URI_API_V1_TIP_EGR = URI_API_V1 + "tipos-egresos";
 
 }
