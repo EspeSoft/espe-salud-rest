@@ -28,6 +28,7 @@ public class RegionServiceImpl extends GenericCRUDServiceImpl<Region, RegionDTO>
 
     @Override
     public RegionDTO build(Region domainObject) {
+
         return mapper.toRegionDTO(domainObject);
     }
 
