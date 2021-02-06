@@ -31,5 +31,4 @@ public class Sede {
     @Column(name = "MZSTCSED_PARROQUIA")
     @Size(max = 100)
     private String parroquia;
-    //COMENTARIO
 }
