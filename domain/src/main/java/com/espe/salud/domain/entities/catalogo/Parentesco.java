@@ -1,7 +1,6 @@
 package com.espe.salud.domain.entities.catalogo;
 
 import com.espe.salud.domain.enums.TipoParentesco;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

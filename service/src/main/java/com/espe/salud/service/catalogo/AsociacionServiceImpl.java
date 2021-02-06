@@ -9,6 +9,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("asociacionServiceImpl")
@@ -38,5 +39,10 @@ public class AsociacionServiceImpl  extends GenericCRUDServiceImpl<Asociacion, A
     @Override
     public Optional<Asociacion> findExisting(AsociacionDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<AsociacionDTO> findAllOrderByNameASC() {
+        return mapper.toAsociacionesDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 }

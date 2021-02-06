@@ -31,12 +31,10 @@ public class TipoCertificadoController {
         this.tipocertificadoService = tipocertificadoService;
     }
 
-
-    @Operation(summary = "Retorna el listado de todos los tipos de certificado")
+    @Operation(summary = "Retorna el listado de todos los tipos de certificado en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoCertificadoDTO>> getAll() {
-        TipoCertificadoDTO tipoCertificadoDTO = new TipoCertificadoDTO();
-        return new ResponseEntity<>( tipocertificadoService.findAll(tipoCertificadoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( tipocertificadoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
 }

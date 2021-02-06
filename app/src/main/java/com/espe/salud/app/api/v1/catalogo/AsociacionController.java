@@ -4,7 +4,6 @@ import com.espe.salud.domain.entities.catalogo.Asociacion;
 import com.espe.salud.dto.catalogo.AsociacionDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,13 +29,9 @@ public class AsociacionController {
         this.asociacionService = asociacionService;
     }
 
-    @Operation(summary = "Retorna el listado de todos las asociacianes")
+    @Operation(summary = "Retorna el listado de todas las asociacianes en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AsociacionDTO>> getAll() {
-        AsociacionDTO asociacionDTO = new AsociacionDTO();
-        return new ResponseEntity<>( asociacionService.findAll(asociacionDTO), HttpStatus.OK);
+        return new ResponseEntity<>( asociacionService.findAllOrderByNameASC(), HttpStatus.OK);
     }
-
-
-    
 }

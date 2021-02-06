@@ -24,16 +24,24 @@ public class NotaEnfermeriaController {
     private final NotaEnfermeriaService notaEnfermeriaService;
 
     @Autowired
-    private NotaEnfermeriaController(NotaEnfermeriaService notaEnfermeriaService) {
+    public NotaEnfermeriaController(NotaEnfermeriaService notaEnfermeriaService) {
         this.notaEnfermeriaService = notaEnfermeriaService;
     }
 
     @Operation(summary = "Retorna las notas de enfermeria de un paciente")
     @ApiResponse(responseCode = "200", description = "OK")
-    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/paciente", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NotaEnfermeriaDTO>> getByPaciente(
             @Parameter(required = true, description = "El ID del paciente", example = "1") @RequestParam Long paciente) {
         return new ResponseEntity<>( notaEnfermeriaService.findByPaciente(paciente), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Retorna las notas de enfermeria de un usuario")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @GetMapping(value = "/usuario", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<NotaEnfermeriaDTO>> getByUsuario(
+            @Parameter(required = true, description = "El ID del usuario", example = "1") @RequestParam Long usuario) {
+        return new ResponseEntity<>( notaEnfermeriaService.findByUsuario(usuario), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,5 +56,11 @@ public class NotaEnfermeriaController {
         return notaEnfermeriaService.findById(id)
                 .map(nota -> new ResponseEntity<>(nota, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/")
+    @Operation(summary = "Guarda y retorna una nueva nota de enfermeria")
+    public ResponseEntity<NotaEnfermeriaDTO> save(@RequestBody NotaEnfermeriaDTO notaEnfermeriaDTO){
+        return new ResponseEntity<>(notaEnfermeriaService.save(notaEnfermeriaDTO), HttpStatus.CREATED);
     }
 }

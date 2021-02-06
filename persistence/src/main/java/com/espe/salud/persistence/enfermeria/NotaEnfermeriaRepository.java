@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface NotaEnfermeriaRepository extends JpaRepository<NotaEnfermeria, Long> {
     Optional<NotaEnfermeria> findByCodigo(Long codigo);
     List<NotaEnfermeria> findByPacienteCodigoOrderByFechaInicio(Long pacienteCodigo);
+    List<NotaEnfermeria> findByUsuarioPidmOrderByFechaInicio(Long pidm);
 }
