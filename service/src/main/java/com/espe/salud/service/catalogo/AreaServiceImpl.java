@@ -7,6 +7,7 @@ import com.espe.salud.persistence.catalogo.AreaRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("AreaServiceImpl")
@@ -32,5 +33,10 @@ public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
     @Override
     public Optional<Area> findExisting(AreaDTO domainObject) {
         return areaRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<AreaDTO> findAllOrderByNameASC() {
+        return null;
     }
 }

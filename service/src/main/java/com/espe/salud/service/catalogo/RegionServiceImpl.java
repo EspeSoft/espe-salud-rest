@@ -8,6 +8,7 @@ import com.espe.salud.persistence.catalogo.RegionRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("RegionServiceImpl")
@@ -35,6 +36,11 @@ public class RegionServiceImpl extends GenericCRUDServiceImpl<Region, RegionDTO>
     @Override
     public Optional<Region> findExisting(RegionDTO domainObject) {
         return regionRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<RegionDTO> findAllOrderByNameASC() {
+        return null;
     }
 }
 

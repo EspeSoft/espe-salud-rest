@@ -7,6 +7,7 @@ import com.espe.salud.persistence.catalogo.OrganoSistemaRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("OrganoSistemaServiceImpl")
@@ -32,5 +33,10 @@ public class OrganoSistemaServiceImpl extends GenericCRUDServiceImpl<OrganoSiste
     @Override
     public Optional<OrganoSistema> findExisting(OrganoSistemaDTO domainObject) {
         return organoSistemaRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<OrganoSistemaDTO> findAllOrderByNameASC() {
+        return null;
     }
 }
