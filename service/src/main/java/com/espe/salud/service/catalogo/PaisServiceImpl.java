@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("PaisServiceImpl")
@@ -37,5 +38,10 @@ public class PaisServiceImpl extends GenericCRUDServiceImpl<Pais, PaisDTO> {
     @Override
     public Optional<Pais> findExisting(PaisDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<PaisDTO> findAllOrderByNameASC() {
+        return null;
     }
 }

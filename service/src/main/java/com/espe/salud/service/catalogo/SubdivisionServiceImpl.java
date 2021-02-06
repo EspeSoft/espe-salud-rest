@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("SubdivisionServiceImpl")
@@ -37,5 +38,10 @@ public class SubdivisionServiceImpl extends GenericCRUDServiceImpl<Subdivision, 
     @Override
     public Optional<Subdivision> findExisting(SubdivisionDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<SubdivisionDTO> findAllOrderByNameASC() {
+        return null;
     }
 }

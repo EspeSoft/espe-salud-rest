@@ -11,30 +11,36 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "MZSTPATFAM", schema = "SALUD")
-public class AntecedentePatologicoFamiliar {
+@Table(name = "MZSTDIS", schema = "SALUD")
+public class Discapacidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTPATFAM_CODIGO")
+    @Column(name="MZSTDIS_CODIGO")
     private Long codigo;
 
-    @Lob
-    @Column(name = "MZSTPATFAM_TIPO_ENFERMEDAD")
-    private String tipoEnfermedad;
+    @Column(name = "MZSTDIS_COLABORADOR_DISCAPACIDAD")
+    private Boolean colaboradorDiscapacidad;
+
+    @Column(name = "MZSTDIS_ES_COLABORADOR_SUSTITUTO")
+    private Boolean esColaboradorSustituto;
 
     @Lob
-    @Column(name = "MZSTPATFAM_PARENTEZCO")
-    private String parentezco;
+    @Column(name = "MZSTDIS_DIAGNOSTICO_RELACION_DISCAPACIDAD")
+    private String diagnosticoRelacionDiscapacidad;
 
     @Lob
-    @Column(name = "MZSTPATFAM_DIAGNOSTICO")
-    private String diagnostico;
+    @Column(name = "MZSTDIS_TIPO_DISCAPACIDAD")
+    private String tipoDiscapacidad;
 
     @Lob
-    @Column(name = "MZSTPATFAM_OBSERVACION")
-    private String observacion;
+    @Column(name = "MZSTDIS_PORCENTAJE_DISCAPACIDAD")
+    private String porcentajeDiscapacidad;
+
+    @Lob
+    @Column(name = "MZSTDIS_GRADO_DISCAPACIDAD")
+    private String gradoDiscapacidad;
 
     @CreatedBy
     @Column(name = "MZSTPATFAM_USUARIO_CREACION")
@@ -51,5 +57,4 @@ public class AntecedentePatologicoFamiliar {
     @LastModifiedDate
     @Column(name = "MZSTPATFAM_FECHA_MODIFICACION")
     private LocalDate fechaModificacion;
-
 }

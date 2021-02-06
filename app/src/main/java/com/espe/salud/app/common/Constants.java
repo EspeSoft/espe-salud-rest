@@ -50,4 +50,6 @@ public class Constants {
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
 
+    
+
 }
