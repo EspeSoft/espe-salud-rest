@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_BIO;
-import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_FIS;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_BIO})
@@ -31,11 +30,10 @@ public class RiesgoBiologicoController {
         this.riesgoBiologicoService = riesgoBiologicoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los riesgo biológicos")
+    @Operation(summary = "Retorna el listado de todos los riesgo biológicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoBiologicoDTO>> getAll() {
-        RiesgoBiologicoDTO riesgoBiologicoDTO = new RiesgoBiologicoDTO();
-        return new ResponseEntity<>( riesgoBiologicoService.findAll(riesgoBiologicoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( riesgoBiologicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 
