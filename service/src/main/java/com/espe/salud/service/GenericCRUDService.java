@@ -9,6 +9,8 @@ public interface GenericCRUDService<DOMAIN, DTO> {
 
     public List<DTO> findAll(DTO dtoObject);
 
+    public DTO findById(Long id);
+
     /**
      * Permite mapear un objeto serializable a un objeto de dominio
      * @param dtoObject
@@ -29,5 +31,6 @@ public interface GenericCRUDService<DOMAIN, DTO> {
      * @return
      */
     public abstract Optional<DOMAIN> findExisting(DTO domainObject);
+    public abstract List<DTO> findAllOrderByNameASC();
     public abstract boolean delete(Long id);
 }

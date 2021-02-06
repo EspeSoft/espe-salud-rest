@@ -18,60 +18,59 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "MZSTREC_LAB", schema = "SALUD")
+@Table(name = "MZSTRECLAB", schema = "SALUD")
 public class RecordLaboral {
-    private static final long serialVersionUID =1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTREC_LAB_CODIGO")
+    @Column(name="MZSTRECLAB_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTREC_LAB_FECHA_REGISTRO")
+    @Column(name = "MZSTRECLAB_FECHA_REGISTRO")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull
     private LocalDate fechaRegistro;
 
-    @Column(name = "MZSTREC_LAB_CAUSA")
+    @Column(name = "MZSTRECLAB_CAUSA")
     @Size(max=50)
     @NotEmpty
     private String causa;
 
-    @Column(name = "MZSTREC_LAB_EDAD")
+    @Column(name = "MZSTRECLAB_EDAD")
     private int edad;
 
-    @Column(name = "MZSTREC_LAB_FECHA_SALIDA")
+    @Column(name = "MZSTRECLAB_FECHA_SALIDA")
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaSalidad;
 
-    @Column(name = "MZSTREC_LAB_FECHA_REINGRESO")
+    @Column(name = "MZSTRECLAB_FECHA_REINGRESO")
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaReingreso;
 
-    @Column(name = "MZSTREC_LAB_DIAS_ENTRE_SALIDO_INGRESO")
+    @Column(name = "MZSTRECLAB_DIAS_ENTRE_SALIDO_INGRESO")
     private int diasEntreSalidoIngreso;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
-    @JoinColumn(name = "FK_EMP_REC_LAB", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_EMP_RECLAB", insertable = false, updatable = false)
     private Empleado empleado;
 
     @CreatedDate
-    @Column(name = "MZSTREC_LAB_FECHA_CREACION")
+    @Column(name = "MZSTRECLAB_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
-    @Column(name = "MZSTREC_LAB_FECHA_MODIFICACION")
+    @Column(name = "MZSTRECLAB_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
 
     @CreatedBy
-    @Column(name = "MZSTREC_LAB_USUARIO_CREACION")
+    @Column(name = "MZSTRECLAB_USUARIO_CREACION")
     private String usuarioCreacion;
 
     @LastModifiedBy
-    @Column(name = "MZSTREC_LAB_USUARIO_MODIFICACION")
+    @Column(name = "MZSTRECLAB_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
     @PrePersist
