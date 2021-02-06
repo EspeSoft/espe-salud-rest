@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("ConsumoNocivoServiceImpl")
@@ -37,5 +38,10 @@ public class ConsumoNocivoServiceImpl extends GenericCRUDServiceImpl<ConsumoNoci
     @Override
     public Optional<ConsumoNocivo> findExisting(ConsumoNocivoDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<ConsumoNocivoDTO> findAllOrderByNameASC() {
+        return null;
     }
 }
