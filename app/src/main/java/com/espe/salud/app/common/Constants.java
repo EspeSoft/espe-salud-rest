@@ -17,11 +17,11 @@ public class Constants {
     public static final String URI_API_V1_NOT_ENF = URI_API_V1 + "notas-enfermeria";
     public static final String URI_API_V1_EMP = URI_API_V1 + "empleados";
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
+
+    public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
+    public static final String URI_API_V1_AREA = URI_API_V1 + "areas";
+
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
-
-
-
-
 }
