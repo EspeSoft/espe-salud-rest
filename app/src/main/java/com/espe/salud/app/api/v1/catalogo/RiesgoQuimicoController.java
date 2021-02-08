@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.espe.salud.app.common.Constants.URI_API_V1_PAR;
 import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_QUI;
 
 @RestController
@@ -34,10 +33,9 @@ public class RiesgoQuimicoController {
         this.riesgoQuimicoService = riesgoQuimicoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los riesgo químicos")
+    @Operation(summary = "Retorna el listado de todos los riesgo químicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoQuimicoDTO>> getAll() {
-        RiesgoQuimicoDTO riesgoQuimicoDTO = new RiesgoQuimicoDTO();
-        return new ResponseEntity<>( riesgoQuimicoService.findAll(riesgoQuimicoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( riesgoQuimicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }

@@ -7,6 +7,7 @@ import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_PAR})
-@Tag(name = "Gestiona el cátalodo de parentescos")
+@Tag(name = "Gestiona el catálogo de parentescos")
 public class ParentescoController {
 
     private final GenericCRUDService<Parentesco, ParentescoDTO> parentescoService;
@@ -30,11 +31,20 @@ public class ParentescoController {
         this.parentescoService = parentescoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los parentescos")
+    @Operation(summary = "Retorna el listado de todos los parentescos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ParentescoDTO>> getAll() {
-        ParentescoDTO parentescoDTO = new ParentescoDTO();
-        return new ResponseEntity<>( parentescoService.findAll(parentescoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( parentescoService.findAllOrderByNameASC(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    @Operation(summary = "Retorna un parentesco por su ID")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<ParentescoDTO> retrieve(
+            @Parameter(description = "El ID del parentesco", required = true, example = "1")
+            @PathVariable("id") Long id) {
+        return new ResponseEntity<>(parentescoService.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/")
