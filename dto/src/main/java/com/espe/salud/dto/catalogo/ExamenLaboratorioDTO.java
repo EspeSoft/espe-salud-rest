@@ -14,7 +14,7 @@ public class ExamenLaboratorioDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private LocalDate fecha;
+    private String nombre;
 
 
 }

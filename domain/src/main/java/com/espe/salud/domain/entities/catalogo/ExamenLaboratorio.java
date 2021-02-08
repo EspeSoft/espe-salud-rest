@@ -18,7 +18,8 @@ public class ExamenLaboratorio {
     @Column(name = "MZSTCEXALAB_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTCEXALAB_FECHA")
-    private LocalDate fecha;
+    @Column(name = "MZSTCEXALAB_NOMBRE")
+    private String nombre;
+
 
 }

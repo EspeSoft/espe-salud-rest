@@ -13,5 +13,6 @@ public class DetalleExamenLaboratorioDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String observacion;
+    private String nombre;
+    private String unidad;
 }

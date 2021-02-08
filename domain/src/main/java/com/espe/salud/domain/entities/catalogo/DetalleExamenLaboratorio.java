@@ -17,6 +17,9 @@ public class DetalleExamenLaboratorio {
     @Column(name = "MZSTCDETEXALAB_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTCDETEXALAB_OBSERVACION")
-    private String observacion;
+    @Column(name = "MZSTCDETEXALAB_NOMBRE")
+    private String nombre;
+
+    @Column(name = "MZSTCDETEXALAB_UNIDAD")
+    private String unidad;
 }
