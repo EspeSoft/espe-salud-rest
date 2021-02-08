@@ -23,7 +23,7 @@ public class Estudiante {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTEST_CODIGO")
+    @Column(name = "MZSTEST_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTEST_FECHA_INGRESO_ESPE")
@@ -32,16 +32,13 @@ public class Estudiante {
     private LocalDate fechaIngresoEspe;
 
     @Column(name = "MZSTEST_DEPARTAMENTO")
-    @Size(max = 50)
     @NotEmpty
     private String departamento;
 
     @Column(name = "MZSTEST_ESCUELA")
-    @Size(max = 50)
     private String escuela;
 
     @Column(name = "MZSTEST_CARRERA")
-    @Size(max = 50)
     @NotEmpty
     private String carrera;
 

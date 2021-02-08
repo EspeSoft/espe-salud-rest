@@ -2,6 +2,8 @@ package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -11,7 +13,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "MZSTPAC", schema = "SALUD")
 public class Paciente {
@@ -40,9 +43,9 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Evolucion> evoluciones;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "FK_PER_PAC", updatable = false, nullable = false)
-    private Persona persona;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "FK_PER_PAC", updatable = false, nullable = false)
+//    private Persona persona;
 
     @CreatedDate
     @Column(name = "MZSTPAC_FECHA_CREACION")
