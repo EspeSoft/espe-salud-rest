@@ -11,47 +11,47 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Table(name = "MZSTANTPATPER", schema = "SALUD")
-public class AntecedentePatologicoPersonal {
+@Table(name = "MZSTMEDHAB", schema = "SALUD")
+public class MedicacionHabitual {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTANTPATPER_CODIGO")
+    @Column(name="MZSTMEDHAB_CODIGO")
     private Long codigo;
 
     @Lob
-    @Column(name = "MZSTANTPATPER_TIPO_ENFERMEDAD_PERSONAL")
-    private String tipoEnfermedadPersonal;
-
-    @Column(name = "MZSTANTPATPER_FECHA_DIAGNOSTICO")
-    private LocalDate fechaDiagnostico;
+    @Column(name = "MZSTMEDHAB_DESCRIPCION_MEDICAMENTO")
+    private String descripcionMedicamento;
 
     @Lob
-    @Column(name = "MZSTANTPATPER_TOMA_MEDICACION")
-    private String tomaMedicacion;
+    @Column(name = "MZSTMEDHAB_FRECUENCIA")
+    private String frecuencia;
+
+    @Column(name = "MZSTMEDHAB_CANTIDAD")
+    private Integer cantidad;
 
     @Lob
-    @Column(name = "MZSTANTPATPER_DIAGNOSTICO")
-    private String diagnostico;
+    @Column(name = "MZSTMEDHAB_OBSERVACION")
+    private String observacion;
 
     @Lob
-    @Column(name = "MZSTANTPATPER_ANTECEDENTE_PERSONAL")
+    @Column(name = "MZSTMEDHAB_ANTECEDENTE_PERSONAL")
     private String antecedentePersonal;
 
     @CreatedBy
-    @Column(name = "MZSTANTPATPER_USUARIO_CREACION")
+    @Column(name = "MZSTMEDHAB_USUARIO_CREACION")
     private String usuarioCreacion;
 
     @LastModifiedBy
-    @Column(name = "MZSTANTPATPER_USUARIO_MODIFICACION")
+    @Column(name = "MZSTMEDHAB_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
     @CreatedDate
-    @Column(name = "MZSTANTPATPER_FECHA_CREACION")
+    @Column(name = "MZSTMEDHAB_FECHA_CREACION")
     private LocalDate fechaCreacion;
 
     @LastModifiedDate
-    @Column(name = "MZSTANTPATPER_FECHA_MODIFICACION")
+    @Column(name = "MZSTMEDHAB_FECHA_MODIFICACION")
     private LocalDate fechaModificacion;
 }
