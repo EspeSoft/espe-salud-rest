@@ -39,19 +39,4 @@ public class TipoEnfermedadPersonalController {
         return new ResponseEntity<>( tipoenfermedadpersonalService.findAll(tipoEnfermedadPersonalDTO), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    @Operation(summary = "Guarda y retorna un nuevo tipo de enfermedad personal")
-    public ResponseEntity<TipoEnfermedadPersonalDTO> save(@RequestBody TipoEnfermedadPersonalDTO tipoEnfermedadPersonalDTO){
-        return new ResponseEntity<>(tipoenfermedadpersonalService.saveOrUpdate(tipoEnfermedadPersonalDTO), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina un tipo de enfermedad personal por su ID")
-    public ResponseEntity<Boolean> deleteUser(
-            @Parameter(required = true, description = "El ID del tipo de enfermedad personal", example = "1")
-            @PathVariable Long id) {
-        return new ResponseEntity<>(tipoenfermedadpersonalService.delete(id), HttpStatus.OK);
-    }
-
-
 }

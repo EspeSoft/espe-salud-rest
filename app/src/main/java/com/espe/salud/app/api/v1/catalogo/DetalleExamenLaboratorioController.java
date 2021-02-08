@@ -36,18 +36,4 @@ public class DetalleExamenLaboratorioController {
         DetalleExamenLaboratorioDTO detalleExamenLaboratorioDTO = new DetalleExamenLaboratorioDTO();
         return new ResponseEntity<>( detalleExamenLaboratorioService.findAll(detalleExamenLaboratorioDTO), HttpStatus.OK);
     }
-
-    @PostMapping("/")
-    @Operation(summary = "Guarda y retorna un nuevo detalle de examen de laboratorio")
-    public ResponseEntity<DetalleExamenLaboratorioDTO> save(@RequestBody DetalleExamenLaboratorioDTO detalleExamenLaboratorioDTO){
-        return new ResponseEntity<>(detalleExamenLaboratorioService.saveOrUpdate(detalleExamenLaboratorioDTO), HttpStatus.CREATED);
-    }
-
-    @DeleteMapping("/{id}")
-    @Operation(summary = "Elimina un detalle de examen de laboratorio por su ID")
-    public ResponseEntity<Boolean> deleteUser(
-            @Parameter(required = true, description = "El ID del detalle de examen de laboratorio", example = "1")
-            @PathVariable Long id) {
-        return new ResponseEntity<>(detalleExamenLaboratorioService.delete(id), HttpStatus.OK);
-    }
 }
