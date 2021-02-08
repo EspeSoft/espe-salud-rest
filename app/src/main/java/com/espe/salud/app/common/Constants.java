@@ -31,27 +31,9 @@ public class Constants {
 
     public static final String URI_API_V1_EMP = URI_API_V1 + "empleados";
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
-
-    public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
-
-    public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos sistema";
-
-    public static final String URI_API_V1_AREA = URI_API_V1 + "areas";
-    public static final String URI_API_V1_SED=URI_API_V1 + "sedes";
-    public static final String URI_API_V1_GRU_CUL=URI_API_V1+"grupo-cultural";
-    public static final String URI_API_V1_DISP=URI_API_V1+"dispensario";
-    public static final String URI_API_V1_ANTE_PAT_FAM=URI_API_V1 +"antecedente-patologico-familiar";
-    public static final String URI_API_V1_ANTE_QUIRURGICO=URI_API_V1+"antecedente-quirurgico";
-    public static final String URI_API_V1_DISCAPACIDAD=URI_API_V1+"dicapacidad";
-
-
-    public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
-    public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
-    public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
-  
-    public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "segurosalud";
-    public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
-    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipocertificado";
+    public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tiposenfermedadespersonales";
+    public static final String URI_API_V1_EXALAB = URI_API_V1 + "exameneslaboratorios";
+    public static final String URI_API_V1_DETEXALAB = URI_API_V1 + "detallesexameneslaboratorios";
 
 
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
