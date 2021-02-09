@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
     Optional<Paciente> findByCodigo(Long codigo);
+    Optional<Paciente> findByNumeroArchivo(String numeroArchivo);
     List<Paciente> findAllByCodigo(Long codigo);
     //List<Paciente> findAll(Paciente paciente);
 }

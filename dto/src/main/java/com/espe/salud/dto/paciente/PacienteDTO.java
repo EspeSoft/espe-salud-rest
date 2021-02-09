@@ -1,23 +1,26 @@
 package com.espe.salud.dto.paciente;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
 public class PacienteDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-//    private String numeroArchivo;
-//    private Boolean activo;
-//    private Boolean esEstudiante;
-//    private Boolean esEmpleado;
-//    private Boolean accesoBanner;
-    private String apellidoP;
+    private String numeroArchivo;
+    private Boolean activo;
+    private Boolean esEstudiante;
+    private Boolean esEmpleado;
+    private Boolean accesoBanner;
+    private String apellidoPaterno;
 //    private String apellidoMaterno;
 //    private String primerNombre;
 //    private String segundoNombre;
@@ -43,5 +46,6 @@ public class PacienteDTO implements Serializable {
 //    private Long idCantonNacimiento;
 //    private Long idNacionalidad;
 //    private Long idNacionalidad2;
-//    private ContactoDTO contacto;
+    private ContactoDTO contacto;
+    private List<ContactoEmergenciaDTO> contactosEmergencia;
 }

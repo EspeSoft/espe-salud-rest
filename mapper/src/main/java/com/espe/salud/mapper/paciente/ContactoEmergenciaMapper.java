@@ -1,8 +1,6 @@
 package com.espe.salud.mapper.paciente;
 
-import com.espe.salud.domain.entities.paciente.Contacto;
 import com.espe.salud.domain.entities.paciente.ContactoEmergencia;
-import com.espe.salud.dto.paciente.ContactoDTO;
 import com.espe.salud.dto.paciente.ContactoEmergenciaDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
