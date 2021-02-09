@@ -39,7 +39,7 @@ public class Paciente {
     @Column(name = "MZSTPAC_ACCESO_BANNER")
     private Boolean accesoBanner;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "MZSTPAC_PER",
             joinColumns = {
                     @JoinColumn(name = "FK_PAC", referencedColumnName = "MZSTPAC_CODIGO")},

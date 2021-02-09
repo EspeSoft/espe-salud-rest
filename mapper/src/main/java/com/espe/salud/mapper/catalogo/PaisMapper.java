@@ -16,7 +16,7 @@ public interface PaisMapper {
     })
     PaisDTO toPaisDTO(Pais pais);
 
-    List<PaisDTO> toPaissDTO(List<Pais> paises);
+    List<PaisDTO> toPaisesDTO(List<Pais> paises);
 
     @InheritInverseConfiguration
     Pais toPais(PaisDTO dto);

@@ -24,12 +24,12 @@ public class DispensarioServiceImpl implements DispensarioService {
 
     @Override
     public Optional<DispensarioDTO> findById(Long codigo) {
-        return domainRepository.findByCodigo(codigo).map(dispensario -> toDTO(dispensario));
+        return domainRepository.findByCodigo(codigo).map(this::toDTO);
     }
 
     @Override
     public Optional<DispensarioDTO> findByNombre(String nombre) {
-        return domainRepository.findByNombreImagen(nombre).map(dispensario -> toDTO(dispensario));
+        return domainRepository.findByNombreImagen(nombre).map(this::toDTO);
     }
 
     @Override

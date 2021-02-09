@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service("PaisServiceImpl")
+@Service("paisServiceImpl")
 public class PaisServiceImpl extends GenericCRUDServiceImpl<Pais, PaisDTO> {
 
     private final PaisRepository domainRepository;
@@ -42,6 +42,6 @@ public class PaisServiceImpl extends GenericCRUDServiceImpl<Pais, PaisDTO> {
 
     @Override
     public List<PaisDTO> findAllOrderByNameASC() {
-        return null;
+        return mapper.toPaisesDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 }
