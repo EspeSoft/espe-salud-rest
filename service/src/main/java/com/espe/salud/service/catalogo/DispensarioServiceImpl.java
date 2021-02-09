@@ -28,6 +28,11 @@ public class DispensarioServiceImpl implements DispensarioService {
     }
 
     @Override
+    public Optional<DispensarioDTO> findByNombre(String nombre) {
+        return domainRepository.findByNombreImagen(nombre).map(dispensario -> toDTO(dispensario));
+    }
+
+    @Override
     public List<DispensarioDTO> findAll() {
         return mapper.toDispensarioDTO(domainRepository.findAll());
     }
