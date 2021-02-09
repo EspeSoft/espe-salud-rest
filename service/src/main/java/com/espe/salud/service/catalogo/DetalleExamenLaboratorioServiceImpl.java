@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("detalleExamenLaboratorioServiceImpl")
@@ -37,5 +38,10 @@ public class DetalleExamenLaboratorioServiceImpl extends GenericCRUDServiceImpl<
     @Override
     public Optional<DetalleExamenLaboratorio> findExisting(DetalleExamenLaboratorioDTO domainObject){
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<DetalleExamenLaboratorioDTO> findAllOrderByNameASC() {
+        return null;
     }
 }

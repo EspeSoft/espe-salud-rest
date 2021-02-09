@@ -18,5 +18,5 @@ public class HistoriaClinicaOdontologicaDTO implements Serializable {
     private String profesional;
     private String codigoProfesional;
     private Long pacienteId;
-
+    
 }
