@@ -25,7 +25,7 @@ public class Persona {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTPER_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTPER_CODIGO")
     private Long codigo;
 
     @Column(name = "MZSTPER_APELLIDO_PATERNO")
