@@ -1,6 +1,7 @@
 package com.espe.salud.persistence.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.enums.TipoDispensario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +11,5 @@ import java.util.Optional;
 public interface DispensarioRepository extends JpaRepository<Dispensario,Long> {
 
     Optional<Dispensario> findByCodigo(Long codigo);
-    Optional<Dispensario> findByNombreImagen(String nombre);
+    Optional<Dispensario> findByNombreImagen(TipoDispensario nombreImagen);
 }
