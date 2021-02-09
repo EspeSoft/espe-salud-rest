@@ -57,4 +57,7 @@ public class Constants {
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
+
+    public static final String URI_API_V1_TIP_ENF = URI_API_V1 + "tipos-enfermedades";
+    public static final String URI_API_V1_EST_COM = URI_API_V1 + "estudios-complementarios";
 }
