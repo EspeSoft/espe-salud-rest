@@ -31,8 +31,8 @@ public class Constants {
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
 
     public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
-
     public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos sistema";
+
 
     public static final String URI_API_V1_AREA = URI_API_V1 + "areas";
     public static final String URI_API_V1_SED=URI_API_V1 + "sedes";
@@ -55,4 +55,9 @@ public class Constants {
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
+
+    public static final String URI_API_V1_TIPO_PROC = URI_API_V1 + "tipos procedimiento";
+    public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos enfermedades";
+    public static final String URI_API_V1_CODIGO_CIE10 = URI_API_V1 + "codigos";
+    public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos enfermedades";
 }
