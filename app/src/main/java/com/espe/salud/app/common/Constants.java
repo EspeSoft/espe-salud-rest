@@ -15,6 +15,8 @@ public class Constants {
     public static final String URI_API_V1_EVO = URI_API_V1 + "evoluciones";
     public static final String URI_API_V1_PAC = URI_API_V1 + "pacientes";
     public static final String URI_API_V1_NOT_ENF = URI_API_V1 + "notas-enfermeria";
+    public static final String URI_API_V1_HIS_CLI_ODO = URI_API_V1 + "historia-clinica-odontologica";
+    public static final String URI_API_V1_ENF_PRO_ACT = URI_API_V1 + "enfermedad-problema-actual";
 
     public static final String URI_API_V1_USU = URI_API_V1 + "usuarios";
     public static final String URI_API_V1_COD_CIUO = URI_API_V1 + "codigos-ciuo";
@@ -46,7 +48,7 @@ public class Constants {
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
     public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
-  
+
     public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "segurosalud";
     public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
     public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipocertificado";
@@ -56,8 +58,17 @@ public class Constants {
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
 
+
     public static final String URI_API_V1_TIPO_PROC = URI_API_V1 + "tipos procedimiento";
     public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos enfermedades";
     public static final String URI_API_V1_CODIGO_CIE10 = URI_API_V1 + "codigos";
     public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos enfermedades";
+
+    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL=URI_API_V1+"antecedentes-patologicos-perosnales";
+    public static final String URI_API_V1_MED_HABITUAL=URI_API_V1+"medicacion-habitual";
+
+    public static final String URI_API_V1_DETEXALAB=URI_API_V1+"detalles-laboratorio";
+    public static final String URI_API_V1_EXALAB=URI_API_V1+"examenes-laboratorio";
+
+    public static final String URI_API_V1_TIPENFPER=URI_API_V1+"tipo-enfermedad-personal";
 }
