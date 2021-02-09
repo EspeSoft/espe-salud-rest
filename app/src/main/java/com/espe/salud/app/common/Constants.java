@@ -48,7 +48,7 @@ public class Constants {
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
     public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
-  
+
     public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "segurosalud";
     public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
     public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipocertificado";
@@ -57,4 +57,12 @@ public class Constants {
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
+
+    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL=URI_API_V1+"antecedentes-patologicos-perosnales";
+    public static final String URI_API_V1_MED_HABITUAL=URI_API_V1+"medicacion-habitual";
+
+    public static final String URI_API_V1_DETEXALAB=URI_API_V1+"detalles-laboratorio";
+    public static final String URI_API_V1_EXALAB=URI_API_V1+"examenes-laboratorio";
+
+    public static final String URI_API_V1_TIPENFPER=URI_API_V1+"tipo-enfermedad-personal";
 }
