@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.catalogo;
 
 import com.espe.salud.domain.entities.usuario.Usuario;
+import com.espe.salud.domain.enums.TipoDispensario;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,6 +26,10 @@ public class Dispensario {
 
     @Column(name = "MZSTCDIS_UNI_CODIGO")
     private String uniCodigo;
+
+    @Column(name = "MZSTCDIS_NOMBRE_IMAGEN")
+    @Enumerated(EnumType.STRING)
+    private TipoDispensario nombreImagen;
 
     @OneToMany(mappedBy = "dispensario", cascade = CascadeType.ALL)
     private List<Usuario> usuarios;

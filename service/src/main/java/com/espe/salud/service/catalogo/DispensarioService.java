@@ -10,6 +10,7 @@ import java.util.Optional;
 @Service
 public interface DispensarioService {
     Optional<DispensarioDTO> findById(Long codigo);
+    Optional<DispensarioDTO> findByNombre(String nombre);
     List<DispensarioDTO> findAll();
     DispensarioDTO toDTO(Dispensario dispensario);
     Dispensario toEntity(DispensarioDTO dto);

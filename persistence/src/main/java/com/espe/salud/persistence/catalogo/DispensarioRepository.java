@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface DispensarioRepository extends JpaRepository<Dispensario,Long> {
 
     Optional<Dispensario> findByCodigo(Long codigo);
+    Optional<Dispensario> findByNombreImagen(String nombre);
 }
