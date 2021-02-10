@@ -17,7 +17,7 @@ public interface DiagnosticoMapper {
     })
     DiagnosticoDTO toDiagnosticoDTO(Diagnostico diagnostico);
 
-    List<DiagnosticoDTO> toDiagnosticoDTO(List<Diagnostico> diagnostico);
+    List<DiagnosticoDTO> toDiagnosticosDTO(List<Diagnostico> diagnosticos);
 
     @InheritInverseConfiguration
     Diagnostico  toDiagnostico(DiagnosticoDTO dto);
