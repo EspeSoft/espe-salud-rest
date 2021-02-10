@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("unidadDepartamentoServiceImpl")
@@ -17,7 +18,8 @@ public class UnidadDepartamentoServiceImpl extends GenericCRUDServiceImpl<Unidad
     private final UnidadDepartamentoMapper  mapper;
 
     @Autowired
-    public UnidadDepartamentoServiceImpl(UnidadDepartamentoRepository domainRepository, UnidadDepartamentoMapper mapper) {
+    public UnidadDepartamentoServiceImpl(UnidadDepartamentoRepository domainRepository,
+                                         UnidadDepartamentoMapper mapper) {
         this.domainRepository = domainRepository;
         this.mapper = mapper;
     }
@@ -36,5 +38,10 @@ public class UnidadDepartamentoServiceImpl extends GenericCRUDServiceImpl<Unidad
     @Override
     public Optional<UnidadDepartamento> findExisting(UnidadDepartamentoDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<UnidadDepartamentoDTO> findAllOrderByNameASC() {
+        return null;
     }
 }
