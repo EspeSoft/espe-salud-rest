@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("seguroSaludServiceImpl")
@@ -37,5 +38,10 @@ public class SeguroSaludServiceImpl extends GenericCRUDServiceImpl<SeguroSalud, 
     @Override
     public Optional<SeguroSalud> findExisting(SeguroSaludDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<SeguroSaludDTO> findAllOrderByNameASC() {
+        return mapper.toSeguroSaludDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 }

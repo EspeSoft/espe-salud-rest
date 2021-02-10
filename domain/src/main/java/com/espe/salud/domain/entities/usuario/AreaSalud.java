@@ -13,7 +13,7 @@ public class AreaSalud {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "MZSTCARESAL_CODIGO")
-    private Integer codigo;
+    private Long codigo;
 
     @Column(name = "MZSTCARESAL_NOMBRE")
     private String nombre;

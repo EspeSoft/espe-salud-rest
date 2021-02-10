@@ -16,7 +16,9 @@ public interface TipoCertificadoMapper {
     })
     TipoCertificadoDTO toTipoCertificadoDTO(TipoCertificado tipocertificado);
 
+
     List<TipoCertificadoDTO> toTipoCertificadoDTO(List<TipoCertificado> tiposCertificados);
+
 
     @InheritInverseConfiguration
     TipoCertificado toTipoCertificado(TipoCertificadoDTO dto);
