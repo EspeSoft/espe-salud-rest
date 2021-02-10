@@ -30,7 +30,7 @@ public class UnidadDepartamentoController {
         this.unidadDepartamentoService = unidadDepartamentoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los parentescos")
+    @Operation(summary = "Retorna el listado de todas las unidades de departamento")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<UnidadDepartamentoDTO>> getAll() {
         UnidadDepartamentoDTO unidadDepartamentoDTO = new UnidadDepartamentoDTO();
