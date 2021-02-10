@@ -1,5 +1,6 @@
 package com.espe.salud.app.api.v1.antecedente;
 
+import com.espe.salud.app.common.Constants;
 import com.espe.salud.dto.antecedente.ConsumoNocivoDTO;
 import com.espe.salud.service.antecedente.ConsumoNocivoService;
 import io.swagger.v3.oas.annotations.Operation;

@@ -53,7 +53,6 @@ public class Constants {
 
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
-    public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
 
     public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "seguro-salud";
