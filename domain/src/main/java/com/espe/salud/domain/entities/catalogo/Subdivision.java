@@ -1,14 +1,13 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.espe.salud.domain.enums.TipoSubdivision;
+import lombok.Data;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
-@Table(name = "MZSTCSUBDIVISION", schema = "SALUD" )
+@Table(name = "MZSTCSUB", schema = "SALUD" )
 public class Subdivision {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,14 @@ public class Subdivision {
     private String codigo1;
 
     @Column(name = "MZSTCSUB_TIPO")
-    private String tipo;
-   
+    @Enumerated(EnumType.STRING)
+    private TipoSubdivision tipo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_PAI_SUB", updatable = false, insertable = false)
+    private Pais pais;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_SUB_SUB")
+    private Subdivision padre;
 }

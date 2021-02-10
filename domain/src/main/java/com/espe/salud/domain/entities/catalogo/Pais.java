@@ -4,11 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTCPAIS", schema = "SALUD" )
+@Table(name = "MZSTCPAI", schema = "SALUD" )
 public class Pais {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,5 +31,7 @@ public class Pais {
 
     @Column(name = "MZSTCPAI_CODIGO_NUMERICO")
     private String codigoNumerico;
-    
+
+    @OneToMany(mappedBy = "pais", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Subdivision> subdivisiones;
 }
