@@ -3,12 +3,15 @@ package com.espe.salud.service.evolucion;
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.evolucion.Procedimiento;
 import com.espe.salud.dto.evolucion.ProcedimientoDTO;
+import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.mapper.evolucion.ProcedimientoMapper;
 import com.espe.salud.mapper.evolucion.ProcedimientoMapperImpl;
 import com.espe.salud.persistence.evolucion.ProcedimientoRepository;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,14 +38,34 @@ public class ProcedimientoServicelmpl implements ProcedimientoService{
     }
 
     @Override
+    public ProcedimientoDTO update(ProcedimientoDTO procedimiento) {
+        Procedimiento domainObject = toEntity(procedimiento);
+        return toDTO(procedimientoRepository.save(domainObject));
+    }
+
+
+    @Override
     public Optional<Procedimiento> findExisting(ProcedimientoDTO procedimientoDTO) {
         return procedimientoRepository.findByCodigo(procedimientoDTO.getId());
     }
 
     @Override
-    public Optional<ProcedimientoDTO> findById(Long codigo) {
-        return Optional.empty();
+    public Boolean delete(Long id) {
+        return procedimientoRepository.findById(id).map(object -> {
+            procedimientoRepository.deleteById(id);
+            return true;
+        }).orElse(false);
     }
+
+    @Override
+    public Optional<ProcedimientoDTO> findByCodigo(Long codigo) {
+        return procedimientoRepository.findByCodigo(codigo).map(procedimiento -> mapper.toProcedimientoDTO(procedimiento));
+}
+
+    //@Override
+    /*public Optional<ProcedimientoDTO> findById(Long codigo) {
+        return Optional.empty();
+    }*/
 
     @Override
     public ProcedimientoDTO toDTO(Procedimiento procedimiento) {
@@ -52,6 +75,13 @@ public class ProcedimientoServicelmpl implements ProcedimientoService{
     @Override
     public Procedimiento toEntity(ProcedimientoDTO dto) {
         return mapper.toProcedimiento(dto);
+    }
+
+    @Override
+    public List<ProcedimientoDTO> findAll() {
+        List<Procedimiento> procedimientos = new ArrayList<>();
+        procedimientoRepository.findAll().forEach(procedimientos::add);
+        return mapper.toProcedimientosDTO(procedimientos);
     }
 
 
