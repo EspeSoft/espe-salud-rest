@@ -26,7 +26,7 @@ public class SeguroSaludServiceImpl extends GenericCRUDServiceImpl<SeguroSalud, 
 
     @Override
     public SeguroSalud mapTo(SeguroSaludDTO dtoObject) {
-        return mapper.toSeguroSaludDTO(dtoObject);
+        return mapper.toSeguroSalud(dtoObject);
     }
 
     @Override

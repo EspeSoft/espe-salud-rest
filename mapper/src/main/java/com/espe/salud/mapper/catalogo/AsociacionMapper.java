@@ -20,5 +20,5 @@ public interface AsociacionMapper {
     List<AsociacionDTO> toAsociacionesDTO(List<Asociacion> asociaciones);
 
     @InheritInverseConfiguration
-    Asociacion toAsociacionDTO(AsociacionDTO dto);
+    Asociacion toAsociacion(AsociacionDTO dto);
 }
