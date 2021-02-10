@@ -26,6 +26,9 @@ public class Dispensario {
     @Column(name = "MZSTCDIS_UNI_CODIGO")
     private String uniCodigo;
 
+    @Column(name = "MZSTCDIS_NOMBRE_IMAGEN")
+    private String nombreImagen;
+
     @OneToMany(mappedBy = "dispensario", cascade = CascadeType.ALL)
     private List<Usuario> usuarios;
 }

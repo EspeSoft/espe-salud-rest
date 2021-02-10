@@ -1,6 +1,5 @@
 package com.espe.salud.domain.entities.paciente;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -10,9 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -20,6 +17,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "MZSTEST", schema = "SALUD")
 public class Estudiante {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -51,22 +49,8 @@ public class Estudiante {
     @Column(name = "MZSTEST_DIRECCION_LUGAR_ESTUDIO")
     private String direccionLugarEstudio;
 
-    @Column(name = "MZSTEST_CODIGO_CANTON_ESTUDIO")
-    private Long idCantonEstudio;
-
-    @Column(name = "MZSTEST_CODIGO_PROVINCIA_ESTUDIO")
-    private Long idProvinciaEstudio;
-
-    @Column(name = "MZSTEST_CODIGO_SEDE")
-    @NotNull
-    private Long idSede;
-
-    @OneToOne(mappedBy = "estudiante")
-    @JsonIgnore
-    private Persona persona;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_paciente", referencedColumnName = "MZSTPAC_CODIGO")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_PAC_EST", updatable = false, insertable = false)
     private Paciente paciente;
 
     @CreatedDate
@@ -84,14 +68,4 @@ public class Estudiante {
     @LastModifiedBy
     @Column(name = "MZSTEST_USUARIO_MODIFICACION")
     private String usuarioModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
 }

@@ -52,10 +52,10 @@ public class RecordLaboral {
     @Column(name = "MZSTRECLAB_DIAS_ENTRE_SALIDO_INGRESO")
     private int diasEntreSalidoIngreso;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
-    @JoinColumn(name = "FK_EMP_RECLAB", insertable = false, updatable = false)
-    private Empleado empleado;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JsonIgnore
+//    @JoinColumn(name = "FK_EMP_RECLAB", insertable = false, updatable = false)
+//    private Empleado empleado;
 
     @CreatedDate
     @Column(name = "MZSTRECLAB_FECHA_CREACION")
@@ -72,14 +72,4 @@ public class RecordLaboral {
     @LastModifiedBy
     @Column(name = "MZSTRECLAB_USUARIO_MODIFICACION")
     private String usuarioModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
 }

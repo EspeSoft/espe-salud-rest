@@ -2,7 +2,6 @@ package com.espe.salud.domain.entities.usuario;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
-import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,12 +22,15 @@ public class Usuario {
     @Column(name = "MZSTUSU_ACTIVO")
     private Boolean activo;
 
-    @Column(name = "MZSTUSU_ACTIVO_FK_ARESAL_USU")
-    private Integer idAreaSalud;
+    @Column(name = "FK_ARESAL_USU")
+    private Long idAreaSalud;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ARESAL_USU", insertable = false, updatable = false)
     private AreaSalud areaSalud;
+
+    @Column(name = "FK_CDIS_USU")
+    private Long idDispensario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CDIS_USU", insertable = false, updatable = false)
