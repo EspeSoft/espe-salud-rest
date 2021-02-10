@@ -1,45 +1,59 @@
 package com.espe.salud.service.catalogo;
 
 
+import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.catalogo.EnfermedadCIE10;
 
 import com.espe.salud.dto.catalogo.EnfermedadCIE10DTO;
 import com.espe.salud.mapper.catalogo.EnfermedadCIE10Mapper;
 import com.espe.salud.persistence.catalogo.EnfermedadCIE10Repository;
-import com.espe.salud.service.GenericCRUDServiceImpl;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service("EnfermedadCIE10ServiceImpl")
-public class EnfermedadCIE10ServiceImpl extends GenericCRUDServiceImpl<EnfermedadCIE10, EnfermedadCIE10DTO> {
+@Service
+public class EnfermedadCIE10ServiceImpl implements EnfermedadCIE10Service {
     private final EnfermedadCIE10Repository enfermedadCIE10Repository;
     private final EnfermedadCIE10Mapper mapper;
 
+    @Autowired
     public EnfermedadCIE10ServiceImpl(EnfermedadCIE10Repository enfermedadCIE10Repository, EnfermedadCIE10Mapper mapper) {
         this.enfermedadCIE10Repository = enfermedadCIE10Repository;
         this.mapper = mapper;
     }
 
     @Override
-    public EnfermedadCIE10 mapTo(EnfermedadCIE10DTO domainObject) {
-        return mapper.toEnfermedadCIE10(domainObject);
+    @Transactional(readOnly = true)
+    public Optional<EnfermedadCIE10DTO> findById(String id) {
+        return enfermedadCIE10Repository.findById(id).map(mapper::toEnfermedadCIE10DTO);
     }
 
     @Override
-    public EnfermedadCIE10DTO build(EnfermedadCIE10 domainObject) {
-
-        return mapper.toEnfermedadCIE10DTO(domainObject);
+    @Transactional
+    public EnfermedadCIE10DTO save(EnfermedadCIE10DTO enfermedadCIE10DTO) {
+        Optional<EnfermedadCIE10> optional = enfermedadCIE10Repository.findByCodigo(enfermedadCIE10DTO.getCodigo());
+        if (optional.isEmpty()) {
+            EnfermedadCIE10 domainObject = mapper.toEnfermedadCIE10(enfermedadCIE10DTO);
+            return mapper.toEnfermedadCIE10DTO(enfermedadCIE10Repository.save(domainObject));
+        } else {
+            throw new ConflictException(String.format("Ya existe una enfermedad CIE10 para ese código[%s]", enfermedadCIE10DTO.getCodigo()));
+        }
     }
 
     @Override
-    public Optional<EnfermedadCIE10> findExisting(EnfermedadCIE10DTO domainObject) {
-        return enfermedadCIE10Repository.findByCodigo(domainObject.getId());
+    @Transactional(readOnly = true)
+    public List<EnfermedadCIE10DTO> findByCodigoOrNombre(String query) {
+        query = StringUtils.capitalize(query);
+        return mapper.toEnfermedadesCIE10DTO(enfermedadCIE10Repository.findByCodigoStartingWithOrNombreStartingWith(query, query));
     }
 
     @Override
-    public List<EnfermedadCIE10DTO> findAllOrderByNameASC() {
-        return null;
+    @Transactional(readOnly = true)
+    public List<EnfermedadCIE10DTO> findAll() {
+        return mapper.toEnfermedadesCIE10DTO(enfermedadCIE10Repository.findAllByOrderByNombreAsc());
     }
 }

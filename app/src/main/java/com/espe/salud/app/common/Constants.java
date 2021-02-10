@@ -4,7 +4,10 @@ public class Constants {
     private Constants() {
     }
 
+    // GENERAL
     private static final String URI_API_V1 = "/api/v1.0/";
+
+    // CATALOGOS
     public static final String URI_API_V1_PAR = URI_API_V1 + "parentescos";
     public static final String URI_API_V1_RIE_QUI = URI_API_V1 + "riesgos-quimicos";
     public static final String URI_API_V1_RIE_FIS = URI_API_V1 + "riesgos-fisicos";
@@ -50,12 +53,12 @@ public class Constants {
 
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
-    public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
+    public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumos-nocivos";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
 
     public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "seguro-salud";
-    public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
-    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipo-certificado";
+    public static final String URI_API_V1_ASO = URI_API_V1 +  "asociaciones";
+    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipos-certificado";
     public static final String URI_API_V1_UNIDEP = URI_API_V1 +  "unidad-departamento";
 
 
@@ -67,9 +70,8 @@ public class Constants {
     public static final String URI_API_V1_EST_COM = URI_API_V1 + "estudios-complementarios";
 
     public static final String URI_API_V1_TIPO_PROC = URI_API_V1 + "tipos procedimiento";
-    public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos enfermedades";
-    public static final String URI_API_V1_CODIGO_CIE10 = URI_API_V1 + "codigos";
-    public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos enfermedades";
+    public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos-enfermedad-cie10";
+    public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos-enfermedad-cie10";
 
     public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL=URI_API_V1+"antecedentes-patologicos-perosnales";
     public static final String URI_API_V1_MED_HABITUAL=URI_API_V1+"medicacion-habitual";
