@@ -27,7 +27,7 @@ public class TipoCertificadoServiceImpl extends GenericCRUDServiceImpl<TipoCerti
 
     @Override
     public TipoCertificado mapTo(TipoCertificadoDTO dtoObject) {
-        return mapper.toTipoCertificadoDTO(dtoObject);
+        return mapper.toTipoCertificado(dtoObject);
     }
 
     @Override

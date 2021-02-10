@@ -32,6 +32,9 @@ public class Constants {
     public static final String URI_API_V1_EMP = URI_API_V1 + "empleados";
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
 
+
+    
+
     public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
     public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos sistema";
 
@@ -49,9 +52,10 @@ public class Constants {
     public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
 
-    public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "segurosalud";
+    public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "seguro-salud";
     public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
-    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipocertificado";
+    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipo-certificado";
+    public static final String URI_API_V1_UNIDEP = URI_API_V1 +  "unidad-departamento";
 
 
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
