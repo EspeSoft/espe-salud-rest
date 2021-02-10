@@ -18,7 +18,8 @@ public class UnidadDepartamentoServiceImpl extends GenericCRUDServiceImpl<Unidad
     private final UnidadDepartamentoMapper  mapper;
 
     @Autowired
-    public UnidadDepartamentoServiceImpl(UnidadDepartamentoRepository domainRepository, UnidadDepartamentoMapper mapper) {
+    public UnidadDepartamentoServiceImpl(UnidadDepartamentoRepository domainRepository,
+                                         UnidadDepartamentoMapper mapper) {
         this.domainRepository = domainRepository;
         this.mapper = mapper;
     }
