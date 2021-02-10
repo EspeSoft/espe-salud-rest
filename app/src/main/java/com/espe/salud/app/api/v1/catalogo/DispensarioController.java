@@ -1,9 +1,7 @@
 package com.espe.salud.app.api.v1.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
-import com.espe.salud.domain.enums.TipoDispensario;
 import com.espe.salud.dto.catalogo.DispensarioDTO;
-import com.espe.salud.dto.catalogo.SedeDTO;
 import com.espe.salud.service.catalogo.DispensarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -58,49 +56,20 @@ public class DispensarioController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-//    @GetMapping("/image/{nombreImagen}")
-//    @Operation(summary = "Retorna un dispensario por su nombre")
-//    @ApiResponses({
-//            @ApiResponse(responseCode = "200", description = "OK"),
-//            @ApiResponse(responseCode = "404", description = "Recurso no encontrado"),
-//    })
-//    public ResponseEntity<DispensarioDTO> getByNombreImagen(
-//            @Parameter(description = "El nombre de la imagen del dispensario", required = true, example = "LATACUNGA")
-//            @PathVariable("nombreImagen") TipoDispensario nombreImagen) {
-//        return dispensarioService.findByNombre(nombreImagen)
-//                .map(nota -> new ResponseEntity<>(nota, HttpStatus.OK))
-//                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
-//    }
-
-
-    @RequestMapping(value = "/image/sedelatacungacentro", method = RequestMethod.GET,
-            produces = MediaType.IMAGE_JPEG_VALUE)
-
-    public void getImageLatacungaCentro(HttpServletResponse response) throws IOException {
-
-        ClassPathResource imgFile = new ClassPathResource("image/Espe-latacunga-centro.jpg");
-
-        response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        StreamUtils.copy(((ClassPathResource) imgFile).getInputStream(), response.getOutputStream());
-    }
-
-
-    @Operation(summary = "Retorna un paciente por su código")
+    @Operation(summary = "Retorna una imagen por su nombre")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "404", description = "Recurso no encontrado"),
     })
-    @GetMapping(value = "/image/{nombre}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @RequestMapping(value = "/image/{nombre}", method = RequestMethod.GET,
+            produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImageByNombre(
-            HttpServletResponse response,
-            @Parameter(description = "El nombre de la imagen del dispensario", required = true, example = "LATACUNGA"
-            )
-    @PathVariable("nombreImagen") TipoDispensario nombreImagen) throws IOException {
+            HttpServletResponse response, @RequestParam String nombreImagen) throws IOException {
         Optional<DispensarioDTO> newDispensarioDTO = dispensarioService.findByNombre(nombreImagen);
         Dispensario dispensario = dispensarioService.toEntity(newDispensarioDTO.get());
-        TipoDispensario newNombreImagen= dispensario.getNombreImagen();
-        ClassPathResource imgFile = new ClassPathResource(newNombreImagen.getKey());
+        ClassPathResource imgFile = new ClassPathResource("image/"+dispensario.getNombreImagen()+".jpg");
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(((ClassPathResource) imgFile).getInputStream(), response.getOutputStream());
     }
+
 }

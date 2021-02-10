@@ -1,15 +1,11 @@
 package com.espe.salud.service.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
-import com.espe.salud.domain.enums.SexoTipoPlanificacionFamiliar;
-import com.espe.salud.domain.enums.TipoDispensario;
 import com.espe.salud.dto.catalogo.DispensarioDTO;
-import com.espe.salud.dto.catalogo.TipoPlanificacionFamiliarDTO;
 import com.espe.salud.mapper.catalogo.DispensarioMapper;
 import com.espe.salud.persistence.catalogo.DispensarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +28,7 @@ public class DispensarioServiceImpl implements DispensarioService {
     }
 
     @Override
-    public Optional<DispensarioDTO> findByNombre(TipoDispensario nombreImagen) {
+    public Optional<DispensarioDTO> findByNombre(String nombreImagen) {
 
         return domainRepository.findByNombreImagen(nombreImagen).map(this::toDTO);
     }
