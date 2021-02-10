@@ -43,6 +43,6 @@ public class TipoCertificadoServiceImpl extends GenericCRUDServiceImpl<TipoCerti
 
     @Override
     public List<TipoCertificadoDTO> findAllOrderByNameASC() {
-        return mapper.toTiposCertificadoDTO(domainRepository.findAllByOrderByNombreAsc());
+        return mapper.toTipoCertificadoDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 }
