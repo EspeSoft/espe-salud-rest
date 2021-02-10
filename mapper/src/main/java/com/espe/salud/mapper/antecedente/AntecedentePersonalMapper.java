@@ -16,7 +16,7 @@ public interface AntecedentePersonalMapper {
     })
     AntecedentePersonalDTO toAntecedentePersonalDTO(AntecedentePersonal antecedentePersonal);
 
-    List<AntecedentePersonalDTO> toAntecedentePersonalesDTO(List<AntecedentePersonal> antecedentePersonales);
+    List<AntecedentePersonalDTO> toAntecedentesPersonalesDTO(List<AntecedentePersonal> antecedentePersonales);
 
     @InheritInverseConfiguration
     AntecedentePersonal toAntecedentePersonal(AntecedentePersonalDTO dto);
