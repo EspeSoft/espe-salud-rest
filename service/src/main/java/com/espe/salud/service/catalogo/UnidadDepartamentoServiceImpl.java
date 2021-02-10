@@ -42,6 +42,6 @@ public class UnidadDepartamentoServiceImpl extends GenericCRUDServiceImpl<Unidad
 
     @Override
     public List<UnidadDepartamentoDTO> findAllOrderByNameASC() {
-        return null;
+        return mapper.toUnidadDepartamentoDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 }
