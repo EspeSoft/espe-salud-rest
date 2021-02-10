@@ -16,8 +16,8 @@ public interface SeguroSaludMapper {
     })
     SeguroSaludDTO toSeguroSaludDTO(SeguroSalud segurosalud);
 
-    List<SeguroSaludDTO> toSeguroSaludDTO(List<SeguroSalud> segurosalud);
+    List<SeguroSaludDTO> toSeguroSaludDTO(List<SeguroSalud> segurosSalud);
 
     @InheritInverseConfiguration
-    SeguroSalud toSeguroSaludDTO(SeguroSaludDTO dto);
+    SeguroSalud toSeguroSalud(SeguroSaludDTO dto);
 }
