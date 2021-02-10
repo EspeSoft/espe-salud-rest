@@ -28,7 +28,7 @@ public class AsociacionServiceImpl  extends GenericCRUDServiceImpl<Asociacion, A
 
     @Override
     public Asociacion mapTo(AsociacionDTO dtoObject) {
-        return mapper.toAsociacionDTO(dtoObject);
+        return mapper.toAsociacion(dtoObject);
     }
 
     @Override

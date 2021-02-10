@@ -32,9 +32,12 @@ public class Constants {
     public static final String URI_API_V1_EMP = URI_API_V1 + "empleados";
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
 
-    public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
 
+    
+
+    public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
     public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos sistema";
+
 
     public static final String URI_API_V1_AREA = URI_API_V1 + "areas";
     public static final String URI_API_V1_SED=URI_API_V1 + "sedes";
@@ -48,10 +51,11 @@ public class Constants {
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
     public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumo-nocivo";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
-  
-    public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "segurosalud";
+
+    public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "seguro-salud";
     public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
-    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipocertificado";
+    public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipo-certificado";
+    public static final String URI_API_V1_UNIDEP = URI_API_V1 +  "unidad-departamento";
 
 
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
@@ -60,4 +64,17 @@ public class Constants {
 
     public static final String URI_API_V1_TIP_ENF = URI_API_V1 + "tipos-enfermedades";
     public static final String URI_API_V1_EST_COM = URI_API_V1 + "estudios-complementarios";
+
+    public static final String URI_API_V1_TIPO_PROC = URI_API_V1 + "tipos procedimiento";
+    public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos enfermedades";
+    public static final String URI_API_V1_CODIGO_CIE10 = URI_API_V1 + "codigos";
+    public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos enfermedades";
+
+    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL=URI_API_V1+"antecedentes-patologicos-perosnales";
+    public static final String URI_API_V1_MED_HABITUAL=URI_API_V1+"medicacion-habitual";
+
+    public static final String URI_API_V1_DETEXALAB=URI_API_V1+"detalles-laboratorio";
+    public static final String URI_API_V1_EXALAB=URI_API_V1+"examenes-laboratorio";
+
+    public static final String URI_API_V1_TIPENFPER=URI_API_V1+"tipo-enfermedad-personal";
 }

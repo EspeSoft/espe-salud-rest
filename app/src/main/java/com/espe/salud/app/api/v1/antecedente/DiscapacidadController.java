@@ -22,7 +22,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_DISCAPACIDAD;
 @RequestMapping(value = {URI_API_V1_DISCAPACIDAD})
 public class DiscapacidadController {
 
-    public final DiscapacidadService service;
+    private final DiscapacidadService service;
 
     @Autowired
     public DiscapacidadController(DiscapacidadService service) {

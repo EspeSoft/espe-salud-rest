@@ -22,11 +22,13 @@ public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
 
     @Override
     public Area mapTo(AreaDTO domainObject) {
+
         return mapper.toArea(domainObject);
     }
 
     @Override
     public AreaDTO build(Area domainObject) {
+
         return mapper.toAreaDTO(domainObject);
     }
 
