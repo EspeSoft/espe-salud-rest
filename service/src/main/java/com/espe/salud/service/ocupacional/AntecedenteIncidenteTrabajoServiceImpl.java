@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AntecedenteEmpleoAnteriorServiceImpl implements AntecedenteEmpleoAnteriorService {
+public class AntecedenteIncidenteTrabajoServiceImpl implements AntecedenteEmpleoAnteriorService {
 
     private final AntecedenteEmpleoAnteriorRepository antecedenteEmpleoAnteriorRepository;
     private final AntecedenteEmpleoAnteriorMapper mapper;
 
-    public AntecedenteEmpleoAnteriorServiceImpl(AntecedenteEmpleoAnteriorRepository antecedenteEmpleoAnteriorRepository, AntecedenteEmpleoAnteriorMapper mapper) {
+    public AntecedenteIncidenteTrabajoServiceImpl(AntecedenteEmpleoAnteriorRepository antecedenteEmpleoAnteriorRepository, AntecedenteEmpleoAnteriorMapper mapper) {
         this.antecedenteEmpleoAnteriorRepository = antecedenteEmpleoAnteriorRepository;
         this.mapper = mapper;
     }

@@ -13,20 +13,20 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_ANT_EMP_ANT;
+import static com.espe.salud.app.common.Constants.URI_API_V1_ANT_INC_TRA;
 
 @RestController
 @Tag(name = "Gestiona los antecedentes de empleo anterior de un antecedente laboral")
-@RequestMapping(value = URI_API_V1_ANT_EMP_ANT)
-public class AntecedenteEmpleoAnteriorController {
+@RequestMapping(value = URI_API_V1_ANT_INC_TRA)
+public class AntecedenteIncidenteTrabajoController {
 
     private final AntecedenteEmpleoAnteriorService antecedenteEmpleoAnteriorService;
-    
+
     @Autowired
-    private AntecedenteEmpleoAnteriorController(AntecedenteEmpleoAnteriorService antecedenteEmpleoAnteriorService) {
+    private AntecedenteIncidenteTrabajoController(AntecedenteEmpleoAnteriorService antecedenteEmpleoAnteriorService) {
         this.antecedenteEmpleoAnteriorService = antecedenteEmpleoAnteriorService;
     }
 

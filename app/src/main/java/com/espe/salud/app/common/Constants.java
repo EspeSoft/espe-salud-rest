@@ -20,7 +20,13 @@ public class Constants {
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
-    public static final String URI_API_V1_ANT_EMP_ANT = URI_API_V1 + "antecedente-empleo-anterior";
+    public static final String URI_API_V1_ANT_EMP_ANT = URI_API_V1 + "antecedentes-empleos-anteriores";
+    public static final String URI_API_V1_ACT_EXT = URI_API_V1 + "actividades-extralaborales";
+    public static final String URI_API_V1_FAC_RIE_ACT_ACT = URI_API_V1 + "factores-riesgo-actividades-actuales";
+    public static final String URI_API_V1_ANT_ENF_PRO = URI_API_V1 + "antecedentes-enfermedades-profesionales";
+    public static final String URI_API_V1_ANT_INC_TRA = URI_API_V1 + "antecedentes-incidentes-trabajo";
+    public static final String URI_API_V1_ANT_ACC_TRA = URI_API_V1 + "antecedentes-accidentes-trabajo";
+    public static final String URI_API_V1_ANT_LAB = URI_API_V1 + "antecedentes-laborales";
 
 
 
