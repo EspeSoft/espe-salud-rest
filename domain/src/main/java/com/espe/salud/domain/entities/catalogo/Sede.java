@@ -23,12 +23,15 @@ public class Sede {
     @Size(max = 100)
     private String nombre;
 
-    //CANTON ES UNA ENTIDAD QUE AUN NO ESTA CREADA
     @Column(name = "MZSTCSED_CANTON")
-    @Size(max = 100)
     private String canton;
 
+    @Column(name = "MZSTCSED_PROVINCIA")
+    private String provincia;
+
     @Column(name = "MZSTCSED_PARROQUIA")
-    @Size(max = 100)
     private String parroquia;
+
+    @Column(name = "MZSTCSED_DIRECCION")
+    private String direccion;
 }
