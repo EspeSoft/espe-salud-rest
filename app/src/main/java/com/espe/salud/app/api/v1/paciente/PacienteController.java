@@ -22,7 +22,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_PAC;
 
 @RestController
-@Tag(name = "Gestiona los pacientes")
+@Tag(description = "Gestiona los pacientes", name = "Pacientes")
 @RequestMapping(value = {URI_API_V1_PAC})
 public class PacienteController {
     private final PacienteService pacienteService;

@@ -21,7 +21,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIPCER;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIPCER})
-@Tag(name = "Gestiona el cátalogo de tipos de certificados médicos")
+@Tag(description = "Gestiona el cátalogo de tipos de certificados médicos", name = "Tipos de certificado médico")
 public class TipoCertificadoController {
 
     private final GenericCRUDService<TipoCertificado, TipoCertificadoDTO> tipocertificadoService;

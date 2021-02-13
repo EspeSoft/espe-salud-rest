@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.espe.salud.app.common.Constants.URI_API_V1_DIA;
 
 @RestController
-@Tag(name = "Gestiona los diagnostico de antecedentes")
+@Tag(description = "Gestiona los diagnostico de antecedentes", name = "Diagnósticos")
 @RequestMapping(value = URI_API_V1_DIA)
 public class DiagnosticoController {
     private final DiagnosticoService  diagnosticoService;

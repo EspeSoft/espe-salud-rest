@@ -23,7 +23,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_CON_NOC})
-@Tag(name = "Gestiona el catálogo de tipos de consumo nocivos")
+@Tag(description = "Gestiona el catálogo de tipos de consumo nocivos", name = "Tipos de consumo nocivo")
 public class TipoConsumoNocivoController {
 
     private final TipoConsumoNocivoService tipoConsumoNocivoService;
@@ -57,7 +57,7 @@ public class TipoConsumoNocivoController {
     }
 
     @Operation(summary = "Retorna la lista de tipos de consumos nocivos que inicien por el nombre")
-    @GetMapping(value = "/findByName", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/search", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoConsumoNocivoDTO>> findByName(
             @Parameter(description = "Nombre del consumo nocivo", required = true, example = "Alcohol")
             @RequestParam String nombre

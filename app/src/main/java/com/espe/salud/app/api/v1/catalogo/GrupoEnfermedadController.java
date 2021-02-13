@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_GRUPO_ENFERMEDAD;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_GRUPO_ENFERMEDAD})
-@Tag(name = "Gestiona el catálogo de los grupos de enfermedades CIE10")
+@Tag(description = "Gestiona el catálogo de los grupos de enfermedades CIE10", name = "Grupos de enfermedad CIE10")
 public class GrupoEnfermedadController {
     private final GrupoEnfermedadService grupoEnfermedadService;
 

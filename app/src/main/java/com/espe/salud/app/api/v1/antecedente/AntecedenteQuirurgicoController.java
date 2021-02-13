@@ -17,7 +17,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ANTE_QUIRURGICO;
 
 @RestController
-@Tag(name = "Gestiona antecedente quirurgico")
+@Tag(description = "Gestiona antecedente quirurgico", name = "Antecedentes quirúrgicos")
 @RequestMapping(value = {URI_API_V1_ANTE_QUIRURGICO})
 public class AntecedenteQuirurgicoController {
 

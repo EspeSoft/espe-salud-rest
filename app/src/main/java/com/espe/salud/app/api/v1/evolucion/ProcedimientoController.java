@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.espe.salud.app.common.Constants.URI_API_V1_PRO;
 
 @RestController
-@Tag(name = "Gestiona los Procedimientos de antecedentes")
+@Tag(description = "Gestiona los procedimientos realizados a una nota de enfermería", name = "Procedimientos")
 @RequestMapping(value = URI_API_V1_PRO)
 public class ProcedimientoController {
     private final ProcedimientoService procedimientoService;

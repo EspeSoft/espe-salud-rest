@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_ENFERMEDAD_CIE10;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_ENFERMEDAD_CIE10})
-@Tag(name = "Gestiona el catálogo de enfermedades CIE10")
+@Tag(description = "Gestiona el catálogo de enfermedades CIE10", name = "Enfermedades CIE10")
 public class EnfermedadCIE10Controller {
     private final EnfermedadCIE10Service enfermedadCIE10Service;
 

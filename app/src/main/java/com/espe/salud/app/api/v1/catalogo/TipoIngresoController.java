@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_ING;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIP_ING})
-@Tag(name = "Gestiona el catálogo de tipos de ingresos")
+@Tag(description = "Gestiona el catálogo de tipos de ingresos", name = "Tipos de ingresos")
 public class TipoIngresoController {
     private final GenericCRUDService<TipoIngreso, TipoIngresoDTO> service;
 

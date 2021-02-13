@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_AREA;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_AREA})
-@Tag(name = "Gestiona el catalogo de areas")
+@Tag(description = "Gestiona el catalogo de areas", name = "Áreas")
 public class AreaController {
     private final GenericCRUDService<Area, AreaDTO> areaService;
 

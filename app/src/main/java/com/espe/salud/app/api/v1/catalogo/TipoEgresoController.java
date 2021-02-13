@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_EGR;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIP_EGR})
-@Tag(name = "Gestiona el catálogo de tipos de egresos")
+@Tag(description = "Gestiona el catálogo de tipos de egresos", name = "Tipos de egresos")
 public class TipoEgresoController {
 
     private final GenericCRUDService<TipoEgreso, TipoEgresoDTO> service;

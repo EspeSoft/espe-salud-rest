@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.espe.salud.app.common.Constants.URI_API_V1_REC_LAB;
 
 @RestController
-@Tag(name = "Gestiona los diagnostico de antecedentes")
+@Tag(description = "Gestiona los records laborales de un paciente", name = "Records laborales")
 @RequestMapping(value = URI_API_V1_REC_LAB)
 public class RecordLaboralController {
     private final RecordLaboralService recordLaboralService;

@@ -21,7 +21,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_ASO;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_ASO})
-@Tag(name = "Gestiona el cátalogo de asociaciones")
+@Tag(description = "Gestiona el cátalogo de asociaciones", name = "Asociaciones")
 public class AsociacionController {
 
     private final GenericCRUDService<Asociacion, AsociacionDTO> asociacionService;

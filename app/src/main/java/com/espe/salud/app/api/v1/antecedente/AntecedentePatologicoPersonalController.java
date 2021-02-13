@@ -18,7 +18,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ANT_PATOLOGICO_PERSONAL;
 
 @RestController
-@Tag(name = "Gestiona antecedentes patologicos personales")
+@Tag(description = "Gestiona antecedentes patologicos personales", name = "Antecedentes patológicos personales")
 @RequestMapping(value = {URI_API_V1_ANT_PATOLOGICO_PERSONAL})
 public class AntecedentePatologicoPersonalController {
 

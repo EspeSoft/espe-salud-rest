@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_MOT_ATE;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_MOT_ATE})
-@Tag(name = "Gestiona el catálogo de motivos de atención")
+@Tag(description = "Gestiona el catálogo de motivos de atención", name = "Motivos de atención")
 public class MotivoAtencionController {
     private final GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> motivoAtencionService;
 

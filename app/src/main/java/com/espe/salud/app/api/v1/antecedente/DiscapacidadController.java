@@ -1,6 +1,5 @@
 package com.espe.salud.app.api.v1.antecedente;
 
-import com.espe.salud.dto.antecedente.AntecedenteQuirurgicoDTO;
 import com.espe.salud.dto.antecedente.DiscapacidadDTO;
 import com.espe.salud.service.antecedente.DiscapacidadService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,7 +17,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_DISCAPACIDAD;
 
 @RestController
-@Tag(name = "Gestiona discapacidad")
+@Tag(description = "Gestiona las discapacidad de un paciente", name = "Discapacidades")
 @RequestMapping(value = {URI_API_V1_DISCAPACIDAD})
 public class DiscapacidadController {
 
