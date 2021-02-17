@@ -2,6 +2,7 @@ package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.entities.antecedente.EstudioComplementario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
+import com.espe.salud.domain.enums.TipoPaciente;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -28,17 +29,24 @@ public class Paciente {
     @Column(name = "MZSTPAC_NUMERO_ARCHIVO", unique = true)
     private String numeroArchivo;
 
+    @Column(name = "MZSTPAC_NOMBRES")
+    private String nombres;
+
     @Column(name = "MZSTPAC_ACTIVO")
     private Boolean activo;
 
-    @Column(name = "MZSTPAC_ES_ESTUDIANTE")
-    private Boolean esEstudiante;
+    @Column(name = "MZSTPAC_ACCESO_BANNER")
+    private Boolean accesoBanner;
 
     @Column(name = "MZSTPAC_ES_EMPLEADO")
     private Boolean esEmpleado;
 
-    @Column(name = "MZSTPAC_ACCESO_BANNER")
-    private Boolean accesoBanner;
+    @Column(name = "MZSTPAC_ES_ESTUDIANTE")
+    private Boolean esEstudiante;
+
+    @Column(name = "MZSTPAC_TIPO_PACIENTE")
+    @Enumerated(EnumType.STRING)
+    private TipoPaciente tipoPaciente;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "MZSTPAC_PER",
