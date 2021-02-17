@@ -21,7 +21,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_ORG_SIST;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_ORG_SIST})
-@Tag(name = "Gestiona el catalogo de regiones")
+@Tag(description = "Gestiona el catalogo de regiones", name = "Órganos y sistemas")
 public class OrganoSistemaController {
 
     private final GenericCRUDService<OrganoSistema, OrganoSistemaDTO> organoSistemaService;

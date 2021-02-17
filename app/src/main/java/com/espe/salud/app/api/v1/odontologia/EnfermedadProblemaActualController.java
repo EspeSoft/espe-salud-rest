@@ -19,7 +19,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ENF_PRO_ACT;
 
 @RestController
-@Tag(name = "Gestiona las enfermedades o problemas de un paciente")
+@Tag(description = "Gestiona las enfermedades o problemas de un paciente", name = "Enfermedades y problemas actuales odontología")
 @RequestMapping(value = {URI_API_V1_ENF_PRO_ACT})
 public class EnfermedadProblemaActualController {
 

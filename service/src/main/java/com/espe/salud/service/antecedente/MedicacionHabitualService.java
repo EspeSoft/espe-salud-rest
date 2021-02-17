@@ -3,12 +3,10 @@ package com.espe.salud.service.antecedente;
 
 import com.espe.salud.domain.entities.antecedente.MedicacionHabitual;
 import com.espe.salud.dto.antecedente.MedicacionHabitalDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public interface MedicacionHabitualService {
 
     MedicacionHabitalDTO save(MedicacionHabitalDTO medicacionHabitalDTO);

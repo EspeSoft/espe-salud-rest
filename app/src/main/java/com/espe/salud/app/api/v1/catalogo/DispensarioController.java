@@ -25,7 +25,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_DISP;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_DISP})
-@Tag(name = "Gestiona los dispensarios")
+@Tag(description = "Gestiona los dispensarios", name = "Dispensarios")
 public class DispensarioController {
 
     private final DispensarioService dispensarioService;

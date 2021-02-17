@@ -18,7 +18,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_COD_CIUO;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_COD_CIUO})
-@Tag(name = "Gestiona el catálogo de códigos CIUO")
+@Tag(description = "Gestiona el catálogo de códigos CIUO", name = "Códigos CIUO")
 public class CodigoCIUOController {
     private final CodigoCIUOService service;
 

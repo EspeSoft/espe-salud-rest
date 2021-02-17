@@ -1,11 +1,9 @@
 package com.espe.salud.app.api.v1.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.TipoEnfermedadPersonal;
-import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.catalogo.TipoEnfermedadPersonalDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +18,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIPENFPER;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIPENFPER})
-@Tag(name = "Gestiona el cátalogo de tipos de enfermedades personales")
+@Tag(description = "Gestiona el cátalogo de tipos de enfermedades personales", name = "Tipos de enfermedad personal")
 public class TipoEnfermedadPersonalController {
 
     private final GenericCRUDService<TipoEnfermedadPersonal, TipoEnfermedadPersonalDTO> tipoenfermedadpersonalService;

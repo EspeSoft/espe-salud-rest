@@ -27,7 +27,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_ODO_ODO;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_ODO_ODO})
-@Tag(name = "Gestiona los detalles del odontograma como items individuales")
+@Tag(description = "Gestiona los detalles del odontograma como items individuales", name = "Detalles de odontograma")
 
 public class DetalleOdontogramaController {
 

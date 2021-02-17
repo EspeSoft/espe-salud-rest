@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_UNIDEP;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_UNIDEP})
-@Tag(name = "Gestiona el cátalodo de Unidad Departamento")
+@Tag(description = "Gestiona el cátalodo de Unidad Departamento", name = "Unidades y departamentos")
 public class UnidadDepartamentoController {
     private final GenericCRUDService<UnidadDepartamento, UnidadDepartamentoDTO> unidadDepartamentoService;
 

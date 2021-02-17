@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_DETEXALAB;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_DETEXALAB})
-@Tag(name = "Gestiona el catálogo de detalles de examenes de laboratorio")
+@Tag(description = "Gestiona el catálogo de detalles de examenes de laboratorio", name = "Detalles de examen de laboratorio")
 public class DetalleExamenLaboratorioController {
 
     private final GenericCRUDService<DetalleExamenLaboratorio, DetalleExamenLaboratorioDTO> detalleExamenLaboratorioService;

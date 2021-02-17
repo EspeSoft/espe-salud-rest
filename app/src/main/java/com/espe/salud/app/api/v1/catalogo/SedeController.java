@@ -1,8 +1,6 @@
 package com.espe.salud.app.api.v1.catalogo;
 
-import com.espe.salud.domain.entities.catalogo.Sede;
 import com.espe.salud.dto.catalogo.SedeDTO;
-import com.espe.salud.dto.enfermeria.NotaEnfermeriaDTO;
 import com.espe.salud.service.catalogo.SedeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -21,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_SED;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_SED})
-@Tag(name = "Gestiona las sedes")
+@Tag(description = "Gestiona las sedes", name = "Sedes")
 public class SedeController {
 
     private final SedeService sedeService;

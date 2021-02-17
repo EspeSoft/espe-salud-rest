@@ -69,6 +69,9 @@ public class Evolucion {
     @JoinColumn(name = "FK_CDIS_EVO", insertable = false, updatable = false)
     private Dispensario dispensario;
 
+//    @Column(name = "FK_PAC_EVO")
+//    private Long idPaciente;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false)
     private Paciente paciente;

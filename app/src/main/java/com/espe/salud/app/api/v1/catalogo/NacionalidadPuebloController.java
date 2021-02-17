@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_NAC_PUE;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_NAC_PUE})
-@Tag(name = "Gestiona el catálodo de nacionalidades y pueblos")
+@Tag(description = "Gestiona el catálodo de nacionalidades y pueblos",  name = "Nacionalidades y pueblos")
 public class NacionalidadPuebloController {
     private final NacionalidadPuebloService service;
 

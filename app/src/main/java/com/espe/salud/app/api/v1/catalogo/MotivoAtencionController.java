@@ -6,7 +6,6 @@ import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_MOT_ATE;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_MOT_ATE})
-@Tag(name = "Gestiona el catálogo de motivos de atención")
+@Tag(description = "Gestiona el catálogo de motivos de atención", name = "Motivos de atención")
 public class MotivoAtencionController {
     private final GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> motivoAtencionService;
 
@@ -39,10 +38,8 @@ public class MotivoAtencionController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Retorna un motivo de atención por su ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Recurso no encontrado"),
-    })
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<MotivoAtencionDTO> retrieve(
             @Parameter(description = "El ID del motivo de atención", required = true, example = "1")
             @PathVariable("id") Long id) {

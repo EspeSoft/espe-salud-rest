@@ -4,7 +4,6 @@ import com.espe.salud.domain.entities.catalogo.ExamenLaboratorio;
 import com.espe.salud.dto.catalogo.ExamenLaboratorioDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +18,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_EXALAB;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_EXALAB})
-@Tag(name = "Gestiona el catálogo de examenes de laboratorio")
+@Tag(description = "Gestiona el catálogo de examenes de laboratorio", name = "Examenes de laboratorio")
 public class ExamenLaboratorioController {
 
     private final GenericCRUDService<ExamenLaboratorio, ExamenLaboratorioDTO> examenLaboratorioService;
