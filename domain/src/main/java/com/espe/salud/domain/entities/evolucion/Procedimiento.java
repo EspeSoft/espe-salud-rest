@@ -33,9 +33,9 @@ public class Procedimiento {
     @Column(name = "MZSTPRO_NOTA")
     private String nota;
 
-    @Column(name = "MZSTPRO_ID_RESPONSANBLE")  //TO DO idResponsable
-    @NotNull
-    private Long idResponsable;
+    //@Column(name = "MZSTPRO_ID_RESPONSANBLE")  //TO DO idResponsable
+    //@NotNull
+    //private Long idResponsable;
 
     @CreatedBy
     @Column(name = "MZSTPRO_USUARIO_CREACION")

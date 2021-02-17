@@ -62,13 +62,13 @@ public class EnfermedadProblemaActualController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @Operation(summary = "Elimina una historia clínica por su código")
+    @Operation(summary = "Elimina una enfermedad o problema actual por su código")
     @DeleteMapping("/{codigo}")
     public void delete(@PathVariable Long codigo){
         enfermedadProblemaActualService.delete(codigo);
     }
 
-    @Operation(summary = "Actualiza una historia clínica por su código")
+    @Operation(summary = "Actualiza una enfermedad o problema actual por su código")
     @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<EnfermedadProblemaActualDTO> update(
             @RequestBody EnfermedadProblemaActualDTO dto,

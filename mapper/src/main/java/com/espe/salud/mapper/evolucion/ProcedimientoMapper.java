@@ -16,7 +16,7 @@ public interface ProcedimientoMapper {
     })
     ProcedimientoDTO toProcedimientoDTO (Procedimiento procedimiento);
 
-    List<ProcedimientoDTO> toProcedimientoDTO(List<Procedimiento> procedimientos);
+    List<ProcedimientoDTO> toProcedimientosDTO(List<Procedimiento> procedimientos);
 
     @InheritInverseConfiguration
     Procedimiento  toProcedimiento(ProcedimientoDTO dto);

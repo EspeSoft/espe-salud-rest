@@ -35,6 +35,8 @@ public class Constants {
     public static final String URI_API_V1_HIS_CLI_ODO = URI_API_V1 + "historia-clinica-odontologica";
     public static final String URI_API_V1_ENF_PRO_ACT = URI_API_V1 + "enfermedad-problema-actual";
     public static final String URI_API_V1_ODO_ODO = URI_API_V1 + "odontograma";
+    public static final String URI_API_V1_IND_SAL_BUC = URI_API_V1 + "indicador-salud-bucal";
+    public static final String URI_API_V1_EXA_SIS_EST = URI_API_V1 + "examen-sistema-estomatignatico";
 
     public static final String URI_API_V1_USU = URI_API_V1 + "usuarios";
     public static final String URI_API_V1_TIP_DIS = URI_API_V1 + "tipos-discapacidad";
@@ -49,11 +51,15 @@ public class Constants {
     public static final String URI_API_V1_EMP = URI_API_V1 + "empleados";
     public static final String URI_API_V1_EST = URI_API_V1 + "estudiantes";
 
-
-    
+    public static final String URI_API_V1_PRO = URI_API_V1 + "procedimientos";
+    public static final String URI_API_V1_DIA = URI_API_V1 + "diagnosticos";
+    public static final String URI_API_V1_REC_LAB = URI_API_V1 + "records-laborales";
+    public static final String URI_API_V1_ACT_FIS= URI_API_V1 + "actividades-fisicas";
+    public static final String URI_API_V1_ANT_PER= URI_API_V1 + "antecedentes-personales";
+    public static final String URI_API_V1_CON_NOC= URI_API_V1 + "consumos-nocivos";
 
     public static final String URI_API_V1_REG = URI_API_V1 + "regiones";
-    public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos sistema";
+    public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos-sistema";
 
 
     public static final String URI_API_V1_SED=URI_API_V1 + "sedes";
@@ -64,17 +70,12 @@ public class Constants {
 
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
-    public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumos-nocivos";
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
 
     public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "seguro-salud";
     public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipos-certificado";
     public static final String URI_API_V1_UNIDEP = URI_API_V1 +  "unidad-departamento";
 
-
-    public static final String URI_API_V1_PRO = URI_API_V1 + "procedimiento";
-    public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
-    public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
 
     public static final String URI_API_V1_TIP_ENF = URI_API_V1 + "tipos-enfermedades";
     public static final String URI_API_V1_EST_COM = URI_API_V1 + "estudios-complementarios";
@@ -88,4 +89,8 @@ public class Constants {
     public static final String URI_API_V1_EXALAB=URI_API_V1+"examenes-laboratorio";
 
     public static final String URI_API_V1_TIPENFPER=URI_API_V1+"tipo-enfermedad-personal";
+
+    public static final String URI_API_V1_ANTGIN=URI_API_V1+"antecedentes-ginecologicos";
+    public static final String URI_API_V1_EXASEX=URI_API_V1+"examen-sexual";
+    public static final String URI_API_V1_PLAFAM=URI_API_V1+"planificacion-familiar";
 }
