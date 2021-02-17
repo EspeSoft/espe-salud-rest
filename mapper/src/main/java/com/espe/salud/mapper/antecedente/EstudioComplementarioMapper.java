@@ -15,7 +15,8 @@ public interface EstudioComplementarioMapper {
     @Mapping(source = "codigo", target = "id")
     EstudioComplementarioDTO toEstudioComplementarioDTO(EstudioComplementario estudioComplementario);
 
-    List<EstudioComplementarioDTO> toEstudioComplementarioDTO(List<EstudioComplementario> estudiosComplementarios);
+    List<EstudioComplementarioDTO> toEstudiosComplementarioDTO(List<EstudioComplementario> estudiosComplementarios);
+    List<EstudioComplementario> toEstudiosComplementarios(List<EstudioComplementarioDTO> estudiosDTO);
 
     @InheritInverseConfiguration
     EstudioComplementario toEstudioComplementario(EstudioComplementarioDTO dto);

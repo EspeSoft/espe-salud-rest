@@ -15,7 +15,8 @@ public class EstudioComplementarioDTO implements Serializable{
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String nombreEstudio;
     private LocalDate fechaEstudio;
     private String descripcionEstudio;
+    private Long idNombreEstudio;
+    private Long idPaciente;
 }

@@ -1,5 +1,7 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.TipoEstudioComplementario;
+import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,21 +11,32 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTCESTCOM", schema = "SALUD")
+@Table(name = "MZSTESTCOM", schema = "SALUD")
 public class EstudioComplementario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTCESTCOM_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTESTCOM_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTCESTCOM_NOMBRE_ESTUDIO")
-    private String nombreEstudio;
-
-    @Column(name = "MZSTCESTCOM_FECHA_ESTUDIO")
+    @Column(name = "MZSTESTCOM_FECHA_ESTUDIO")
     private LocalDate fechaEstudio;
 
-    @Column(name = "MZSTCESTCOM_DESCRIPCION_ESTUDIO")
+    @Column(name = "MZSTESTCOM_DESCRIPCION_ESTUDIO", columnDefinition = "TEXT")
     private String descripcionEstudio;
+
+    @Column(name = "FK_PAC_ESTCOM")
+    private Long idPaciente;
+
+    @Column(name = "FK_TIPESTCOM_ESTCOM")
+    private Long idNombreEstudio;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPESTCOM_ESTCOM", insertable = false, updatable = false, nullable = false)
+    private TipoEstudioComplementario nombreEstudio;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_PAC_ESTCOM", insertable = false, updatable = false, nullable = false)
+    private Paciente paciente;
 }

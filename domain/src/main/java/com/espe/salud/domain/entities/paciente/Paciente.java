@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.paciente;
 
+import com.espe.salud.domain.entities.antecedente.EstudioComplementario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
@@ -53,8 +54,11 @@ public class Paciente {
     @OneToOne(mappedBy = "paciente")
     private Empleado empleado;
 
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Evolucion> evoluciones;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<EstudioComplementario> estudiosComplementarios;
 
     @CreatedDate
     @Column(name = "MZSTPAC_FECHA_CREACION")

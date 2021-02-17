@@ -46,10 +46,8 @@ public class NotaEnfermeriaController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Retorna una nota de enfermeria por su ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Recurso no encontrado"),
-    })
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<NotaEnfermeriaDTO> retrieve(
             @Parameter(description = "El ID de la nota de enfermeria", required = true, example = "1")
             @PathVariable("id") Long id) {
