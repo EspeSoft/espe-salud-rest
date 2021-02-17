@@ -1,6 +1,6 @@
 package com.espe.salud.app.api.v1.catalogo;
 
-import static com.espe.salud.app.common.Constants.URI_API_V1_CON_NOC;
+import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_CON_NOC;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping(value = {URI_API_V1_CON_NOC})
+@RequestMapping(value = {URI_API_V1_TIP_CON_NOC})
 @Tag(description = "Gestiona el catálogo de tipos de consumo nocivos", name = "Tipos de consumo nocivo")
 public class TipoConsumoNocivoController {
 
