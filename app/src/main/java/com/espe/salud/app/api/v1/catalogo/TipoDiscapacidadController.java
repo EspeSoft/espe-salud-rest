@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_DIS;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIP_DIS})
-@Tag(name = "Gestiona el catálogo de tipos de discapacidad")
+@Tag(description = "Gestiona el catálogo de tipos de discapacidad", name = "Tipos de discapacidades")
 public class TipoDiscapacidadController {
     private final GenericCRUDService<TipoDiscapacidad, TipoDiscapacidadDTO> service;
 

@@ -2,12 +2,10 @@ package com.espe.salud.service.antecedente;
 
 import com.espe.salud.domain.entities.antecedente.AntecedentePatologicoFamiliar;
 import com.espe.salud.dto.antecedente.AntecedentePatologicoFamiliarDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public interface AntecedentePatologicoFamiliarService {
     AntecedentePatologicoFamiliarDTO save(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO);
     AntecedentePatologicoFamiliarDTO update(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO);

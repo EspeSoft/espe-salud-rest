@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_REG;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_REG})
-@Tag(name = "Gestiona el catalogo de regiones")
+@Tag(description = "Gestiona el catalogo de regiones", name = "Regiones")
 public class RegionController {
 
     private final GenericCRUDService<Region, RegionDTO> regionService;

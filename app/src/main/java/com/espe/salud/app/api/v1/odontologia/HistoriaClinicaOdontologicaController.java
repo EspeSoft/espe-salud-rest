@@ -19,7 +19,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_HIS_CLI_ODO;
 
 @RestController
-@Tag(name = "Gestiona las historias clínicas de un paciente")
+@Tag(description = "Gestiona las historias clínicas de un paciente", name = "Historía clínica odontológica")
 @RequestMapping(value = {URI_API_V1_HIS_CLI_ODO})
 public class HistoriaClinicaOdontologicaController {
 

@@ -22,7 +22,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_NEC_SOC;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_NEC_SOC})
-@Tag(name = "Gestiona el catálogo de necesidades sociales")
+@Tag(description = "Gestiona el catálogo de necesidades sociales", name = "Necesidades sociales")
 public class NecesidadSocialController {
 
     private final GenericCRUDService<NecesidadSocial, NecesidadSocialDTO> service;

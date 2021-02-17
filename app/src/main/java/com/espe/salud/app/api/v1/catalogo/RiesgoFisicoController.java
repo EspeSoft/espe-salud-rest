@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_FIS;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_FIS})
-@Tag(name = "Consulta el cátalogo de riesgos físicos")
+@Tag(description = "Consulta el cátalogo de riesgos físicos", name = "Riesgos físicos")
 public class RiesgoFisicoController {
     private final GenericCRUDService<RiesgoFisico, RiesgoFisicoDTO> riesgoFisicoService;
 

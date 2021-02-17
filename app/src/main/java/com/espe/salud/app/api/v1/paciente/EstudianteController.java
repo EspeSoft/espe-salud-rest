@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.espe.salud.app.common.Constants.URI_API_V1_EST;
 
 @RestController
-@Tag(name = "Gestiona los estudiantes de un paciente")
+@Tag(description = "Gestiona el perfil de estudiante de un paciente", name = "Estudiantes")
 @RequestMapping(value = {URI_API_V1_EST})
 public class EstudianteController {
     private final EstudianteService estudianteService;

@@ -18,7 +18,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_GRU_CUL;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_GRU_CUL})
-@Tag(name = "Gestiona los grupos culturales")
+@Tag(description = "Gestiona los grupos culturales", name = "Grupos cultural")
 public class GrupoCulturalController {
 
     private final GrupoCulturalService grupoCulturalService;

@@ -4,9 +4,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_SUB;
 
 import java.util.List;
 
-import com.espe.salud.domain.entities.catalogo.Subdivision;
 import com.espe.salud.dto.catalogo.SubdivisionDTO;
-import com.espe.salud.service.GenericCRUDService;
 
 import com.espe.salud.service.catalogo.SubdivisionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +21,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_SUB})
-@Tag(name = "Gestiona el catálogo de Subdivision")
+@Tag(description = "Gestiona el catálogo de Subdivision", name = "Subdivisiones")
 public class SubdivisionController {
 
     private final SubdivisionService subdivisionService;

@@ -16,4 +16,5 @@ public class SedeDTO implements Serializable {
     private String nombre;
     private String canton;
     private String parroquia;
+    private String direccion;
 }

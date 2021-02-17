@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_PAI})
-@Tag(name = "Gestiona el catálogo de país")
+@Tag(description = "Gestiona el catálogo de país", name = "Paises")
 public class PaisController {
 
     private final GenericCRUDService<Pais, PaisDTO> paisService;

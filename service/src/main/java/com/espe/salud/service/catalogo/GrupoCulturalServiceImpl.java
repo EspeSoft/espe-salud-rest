@@ -22,7 +22,6 @@ public class GrupoCulturalServiceImpl implements GrupoCulturalService {
         this.mapper = mapper;
     }
 
-
     @Override
     public Optional<GrupoCulturalDTO> findById(Long codigo) {
         return domainRepository.findByCodigo(codigo).map(grupoCultural -> toDTO(grupoCultural));

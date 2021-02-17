@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_PRO_SOC;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_PRO_SOC})
-@Tag(name = "Gestiona el catálogo de problemas sociales")
+@Tag(description = "Gestiona el catálogo de problemas sociales", name = "Problemas sociales")
 public class ProblemaSocialController {
 
     private final GenericCRUDService<ProblemaSocial, ProblemaSocialDTO> service;

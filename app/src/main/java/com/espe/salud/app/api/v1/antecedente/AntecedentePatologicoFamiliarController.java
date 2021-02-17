@@ -17,7 +17,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ANTE_PAT_FAM;
 
 @RestController
-@Tag(name = "Gestiona antecedentes patologico familiar")
+@Tag(description = "Gestiona antecedentes patologicos familiar", name = "Antecedentes patológicos familiares")
 @RequestMapping(value = {URI_API_V1_ANTE_PAT_FAM})
 public class AntecedentePatologicoFamiliarController {
 

@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIPO_PROC;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIPO_PROC})
-@Tag(name = "Gestiona el catalogo de tipos de procedimiento")
+@Tag(description = "Gestiona el catalogo de tipos de procedimiento", name = "Tipos de procedimientos")
 public class TipoProcedimientoController {
     private final GenericCRUDService<TipoProcedimiento, TipoProcedimientoDTO> tipoProcedimientoService;
 
