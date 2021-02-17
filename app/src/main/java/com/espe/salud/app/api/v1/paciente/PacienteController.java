@@ -1,6 +1,8 @@
 package com.espe.salud.app.api.v1.paciente;
 
 
+import com.espe.salud.banner.model.PersonaBanner;
+import com.espe.salud.banner.service.PersonaBannerService;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.paciente.PacienteBannerDTO;
@@ -26,11 +28,13 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_PAC;
 @RequestMapping(value = {URI_API_V1_PAC})
 public class PacienteController {
     private final PacienteService pacienteService;
+    private final PersonaBannerService personaBannerService;
 
     @Autowired
     public PacienteController(
-            PacienteService pacienteService) {
+            PacienteService pacienteService, PersonaBannerService personaBannerService) {
         this.pacienteService = pacienteService;
+        this.personaBannerService = personaBannerService;
     }
 
 //    @Operation(summary = "Retorna el listado de todos los pacientes")
@@ -70,11 +74,12 @@ public class PacienteController {
         return new ResponseEntity<>(pacienteService.saveExternal(paciente), HttpStatus.CREATED);
     }
 
-//    @Operation(summary = "Elimina un paciente por su código")
-//    @DeleteMapping("/{codigo}")
-//    public void delete(@PathVariable Long codigo) {
-//        pacienteService.delete(codigo);
-//    }
+    @Operation(summary = "Obtiene el paciente banner")
+    @GetMapping("/banner")
+    public PersonaBanner getPacienteBanner(){
+        Optional<PersonaBanner> optional = personaBannerService.getPersonaBannerInfo("0301971495");
+        return optional.orElse(null);
+    }
 
 
 }
