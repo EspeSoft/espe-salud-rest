@@ -21,8 +21,8 @@ public class Constants {
     public static final String URI_API_V1_DIA = URI_API_V1 + "Diagnostico";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "RecordLaboral";
     public static final String URI_API_V1_ACT_FIS= URI_API_V1 + "Actividad Fisica";
-    public static final String URI_API_V1_ANT_PER= URI_API_V1 + "Actividad Fisica";
-    public static final String URI_API_V1_CON_NOC= URI_API_V1 + "Actividad Fisica";
+    public static final String URI_API_V1_ANT_PER= URI_API_V1 + "Antecedente Personal";
+    public static final String URI_API_V1_CON_NOC= URI_API_V1 + "Consumo Nocivo";
 
 
 

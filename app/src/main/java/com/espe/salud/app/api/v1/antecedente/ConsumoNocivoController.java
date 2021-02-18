@@ -16,7 +16,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_CON_NOC;
 
 @RestController
-@Tag(name = "Gestiona los pacientes")
+@Tag(name = "Gestiona los Consumo Nocivo")
 @RequestMapping(value = {URI_API_V1_CON_NOC})
 public class ConsumoNocivoController {
 

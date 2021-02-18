@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -21,9 +20,8 @@ public class AntecedentePersonalDTO  implements Serializable {
     private Boolean realizaActividadFisica;
     private String frecuenciaAlimentacion;
     private String predominioAlimentario;
-    private LocalTime horaSuenio;
-    private LocalTime horaDespertar;
-    private LocalTime totalHorasSuenio;
+    private String horaSuenio;
+    private String horaDespertar;
     private String observacionAlimentacion;
     private String observacionHabitoSuenio;
 }

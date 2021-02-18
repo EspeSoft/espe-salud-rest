@@ -16,7 +16,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_REC_LAB;
 
 @RestController
-@Tag(name = "Gestiona los diagnostico de antecedentes")
+@Tag(name = "Gestiona los Record Laboral  de paciente")
 @RequestMapping(value = URI_API_V1_REC_LAB)
 public class RecordLaboralController {
     private final RecordLaboralService recordLaboralService;
