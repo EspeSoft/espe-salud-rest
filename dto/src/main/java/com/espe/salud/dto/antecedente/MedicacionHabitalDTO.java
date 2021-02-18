@@ -1,8 +1,10 @@
 package com.espe.salud.dto.antecedente;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Getter
@@ -14,5 +16,8 @@ public class MedicacionHabitalDTO implements Serializable {
     private String frecuencia;
     private Integer cantidad;
     private String observacion;
-    private String antecedentePersonal;
+
+    private Long idAntecedentePersonal;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private AntecedentePersonalDTO antecedentePersonalDTO;
 }

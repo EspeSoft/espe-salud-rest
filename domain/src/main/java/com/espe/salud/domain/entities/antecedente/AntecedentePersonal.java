@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -66,6 +67,21 @@ public class AntecedentePersonal {
 
     @Column(name = "MZSTANTPER_OBSERVACION_HABITO_SUEÑO")
     private String observacionHabitoSuenio;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<MedicacionHabitual> medicacionHabitual;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedenteQuirurgico> antecedenteQuirurgico;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Discapacidad> discapacidad;
 
     @CreatedBy
     @Column(name = "MZSTANTPER_USUARIO_CREACION")

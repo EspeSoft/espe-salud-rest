@@ -17,4 +17,8 @@ public class AntecedenteQuirurgicoDTO implements Serializable {
     private String procedimientoQuirurgico;
     private LocalDate fechaProcedimiento;
     private String secuelas;
+
+    private Long idAntecedentePersonal;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private AntecedentePersonalDTO antecedentePersonalDTO;
 }

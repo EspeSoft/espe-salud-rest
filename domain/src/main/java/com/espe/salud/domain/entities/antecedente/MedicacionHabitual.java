@@ -35,10 +35,12 @@ public class MedicacionHabitual {
     @Column(name = "MZSTMEDHAB_OBSERVACION")
     private String observacion;
 
-    @Lob
-    @Column(name = "MZSTMEDHAB_ANTECEDENTE_PERSONAL")
-    private String antecedentePersonal;
+    @Column(name = "FK_MZSTMEDHAB_ANTECEDENTE_PERSONAL")
+    private Long idAntecedentePersonal;
 
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTMEDHAB_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
     @CreatedBy
     @Column(name = "MZSTMEDHAB_USUARIO_CREACION")
     private String usuarioCreacion;
