@@ -1,21 +1,21 @@
 package com.espe.salud.domain.entities.paciente;
 
+import com.espe.salud.domain.entities.antecedente.EstudioComplementario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTPAC", schema = "SALUD")
 public class Paciente {
 
@@ -40,12 +40,25 @@ public class Paciente {
     @Column(name = "MZSTPAC_ACCESO_BANNER")
     private Boolean accesoBanner;
 
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "MZSTPAC_PER",
+            joinColumns = {
+                    @JoinColumn(name = "FK_PAC", referencedColumnName = "MZSTPAC_CODIGO")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "FK_PER", referencedColumnName = "MZSTPER_CODIGO")})
+    private Persona persona;
+
+    @OneToOne(mappedBy = "paciente")
+    private Estudiante estudiante;
+
+    @OneToOne(mappedBy = "paciente")
+    private Empleado empleado;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Evolucion> evoluciones;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "FK_PER_PAC", updatable = false, nullable = false)
-//    private Persona persona;
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<EstudioComplementario> estudiosComplementarios;
 
     @CreatedDate
     @Column(name = "MZSTPAC_FECHA_CREACION")
@@ -65,11 +78,6 @@ public class Paciente {
 
     @PrePersist
     public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
+        this.activo = true;
     }
 }

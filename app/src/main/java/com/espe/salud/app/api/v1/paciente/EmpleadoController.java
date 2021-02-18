@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import static com.espe.salud.app.common.Constants.URI_API_V1_EMP;
 
 @RestController
-@Tag(name = "Gestiona los empleados de un paciente")
+@Tag(description = "Gestiona el perfil de empleado de un paciente", name = "Empleados")
 @RequestMapping(value = {URI_API_V1_EMP})
 public class EmpleadoController {
     private final EmpleadoService empleadoService;

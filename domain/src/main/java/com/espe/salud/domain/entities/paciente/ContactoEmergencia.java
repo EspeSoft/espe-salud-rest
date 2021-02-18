@@ -1,8 +1,6 @@
 package com.espe.salud.domain.entities.paciente;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -10,11 +8,9 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "MZSTCONEME", schema = "SALUD")
 public class ContactoEmergencia {
@@ -42,7 +38,6 @@ public class ContactoEmergencia {
     @Column(name = "MZSTCONEME_PARENTESCO")
     private String parentesco;
 
-    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PER_CONEME", insertable = false, updatable = false)
     private Persona persona;
@@ -62,15 +57,4 @@ public class ContactoEmergencia {
     @LastModifiedBy
     @Column(name = "MZSTCONEME_USUARIO_MODIFICACION")
     private String usuarioModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
-
 }

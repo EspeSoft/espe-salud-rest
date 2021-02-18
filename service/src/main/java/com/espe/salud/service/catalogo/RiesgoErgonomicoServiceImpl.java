@@ -8,6 +8,7 @@ import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service("riesgoErgonomicoServiceImpl")
@@ -37,6 +38,11 @@ public class RiesgoErgonomicoServiceImpl extends GenericCRUDServiceImpl<RiesgoEr
     @Override
     public Optional<RiesgoErgonomico> findExisting(RiesgoErgonomicoDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
+    }
+
+    @Override
+    public List<RiesgoErgonomicoDTO> findAllOrderByNameASC() {
+        return mapper.toRiesgosErgonomicosDTO(domainRepository.findAllByOrderByNombreAsc());
     }
 
 }

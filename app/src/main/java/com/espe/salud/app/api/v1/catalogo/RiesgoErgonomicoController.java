@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_ERG;
-import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_FIS;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_ERG})
-@Tag(name = "Consulta el cátalogo de riesgos ergonómicos")
+@Tag(description = "Consulta el cátalogo de riesgos ergonómicos", name = "Riegos ergonómicos")
 public class RiesgoErgonomicoController {
     private final GenericCRUDService<RiesgoErgonomico, RiesgoErgonomicoDTO> riesgoErgonomicoService;
 
@@ -31,11 +30,10 @@ public class RiesgoErgonomicoController {
         this.riesgoErgonomicoService = riesgoErgonomicoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los riesgo ergonómicos")
+    @Operation(summary = "Retorna el listado de todos los riesgo ergonómicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoErgonomicoDTO>> getAll() {
-        RiesgoErgonomicoDTO riesgoErgonomicoDTO = new RiesgoErgonomicoDTO();
-        return new ResponseEntity<>( riesgoErgonomicoService.findAll(riesgoErgonomicoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( riesgoErgonomicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

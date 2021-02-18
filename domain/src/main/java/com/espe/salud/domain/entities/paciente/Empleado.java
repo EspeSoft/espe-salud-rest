@@ -1,6 +1,5 @@
 package com.espe.salud.domain.entities.paciente;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,7 +11,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -77,28 +75,16 @@ public class Empleado {
     @NotEmpty
     private String cumpleMisionServicio;
 
-    @Column(name = "MZSTEMP_SITUACIÓN_ADMINISTRATIVA")
+    @Column(name = "MZSTEMP_SITUACION_ADMINISTRATIVA")
     @NotEmpty
     private String situacionAdministrativa;
 
-    @Column(name = "MZSTEMP_CODIGO_SEDE")
-    @NotNull
-    private Long idSede;
+//    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<RecordLaboral> records;
 
-    @Column(name = "MZSTEMP_CODIGO_TRABAJO")
-    @NotNull
-    private Long idCantonTrabajo;
-
-    @Column(name = "MZSTEMP_CODIGO_PROVINCIA_TRABAJO")
-    @NotNull
-    private Long idProvinciaTrabajo;
-
-    @OneToMany(mappedBy = "empleado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<RecordLaboral> records;
-
-    @OneToOne(mappedBy = "empleado")
-    @JsonIgnore
-    private Persona persona;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_PAC_EMP", updatable = false, insertable = false)
+    private Paciente paciente;
 
     @CreatedDate
     @Column(name = "MZSTEMP_FECHA_CREACION")
@@ -115,14 +101,4 @@ public class Empleado {
     @LastModifiedBy
     @Column(name = "MZSTEMP_USUARIO_MODIFICACION")
     private String usuarioModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
 }

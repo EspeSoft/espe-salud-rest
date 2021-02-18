@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_FIS;
-import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_QUI;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_FIS})
-@Tag(name = "Consulta el cátalogo de riesgos físicos")
+@Tag(description = "Consulta el cátalogo de riesgos físicos", name = "Riesgos físicos")
 public class RiesgoFisicoController {
     private final GenericCRUDService<RiesgoFisico, RiesgoFisicoDTO> riesgoFisicoService;
 
@@ -31,11 +30,10 @@ public class RiesgoFisicoController {
         this.riesgoFisicoService = riesgoFisicoService;
     }
 
-    @Operation(summary = "Retorna el listado de todos los riesgo físicos")
+    @Operation(summary = "Retorna el listado de todos los riesgo físicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoFisicoDTO>> getAll() {
-        RiesgoFisicoDTO riesgoFisicoDTO = new RiesgoFisicoDTO();
-        return new ResponseEntity<>( riesgoFisicoService.findAll(riesgoFisicoDTO), HttpStatus.OK);
+        return new ResponseEntity<>( riesgoFisicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

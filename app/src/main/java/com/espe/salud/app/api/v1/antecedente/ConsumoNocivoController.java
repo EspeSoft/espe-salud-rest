@@ -1,5 +1,6 @@
 package com.espe.salud.app.api.v1.antecedente;
 
+import com.espe.salud.app.common.Constants;
 import com.espe.salud.dto.antecedente.ConsumoNocivoDTO;
 import com.espe.salud.service.antecedente.ConsumoNocivoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,13 +11,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import java.util.List;
 import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_CON_NOC;
 
 @RestController
-@Tag(name = "Gestiona los Consumo Nocivo")
+@Tag(name = "Gestiona los consumos nocivos de los pacientes")
 @RequestMapping(value = {URI_API_V1_CON_NOC})
 public class ConsumoNocivoController {
 

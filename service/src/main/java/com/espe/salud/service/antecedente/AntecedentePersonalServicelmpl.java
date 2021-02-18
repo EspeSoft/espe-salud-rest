@@ -27,7 +27,7 @@ public class AntecedentePersonalServicelmpl implements AntecedentePersonalServic
     @Override
     public AntecedentePersonalDTO save(AntecedentePersonalDTO antecedentePersonal) {
         Optional<AntecedentePersonal> optional = findExisting(antecedentePersonal);
-        if (!optional.isPresent()) {
+        if (optional.isEmpty()) {
             AntecedentePersonal domainObject = toEntity(antecedentePersonal);
             return toDTO(antecedentePersonalRepository.save(domainObject));
         } else {
@@ -56,7 +56,7 @@ public class AntecedentePersonalServicelmpl implements AntecedentePersonalServic
 
     @Override
     public Optional<AntecedentePersonalDTO> findByCodigo(Long codigo) {
-        return antecedentePersonalRepository.findByCodigo(codigo).map(antecedentePersonal -> mapper.toAntecedentePersonalDTO(antecedentePersonal));
+        return antecedentePersonalRepository.findByCodigo(codigo).map(mapper::toAntecedentePersonalDTO);
     }
 
     @Override
@@ -71,8 +71,7 @@ public class AntecedentePersonalServicelmpl implements AntecedentePersonalServic
 
     @Override
     public List<AntecedentePersonalDTO> findAll() {
-        List<AntecedentePersonal> antecedentePersonals = new ArrayList<>();
-        antecedentePersonalRepository.findAll().forEach(antecedentePersonals::add);
-        return mapper.toAntecedentePersonalesDTO(antecedentePersonals);
+        List<AntecedentePersonal> antecedentePersonals = new ArrayList<>(antecedentePersonalRepository.findAll());
+        return mapper.toAntecedentesPersonalesDTO(antecedentePersonals);
     }
 }

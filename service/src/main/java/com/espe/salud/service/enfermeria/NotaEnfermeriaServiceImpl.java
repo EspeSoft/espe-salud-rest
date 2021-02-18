@@ -28,8 +28,8 @@ public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
     @Override
     @Transactional
     public NotaEnfermeriaDTO save(NotaEnfermeriaDTO notaEnfermeria) {
-        Optional<NotaEnfermeria> optional = domainRepository.findById(notaEnfermeria.getId());
-        if (!optional.isPresent()) {
+        Optional<NotaEnfermeria> optional = domainRepository.findByCodigo(notaEnfermeria.getId());
+        if (optional.isEmpty()) {
             NotaEnfermeria domainObject = toEntity(notaEnfermeria);
             return toDTO(domainRepository.save(domainObject));
         } else {
@@ -38,12 +38,21 @@ public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<NotaEnfermeriaDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(notaEnfermeria -> toDTO(notaEnfermeria));
+        return domainRepository.findById(codigo).map(this::toDTO);
     }
 
-    public List<NotaEnfermeriaDTO> findByPaciente(Long codigo) {
-        return mapper.toNotasEnfermeriaDTO(domainRepository.findByPacienteCodigoOrderByFechaInicio(codigo));
+    @Override
+    @Transactional(readOnly = true)
+    public List<NotaEnfermeriaDTO> findByPaciente(Long pacienteCodigo) {
+        return mapper.toNotasEnfermeriaDTO(domainRepository.findByPacienteCodigoOrderByFechaInicio(pacienteCodigo));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<NotaEnfermeriaDTO> findByUsuario(Long pidm) {
+        return mapper.toNotasEnfermeriaDTO(domainRepository.findByUsuarioPidmOrderByFechaInicio(pidm));
     }
 
     @Override
@@ -54,5 +63,14 @@ public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
     @Override
     public NotaEnfermeria toEntity(NotaEnfermeriaDTO dto) {
         return mapper.toNotaEnfermeria(dto);
+    }
+
+    @Override
+    @Transactional
+    public boolean delete(Long notaEnfemeriaId) {
+        return domainRepository.findById(notaEnfemeriaId).map(notaEnfermeria -> {
+            domainRepository.deleteById(notaEnfemeriaId);
+            return true;
+        }).orElse(false);
     }
 }
