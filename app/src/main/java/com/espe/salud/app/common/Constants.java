@@ -63,15 +63,13 @@ public class Constants {
 
     public static final String URI_API_V1_SED=URI_API_V1 + "sedes";
     public static final String URI_API_V1_GRU_CUL=URI_API_V1+"grupo-cultural";
-    public static final String URI_API_V1_DISP=URI_API_V1+"dispensarios";
     public static final String URI_API_V1_ANTE_PAT_FAM=URI_API_V1 +"antecedente-patologico-familiar";
     public static final String URI_API_V1_ANTE_QUIRURGICO=URI_API_V1+"antecedente-quirurgico";
     public static final String URI_API_V1_DISCAPACIDAD=URI_API_V1+"dicapacidad";
 
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
-    public static final String URI_API_V1_CON_NOC = URI_API_V1 + "consumos-nocivos";
-    
+
     public static final String URI_API_V1_SUB = URI_API_V1 + "subdivision";
 
     public static final String URI_API_V1_SEGSAL = URI_API_V1 +  "seguro-salud";
@@ -95,4 +93,6 @@ public class Constants {
     public static final String URI_API_V1_ANTGIN=URI_API_V1+"antecedentes-ginecologicos";
     public static final String URI_API_V1_EXASEX=URI_API_V1+"examen-sexual";
     public static final String URI_API_V1_PLAFAM=URI_API_V1+"planificacion-familiar";
+    public static final String URI_API_V1_TIP_CON_NOC = URI_API_V1 + "tipos-consumo-nocivo";
+
 }

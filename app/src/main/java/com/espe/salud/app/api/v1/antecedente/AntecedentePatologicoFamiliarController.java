@@ -48,7 +48,6 @@ public class AntecedentePatologicoFamiliarController {
         newAntecedentePatologicoFamiliaDTO.setDiagnostico(dto.getDiagnostico());
         newAntecedentePatologicoFamiliaDTO.setObservacion(dto.getObservacion());
         newAntecedentePatologicoFamiliaDTO.setParentezco(dto.getParentezco());
-        newAntecedentePatologicoFamiliaDTO.setTipoEnfermedad(dto.getTipoEnfermedad());
         return new ResponseEntity<>(service.update(newAntecedentePatologicoFamiliaDTO),HttpStatus.ACCEPTED);
     }
 

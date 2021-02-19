@@ -22,10 +22,6 @@ public class AntecedentePatologicoFamiliar {
     @Column(name="MZSTPATFAM_CODIGO")
     private Long codigo;
 
-//    @Lob
-//    @Column(name = "MZSTPATFAM_TIPO_ENFERMEDAD")
-//    private String tipoEnfermedad;
-
     @Lob
     @Column(name = "MZSTPATFAM_PARENTEZCO")
     private String parentezco;
