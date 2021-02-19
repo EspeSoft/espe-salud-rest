@@ -1,4 +1,4 @@
-package com.espe.salud.dto.odontologia;
+package com.espe.salud.dto.catalogo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class ExamenSistemaEstomatognaticoDTO implements Serializable {
 
 public class TipoEstudioComplementarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -19,5 +18,4 @@ public class TipoEstudioComplementarioDTO implements Serializable {
     private String codigoCIEAsociado;
     private Long historiaId;
     private String nombre;
-
 }
