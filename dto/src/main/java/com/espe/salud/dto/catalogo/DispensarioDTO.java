@@ -18,4 +18,8 @@ public class DispensarioDTO implements Serializable {
     private String unidadOperativa;
     private String uniCodigo;
     private String nombreImagen;
+    private String campus;
+    private String parroquia;
+    private String canton;
+    private String provincia;
 }

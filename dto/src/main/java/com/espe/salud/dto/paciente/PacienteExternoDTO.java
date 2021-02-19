@@ -12,9 +12,11 @@ import java.util.List;
 @Setter
 public class PacienteExternoDTO implements Serializable {
     private String numeroArchivo;
+    private String nombres; // TODO remove and set form model
     private Boolean esEstudiante;
     private Boolean esEmpleado;
-    private Boolean accesoBanner;
+    private Boolean aceptaTransfucion;
+    private String lateralidad;
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String primerNombre;
@@ -24,9 +26,7 @@ public class PacienteExternoDTO implements Serializable {
     private String sexo;
     private String estadoCivil;
     private String religion;
-    private Boolean aceptaTransfucion;
     private String grupoSanguineo;
-    private String lateralidad;
     private String instruccion;
     private String profesion;
     private String vinculadoEspe;
@@ -34,7 +34,6 @@ public class PacienteExternoDTO implements Serializable {
     private String grupoCultural;
     private String seguroSalud;
     private String asociacionAfiliada;
-    private String ciuo;
     private Long idDispensario;
     private String paisNacimiento;
     private String provinciaNacimiento;

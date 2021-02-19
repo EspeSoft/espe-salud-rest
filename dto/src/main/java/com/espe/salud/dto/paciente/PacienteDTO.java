@@ -1,11 +1,13 @@
 package com.espe.salud.dto.paciente;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -16,22 +18,27 @@ public class PacienteDTO implements Serializable {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String numeroArchivo;
+    private String nombreCompleto;
     private Boolean activo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
     private Boolean accesoBanner;
+    private Boolean aceptaTransfucion;
+    private String lateralidad;
+    private String tipoPaciente;
+
     private String apellidoPaterno;
     private String apellidoMaterno;
     private String primerNombre;
     private String segundoNombre;
     private String cedula;
-    private LocalDate fechaNacimiento;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDateTime fechaNacimiento;
     private String sexo;
     private String estadoCivil;
     private String religion;
-    private Boolean aceptaTransfucion;
     private String grupoSanguineo;
-    private String lateralidad;
     private String instruccion;
     private String profesion;
     private String vinculadoEspe;
@@ -39,7 +46,6 @@ public class PacienteDTO implements Serializable {
     private String grupoCultural;
     private String seguroSalud;
     private String asociacionAfiliada;
-    private String ciuo;
     private Long idDispensario;
     private String paisNacimiento;
     private String provinciaNacimiento;
