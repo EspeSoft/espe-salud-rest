@@ -12,6 +12,6 @@ public interface IndicadorSaludBucalRepository extends JpaRepository<IndicadorSa
 
     Optional<IndicadorSaludBucal> findByCodigo(Long codigo);
 
-    List<IndicadorSaludBucal> findByHistoriaId(Long idHistoria);
+    List<IndicadorSaludBucal> findByHistoriaCodigo(Long idHistoria);
 
 }
