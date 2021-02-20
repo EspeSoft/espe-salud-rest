@@ -33,9 +33,6 @@ public class Dispensario {
     @Column(name = "MZSTCDIS_CAMPUS")
     private String campus;
 
-    @Column(name = "MZSTCDIS_PARROQUIA")
-    private String parroquia;
-
     @Column(name = "MZSTCDIS_CANTON")
     private String canton;
 

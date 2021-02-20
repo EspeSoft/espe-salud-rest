@@ -13,6 +13,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class Paciente {
     private Long codigo;
 
     @Column(name = "MZSTPAC_NUMERO_ARCHIVO", unique = true)
+    @NotNull
     private String numeroArchivo;
 
     @Column(name = "MZSTPAC_NOMBRE_COMPLETO")
@@ -36,9 +38,6 @@ public class Paciente {
 
     @Column(name = "MZSTPAC_ACTIVO")
     private Boolean activo;
-
-    @Column(name = "MZSTPAC_ACCESO_BANNER")
-    private Boolean accesoBanner;
 
     @Column(name = "MZSTPAC_ES_EMPLEADO")
     private Boolean esEmpleado;
@@ -107,5 +106,13 @@ public class Paciente {
 
     public void disablePatient(){
         this.activo = false;
+    }
+
+    public void setPacienteAsExterno() {
+        this.tipoPaciente = TipoPaciente.EXTERNO;
+    }
+
+    public void setPacienteAsInterno() {
+        this.tipoPaciente = TipoPaciente.INTERNO;
     }
 }

@@ -55,6 +55,17 @@ public class PacienteController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping(value = "/", produces = "application/json")
+    @Operation(summary = "Retorna un paciente por su numero de archivo")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<PacienteDTO> buscarPorNumeroArchivo(@RequestParam String numeroArchivo) {
+        return pacienteService.findExistingByNumeroArchivo(numeroArchivo)
+                .map(pacienteDTO -> new ResponseEntity<>(pacienteDTO, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+
     @PutMapping("/{id}/disable")
     @Operation(summary = "Cambia el estado de un paciente a INACTIVO")
     public void darBajaPaciente(

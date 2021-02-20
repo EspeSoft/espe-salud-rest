@@ -38,15 +38,16 @@ public class PacienteServiceImpl implements PacienteService {
     @Override
     @Transactional
     public PacienteDTO saveExternal(PacienteExternoDTO pacienteDTO) {
-//        Optional<Paciente> optional = findExistingByNumeroArchivo(pacienteDTO.getNumeroArchivo());
-//        if (optional.isEmpty()) {
-//            Paciente domainObject = mapper.fromPacienteExternoDTOToPaciente(pacienteDTO);
-//            domainObject.getPersona().addToContactoEmergencia(domainObject.getPersona().getContactosEmergencia());
-//            return mapper.toPacienteDTO(pacienteRepository.save(domainObject));
-//        } else {
-//            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", pacienteDTO.getNumeroArchivo()));
-//        }
-        return null;
+        Optional<Paciente> optional = pacienteRepository.findByNumeroArchivo(pacienteDTO.getNumeroArchivo());
+        if (optional.isEmpty()) {
+            Paciente domainObject = mapper.fromPacienteExternoDTOToPaciente(pacienteDTO);
+            domainObject.setPacienteAsExterno();
+            domainObject.setNombreCompleto(domainObject.getPersona().getFullName());
+            domainObject.getPersona().addToContactoEmergencia(domainObject.getPersona().getContactosEmergencia());
+            return mapPacienteInfo(pacienteRepository.save(domainObject));
+        } else {
+            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", pacienteDTO.getNumeroArchivo()));
+        }
     }
 
     @Override
@@ -55,8 +56,7 @@ public class PacienteServiceImpl implements PacienteService {
         Optional<Paciente> optional = pacienteRepository.findByNumeroArchivo(pacienteBannerDTO.getNumeroArchivo());
         if (optional.isEmpty()) {
             Paciente paciente = mapper.fromPacienteBannerDTOToPaciente(pacienteBannerDTO);
-            paciente.setAccesoBanner(true);
-            paciente.setTipoPaciente(TipoPaciente.INTERNO);
+            paciente.setPacienteAsInterno();
             Optional<PersonaBanner> optionalPersonaBanner = bannerService.getPersonaBannerInfo(paciente.getNumeroArchivo());
             if (optionalPersonaBanner.isPresent()) {
                 PersonaBanner personaBanner = optionalPersonaBanner.get();

@@ -1,7 +1,6 @@
 package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.enums.Sexo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.data.annotation.CreatedBy;
@@ -12,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -58,17 +56,9 @@ public class Persona {
     @Column(name = "MZSTPER_RELIGION")
     private String religion;
 
-    @Column(name = "MZSTPER_ACEPTA_TRANSFUCION")
-    @NotNull
-    private boolean aceptaTransfucion;
-
     @Column(name = "MZSTPER_GRUPO_SANGUINEO")
     @NotEmpty
     private String grupoSanguineo;
-
-    @Column(name = "MZSTPER_LATERALIDAD")
-    @NotEmpty
-    private String lateralidad;
 
     @Column(name = "MZSTPER_INSTRUCCION")
     private String instruccion;
@@ -91,13 +81,6 @@ public class Persona {
 
     @Column(name = "MZSTPER_ASOCIACION_AFILIADO")
     private String asociacionAfiliada;
-
-    @Column(name = "MZSTPER_CIUO")
-    @NotEmpty
-    private String ciuo;
-
-    @Column(name = "MZSTPER_CODIGO_CONSULTORIO")
-    private Long idConsultorio;
 
     @NotNull
     @Column(name = "MZSTPER_CODIGO_PAIS_NACIMIENTO")
@@ -129,8 +112,8 @@ public class Persona {
 
     public void addToContactoEmergencia(List<ContactoEmergencia> contactos){
         if(!contactos.isEmpty()){
-            for (ContactoEmergencia contacto: contactos) {
-                contacto.setPersona(this);
+            for (ContactoEmergencia c: contactos) {
+                c.setPersona(this);
             }
             this.contactosEmergencia = contactos;
         }
@@ -160,5 +143,13 @@ public class Persona {
     @PreUpdate
     public void preUpdate() {
         fechaModificacion = LocalDateTime.now();
+    }
+
+    public String getFullName() {
+        String pn = this.primerNombre.toUpperCase();
+        String sn = this.segundoNombre.toUpperCase();
+        String ap = this.apellidoPaterno.toUpperCase();
+        String am = this.apellidoMaterno.toUpperCase();
+        return  pn + " " + sn + " " + ap + " " + am;
     }
 }

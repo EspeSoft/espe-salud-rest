@@ -22,7 +22,6 @@ public class PacienteDTO implements Serializable {
     private Boolean activo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
-    private Boolean accesoBanner;
     private Boolean aceptaTransfucion;
     private String lateralidad;
     private String tipoPaciente;

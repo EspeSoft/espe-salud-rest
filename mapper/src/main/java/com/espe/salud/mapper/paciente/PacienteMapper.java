@@ -5,6 +5,7 @@ import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.dto.paciente.ContactoEmergenciaDTO;
 import com.espe.salud.dto.paciente.PacienteBannerDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
+import com.espe.salud.dto.paciente.PacienteExternoDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -17,7 +18,10 @@ public interface PacienteMapper {
 
     @Mapping(source = "codigo", target = "id")
     PacienteDTO toPacienteDTO(Paciente paciente);
-    
+
+//    @Mapping(source = "codigo", target = "id")
+//    PacienteDTO fromExternalPacienteToPacienteDTO(Paciente paciente);
+
     @Mapping(source = "paciente.codigo", target = "id")
     @Mapping(source = "paciente.nombreCompleto", target = "nombreCompleto")
     @Mapping(source = "banner.nombres", target = "primerNombre", qualifiedByName = "generateFirstPart")
@@ -86,6 +90,32 @@ public interface PacienteMapper {
     }
 
     Paciente fromPacienteBannerDTOToPaciente(PacienteBannerDTO pacienteBannerDTO);
+
+    @Mapping(source = "apellidoPaterno", target = "persona.apellidoPaterno")
+    @Mapping(source = "apellidoMaterno", target = "persona.apellidoMaterno")
+    @Mapping(source = "primerNombre", target = "persona.primerNombre")
+    @Mapping(source = "segundoNombre", target = "persona.segundoNombre")
+    @Mapping(source = "cedula", target = "persona.cedula")
+    @Mapping(source = "fechaNacimiento", target = "persona.fechaNacimiento")
+    @Mapping(source = "sexo", target = "persona.sexo")
+    @Mapping(source = "estadoCivil", target = "persona.estadoCivil")
+    @Mapping(source = "religion", target = "persona.religion")
+    @Mapping(source = "grupoSanguineo", target = "persona.grupoSanguineo")
+    @Mapping(source = "instruccion", target = "persona.instruccion")
+    @Mapping(source = "profesion", target = "persona.profesion")
+    @Mapping(source = "vinculadoEspe", target = "persona.vinculadoEspe")
+    @Mapping(source = "pueblos", target = "persona.pueblos")
+    @Mapping(source = "grupoCultural", target = "persona.grupoCultural")
+    @Mapping(source = "seguroSalud", target = "persona.seguroSalud")
+    @Mapping(source = "asociacionAfiliada", target = "persona.asociacionAfiliada")
+    @Mapping(source = "paisNacimiento", target = "persona.paisNacimiento")
+    @Mapping(source = "provinciaNacimiento", target = "persona.provinciaNacimiento")
+    @Mapping(source = "cantonNacimiento", target = "persona.cantonNacimiento")
+    @Mapping(source = "nacionalidad", target = "persona.nacionalidad")
+    @Mapping(source = "nacionalidad2", target = "persona.nacionalidad2")
+    @Mapping(source = "contacto", target = "persona.contacto")
+    @Mapping(source = "contactosEmergencia", target = "persona.contactosEmergencia")
+    Paciente fromPacienteExternoDTOToPaciente(PacienteExternoDTO pacienteExternoDTO);
 
     List<PacienteDTO> toPacientesDTO(List<Paciente> pacientes);
 }
