@@ -36,6 +36,13 @@ public class AntecedentePatologicoFamiliar {
     @Column(name = "MZSTPATFAM_OBSERVACION")
     private String observacion;
 
+    @Column(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL")
+    private Long idAntecedentePersonal;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
+
     @CreatedBy
     @Column(name = "MZSTPATFAM_USUARIO_CREACION")
     private String usuarioCreacion;

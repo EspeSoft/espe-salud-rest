@@ -25,8 +25,8 @@ public class MedicacionHabitualServiceImpl implements MedicacionHabitualService 
 
     @Override
     public MedicacionHabitalDTO save(MedicacionHabitalDTO medicacionHabitalDTO) {
-        Optional<MedicacionHabitual> optional=medicacionHabitualRepository.findByCodigo(medicacionHabitalDTO.getId());
-        if (optional.isPresent()){
+        Optional<MedicacionHabitual> optional=findExisting(medicacionHabitalDTO);
+        if (optional.isEmpty()){
             MedicacionHabitual domainObject=toEntity(medicacionHabitalDTO);
             return toDTO(medicacionHabitualRepository.save(domainObject));
         }else {
@@ -43,6 +43,11 @@ public class MedicacionHabitualServiceImpl implements MedicacionHabitualService 
     @Override
     public Optional<MedicacionHabitalDTO> findById(Long codigo) {
         return medicacionHabitualRepository.findById(codigo).map(medicacionHabitual -> toDTO(medicacionHabitual));
+    }
+
+    @Override
+    public Optional<MedicacionHabitual> findExisting(MedicacionHabitalDTO medicacionHabitalDTO) {
+        return medicacionHabitualRepository.findByCodigo(medicacionHabitalDTO.getId());
     }
 
     @Override
