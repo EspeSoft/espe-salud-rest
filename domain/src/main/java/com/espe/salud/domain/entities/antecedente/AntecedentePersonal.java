@@ -12,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -71,7 +72,20 @@ public class AntecedentePersonal {
     @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false)
     private ActividadFisica actividadFisica;*/
 
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<MedicacionHabitual> medicacionHabitual;
 
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedenteQuirurgico> antecedenteQuirurgico;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Discapacidad> discapacidad;
 
 
 

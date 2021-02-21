@@ -47,7 +47,7 @@ public class AntecedentePatologicoPersonalController {
 
         Optional<AntecedentePatologicoPersonalDTO> optional=service.findById(codigo);
         AntecedentePatologicoPersonalDTO personalDTO= optional.get();
-        personalDTO.setAntecedentePersonal(dto.getAntecedentePersonal());
+        personalDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
         personalDTO.setTomaMedicacion(dto.getTomaMedicacion());
         personalDTO.setTipoEnfermedadPersonal(dto.getTipoEnfermedadPersonal());
         personalDTO.setDiagnostico(dto.getDiagnostico());
