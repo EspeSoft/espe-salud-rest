@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -51,21 +53,41 @@ public class AntecedentePersonal {
     @Column(name = "MZSTANTPER_PREDOMINIO_ALIMENTARIO")
     private String predominioAlimentario;
 
-    @CreationTimestamp
+    //@CreationTimestamp
     @Column(name = "MZSTANTPER_HORA_SUEÑO")
-    private LocalTime horaSuenio;
+    //@JsonFormat(pattern = "KK:mm a")
+    private String horaSuenio;
 
     @Column(name = "MZSTANTPER_HORA_DESPERTAR")
-    private LocalTime horaDespertar;
-
-    @Column(name = "MZSTANTPER_TOTAL_HORA_SUEÑO")
-    private LocalTime totalHorasSuenio;
+    //@JsonFormat(pattern = "KK:mm a")
+    private String horaDespertar;
 
     @Column(name = "MZSTANTPER_OBSERVACION_ALIMENTACION")
     private String observacionAlimentacion;
 
     @Column(name = "MZSTANTPER_OBSERVACION_HABITO_SUEÑO")
     private String observacionHabitoSuenio;
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false)
+    private ActividadFisica actividadFisica;*/
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<MedicacionHabitual> medicacionHabitual;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedenteQuirurgico> antecedenteQuirurgico;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Discapacidad> discapacidad;
+
+
 
     @CreatedBy
     @Column(name = "MZSTANTPER_USUARIO_CREACION")
