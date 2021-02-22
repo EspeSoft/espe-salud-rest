@@ -114,6 +114,8 @@ public class AntecedentePersonal {
         fechaModificacion = LocalDateTime.now();
     }
 
+    @OneToMany(mappedBy = "antecedentePersonal", cascade = CascadeType.ALL)
+    private List<ExamenSexual> examenesSexuales;
 
 
 }
