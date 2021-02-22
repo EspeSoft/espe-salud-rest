@@ -32,6 +32,4 @@ public class Pais {
     @Column(name = "MZSTCPAI_CODIGO_NUMERICO")
     private String codigoNumerico;
 
-    @OneToMany(mappedBy = "pais", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Subdivision> subdivisiones;
 }
