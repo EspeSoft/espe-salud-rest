@@ -61,6 +61,7 @@ public class Constants {
     public static final String URI_API_V1_ASO = URI_API_V1 +  "asociacion";
     public static final String URI_API_V1_TIPCER = URI_API_V1 +  "tipo-certificado";
     public static final String URI_API_V1_UNIDEP = URI_API_V1 +  "unidad-departamento";
+    public static final String URI_API_V1_CER = URI_API_V1+"certificado";
 
 
     public static final String URI_API_V1_TIP_ENF = URI_API_V1 + "tipos-enfermedades";
