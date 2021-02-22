@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.odontologia;
 
+import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @Entity
@@ -43,8 +45,14 @@ public class HistoriaClinicaOdontologica {
     @Column(name = "MZSTHISCLIODO_CODIGOPROFESIONAL")
     private String codigoProfesional;
 
-    @NotNull
-    @Column(name = "MZSTHISCLIODO_PACIENTE_ID")
-    private Long pacienteId;
+    @OneToMany(mappedBy = "historia", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<EnfermedadProblemaActual> enfermedadesProblemaActual;
+
+    @OneToMany(mappedBy = "historia", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<IndicadorSaludBucal> indicadoresSaludBucal;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_PAC_HISCLIODO", updatable = false, insertable = false)
+    private Paciente paciente;
 
 }
