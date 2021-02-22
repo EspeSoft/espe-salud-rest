@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -92,6 +93,8 @@ public class AntecedentePersonal {
         fechaModificacion = LocalDateTime.now();
     }
 
+    @OneToMany(mappedBy = "antecedentePersonal", cascade = CascadeType.ALL)
+    private List<ExamenSexual> examenesSexuales;
 
 
 }

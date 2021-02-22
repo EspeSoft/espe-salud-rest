@@ -34,6 +34,7 @@ public class NacionalidadPuebloController {
         return new ResponseEntity<>( service.findAllOrderByNombreASC(), HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}")
     @Operation(summary = "Retorna una nacionalidad o pueblo por su ID")
     @ApiResponses({
