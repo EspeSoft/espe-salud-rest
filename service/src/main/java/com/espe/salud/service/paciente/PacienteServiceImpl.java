@@ -66,7 +66,7 @@ public class PacienteServiceImpl implements PacienteService {
             }
             throw new ConflictException(String.format("El paciente con la cédula [%s] no se encuentra registrado en el sistema banner", pacienteBannerDTO.getNumeroArchivo()));
         } else {
-            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", pacienteBannerDTO.getNumeroArchivo()));
+            throw new ConflictException(String.format("Ya existe un paciente registrado para ese código[%s]", pacienteBannerDTO.getNumeroArchivo()));
         }
     }
 
