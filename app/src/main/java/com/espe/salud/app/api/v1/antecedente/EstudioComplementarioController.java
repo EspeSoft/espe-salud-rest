@@ -44,12 +44,6 @@ public class EstudioComplementarioController {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/delete-all")
-    @Operation(summary = "Eliminar una lista de estudios complementarios")
-    public ResponseEntity<Boolean> deleteAll(@RequestBody List<EstudioComplementarioDTO> estudiosComplementarios) {
-        return new ResponseEntity<>(service.deleteAll(estudiosComplementarios), HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     @Operation(summary = "Elimina un estudio complementario por su ID")
     public ResponseEntity<Boolean> deleteUser(
@@ -72,7 +66,7 @@ public class EstudioComplementarioController {
             EstudioComplementarioDTO nuevo = optional.get();
             nuevo.setDescripcionEstudio(dto.getDescripcionEstudio());
             nuevo.setFechaEstudio(dto.getFechaEstudio());
-            nuevo.setIdNombreEstudio(dto.getIdNombreEstudio());
+            nuevo.setNombreEstudio(dto.getNombreEstudio());
             return new ResponseEntity<>( service.update(nuevo), HttpStatus.OK);
         }
     }

@@ -10,6 +10,5 @@ public interface EstudioComplementarioService {
     EstudioComplementarioDTO update(EstudioComplementarioDTO estudioComplementarioDTO);
     Optional<EstudioComplementarioDTO> findById(Long codigo);
     boolean delete(Long codigo);
-    boolean deleteAll(List<EstudioComplementarioDTO> estudios);
     List<EstudioComplementarioDTO> findByPaciente(Long idPaciente);
 }

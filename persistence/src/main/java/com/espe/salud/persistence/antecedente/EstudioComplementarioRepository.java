@@ -10,5 +10,5 @@ import java.util.Optional;
 @Repository
 public interface EstudioComplementarioRepository extends JpaRepository<EstudioComplementario, Long> {
     Optional<EstudioComplementario> findByCodigo(Long codigo);
-    List<EstudioComplementario> findByPacienteCodigo(Long idPaciente);
+    List<EstudioComplementario> findByPacienteCodigoOrderByFechaEstudioDesc(Long idPaciente);
 }

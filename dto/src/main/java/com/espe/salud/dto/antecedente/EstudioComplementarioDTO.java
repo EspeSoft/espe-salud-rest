@@ -1,5 +1,6 @@
 package com.espe.salud.dto.antecedente;
 
+import com.espe.salud.dto.catalogo.TipoEstudioComplementarioDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +18,6 @@ public class EstudioComplementarioDTO implements Serializable{
     private Long id;
     private LocalDate fechaEstudio;
     private String descripcionEstudio;
-    private Long idNombreEstudio;
+    private TipoEstudioComplementarioDTO nombreEstudio;
     private Long idPaciente;
 }
