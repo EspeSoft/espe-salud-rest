@@ -30,8 +30,8 @@ public class IndicadorSaludBucal {
     @Min(1) @Max(3)
     private Integer nivelFluorosis;
 
-    @Column(name="MZSTINDSALBUC_CODIGO_HISTORIA")
-    @NotNull
-    private Long historiaId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_HISCLIODO_INDSALBUC", insertable = false, updatable = false, nullable = false)
+    private HistoriaClinicaOdontologica historia;
 
 }
