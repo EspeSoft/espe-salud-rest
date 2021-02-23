@@ -1,11 +1,7 @@
 package com.espe.salud.mapper.enfermeria;
 
-import com.espe.salud.domain.entities.enfermeria.Antropometria;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
-import com.espe.salud.domain.entities.enfermeria.SignoVital;
-import com.espe.salud.dto.enfermeria.AntropometriaDTO;
 import com.espe.salud.dto.enfermeria.NotaEnfermeriaDTO;
-import com.espe.salud.dto.enfermeria.SignoVitalDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

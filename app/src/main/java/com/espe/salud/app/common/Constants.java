@@ -92,4 +92,9 @@ public class Constants {
     public static final String URI_API_V1_EXASEX = URI_API_V1 + "examen-sexual";
     public static final String URI_API_V1_PLAFAM = URI_API_V1 + "planificacion-familiar";
     public static final String URI_API_V1_TIP_CON_NOC = URI_API_V1 + "tipos-consumo-nocivo";
+    public static final String URI_API_V1_ACT_ENF = URI_API_V1 + "actividades-enfermeria";
+    public static final String URI_API_V1_DES_ACT_ENF = URI_API_V1 + "descripciones-actividad-enfermeria";
+    public static final String URI_API_V1_TIP_ACT_ENF = URI_API_V1 + "tipos-actividad-enfermeria";
+
+
 }
