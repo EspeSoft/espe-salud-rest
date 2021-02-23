@@ -13,4 +13,5 @@ public class FactorRiesgoPuestoActualDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+    private AntecedenteLaboralDTO antecedenteLaboralDTO;
 }

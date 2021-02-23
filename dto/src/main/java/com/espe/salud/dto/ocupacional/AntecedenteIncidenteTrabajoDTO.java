@@ -13,4 +13,5 @@ public class AntecedenteIncidenteTrabajoDTO extends DetalleAntecedenteDTO implem
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+    private AntecedenteLaboralDTO antecedenteLaboralDTO;
 }

@@ -1,12 +1,16 @@
 package com.espe.salud.domain.entities.ocupacional;
 
+import com.espe.salud.domain.enums.RiesgoLaboral;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @MappedSuperclass
@@ -32,4 +36,8 @@ public abstract class DetalleTrabajo {
 
     @Column(name = "MZSTDETTRA_OBSERVACION")
     private String observacion;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "MZSTDETTRA_RIESGO")
+    private RiesgoLaboral riesgo;
 }

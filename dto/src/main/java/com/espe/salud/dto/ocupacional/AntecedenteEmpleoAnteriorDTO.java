@@ -13,4 +13,5 @@ public class AntecedenteEmpleoAnteriorDTO extends DetalleTrabajoDTO implements S
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+    private AntecedenteLaboralDTO antecedenteLaboralDTO;
 }

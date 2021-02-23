@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.ocupacional;
 
+import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -21,6 +22,10 @@ public class AntecedenteEnfermedadProfesional extends AntecedenteTrabajo {
     @Basic(optional = false)
     @Column(name = "MZSTANTENFPRO_CODIGO", updatable = false, nullable = false)
     private Long codigo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ANTLAB_ANTENFPRO", insertable = false, updatable = false)
+    private Usuario usuario;
 
     @CreatedDate
     @Column(name = "MZSTANTENFPRO_FECHA_CREACION")

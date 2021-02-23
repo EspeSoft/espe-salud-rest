@@ -1,9 +1,11 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.ocupacional.FactorRiesgoPuestoActual;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +21,7 @@ public class RiesgoPsicosocial {
 
     @Column(name = "MZSTCRIEPSI_NOMBRE")
     private String nombre;
+
+    @ManyToMany(mappedBy = "riesgosPsicosocial")
+    private List<FactorRiesgoPuestoActual> factores;
 }

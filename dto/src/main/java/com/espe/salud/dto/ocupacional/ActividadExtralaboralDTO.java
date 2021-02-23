@@ -13,4 +13,6 @@ public class ActividadExtralaboralDTO extends DetalleTrabajoDTO implements Seria
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+
+    private AntecedenteLaboralDTO antecedenteLaboralDTO;
 }
