@@ -30,7 +30,7 @@ public class DescripcionActividadEnfermeriaController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos los consumos nocivos por orden alfabético")
+    @Operation(summary = "Retorna el listado de todos las descripciones de actividades de enfermeria")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<DescripcionActividadEnfermeriaDTO>> getAll() {
         return new ResponseEntity<>(service.findAllOrderByNombreASC(), HttpStatus.OK);
