@@ -11,6 +11,6 @@ public interface HistoriaClinicaOdontologicaRepository extends JpaRepository<His
 
     Optional<HistoriaClinicaOdontologica> findByCodigo(Long codigo);
 
-    HistoriaClinicaOdontologica findByPacienteId(Long idPaciente);
+    HistoriaClinicaOdontologica findByPacienteCodigo(Long idPaciente);
 
 }

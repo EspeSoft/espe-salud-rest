@@ -12,6 +12,6 @@ public interface EnfermedadProblemaActualRepository extends JpaRepository<Enferm
 
     Optional<EnfermedadProblemaActual> findByCodigo(Long codigo);
 
-    List<EnfermedadProblemaActual> findByHistoriaId(Long idHistoria);
+    List<EnfermedadProblemaActual> findByHistoriaCodigo(Long idHistoria);
 
 }
