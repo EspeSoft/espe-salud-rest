@@ -42,7 +42,7 @@ public class ContactoEmergencia {
     private String parentesco;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_PER_CONEME", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_PER_CONEME")
     private Persona persona;
 
     @CreatedDate

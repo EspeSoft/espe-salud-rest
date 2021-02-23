@@ -63,42 +63,42 @@ public class Persona {
     @Column(name = "MZSTPER_INSTRUCCION")
     private String instruccion;
 
-    @Column(name = "MZSTPER_PRODESION")
+    @Column(name = "MZSTPER_PROFESION")
     private String profesion;
 
     @Column(name = "MZSTPER_VINCULADO_ESPE")
     @NotEmpty
     private String vinculadoEspe;
 
-    @Column(name = "MZSTPER_PUEBLOS")
+    @Column(name = "MZSTPER_PLURINACIONALIDAD")
     private String pueblos;
 
     @Column(name = "MZSTPER_GRUPO_CULTURAL")
     private String grupoCultural;
 
-    @Column(name = "MZSTPER_SEGURO_SOCIAL")
+    @Column(name = "MZSTPER_SEGURO_SALUD")
     private String seguroSalud;
 
-    @Column(name = "MZSTPER_ASOCIACION_AFILIADO")
+    @Column(name = "MZSTPER_ASOCIACION_AFILIADA")
     private String asociacionAfiliada;
 
     @NotNull
-    @Column(name = "MZSTPER_CODIGO_PAIS_NACIMIENTO")
+    @Column(name = "MZSTPER_PAIS_NACIMIENTO")
     private String paisNacimiento;
 
     @NotNull
-    @Column(name = "MZSTPER_CODIGO_PROVINCIA_NACIMIENTO")
+    @Column(name = "MZSTPER_PROVINCIA_NACIMIENTO")
     private String provinciaNacimiento;
 
     @NotNull
-    @Column(name = "MZSTPER_CODIGO_CANTON_NACIMIENTO")
+    @Column(name = "MZSTPER_CANTON_NACIMIENTO")
     private String cantonNacimiento;
 
     @NotNull
-    @Column(name = "MZSTPER_CODIGO_NACIONALIDAD")
+    @Column(name = "MZSTPER_NACIONALIDAD")
     private String nacionalidad;
 
-    @Column(name = "MZSTPER_CODIGO_NACIONALIDAD_2")
+    @Column(name = "MZSTPER_NACIONALIDAD_2")
     private String nacionalidad2;
 
     @Embedded

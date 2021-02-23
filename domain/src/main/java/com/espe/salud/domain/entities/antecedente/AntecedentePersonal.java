@@ -25,11 +25,9 @@ public class AntecedentePersonal {
     @Column(name = "MZSTANTPER_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-
     @Column(name = "MZSTANTPER_ORIENTACION_SEXUAL")
     @NotEmpty
     private String orientacionSexual;
-
 
     @Column(name = "MZSTANTPER_IDENTIDAD_GENERO")
     @NotEmpty
