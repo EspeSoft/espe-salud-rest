@@ -19,6 +19,9 @@ public class Contacto {
     @Column(name = "MZSTPER_ZONA_GEOGRAFICA")
     private String zonaGeografica;
 
+    @Column(name = "MZSTPER_DIRECCION_REFERENCIA")
+    private String direccionReferencia;
+
     @Column(name = "MZSTPER_NUMERO_CELULAR")
     @NotEmpty
     private String numeroCelular;
@@ -26,8 +29,8 @@ public class Contacto {
     @Column(name = "MZSTPER_NUMERO_CONVENCIONAL")
     private String numeroConvencional;
 
-    @Column(name = "MZSTPER_CODIGO_REGION")
-    private String codigoRegion;
+    @Column(name = "MZSTPER_EXTENSION")
+    private String extension;
 
     @Column(name = "MZSTPER_CORREO_PERSONAL")
     @NotEmpty
@@ -36,15 +39,15 @@ public class Contacto {
     @Column(name = "MZSTPER_CORREO_INSTITUCIONAL")
     private String correoInstitucional;
 
-    @Column(name = "MZSTPER_PARROQUIA")
-    private String parroquia;
+    @Column(name = "MZSTPER_PARROQUIA_RESIDENCIA")
+    private String parroquiaResidencia;
 
     @Column(name = "MZSTPER_BARRIO")
     private String barrio;
-//  TO DO
-//    @Column(name = "MZSTCON_CODIDO_CANTON_RESIDENCIA")
-//    private Long idCantonResidencia;
-//
-//    @Column(name = "MZSTCON_CODIGO_PROVINCIA_RESIDENCIA")
-//    private Long idProvinciaResidencia;
+
+    @Column(name = "MZSTPER_CANTON_RESIDENCIA")
+    private String cantonResidencia;
+
+    @Column(name = "MZSTPER_PROVINCIA_RESIDENCIA")
+    private String provinciaResidencia;
 }

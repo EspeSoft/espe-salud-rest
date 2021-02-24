@@ -14,5 +14,4 @@
     <properties>
         <filter.src>${basedir}/..</filter.src>
     </properties>
-
 </project>

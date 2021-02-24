@@ -1,5 +1,6 @@
 package com.espe.salud.app.handler;
 
+import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.common.exception.DuplicatedFieldException;
 import com.espe.salud.common.exception.EspeSaludException;
 import com.espe.salud.common.exception.ResourceNotFoundException;
@@ -214,6 +215,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST);
         apiError.setMessage(String.format("The parameter '%s' of value '%s' could not be converted to type '%s'", ex.getName(), ex.getValue(), Objects.requireNonNull(ex.getRequiredType()).getSimpleName()));
         apiError.setDebugMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    /**
+     * Handles ConflictExceptions. Created to encapsulate errors with more detail than javax.persistence.ConflictExceptions.
+     *
+     * @param ex the ConflictException
+     * @return the ApiError object
+     */
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ConflictException.class)
+    protected ResponseEntity<Object> handleConflictException(
+            ConflictException ex) {
+        ApiError apiError = new ApiError(HttpStatus.BAD_REQUEST, "Error de conficto", ex);
         return buildResponseEntity(apiError);
     }
 

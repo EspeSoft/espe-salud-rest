@@ -69,7 +69,7 @@ public class Constants {
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
 
-    public static final String URI_API_V1_SEGSAL = URI_API_V1 + "seguro-salud";
+    public static final String URI_API_V1_SEGSAL = URI_API_V1 + "seguros-salud";
     public static final String URI_API_V1_TIPCER = URI_API_V1 + "tipos-certificado";
     public static final String URI_API_V1_UNIDEP = URI_API_V1 + "unidad-departamento";
 
@@ -91,7 +91,10 @@ public class Constants {
     public static final String URI_API_V1_EXASEX = URI_API_V1 + "examen-sexual";
     public static final String URI_API_V1_PLAFAM = URI_API_V1 + "planificacion-familiar";
     public static final String URI_API_V1_TIP_CON_NOC = URI_API_V1 + "tipos-consumo-nocivo";
-
+    public static final String URI_API_V1_NIVEL_INSTRUCCION = URI_API_V1 + "niveles-instruccion";
+    public static final String URI_API_V1_ACT_ENF = URI_API_V1 + "actividades-enfermeria";
+    public static final String URI_API_V1_DES_ACT_ENF = URI_API_V1 + "descripciones-actividad-enfermeria";
+    public static final String URI_API_V1_TIP_ACT_ENF = URI_API_V1 + "tipos-actividad-enfermeria";
     public static final String URI_API_V1_ANT_ACC_TRA = URI_API_V1 + "antecedentes-accidentes-trabajo";
     public static final String URI_API_V1_ANT_INC_TRA = URI_API_V1 + "antecedentes-incidentes-trabajo";
     public static final String URI_API_V1_ANT_ENF_PRO = URI_API_V1 + "antecedentes-enfermedades-trabajo";
@@ -99,6 +102,4 @@ public class Constants {
     public static final String URI_API_V1_ACT_EXT = URI_API_V1 + "actividades-extralaborales";
     public static final String URI_API_V1_ANT_EMP_ANT = URI_API_V1 + "antecedentes-empleos-anteriores";
     public static final String URI_API_V1_ANT_LAB = URI_API_V1 + "antecedentes-laborales";
-
-
 }
