@@ -23,9 +23,15 @@ public class AntecedenteEnfermedadProfesional extends AntecedenteTrabajo {
     @Column(name = "MZSTANTENFPRO_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
+    @Column(name = "MZSTANTENFPRO_DIAGNOSTICO")
+    private String diagnostico;
+
+    @Column(name = "FK_ANTLAB_ANTENFPRO")
+    private Long idAntecedenteLaboral;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ANTLAB_ANTENFPRO", insertable = false, updatable = false)
-    private Usuario usuario;
+    private AntecedenteLaboral antecedenteLaboral;
 
     @CreatedDate
     @Column(name = "MZSTANTENFPRO_FECHA_CREACION")

@@ -26,9 +26,24 @@ public class FactorRiesgoPuestoActual {
     @Column(name = "MZSTFACRIEPUEACT_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
+    @Column(name = "MZSTFACRIEPUEACT_PUESTO_TRABAJO")
+    private String puestoTrabajo;
+
+    @Column(name = "MZSTFACRIEPUEACT_ACTIVIDAD_PUESTO")
+    private String actividadPuesto;
+
+    @Column(name = "MZSTFACRIEPUEACT_MEDIDA_PREVENTIVA")
+    private String medidaPreventiva;
+
+    @Column(name = "MZSTFACRIEPUEACT_MAQUINARIA")
+    private String maquinaria;
+
+    @Column(name = "FK_ANTLAB_FACRIEPUEACT")
+    private Long idAntecedenteLaboral;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ANTLAB_FACRIEPUEACT", insertable = false, updatable = false)
-    private Usuario usuario;
+    private AntecedenteLaboral antecedenteLaboral;
 
     @JoinTable(
             name = "MZSTREL_RIEFIS_FACRIEPUEACT",

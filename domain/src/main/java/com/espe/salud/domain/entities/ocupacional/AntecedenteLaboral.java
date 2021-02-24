@@ -26,26 +26,36 @@ public class AntecedenteLaboral {
     @Column(name = "MZSTANTLAB_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
+    @Column(name = "FK_PAC_ANTLAB")
+    private Long idPaciente;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_ANTLAB", insertable = false, updatable = false)
     private Paciente paciente;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @Column(name = "FK_USU_ANTLAB")
+    private Long idUsuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_USU_ANTLAB", insertable = false, updatable = false)
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "antecedenteLaboral", cascade = CascadeType.ALL)
     private List<AntecedenteIncidenteTrabajo> antecedentesIncidenteTrabajos;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedenteLaboral", cascade = CascadeType.ALL)
     private List<AntecedenteAccidenteTrabajo> antecedentseAccidenteTrabajos;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedenteLaboral", cascade = CascadeType.ALL)
     private List<AntecedenteEnfermedadProfesional> antecedentesEnfermedadProfesionales;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedenteLaboral", cascade = CascadeType.ALL)
     private List<FactorRiesgoPuestoActual> factores;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedenteLaboral", cascade = CascadeType.ALL)
     private List<ActividadExtralaboral> actividadesExtralaborales;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedenteLaboral", cascade = CascadeType.ALL)
     private List<AntecedenteEmpleoAnterior> antecedentesEmpleoAnteriores;
 
     @CreatedDate
