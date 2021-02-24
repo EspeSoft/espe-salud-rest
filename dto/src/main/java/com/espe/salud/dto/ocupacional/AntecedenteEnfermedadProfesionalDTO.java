@@ -13,5 +13,6 @@ public class AntecedenteEnfermedadProfesionalDTO extends AntecedenteTrabajoDTO i
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private AntecedenteLaboralDTO antecedenteLaboralDTO;
+    private String diagnostico;
+    private Long idAntecedenteLaboral;
 }

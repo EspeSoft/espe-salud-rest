@@ -23,9 +23,12 @@ public class AntecedenteIncidenteTrabajo extends DetalleAntecedente {
     @Column(name = "MZSTANTINCTRA_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
+    @Column(name = "FK_ANTLAB_ANTINCTRA")
+    private Long idAntecedenteLaboral;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ANTLAB_ANTINCTRA", insertable = false, updatable = false)
-    private Usuario usuario;
+    private AntecedenteLaboral antecedenteLaboral;
 
     @CreatedDate
     @Column(name = "MZSTANTINCTRA_FECHA_CREACION")

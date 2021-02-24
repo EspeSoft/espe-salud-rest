@@ -23,9 +23,12 @@ public class ActividadExtralaboral extends DetalleTrabajo {
     @Column(name = "MZSTACTEXT_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
+    @Column(name = "FK_ANTLAB_ACTEXT")
+    private Long idAntecedenteLaboral;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ANTLAB_ACTEXT", insertable = false, updatable = false)
-    private Usuario usuario;
+    private AntecedenteLaboral antecedenteLaboral;
 
     @CreatedDate
     @Column(name = "MZSTACTEXT_FECHA_CREACION")

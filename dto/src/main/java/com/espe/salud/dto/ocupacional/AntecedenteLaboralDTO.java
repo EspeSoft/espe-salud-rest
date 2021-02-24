@@ -15,5 +15,7 @@ public class AntecedenteLaboralDTO implements Serializable {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
-    private PacienteDTO pacienteDTO;
+    private Long idPaciente;
+
+    private Long idUsuario;
 }
