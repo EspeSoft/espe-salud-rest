@@ -73,8 +73,8 @@ public class Persona {
     @Column(name = "MZSTPER_PLURINACIONALIDAD")
     private String pueblos;
 
-    @Column(name = "MZSTPER_GRUPO_CULTURAL")
-    private String grupoCultural;
+    @Column(name = "MZSTPER_ETNIA")
+    private String etnia;
 
     @Column(name = "MZSTPER_SEGURO_SALUD")
     private String seguroSalud;

@@ -65,7 +65,7 @@ public class PacienteExternoDTO implements Serializable {
     private String profesion;
     private String vinculadoEspe;
     private String pueblos;
-    private String grupoCultural;
+    private String etnia;
     private String seguroSalud;
     private String asociacionAfiliada;
 
