@@ -20,5 +20,5 @@ public class GrupoEnfermedad {
     private String nombre;
 
     @OneToMany(mappedBy = "grupoEnfermedadCIE10", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<EnfermedadCIE10> tiposEnfermedadCIE10;
+    private List<EnfermedadCIE10> enfermedadesCIE10;
 }

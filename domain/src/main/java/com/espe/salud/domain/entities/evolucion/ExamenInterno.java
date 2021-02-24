@@ -1,5 +1,8 @@
 package com.espe.salud.domain.entities.evolucion;
 
+import com.espe.salud.domain.entities.catalogo.Area;
+import com.espe.salud.domain.entities.catalogo.OrganoSistema;
+import com.espe.salud.domain.entities.catalogo.Region;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -45,4 +48,15 @@ public class ExamenInterno {
     @LastModifiedBy
     @Column(name = "MZSTEXAINT_USUARIO_MODIFICACION")
     private String usuarioModificacion;
+
+    @Column(name = "FK_ORGSIS_EXAINT")
+    private String idOrganoSistema;
+
+    //relaciones
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ORGSIS_EXAINT", insertable = false, updatable = false, nullable = false)
+    private OrganoSistema organoSistema;
+
+
 }

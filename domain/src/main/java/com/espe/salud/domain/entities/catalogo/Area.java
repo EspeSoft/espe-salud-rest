@@ -1,8 +1,12 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.evolucion.Evolucion;
+import com.espe.salud.domain.entities.evolucion.ExamenExterno;
+import com.espe.salud.domain.entities.evolucion.ExamenInterno;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +23,12 @@ public class Area {
     @Column(name = "MZSTCARE_NOMBRE")
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_REG_ARE")
-    private Region region;
+
+    //relaciones
+    @OneToMany(mappedBy = "idArea", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ExamenExterno> examenesExternos;
+
+    //
+    @OneToMany(mappedBy = "area", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Region> regiones;
 }

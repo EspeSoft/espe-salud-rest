@@ -1,5 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
+import com.espe.salud.domain.entities.catalogo.Area;
+import com.espe.salud.domain.entities.catalogo.Region;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -46,4 +48,15 @@ public class ExamenExterno {
     @LastModifiedBy
     @Column(name = "MZSTEXAEXT_USUARIO_MODIFICACION")
     private String usuarioModificacion;
+
+    @Column(name = "FK_ARE_EXAEXT")
+    private Long idArea;
+
+
+    //relaciones
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ARE_EXAEXT", insertable = false, updatable = false, nullable = false)
+    private Area area;
+
+
 }

@@ -1,5 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
+import com.espe.salud.domain.entities.catalogo.Area;
+import com.espe.salud.domain.entities.catalogo.TipoProcedimiento;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -22,9 +24,7 @@ public class Procedimiento {
     @Column(name = "MZSTPRO_CODIGO")
     private Long codigo;
 
-    @Column(name = "MZSTPRO_TIPO_PROCEDIMIENTO")
-    @NotEmpty
-    private String tipoProcedimiento;
+
 
     @Column(name = "MZSTPRO_NUMERO_ACTIVIDAD")
     @NotNull
@@ -62,6 +62,13 @@ public class Procedimiento {
     public void preUpdate() {
         fechaModificacion = LocalDateTime.now();
     }
+
+    @Column(name = "FK_TIPPROC_PROC")
+    private String idTipoProcedimiento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPPROC_PROC", insertable = false, updatable = false, nullable = false)
+    private TipoProcedimiento tipoProcedimiento;
 
 
 }

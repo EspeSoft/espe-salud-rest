@@ -21,6 +21,7 @@ public class EnfermedadCIE10 {
     @Column(name = "FK_GRUENF_ENFCIE10")
     private String idGrupoEnfermedadCIE10;
 
+
     @ManyToOne
     @JoinColumn(name = "FK_GRUENF_ENFCIE10", insertable = false, updatable = false)
     private GrupoEnfermedad grupoEnfermedadCIE10;

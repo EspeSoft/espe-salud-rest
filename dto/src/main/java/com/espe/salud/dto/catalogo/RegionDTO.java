@@ -14,6 +14,7 @@ public class RegionDTO implements Serializable {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
+    private Long idArea;
 
 
 }
