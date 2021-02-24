@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,11 +57,25 @@ public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaServic
     }
 
     @Override
+    public ActividadEnfermeriaDTO update(ActividadEnfermeriaDTO actividadEnfermeriaDTO) {
+        ActividadEnfermeria domainObject = toEntity(actividadEnfermeriaDTO);
+        return toDTO(actividadEnfermeriaRepository.save(domainObject));
+    }
+
+    @Override
+    public List<ActividadEnfermeriaDTO> findAll() {
+        List<ActividadEnfermeria> actividadFisicas = new ArrayList<>(actividadEnfermeriaRepository.findAll());
+        return actividadEnfermeriaMapper.toActividadesEnfermeriasDTO(actividadFisicas);
+    }
+
+
+    @Override
     @Transactional
-    public boolean delete(Long actividadEnfemeriaId) {
-        return actividadEnfermeriaRepository.findById(actividadEnfemeriaId).map(actividadEnfermeria -> {
-            actividadEnfermeriaRepository.deleteById(actividadEnfemeriaId);
+    public Boolean delete(Long id) {
+        return actividadEnfermeriaRepository.findById(id).map(actividadEnfermeria -> {
+            actividadEnfermeriaRepository.deleteById(id);
             return true;
         }).orElse(false);
     }
+
 }

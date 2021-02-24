@@ -12,5 +12,7 @@ public interface ActividadEnfermeriaService {
 //    List<ActividadEnfermeriaDTO> findByUsuario(Long pidm);
     ActividadEnfermeriaDTO toDTO(ActividadEnfermeria notaEnfermeria);
     ActividadEnfermeria toEntity(ActividadEnfermeriaDTO dto);
-    boolean delete(Long actividadEnfemeriaId);
+    ActividadEnfermeriaDTO update(ActividadEnfermeriaDTO actividadEnfermeriaDTO);
+    List<ActividadEnfermeriaDTO> findAll();
+    Boolean delete(Long id);
 }
