@@ -16,6 +16,8 @@ public class ProcedimientoDTO implements Serializable {
     private String tipoProcedimiento;
     private Integer numeroActividades;
     private String nota;
-    //private Long idResponsable;
+
+    private Long idUsuario;
+    private String idEvolucion;
 
 }

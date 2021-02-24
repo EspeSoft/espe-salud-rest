@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.evolucion;
 
+import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -33,9 +34,20 @@ public class Procedimiento {
     @Column(name = "MZSTPRO_NOTA")
     private String nota;
 
-    //@Column(name = "MZSTPRO_ID_RESPONSANBLE")  //TO DO idResponsable
-    //@NotNull
-    //private Long idResponsable;
+    @Column(name = "FK_USU_PRO")
+    private Long idUsuario;
+
+    @Column(name = "FK_EVO_PRO")
+    private String idEvolucion;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_USU_PRO",insertable = false,updatable = false)
+    private Usuario usuario;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_EVO_PRO",insertable = false,updatable = false)
+    private Evolucion evolucion;
+
 
     @CreatedBy
     @Column(name = "MZSTPRO_USUARIO_CREACION")

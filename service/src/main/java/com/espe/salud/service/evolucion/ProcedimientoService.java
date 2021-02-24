@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProcedimientoService {
-    ProcedimientoDTO save  (ProcedimientoDTO procedimiento);
-    ProcedimientoDTO update(ProcedimientoDTO procedimiento);
+    ProcedimientoDTO save  (ProcedimientoDTO procedimientoDTO);
+    ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO);
     Optional<Procedimiento> findExisting(ProcedimientoDTO procedimientoDTO);
     Boolean delete(Long id);
-    Optional<ProcedimientoDTO> findByCodigo(Long codigo);
+    Optional<ProcedimientoDTO> findById(Long codigo);
     ProcedimientoDTO   toDTO (Procedimiento procedimiento);
     Procedimiento toEntity (ProcedimientoDTO dto);
     List<ProcedimientoDTO> findAll();

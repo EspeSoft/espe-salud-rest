@@ -52,6 +52,13 @@ public class ConsumoNocivo {
     @NotEmpty
     private String observacion;
 
+    @Column(name = "FK_ANTPATPER_CONNOC")
+    private Long idAntecedentePersonal;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_ANTPATPER_CONNOC",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
+
     @CreatedBy
     @Column(name = "MZSTCONNOC_USUARIO_CREACION")
     private String usuarioCreacion;
