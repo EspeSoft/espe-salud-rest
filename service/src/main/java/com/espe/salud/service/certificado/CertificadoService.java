@@ -1,7 +1,7 @@
-package com.espe.salud.service.antecedente;
+package com.espe.salud.service.certificado;
 
-import com.espe.salud.domain.entities.antecedente.Certificado;
-import com.espe.salud.dto.antecedente.CertificadoDTO;
+import com.espe.salud.domain.entities.certificado.Certificado;
+import com.espe.salud.dto.certificado.CertificadoDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +12,7 @@ public interface CertificadoService {
     CertificadoDTO save(CertificadoDTO certificadoDTO);
     CertificadoDTO update(CertificadoDTO certificadoDTO);
     Optional<CertificadoDTO> findById(Long codigo);
+    List<CertificadoDTO> findByPaciente(Long pacienteCodigo);
     List<CertificadoDTO> findAll();
     boolean deleteById(Long id);
     CertificadoDTO toDTO(Certificado certificado);

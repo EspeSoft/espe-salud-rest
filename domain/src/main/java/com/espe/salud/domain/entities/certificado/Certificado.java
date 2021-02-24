@@ -1,6 +1,7 @@
-package com.espe.salud.domain.entities.antecedente;
+package com.espe.salud.domain.entities.certificado;
 
 import com.espe.salud.domain.entities.catalogo.TipoCertificado;
+import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -72,4 +73,12 @@ public class Certificado {
     @ManyToOne
     @JoinColumn(name = "FK_TIPCER_CER", insertable = false, updatable = false)
     private TipoCertificado tipoCertificado;
+
+    @Column(name = "FK_EVO_CER")
+    private String idEvolucion;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_EVO_CER", insertable = false, updatable = false)
+    private Evolucion evolucion;
+
 }

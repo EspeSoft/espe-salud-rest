@@ -1,18 +1,19 @@
-package com.espe.salud.service.antecedente;
+package com.espe.salud.service.certificado;
 
 import com.espe.salud.common.exception.ConflictException;
-import com.espe.salud.domain.entities.antecedente.Certificado;
-import com.espe.salud.dto.antecedente.CertificadoDTO;
-import com.espe.salud.mapper.antecedente.CertificadoMapper;
-import com.espe.salud.persistence.antecedente.CertificadoRepository;
+import com.espe.salud.domain.entities.certificado.Certificado;
+import com.espe.salud.dto.certificado.CertificadoDTO;
+import com.espe.salud.mapper.certificado.CertificadoMapper;
+import com.espe.salud.persistence.certificado.CertificadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CertificadoServiceImpl implements CertificadoService{
+public class CertificadoServiceImpl implements CertificadoService {
     private final CertificadoRepository certificadoRepository;
     private final CertificadoMapper mapper;
 
@@ -23,6 +24,7 @@ public class CertificadoServiceImpl implements CertificadoService{
     }
 
     @Override
+    @Transactional
     public CertificadoDTO save(CertificadoDTO certificadoDTO) {
         Optional<Certificado> optional=certificadoRepository.findById(certificadoDTO.getId());
         if (optional.isPresent()){
@@ -34,14 +36,22 @@ public class CertificadoServiceImpl implements CertificadoService{
     }
 
     @Override
+    @Transactional
     public CertificadoDTO update(CertificadoDTO certificadoDTO) {
         Certificado domainObject=toEntity(certificadoDTO);
         return toDTO(certificadoRepository.save(domainObject));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<CertificadoDTO> findById(Long codigo) {
        return certificadoRepository.findByCodigo(codigo).map(certificado -> toDTO(certificado));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CertificadoDTO> findByPaciente(Long pacienteCodigo) {
+        return mapper.toCertificadoDTO(certificadoRepository.findByEvolucion_Paciente(pacienteCodigo));
     }
 
     @Override

@@ -1,7 +1,7 @@
-package com.espe.salud.mapper.antecedente;
+package com.espe.salud.mapper.certificado;
 
-import com.espe.salud.domain.entities.antecedente.Certificado;
-import com.espe.salud.dto.antecedente.CertificadoDTO;
+import com.espe.salud.domain.entities.certificado.Certificado;
+import com.espe.salud.dto.certificado.CertificadoDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

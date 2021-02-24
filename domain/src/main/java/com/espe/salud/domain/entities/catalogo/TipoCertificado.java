@@ -1,6 +1,6 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import com.espe.salud.domain.entities.antecedente.Certificado;
+import com.espe.salud.domain.entities.certificado.Certificado;
 import lombok.Getter;
 import lombok.Setter;
 
