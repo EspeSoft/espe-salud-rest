@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.TipoEnfermedadPersonal;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -20,26 +21,27 @@ public class AntecedentePatologicoPersonal {
     @Column(name="MZSTANTPATPER_CODIGO")
     private Long codigo;
 
-    @Lob
-    @Column(name = "MZSTANTPATPER_TIPO_ENFERMEDAD_PERSONAL")
-    private String tipoEnfermedadPersonal;
-
     @Column(name = "MZSTANTPATPER_FECHA_DIAGNOSTICO")
     private LocalDate fechaDiagnostico;
 
-    @Lob
     @Column(name = "MZSTANTPATPER_TOMA_MEDICACION")
     private String tomaMedicacion;
 
-    @Lob
     @Column(name = "MZSTANTPATPER_DIAGNOSTICO")
     private String diagnostico;
 
     @Column(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL")
     private Long idAntecedentePersonal;
 
+    @Column(name = "FK_TIPENFPER_ANTPATPER")
+    private Long idTipoEnfermedadPersonal;
+
     @ManyToOne
-    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_TIPENFPER_ANTPATPER", insertable = false, updatable = false)
+    private TipoEnfermedadPersonal tipoEnfermedadPersonal;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

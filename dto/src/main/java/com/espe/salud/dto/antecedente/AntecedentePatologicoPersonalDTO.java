@@ -11,11 +11,12 @@ import java.time.LocalDate;
 @Setter
 public class AntecedentePatologicoPersonalDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String tipoEnfermedadPersonal;
     private LocalDate fechaDiagnostico;
     private String tomaMedicacion;
     private String diagnostico;
 
     private Long idAntecedentePersonal;
+    private Long idTipoEnfermedadPersonal;
 }
