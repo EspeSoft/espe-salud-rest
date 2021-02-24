@@ -60,7 +60,6 @@ public class Constants {
     public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos-sistema";
 
 
-    public static final String URI_API_V1_SED = URI_API_V1 + "sedes";
     public static final String URI_API_V1_GRU_CUL = URI_API_V1 + "grupo-cultural";
     public static final String URI_API_V1_ANTE_PAT_FAM = URI_API_V1 + "antecedente-patologico-familiar";
     public static final String URI_API_V1_ANTE_QUIRURGICO = URI_API_V1 + "antecedente-quirurgico";
