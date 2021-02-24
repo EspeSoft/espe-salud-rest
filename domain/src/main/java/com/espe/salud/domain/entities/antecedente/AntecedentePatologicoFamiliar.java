@@ -1,5 +1,7 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.TipoEnfermedad;
+import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -19,10 +21,6 @@ public class AntecedentePatologicoFamiliar {
     @Basic(optional = false)
     @Column(name="MZSTPATFAM_CODIGO")
     private Long codigo;
-
-    @Lob
-    @Column(name = "MZSTPATFAM_TIPO_ENFERMEDAD")
-    private String tipoEnfermedad;
 
     @Lob
     @Column(name = "MZSTPATFAM_PARENTEZCO")
@@ -58,5 +56,12 @@ public class AntecedentePatologicoFamiliar {
     @LastModifiedDate
     @Column(name = "MZSTPATFAM_FECHA_MODIFICACION")
     private LocalDate fechaModificacion;
+
+    @Column(name = "FK_TIPENF_PATFAM")
+    private Long idTipoEnfermedadFamilia;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPENF_PATFAM", insertable = false, updatable = false, nullable = false)
+    private TipoEnfermedad tipoEnfermedad;
 
 }

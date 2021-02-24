@@ -13,7 +13,6 @@ public class AntecedentePatologicoFamiliarDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String tipoEnfermedad;
     private String parentezco;
     private String diagnostico;
     private String observacion;
