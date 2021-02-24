@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ActividadFisicaService {
-    ActividadFisicaDTO save(ActividadFisicaDTO actividadFisica);
+    ActividadFisicaDTO save(ActividadFisicaDTO actividadFisicaDTO);
     ActividadFisicaDTO update(ActividadFisicaDTO actividadFisica);
     Optional<ActividadFisica> findExisting(ActividadFisicaDTO actividadFisicaDTO);
     Boolean delete(Long id);

@@ -25,19 +25,20 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
     }
 
     @Override
-    public DiagnosticoDTO save(DiagnosticoDTO diagnostico) {
-        Optional<Diagnostico> optional = findExisting(diagnostico);
-        if (!optional.isPresent()) {
-            Diagnostico domainObject = toEntity(diagnostico);
+    public DiagnosticoDTO save(DiagnosticoDTO diagnosticoDTO) {
+        Optional <Diagnostico> optional = diagnosticoRepository.findById(diagnosticoDTO.getId());
+        //Optional<Diagnostico> optional = findExisting(diagnostico);
+        if (!optional.isEmpty()) {
+            Diagnostico domainObject = toEntity(diagnosticoDTO);
             return toDTO(diagnosticoRepository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", diagnostico.getId()));
+            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", diagnosticoDTO.getId()));
         }
     }
 
     @Override
-    public DiagnosticoDTO update(DiagnosticoDTO diagnostico) {
-        Diagnostico domainObject = toEntity(diagnostico);
+    public DiagnosticoDTO update(DiagnosticoDTO diagnosticoDTO) {
+        Diagnostico domainObject = toEntity(diagnosticoDTO);
         return toDTO(diagnosticoRepository.save(domainObject));
     }
 
@@ -55,7 +56,7 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
     }
 
     @Override
-    public Optional<DiagnosticoDTO> findByCodigo(Long codigo) {
+    public Optional<DiagnosticoDTO> findById(Long codigo) {
         return diagnosticoRepository.findByCodigo(codigo).map(diagnostico -> mapper.toDiagnosticoDTO(diagnostico));
     }
 

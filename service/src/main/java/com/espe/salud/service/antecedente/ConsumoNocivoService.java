@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ConsumoNocivoService {
-    ConsumoNocivoDTO save(ConsumoNocivoDTO consumoNocivo);
+    ConsumoNocivoDTO save(ConsumoNocivoDTO actividadFisicaDTO);
     ConsumoNocivoDTO update(ConsumoNocivoDTO consumoNocivo);
     Optional<ConsumoNocivo> findExisting(ConsumoNocivoDTO pacienteDTO);
     Boolean delete(Long id);

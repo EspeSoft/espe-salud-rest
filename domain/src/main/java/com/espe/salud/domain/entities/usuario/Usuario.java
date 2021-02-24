@@ -3,6 +3,7 @@ package com.espe.salud.domain.entities.usuario;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.enfermeria.ActividadEnfermeria;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
+import com.espe.salud.domain.entities.evolucion.Procedimiento;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -42,6 +43,9 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<ActividadEnfermeria> actividadesEnfermerias;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Procedimiento> procedimiento;
 
     @PrePersist
     void prePersist(){
