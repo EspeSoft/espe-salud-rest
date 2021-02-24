@@ -54,7 +54,6 @@ public class PlanificacionFamiliarController {
         newPlanificacionFamiliarDTO.setHijosVivos(dto.getHijosVivos());
         newPlanificacionFamiliarDTO.setHijosMuertos(dto.getHijosMuertos());
         newPlanificacionFamiliarDTO.setObservacion(dto.getObservacion());
-        newPlanificacionFamiliarDTO.setAntecedentePersonal(dto.getAntecedentePersonal());
         return new ResponseEntity<>(service.update(newPlanificacionFamiliarDTO),HttpStatus.ACCEPTED);
     }
 

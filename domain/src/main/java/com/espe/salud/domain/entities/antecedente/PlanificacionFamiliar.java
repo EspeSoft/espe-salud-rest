@@ -56,9 +56,9 @@ public class PlanificacionFamiliar {
     @Column(name = "MZSTPLAFAM_OBSERVACION")
     private String observacion;
     
-    @Lob
-    @Column(name = "MZSTPLAFAM_ANTECEDENTE_PERSONAL")
-    private String antecedentePersonal;
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTPLAFAM_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
     @Column(name = "MZSTPLAFAM_USUARIO_CREACION")

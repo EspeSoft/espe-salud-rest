@@ -5,7 +5,6 @@ import com.espe.salud.domain.entities.evolucion.Procedimiento;
 import com.espe.salud.dto.evolucion.ProcedimientoDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.mapper.evolucion.ProcedimientoMapper;
-import com.espe.salud.mapper.evolucion.ProcedimientoMapperImpl;
 import com.espe.salud.persistence.evolucion.ProcedimientoRepository;
 
 import org.springframework.stereotype.Service;

@@ -82,6 +82,15 @@ public class AntecedentePersonal {
     private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
 
     @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<AntecedenteGinecologico> antecedenteGinecologico;
+    
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<ExamenSexual> examenSexual;
+    
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<PlanificacionFamiliar> planificacionFamiliar;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<AntecedenteQuirurgico> antecedenteQuirurgico;
 
     @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -113,7 +122,5 @@ public class AntecedentePersonal {
     public void preUpdate() {
         fechaModificacion = LocalDateTime.now();
     }
-
-
 
 }

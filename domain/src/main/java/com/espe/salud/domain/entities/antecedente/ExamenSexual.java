@@ -40,6 +40,10 @@ public class ExamenSexual {
     @Column(name = "MZSTEXASEX_RESULTADO")
     private String resuldato;
 
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTEXASEX_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
+
     @CreatedBy
     @Column(name = "MZSTEXASEX_USUARIO_CREACION")
     private String usuarioCreacion;

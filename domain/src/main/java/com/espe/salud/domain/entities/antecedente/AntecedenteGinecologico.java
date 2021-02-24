@@ -48,6 +48,10 @@ public class AntecedenteGinecologico {
     @Lob
     @Column(name = "MZSTANTGIN_NUMERO_ABORTOS")
     private Integer numeroAbortos;
+    
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTANTGIN_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
     @Column(name = "MZSTANTGIN_USUARIO_CREACION")
