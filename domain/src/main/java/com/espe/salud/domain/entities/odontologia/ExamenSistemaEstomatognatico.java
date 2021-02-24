@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.odontologia;
 
+import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -27,8 +28,8 @@ public class ExamenSistemaEstomatognatico {
     @NotEmpty
     private String codigoCIEAsociado;
 
-    @Column(name="MZSTEXASISEST_CODIGO_HISTORIA")
-    @NotNull
-    private Long historiaId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_HISCLIODO_EXASISEST", insertable = false, updatable = false, nullable = false)
+    private HistoriaClinicaOdontologica historia;
 
 }

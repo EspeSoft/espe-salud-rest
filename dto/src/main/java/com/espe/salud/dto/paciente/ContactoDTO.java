@@ -15,11 +15,18 @@ public class ContactoDTO implements Serializable {
 
     @NotEmpty
     private String callePrincipal;
+
     private String calleSecundaria;
+
     private String zonaGeografica;
+
+    private String direccionReferencia;
+
     private String numeroCelular;
+
     private String numeroConvencional;
-    private String codigoRegion;
+
+    private String extension;
 
     @Email
     @NotEmpty
@@ -27,8 +34,12 @@ public class ContactoDTO implements Serializable {
 
     @Email
     private String correoInstitucional;
-    private String parroquia;
+
+    private String parroquiaResidencia;
+
     private String barrio;
-//    private Long idCantonResidencia;
-//    private Long idProvinciaResidencia;
+
+    private String cantonResidencia;
+
+    private String provinciaResidencia;
 }

@@ -53,7 +53,7 @@ public class ExamenSistemaEstomatognaticoServiceImpl implements ExamenSistemaEst
 
     @Override
     public List<ExamenSistemaEstomatognaticoDTO> findByHistoriaClinica(Long idHistoria) {
-        return mapper.toExamenesSistemaEstomatognaticoDTO(domainRepository.findByHistoriaId(idHistoria));
+        return mapper.toExamenesSistemaEstomatognaticoDTO(domainRepository.findByHistoriaCodigo(idHistoria));
     }
 
     @Override

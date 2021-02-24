@@ -17,4 +17,6 @@ public class AntecedenteQuirurgicoDTO implements Serializable {
     private String procedimientoQuirurgico;
     private LocalDate fechaProcedimiento;
     private String secuelas;
+
+    private Long idAntecedentePersonal;
 }

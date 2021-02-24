@@ -1,5 +1,6 @@
 package com.espe.salud.dto.antecedente;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,5 +16,6 @@ public class AntecedentePatologicoPersonalDTO implements Serializable {
     private LocalDate fechaDiagnostico;
     private String tomaMedicacion;
     private String diagnostico;
-    private String antecedentePersonal;
+
+    private Long idAntecedentePersonal;
 }

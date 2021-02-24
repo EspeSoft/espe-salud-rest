@@ -27,7 +27,7 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     @Override
     public AntecedentePatologicoPersonalDTO save(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO) {
         Optional<AntecedentePatologicoPersonal> optional=personalRepository.findById(antecedentePatologicoPersonalDTO.getId());
-        if (optional.isPresent()){
+        if (optional.isEmpty()){
             AntecedentePatologicoPersonal domainObject=toEntity(antecedentePatologicoPersonalDTO);
             return toDTO(personalRepository.save(domainObject));
         }else {

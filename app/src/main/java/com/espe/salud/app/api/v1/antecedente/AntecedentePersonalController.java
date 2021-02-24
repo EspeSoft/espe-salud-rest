@@ -53,7 +53,6 @@ public class AntecedentePersonalController {
         newAntecedentePersonalDTO.setPredominioAlimentario(antecedentePersonalDTO.getPredominioAlimentario());
         newAntecedentePersonalDTO.setHoraSuenio(antecedentePersonalDTO.getHoraSuenio());
         newAntecedentePersonalDTO.setHoraDespertar(antecedentePersonalDTO.getHoraDespertar());
-        newAntecedentePersonalDTO.setTotalHorasSuenio(antecedentePersonalDTO.getTotalHorasSuenio());
         newAntecedentePersonalDTO.setObservacionAlimentacion(antecedentePersonalDTO.getObservacionAlimentacion());
         newAntecedentePersonalDTO.setObservacionHabitoSuenio(antecedentePersonalDTO.getObservacionHabitoSuenio());
         return new ResponseEntity<>(antecedentePersonalService.update(newAntecedentePersonalDTO), HttpStatus.CREATED) ;

@@ -53,7 +53,7 @@ public class MedicacionHabitualController {
         newMedicacionHabitualDTO.setDescripcionMedicamento(dto.getDescripcionMedicamento());
         newMedicacionHabitualDTO.setFrecuencia(dto.getFrecuencia());
         newMedicacionHabitualDTO.setObservacion(dto.getObservacion());
-        newMedicacionHabitualDTO.setAntecedentePersonal(dto.getAntecedentePersonal());
+        newMedicacionHabitualDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
         return new ResponseEntity<>(service.update(newMedicacionHabitualDTO),HttpStatus.ACCEPTED);
     }
 

@@ -29,11 +29,8 @@ public class EstudioComplementario {
     @Column(name = "FK_PAC_ESTCOM")
     private Long idPaciente;
 
-    @Column(name = "FK_TIPESTCOM_ESTCOM")
-    private Long idNombreEstudio;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_TIPESTCOM_ESTCOM", insertable = false, updatable = false, nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "FK_TIPESTCOM_ESTCOM")
     private TipoEstudioComplementario nombreEstudio;
 
     @ManyToOne(fetch = FetchType.LAZY)

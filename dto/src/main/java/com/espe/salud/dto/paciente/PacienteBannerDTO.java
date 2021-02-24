@@ -13,5 +13,7 @@ public class PacienteBannerDTO implements Serializable {
     private String numeroArchivo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
-    private Boolean accesoBanner;
+    private Boolean aceptaTransfucion;
+    private String lateralidad;
+    private Long idDispensario;
 }

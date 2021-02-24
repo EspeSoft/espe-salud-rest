@@ -1,6 +1,5 @@
 package com.espe.salud.mapper.catalogo;
 
-import com.espe.salud.domain.entities.antecedente.EstudioComplementario;
 import com.espe.salud.domain.entities.catalogo.TipoEstudioComplementario;
 import com.espe.salud.dto.catalogo.TipoEstudioComplementarioDTO;
 import org.mapstruct.InheritInverseConfiguration;
