@@ -1,8 +1,7 @@
-package com.espe.salud.domain.entities.evolucion;
+package com.espe.salud.domain.entities.examen;
 
-import com.espe.salud.domain.entities.catalogo.Area;
 import com.espe.salud.domain.entities.catalogo.OrganoSistema;
-import com.espe.salud.domain.entities.catalogo.Region;
+import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -18,6 +17,7 @@ import java.time.LocalDateTime;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTEXAINT", schema = "SALUD")
 public class ExamenInterno {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -27,11 +27,22 @@ public class ExamenInterno {
     @Column(name = "MZSTEXAINT_DESCRIPCION")
     private String descripcion;
 
-    @JoinColumn(name = "FK_EVO_EXAINT", updatable = false, insertable = false)
-    @ManyToOne
-    private Evolucion evolucion;
+    @Column(name = "MZSTEXAINT_FECHA_REGISTRO")
+    private LocalDateTime fechaRegistro;
 
-    // TODO Agregar la relacion con organo sistema
+    @Column(name = "FK_PAC_EXAINT")
+    private Long idPaciente;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_PAC_EXAINT", updatable = false, insertable = false, nullable = false)
+    private Paciente paciente;
+
+    @Column(name = "FK_ORGSIS_EXAINT")
+    private Long idOrganoSistema;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ORGSIS_EXAINT", insertable = false, updatable = false, nullable = false)
+    private OrganoSistema organoSistema;
 
     @CreatedDate
     @Column(name = "MZSTEXAINT_FECHA_CREACION")
@@ -48,15 +59,4 @@ public class ExamenInterno {
     @LastModifiedBy
     @Column(name = "MZSTEXAINT_USUARIO_MODIFICACION")
     private String usuarioModificacion;
-
-    @Column(name = "FK_ORGSIS_EXAINT")
-    private String idOrganoSistema;
-
-    //relaciones
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_ORGSIS_EXAINT", insertable = false, updatable = false, nullable = false)
-    private OrganoSistema organoSistema;
-
-
 }

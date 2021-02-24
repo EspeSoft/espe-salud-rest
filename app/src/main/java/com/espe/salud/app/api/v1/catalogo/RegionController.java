@@ -4,7 +4,6 @@ import com.espe.salud.domain.entities.catalogo.Region;
 import com.espe.salud.dto.catalogo.RegionDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,15 +25,14 @@ public class RegionController {
 
     @Autowired
     public RegionController(
-            @Qualifier("RegionServiceImpl") GenericCRUDService<Region, RegionDTO> regionService) {
+            @Qualifier("regionServiceImpl") GenericCRUDService<Region, RegionDTO> regionService) {
         this.regionService = regionService;
     }
 
-    @Operation(summary = "Retorna el listado de todos las regiones")
+    @Operation(summary = "Retorna el listado de todas las regiones")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RegionDTO>> getAll() {
-        RegionDTO regionDTO = new RegionDTO();
-        return new ResponseEntity<>( regionService.findAll(regionDTO), HttpStatus.OK);
+        return new ResponseEntity<>( regionService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
 

@@ -1,7 +1,6 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import com.espe.salud.domain.entities.evolucion.ExamenExterno;
-import com.espe.salud.domain.entities.evolucion.ExamenInterno;
+import com.espe.salud.domain.entities.examen.ExamenInterno;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;

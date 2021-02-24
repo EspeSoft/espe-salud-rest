@@ -1,6 +1,5 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import com.espe.salud.domain.entities.evolucion.ExamenExterno;
 import com.espe.salud.domain.entities.evolucion.Procedimiento;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +21,6 @@ public class TipoProcedimiento {
     @Column(name = "MZSTCTIPPROCE_NOMBRE")
     private String nombre;
 
-    //relaciones
     @OneToMany(mappedBy = "tipoProcedimiento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Procedimiento> procedimientos;
 }

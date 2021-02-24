@@ -2,6 +2,7 @@ package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.Area;
 import com.espe.salud.domain.entities.catalogo.TipoProcedimiento;
+import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -24,18 +25,33 @@ public class Procedimiento {
     @Column(name = "MZSTPRO_CODIGO")
     private Long codigo;
 
-
-
     @Column(name = "MZSTPRO_NUMERO_ACTIVIDAD")
     @NotNull
     private Integer numeroActividades;
 
-    @Column(name = "MZSTPRO_NOTA")
+    @Column(name = "MZSTPRO_NOTA", columnDefinition = "TEXT")
     private String nota;
 
-    //@Column(name = "MZSTPRO_ID_RESPONSANBLE")  //TO DO idResponsable
-    //@NotNull
-    //private Long idResponsable;
+    @Column(name = "FK_TIPPROC_PROC")
+    private Long idTipoProcedimiento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPPROC_PROC", insertable = false, updatable = false, nullable = false)
+    private TipoProcedimiento tipoProcedimiento;
+
+    @Column(name = "FK_USU_PROC")
+    private Long idUsuario;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_USU_PROC", insertable = false, updatable = false, nullable = false)
+    private Usuario usuario;
+
+    @Column(name = "FK_EVO_PROC")
+    private String idEvolucion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_EVO_PROC", insertable = false, updatable = false, nullable = false)
+    private Evolucion evolucion;
 
     @CreatedBy
     @Column(name = "MZSTPRO_USUARIO_CREACION")
@@ -52,23 +68,4 @@ public class Procedimiento {
     @LastModifiedDate
     @Column(name = "MZSTPRO_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
-
-    @Column(name = "FK_TIPPROC_PROC")
-    private String idTipoProcedimiento;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_TIPPROC_PROC", insertable = false, updatable = false, nullable = false)
-    private TipoProcedimiento tipoProcedimiento;
-
-
 }
