@@ -12,7 +12,7 @@ import lombok.Setter;
 @MappedSuperclass
 public abstract class DetalleOdontogramaGrafico extends DetalleOdontograma {
 
-    @Column(name = "MZSTCDET_ODO_GRA_REALIZADO")
+    @Column(name = "MZSTDETODOGRA_REALIZADO")
     protected boolean realizado;
 
 
