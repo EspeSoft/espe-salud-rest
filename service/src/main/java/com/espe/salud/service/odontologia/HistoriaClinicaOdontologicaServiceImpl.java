@@ -56,7 +56,7 @@ public class HistoriaClinicaOdontologicaServiceImpl implements HistoriaClinicaOd
 
     @Override
     public Optional<HistoriaClinicaOdontologicaDTO> findByPaciente(Long idPaciente) {
-        return Optional.of(this.toDTO(domainRepository.findByPacienteId(idPaciente)));
+        return Optional.of(this.toDTO(domainRepository.findByPacienteCodigo(idPaciente)));
     }
 
     @Override

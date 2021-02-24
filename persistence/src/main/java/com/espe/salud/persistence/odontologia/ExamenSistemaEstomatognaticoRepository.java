@@ -12,6 +12,6 @@ public interface ExamenSistemaEstomatognaticoRepository extends JpaRepository<Ex
 
     Optional<ExamenSistemaEstomatognatico> findByCodigo(Long codigo);
 
-    List<ExamenSistemaEstomatognatico> findByHistoriaId(Long idHistoria);
+    List<ExamenSistemaEstomatognatico> findByHistoriaCodigo(Long idHistoria);
 
 }

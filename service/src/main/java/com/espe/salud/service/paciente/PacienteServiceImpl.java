@@ -4,6 +4,7 @@ import com.espe.salud.banner.model.PersonaBanner;
 import com.espe.salud.banner.service.PersonaBannerService;
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.paciente.Paciente;
+import com.espe.salud.domain.entities.paciente.Persona;
 import com.espe.salud.domain.enums.TipoPaciente;
 import com.espe.salud.dto.paciente.PacienteBannerDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
@@ -42,8 +43,10 @@ public class PacienteServiceImpl implements PacienteService {
         if (optional.isEmpty()) {
             Paciente domainObject = mapper.fromPacienteExternoDTOToPaciente(pacienteDTO);
             domainObject.setPacienteAsExterno();
-            domainObject.setNombreCompleto(domainObject.getPersona().getFullName());
-            domainObject.getPersona().addToContactoEmergencia(domainObject.getPersona().getContactosEmergencia());
+            Persona persona = domainObject.getPersona();
+            domainObject.setNombreCompleto(persona.getFullName());
+            persona.addToContactoEmergencia(persona.getContactosEmergencia());
+            domainObject.setPersona(persona);
             return mapPacienteInfo(pacienteRepository.save(domainObject));
         } else {
             throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", pacienteDTO.getNumeroArchivo()));
@@ -132,6 +135,6 @@ public class PacienteServiceImpl implements PacienteService {
             }
             return mapper.toPacienteDTO(paciente);
         }
-        return mapper.toPacienteDTO(paciente);
+        return mapper.fromExternalPacienteToPacienteDTO(paciente);
     }
 }

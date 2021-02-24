@@ -5,6 +5,7 @@ import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.domain.enums.Lateralidad;
 import com.espe.salud.domain.enums.TipoPaciente;
+import com.espe.salud.domain.entities.odontologia.HistoriaClinicaOdontologica;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -76,6 +77,9 @@ public class Paciente {
 
     @OneToOne(mappedBy = "paciente")
     private Empleado empleado;
+
+    @OneToOne(mappedBy = "paciente")
+    private HistoriaClinicaOdontologica historiaClinicaOdontologica;
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Evolucion> evoluciones;

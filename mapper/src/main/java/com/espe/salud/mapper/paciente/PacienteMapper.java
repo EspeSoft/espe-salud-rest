@@ -10,6 +10,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +21,37 @@ public interface PacienteMapper {
     @Mapping(source = "codigo", target = "id")
     PacienteDTO toPacienteDTO(Paciente paciente);
 
-//    @Mapping(source = "codigo", target = "id")
-//    PacienteDTO fromExternalPacienteToPacienteDTO(Paciente paciente);
+    @Mapping(source = "codigo", target = "id")
+    @Mapping(source = "persona.apellidoPaterno", target = "apellidoPaterno")
+    @Mapping(source = "persona.apellidoMaterno", target = "apellidoMaterno")
+    @Mapping(source = "persona.primerNombre", target = "primerNombre")
+    @Mapping(source = "persona.segundoNombre", target = "segundoNombre")
+    @Mapping(source = "persona.cedula", target = "cedula")
+    @Mapping(source = "persona.fechaNacimiento", target = "fechaNacimiento", qualifiedByName = "generateFechaNacimiento")
+    @Mapping(source = "persona.sexo", target = "sexo")
+    @Mapping(source = "persona.estadoCivil", target = "estadoCivil")
+    @Mapping(source = "persona.religion", target = "religion")
+    @Mapping(source = "persona.grupoSanguineo", target = "grupoSanguineo")
+    @Mapping(source = "persona.instruccion", target = "instruccion")
+    @Mapping(source = "persona.profesion", target = "profesion")
+    @Mapping(source = "persona.vinculadoEspe", target = "vinculadoEspe")
+    @Mapping(source = "persona.pueblos", target = "pueblos")
+    @Mapping(source = "persona.grupoCultural", target = "grupoCultural")
+    @Mapping(source = "persona.seguroSalud", target = "seguroSalud")
+    @Mapping(source = "persona.asociacionAfiliada", target = "asociacionAfiliada")
+    @Mapping(source = "persona.paisNacimiento", target = "paisNacimiento")
+    @Mapping(source = "persona.provinciaNacimiento", target = "provinciaNacimiento")
+    @Mapping(source = "persona.cantonNacimiento", target = "cantonNacimiento")
+    @Mapping(source = "persona.nacionalidad", target = "nacionalidad")
+    @Mapping(source = "persona.nacionalidad2", target = "nacionalidad2")
+    @Mapping(source = "persona.contacto", target = "contacto")
+    @Mapping(source = "persona.contactosEmergencia", target = "contactosEmergencia")
+    PacienteDTO fromExternalPacienteToPacienteDTO(Paciente paciente);
+
+    @Named("generateFechaNacimiento")
+    static LocalDateTime generateFechaNacimiento(LocalDate fechaNacimiento) {
+        return fechaNacimiento.atStartOfDay();
+    }
 
     @Mapping(source = "paciente.codigo", target = "id")
     @Mapping(source = "paciente.nombreCompleto", target = "nombreCompleto")
@@ -50,7 +81,6 @@ public interface PacienteMapper {
     @Mapping(source = "banner.parroquiaResidencia", target = "contacto.parroquiaResidencia")
     @Mapping(source = "banner.cantonResidencia", target = "contacto.cantonResidencia")
     @Mapping(source = "banner.provinciaResidencia", target = "contacto.provinciaResidencia")
-    @Mapping(source = "banner.paisResidencia", target = "contacto.paisResidencia")
     @Mapping(source = "banner", target = "contactosEmergencia", qualifiedByName = "generatUniqueContactoEmergencia")
     PacienteDTO fromPacienteAndPersonaBannerToPacienteDTO(Paciente paciente, PersonaBanner banner);
 
@@ -116,6 +146,4 @@ public interface PacienteMapper {
     @Mapping(source = "contacto", target = "persona.contacto")
     @Mapping(source = "contactosEmergencia", target = "persona.contactosEmergencia")
     Paciente fromPacienteExternoDTOToPaciente(PacienteExternoDTO pacienteExternoDTO);
-
-    List<PacienteDTO> toPacientesDTO(List<Paciente> pacientes);
 }

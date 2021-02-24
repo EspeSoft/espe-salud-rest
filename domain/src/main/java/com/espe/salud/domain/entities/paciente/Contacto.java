@@ -29,8 +29,8 @@ public class Contacto {
     @Column(name = "MZSTPER_NUMERO_CONVENCIONAL")
     private String numeroConvencional;
 
-    @Column(name = "MZSTPER_CODIGO_REGION")
-    private String codigoRegion;
+    @Column(name = "MZSTPER_EXTENSION")
+    private String extension;
 
     @Column(name = "MZSTPER_CORREO_PERSONAL")
     @NotEmpty
@@ -50,7 +50,4 @@ public class Contacto {
 
     @Column(name = "MZSTPER_PROVINCIA_RESIDENCIA")
     private String provinciaResidencia;
-
-    @Column(name = "MZSTPER_PAIS_RESIDENCIA")
-    private String paisResidencia;
 }

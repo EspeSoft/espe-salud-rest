@@ -26,7 +26,7 @@ public class ContactoDTO implements Serializable {
 
     private String numeroConvencional;
 
-    private String codigoRegion;
+    private String extension;
 
     @Email
     @NotEmpty
@@ -42,6 +42,4 @@ public class ContactoDTO implements Serializable {
     private String cantonResidencia;
 
     private String provinciaResidencia;
-
-    private String paisResidencia;
 }
