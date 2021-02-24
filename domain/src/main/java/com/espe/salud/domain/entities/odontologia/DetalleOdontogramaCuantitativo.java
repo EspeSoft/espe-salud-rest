@@ -17,16 +17,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTCDET_ODO_CUA", schema = "SALUD")
+@Table(name = "MZSTDETODOCUA", schema = "SALUD")
 public class DetalleOdontogramaCuantitativo extends DetalleOdontograma implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "MZSTCDET_ODO_CUA_NIVEL")
+    @Column(name = "DETODOCUA_NIVEL")
     @Min(1)
     @Max(4)
     private int nivel;
 
-    @Column(name = "MZSTCDET_ODO_CUA_PIEZA")
+    @Column(name = "DETODOCUA_PIEZA")
     private int pieza;
 }

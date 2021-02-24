@@ -1,6 +1,5 @@
 package com.espe.salud.app.api.v1.catalogo;
 
-import static com.espe.salud.app.common.Constants.URI_API_V1_CON_NOC;
 import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_CON_NOC;
 
 import java.util.List;

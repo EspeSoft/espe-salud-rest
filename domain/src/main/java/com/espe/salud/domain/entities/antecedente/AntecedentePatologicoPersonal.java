@@ -35,9 +35,12 @@ public class AntecedentePatologicoPersonal {
     @Column(name = "MZSTANTPATPER_DIAGNOSTICO")
     private String diagnostico;
 
-    @Lob
-    @Column(name = "MZSTANTPATPER_ANTECEDENTE_PERSONAL")
-    private String antecedentePersonal;
+    @Column(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL")
+    private Long idAntecedentePersonal;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
     @Column(name = "MZSTANTPATPER_USUARIO_CREACION")

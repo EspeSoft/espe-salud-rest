@@ -53,7 +53,7 @@ public class IndicadorSaludBucalServiceImpl implements IndicadorSaludBucalServic
 
     @Override
     public List<IndicadorSaludBucalDTO> findByHistoriaClinica(Long idHistoria) {
-        return mapper.toIndicadoresSaludBucalDTO(domainRepository.findByHistoriaId(idHistoria));
+        return mapper.toIndicadoresSaludBucalDTO(domainRepository.findByHistoriaCodigo(idHistoria));
     }
 
     @Override

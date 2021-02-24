@@ -29,5 +29,10 @@
       "name": "application-apiTermsOfServiceUrl",
       "type": "java.lang.String",
       "description": "Description for application-apiTermsOfServiceUrl."
+    },
+    {
+      "name": "banner-api-url",
+      "type": "java.lang.String",
+      "description": "Description for banner-api-url."
     }
   ] }

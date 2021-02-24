@@ -16,4 +16,6 @@ public class AntecedentePatologicoFamiliarDTO implements Serializable {
     private String parentezco;
     private String diagnostico;
     private String observacion;
+
+    private Long idAntecedentePersonal;
 }

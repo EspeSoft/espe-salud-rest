@@ -55,7 +55,8 @@ public class DetalleOdontogramaSimpleServiceImpl extends GenericCRUDServiceOdont
 
     @Override
     public void deleteByHistoriaClinica(Long historiaId) {
-        domainRepository.deleteByHistoriaId(historiaId);
+        domainRepository.findByHistoriaId(historiaId).forEach(detalle -> {
+            domainRepository.deleteById(detalle.getCodigo());
+        });
     }
-
 }

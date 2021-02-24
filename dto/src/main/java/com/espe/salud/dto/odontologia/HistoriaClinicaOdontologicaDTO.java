@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,8 +16,8 @@ public class HistoriaClinicaOdontologicaDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private LocalDate fechaApertura;
-    private LocalDate fechaControl;
+    private LocalDateTime fechaApertura;
+    private LocalDateTime fechaControl;
     private String profesional;
     private String codigoProfesional;
     private Long pacienteId;

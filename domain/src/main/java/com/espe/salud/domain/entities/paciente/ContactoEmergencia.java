@@ -24,6 +24,9 @@ public class ContactoEmergencia {
     @Column(name = "MZSTCONEME_NOMBRE_CONTACTO")
     private String nombreContacto;
 
+    @Column(name = "MZSTCONEME_APELLIDO_CONTACTO")
+    private String apellidoContacto;
+
     @Column(name = "MZSTCONEME_DIRECCION")
     private String direccion;
 
@@ -39,7 +42,7 @@ public class ContactoEmergencia {
     private String parentesco;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_PER_CONEME", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_PER_CONEME")
     private Persona persona;
 
     @CreatedDate

@@ -1,7 +1,6 @@
 package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.enums.Sexo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.hibernate.annotations.NaturalId;
 import org.springframework.data.annotation.CreatedBy;
@@ -12,7 +11,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,92 +29,77 @@ public class Persona {
     @Column(name = "MZSTPER_APELLIDO_PATERNO")
     private String apellidoPaterno;
 
-//    @Column(name = "MZSTPER_APELLIDO_MATERNO")
-//    private String apellidoMaterno;
-//
-//    @Column(name = "MZSTPER_PRIMER_NOMBRE")
-//    private String primerNombre;
-//
-//    @Column(name = "MZSTPER_SEGUNDO_NOMBRE")
-//    private String segundoNombre;
-//
-//    @Column(name = "MZSTPER_CEDULA", unique = true)
-//    @NotEmpty
-//    @NaturalId
-//    private String cedula;
-//
-//    @Column(name = "MZSTPER_FECHA_NACIMIENTO")
-//    private LocalDate fechaNacimiento;
-//
-//    @Column(name = "MZSTPER_SEXO")
-//    @Enumerated(EnumType.STRING)
-//    private Sexo sexo;
-//
-//    @Column(name = "MZSTPER_ESTADO_CIVIL")
-//    private String estadoCivil;
-//
-//    @Column(name = "MZSTPER_RELIGION")
-//    private String religion;
-//
-//    @Column(name = "MZSTPER_ACEPTA_TRANSFUCION")
-//    @NotNull
-//    private boolean aceptaTransfucion;
-//
-//    @Column(name = "MZSTPER_GRUPO_SANGUINEO")
-//    @NotEmpty
-//    private String grupoSanguineo;
-//
-//    @Column(name = "MZSTPER_LATERALIDAD")
-//    @NotEmpty
-//    private String lateralidad;
-//
-//    @Column(name = "MZSTPER_INSTRUCCION")
-//    private String instruccion;
-//
-//    @Column(name = "MZSTPER_PRODESION")
-//    private String profesion;
-//
-//    @Column(name = "MZSTPER_VINCULADO_ESPE")
-//    @NotEmpty
-//    private String vinculadoEspe;
-//
-//    @Column(name = "MZSTPER_PUEBLOS")
-//    private String pueblos;
-//
-//    @Column(name = "MZSTPER_GRUPO_CULTURAL")
-//    private String grupoCultural;
-//
-//    @Column(name = "MZSTPER_SEGURO_SOCIAL")
-//    private String seguroSalud;
-//
-//    @Column(name = "MZSTPER_ASOCIACION_AFILIADO")
-//    private String asociacionAfiliada;
-//
-//    @Column(name = "MZSTPER_CIUO")
-//    @NotEmpty
-//    private String ciuo;
-//
-//    @Column(name = "MZSTPER_CODIGO_CONSULTORIO")
-//    private Long idConsultorio;
-//
-//    @NotNull
-//    @Column(name = "MZSTPER_CODIGO_PAIS_NACIMIENTO")
-//    private Long idPaisNacimiento;
-//
-//    @NotNull
-//    @Column(name = "MZSTPER_CODIGO_PROVINCIA_NACIMIENTO")
-//    private Long idProvinciaNacimiento;
-//
-//    @NotNull
-//    @Column(name = "MZSTPER_CODIGO_CANTON_NACIMIENTO")
-//    private Long idCantonNacimiento;
-//
-//    @NotNull
-//    @Column(name = "MZSTPER_CODIGO_NACIONALIDAD")
-//    private Long idNacionalidad;
-//
-//    @Column(name = "MZSTPER_CODIGO_NACIONALIDAD_2")
-//    private Long idNacionalidad2;
+    @Column(name = "MZSTPER_APELLIDO_MATERNO")
+    private String apellidoMaterno;
+
+    @Column(name = "MZSTPER_PRIMER_NOMBRE")
+    private String primerNombre;
+
+    @Column(name = "MZSTPER_SEGUNDO_NOMBRE")
+    private String segundoNombre;
+
+    @Column(name = "MZSTPER_CEDULA", unique = true)
+    @NotEmpty
+    @NaturalId
+    private String cedula;
+
+    @Column(name = "MZSTPER_FECHA_NACIMIENTO")
+    private LocalDate fechaNacimiento;
+
+    @Column(name = "MZSTPER_SEXO")
+    @Enumerated(EnumType.STRING)
+    private Sexo sexo;
+
+    @Column(name = "MZSTPER_ESTADO_CIVIL")
+    private String estadoCivil;
+
+    @Column(name = "MZSTPER_RELIGION")
+    private String religion;
+
+    @Column(name = "MZSTPER_GRUPO_SANGUINEO")
+    @NotEmpty
+    private String grupoSanguineo;
+
+    @Column(name = "MZSTPER_INSTRUCCION")
+    private String instruccion;
+
+    @Column(name = "MZSTPER_PROFESION")
+    private String profesion;
+
+    @Column(name = "MZSTPER_VINCULADO_ESPE")
+    @NotEmpty
+    private String vinculadoEspe;
+
+    @Column(name = "MZSTPER_PLURINACIONALIDAD")
+    private String pueblos;
+
+    @Column(name = "MZSTPER_ETNIA")
+    private String etnia;
+
+    @Column(name = "MZSTPER_SEGURO_SALUD")
+    private String seguroSalud;
+
+    @Column(name = "MZSTPER_ASOCIACION_AFILIADA")
+    private String asociacionAfiliada;
+
+    @NotNull
+    @Column(name = "MZSTPER_PAIS_NACIMIENTO")
+    private String paisNacimiento;
+
+    @NotNull
+    @Column(name = "MZSTPER_PROVINCIA_NACIMIENTO")
+    private String provinciaNacimiento;
+
+    @NotNull
+    @Column(name = "MZSTPER_CANTON_NACIMIENTO")
+    private String cantonNacimiento;
+
+    @NotNull
+    @Column(name = "MZSTPER_NACIONALIDAD")
+    private String nacionalidad;
+
+    @Column(name = "MZSTPER_NACIONALIDAD_2")
+    private String nacionalidad2;
 
     @Embedded
     private Contacto contacto;
@@ -129,37 +112,44 @@ public class Persona {
 
     public void addToContactoEmergencia(List<ContactoEmergencia> contactos){
         if(!contactos.isEmpty()){
-            for (ContactoEmergencia contacto: contactos) {
-                contacto.setPersona(this);
+            for (ContactoEmergencia c: contactos) {
+                c.setPersona(this);
             }
             this.contactosEmergencia = contactos;
         }
     }
 
+    @CreatedDate
+    @Column(name = "MZSTPER_FECHA_CREACION")
+    private LocalDateTime fechaCreacion;
 
-//    @CreatedDate
-//    @Column(name = "MZSTPER_FECHA_CREACION")
-//    private LocalDateTime fechaCreacion;
-//
-//    @LastModifiedDate
-//    @Column(name = "MZSTPER_FECHA_MODIFICACION")
-//    private LocalDateTime fechaModificacion;
-//
-//    @CreatedBy
-//    @Column(name = "MZSTPER_USUARIO_CREACION")
-//    private String usuarioCreacion;
-//
-//    @LastModifiedBy
-//    @Column(name = "MZSTPER_USUARIO_MODIFICACION")
-//    private String usuarioModificacion;
-//
-//    @PrePersist
-//    public void prePersist() {
-//        fechaCreacion = LocalDateTime.now();
-//    }
-//
-//    @PreUpdate
-//    public void preUpdate() {
-//        fechaModificacion = LocalDateTime.now();
-//    }
+    @LastModifiedDate
+    @Column(name = "MZSTPER_FECHA_MODIFICACION")
+    private LocalDateTime fechaModificacion;
+
+    @CreatedBy
+    @Column(name = "MZSTPER_USUARIO_CREACION")
+    private String usuarioCreacion;
+
+    @LastModifiedBy
+    @Column(name = "MZSTPER_USUARIO_MODIFICACION")
+    private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaModificacion = LocalDateTime.now();
+    }
+
+    public String getFullName() {
+        String pn = this.primerNombre.toUpperCase();
+        String sn = this.segundoNombre.toUpperCase();
+        String ap = this.apellidoPaterno.toUpperCase();
+        String am = this.apellidoMaterno.toUpperCase();
+        return  pn + " " + sn + " " + ap + " " + am;
+    }
 }

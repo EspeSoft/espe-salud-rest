@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-
 public class ExamenSistemaEstomatognaticoDTO implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
@@ -17,5 +17,4 @@ public class ExamenSistemaEstomatognaticoDTO implements Serializable {
     private String unidadEstomatognatica;
     private String codigoCIEAsociado;
     private Long historiaId;
-
 }

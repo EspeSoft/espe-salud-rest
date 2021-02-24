@@ -1,6 +1,5 @@
 package com.espe.salud.app.api.v1.catalogo;
 
-import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.dto.catalogo.DispensarioDTO;
 import com.espe.salud.service.catalogo.DispensarioService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,8 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_DISP;
 
@@ -57,19 +57,11 @@ public class DispensarioController {
     }
 
     @Operation(summary = "Retorna una imagen por su nombre")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Recurso no encontrado"),
-    })
-    @RequestMapping(value = "/image/{nombre}", method = RequestMethod.GET,
-            produces = MediaType.IMAGE_JPEG_VALUE)
-    public void getImageByNombre(
-            HttpServletResponse response, @RequestParam String nombreImagen) throws IOException {
-        Optional<DispensarioDTO> newDispensarioDTO = dispensarioService.findByNombre(nombreImagen);
-        Dispensario dispensario = dispensarioService.toEntity(newDispensarioDTO.get());
-        ClassPathResource imgFile = new ClassPathResource("image/"+dispensario.getNombreImagen()+".jpg");
+    @GetMapping(value = "/images/{nombre}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public void getImageByNombre(HttpServletResponse response, @PathVariable("nombre") String nombre) throws IOException {
+        ClassPathResource imgFile = new ClassPathResource("images/" + nombre +".jpg");
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
-        StreamUtils.copy(((ClassPathResource) imgFile).getInputStream(), response.getOutputStream());
+        StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
     }
 
 }

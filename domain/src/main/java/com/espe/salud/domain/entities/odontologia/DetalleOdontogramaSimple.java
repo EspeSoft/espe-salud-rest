@@ -14,15 +14,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTCDET_ODO_SIM", schema = "SALUD")
+@Table(name = "MZSTDETODOGRASIM", schema = "SALUD")
 public class DetalleOdontogramaSimple extends DetalleOdontogramaGrafico implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "MZSTCDET_ODO_SIM_CARA")
+    @Column(name = "MZSTDETODOGRASIM_CARA")
     @NotEmpty(message = "{NotEmpty.DetalleOdontogramaSimple.cara}")
     private String cara;
 
-    @Column(name = "MZSTCDET_ODO_SIM_PIEZA")
+    @Column(name = "MZSTDETODOGRASIM_PIEZA")
     private int pieza;
 }

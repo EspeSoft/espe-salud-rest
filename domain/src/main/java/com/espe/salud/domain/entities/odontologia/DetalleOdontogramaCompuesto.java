@@ -19,13 +19,13 @@ import org.hibernate.annotations.OnDeleteAction;
 @Getter
 @Setter
 @Entity
-@Table(name = "MZSTCDET_ODO_COM", schema = "SALUD")
+@Table(name = "MZSTDETODOCOM", schema = "SALUD")
 public class DetalleOdontogramaCompuesto extends DetalleOdontogramaGrafico implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
 
-    @Column(name="MZSTCDET_ODO_COM_PIEZAS")
-    @CollectionTable(name = "MZSTCDET_ODO_COM_PIE")
+    @Column(name="DETODOCOMPIEZAS")
+    @CollectionTable(name = "DETODOCOMPIE")
     @ElementCollection
     private List<Integer> piezas = new ArrayList<Integer>();
 }

@@ -14,6 +14,7 @@ public class ContactoEmergenciaDTO implements Serializable {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombreContacto;
+    private String apellidoContacto;
     private String direccion;
     private String telefonoCelular;
     private String telefonoConvencional;

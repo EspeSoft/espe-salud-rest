@@ -11,9 +11,8 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface OrganoSistemaMapper {
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
+
+    @Mapping(source = "codigo", target = "id")
     OrganoSistemaDTO toOrganoSistemaDTO(OrganoSistema organoSistema);
 
     List<OrganoSistemaDTO> toOrganoSistemaDTO(List<OrganoSistema> organoSistemas);

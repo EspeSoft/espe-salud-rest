@@ -55,4 +55,11 @@ public class ExamenSexual {
     @LastModifiedDate
     @Column(name = "MZSTEXASEX_FECHA_MODIFICACION")
     private LocalDate fechaModificacion;
+
+    @Column(name = "FK_ANTPER_EXASEX")
+    private Long idAntecedentePersonal;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ANTPER_EXASEX", insertable = false, updatable = false)
+    private AntecedentePersonal antecedentePersonal;
 }
