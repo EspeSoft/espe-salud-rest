@@ -1,14 +1,14 @@
 package com.espe.salud.service.examen;
 
 import com.espe.salud.common.exception.ConflictException;
-import com.espe.salud.domain.entities.catalogo.Area;
+import com.espe.salud.domain.entities.catalogo.Region;
 import com.espe.salud.domain.entities.examen.ExamenExterno;
-import com.espe.salud.dto.catalogo.AreaDTO;
+import com.espe.salud.dto.catalogo.RegionDTO;
 import com.espe.salud.dto.examen.ExamenExternoDTO;
 import com.espe.salud.mapper.examen.ExamenExternoMapper;
 import com.espe.salud.persistence.examen.ExamenExternoRepository;
 import com.espe.salud.service.GenericCRUDService;
-import com.espe.salud.service.catalogo.AreaServiceImpl;
+import com.espe.salud.service.catalogo.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -21,16 +21,19 @@ import java.util.Optional;
 public class ExamenExternoServiceImpl implements ExamenExternoService {
     private final ExamenExternoRepository repository;
     private final ExamenExternoMapper mapper;
-    private final GenericCRUDService<Area, AreaDTO> areaService;
+    private final AreaService areaService;
+    private final GenericCRUDService<Region, RegionDTO> regionService;
 
     @Autowired
     public ExamenExternoServiceImpl(
             ExamenExternoRepository repository,
-            @Qualifier("areaServiceImpl") GenericCRUDService<Area, AreaDTO> areaService,
-            ExamenExternoMapper mapper) {
+            AreaService areaService,
+            ExamenExternoMapper mapper,
+            @Qualifier("regionServiceImpl") GenericCRUDService<Region, RegionDTO> regionService) {
         this.repository = repository;
         this.mapper = mapper;
         this.areaService = areaService;
+        this.regionService = regionService;
     }
 
     @Override
@@ -41,6 +44,7 @@ public class ExamenExternoServiceImpl implements ExamenExternoService {
             ExamenExterno domainObject = mapper.toExamenExterno(dto);
             ExamenExternoDTO examenExternoDTO = mapper.toExamenExternoDTO(repository.save(domainObject));
             examenExternoDTO.setArea(areaService.findById(examenExternoDTO.getIdArea()));
+            examenExternoDTO.setRegion(regionService.findById(examenExternoDTO.getIdRegion()));
             return examenExternoDTO;
         }else{
             throw new ConflictException("Ya existe un examen registrado para ese id");
@@ -63,7 +67,10 @@ public class ExamenExternoServiceImpl implements ExamenExternoService {
     @Transactional
     public ExamenExternoDTO update(ExamenExternoDTO dto) {
         ExamenExterno domainObject = mapper.toExamenExterno(dto);
-        return mapper.toExamenExternoDTO(repository.save(domainObject));
+        ExamenExternoDTO examenExternoDTO = mapper.toExamenExternoDTO(repository.save(domainObject));
+        examenExternoDTO.setRegion(regionService.findById(examenExternoDTO.getIdRegion()));
+        examenExternoDTO.setArea(areaService.findById(examenExternoDTO.getIdArea()));
+        return examenExternoDTO;
     }
 
     @Override

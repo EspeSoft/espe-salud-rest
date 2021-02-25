@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface AreaRepository extends JpaRepository<Area, Long> {
     List<Area> findAllByOrderByNombreAsc();
     Optional<Area> findByCodigo(Long codigo);
+    List<Area> findByRegionCodigo(Long idRegion);
 }

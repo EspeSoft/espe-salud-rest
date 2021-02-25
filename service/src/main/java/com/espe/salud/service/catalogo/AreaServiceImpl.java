@@ -1,19 +1,17 @@
 package com.espe.salud.service.catalogo;
 
-import com.espe.salud.domain.entities.catalogo.Area;
 import com.espe.salud.dto.catalogo.AreaDTO;
 import com.espe.salud.mapper.catalogo.AreaMapper;
 import com.espe.salud.persistence.catalogo.AreaRepository;
-import com.espe.salud.service.GenericCRUDServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
-import java.util.Optional;
 
-@Service("areaServiceImpl")
-public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
+@Service
+public class AreaServiceImpl implements AreaService {
     private final AreaRepository areaRepository;
     private final AreaMapper mapper;
 
@@ -24,22 +22,21 @@ public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
     }
 
     @Override
-    public Area mapTo(AreaDTO domainObject) {
-        return mapper.toArea(domainObject);
-    }
-
-    @Override
-    public AreaDTO build(Area domainObject) {
-        return mapper.toAreaDTO(domainObject);
-    }
-
-    @Override
-    public Optional<Area> findExisting(AreaDTO domainObject) {
-        return areaRepository.findByCodigo(domainObject.getId());
-    }
-
-    @Override
-    public List<AreaDTO> findAllOrderByNameASC() {
+    @Transactional(readOnly = true)
+    public List<AreaDTO> findAll() {
         return mapper.toAreasDTO(areaRepository.findAllByOrderByNombreAsc());
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<AreaDTO> findAllByRegion(Long idRegion) {
+        return mapper.toAreasDTO(areaRepository.findByRegionCodigo(idRegion));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AreaDTO findById(Long id) {
+        return areaRepository.findById(id)
+                .map(mapper::toAreaDTO)
+                .orElseThrow(() -> new EntityNotFoundException("No se ha encontrado el recurso para el id: " + id));    }
 }

@@ -1,14 +1,11 @@
 package com.espe.salud.app.api.v1.catalogo;
 
-import com.espe.salud.domain.entities.catalogo.Area;
 import com.espe.salud.dto.catalogo.AreaDTO;
-import com.espe.salud.dto.catalogo.RegionDTO;
-import com.espe.salud.service.GenericCRUDService;
+import com.espe.salud.service.catalogo.AreaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,17 +19,26 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_AREA;
 @RequestMapping(value = {URI_API_V1_AREA})
 @Tag(description = "Gestiona el catalogo de areas", name = "Áreas")
 public class AreaController {
-    private final GenericCRUDService<Area, AreaDTO> areaService;
+    private final AreaService areaService;
 
     @Autowired
     public AreaController(
-            @Qualifier("areaServiceImpl") GenericCRUDService<Area, AreaDTO> areaService) {
+            AreaService areaService) {
         this.areaService = areaService;
     }
 
     @Operation(summary = "Retorna el listado de todas las areas")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AreaDTO>> getAll() {
-        return new ResponseEntity<>( areaService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>( areaService.findAll(), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Retorna el listado de todas las areas de una región")
+    @GetMapping(value = "/search/region", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<AreaDTO>> findByRegion(
+            @Parameter(description = "El ID de la region", required = true, example = "1")
+            @RequestParam Long idRegion
+    ) {
+        return new ResponseEntity<>( areaService.findAllByRegion(idRegion), HttpStatus.OK);
     }
 }
