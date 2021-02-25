@@ -5,16 +5,19 @@ import com.espe.salud.dto.catalogo.AreaDTO;
 import com.espe.salud.mapper.catalogo.AreaMapper;
 import com.espe.salud.persistence.catalogo.AreaRepository;
 import com.espe.salud.service.GenericCRUDServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service("AreaServiceImpl")
+@Service("areaServiceImpl")
 public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
     private final AreaRepository areaRepository;
     private final AreaMapper mapper;
 
+    @Autowired
     public AreaServiceImpl(AreaRepository areaRepository, AreaMapper mapper) {
         this.areaRepository = areaRepository;
         this.mapper = mapper;
@@ -22,13 +25,11 @@ public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
 
     @Override
     public Area mapTo(AreaDTO domainObject) {
-
         return mapper.toArea(domainObject);
     }
 
     @Override
     public AreaDTO build(Area domainObject) {
-
         return mapper.toAreaDTO(domainObject);
     }
 
@@ -39,6 +40,6 @@ public class AreaServiceImpl extends GenericCRUDServiceImpl<Area, AreaDTO> {
 
     @Override
     public List<AreaDTO> findAllOrderByNameASC() {
-        return null;
+        return mapper.toAreasDTO(areaRepository.findAllByOrderByNombreAsc());
     }
 }

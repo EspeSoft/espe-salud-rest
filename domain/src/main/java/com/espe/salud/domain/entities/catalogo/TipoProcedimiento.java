@@ -1,9 +1,11 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.evolucion.Procedimiento;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +20,7 @@ public class TipoProcedimiento {
 
     @Column(name = "MZSTCTIPPROCE_NOMBRE")
     private String nombre;
+
+    @OneToMany(mappedBy = "tipoProcedimiento", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Procedimiento> procedimientos;
 }

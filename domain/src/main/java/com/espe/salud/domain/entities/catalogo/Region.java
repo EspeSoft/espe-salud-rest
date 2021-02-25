@@ -19,7 +19,6 @@ public class Region {
     @Column(name = "MZSTCREG_NOMBRE")
     private String nombre;
 
-    @OneToMany(mappedBy = "region", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "region", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Area> areas;
-
 }

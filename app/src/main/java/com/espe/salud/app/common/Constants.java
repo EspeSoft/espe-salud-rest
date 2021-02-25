@@ -101,4 +101,6 @@ public class Constants {
     public static final String URI_API_V1_ACT_EXT = URI_API_V1 + "actividades-extralaborales";
     public static final String URI_API_V1_ANT_EMP_ANT = URI_API_V1 + "antecedentes-empleos-anteriores";
     public static final String URI_API_V1_ANT_LAB = URI_API_V1 + "antecedentes-laborales";
+    public static final String URI_API_V1_EXAMEN_EXTERNO = URI_API_V1 + "examenes-externos";
+    public static final String URI_API_V1_EXAMEN_INTERNO = URI_API_V1 + "examenes-internos";
 }

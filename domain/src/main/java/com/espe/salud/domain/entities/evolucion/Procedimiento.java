@@ -1,5 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
+import com.espe.salud.domain.entities.catalogo.Area;
+import com.espe.salud.domain.entities.catalogo.TipoProcedimiento;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
@@ -23,31 +25,33 @@ public class Procedimiento {
     @Column(name = "MZSTPRO_CODIGO")
     private Long codigo;
 
-    @Column(name = "MZSTPRO_TIPO_PROCEDIMIENTO")
-    @NotEmpty
-    private String tipoProcedimiento;
-
     @Column(name = "MZSTPRO_NUMERO_ACTIVIDAD")
     @NotNull
     private Integer numeroActividades;
 
-    @Column(name = "MZSTPRO_NOTA")
+    @Column(name = "MZSTPRO_NOTA", columnDefinition = "TEXT")
     private String nota;
 
-    @Column(name = "FK_USU_PRO")
+    @Column(name = "FK_TIPPROC_PROC")
+    private Long idTipoProcedimiento;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPPROC_PROC", insertable = false, updatable = false, nullable = false)
+    private TipoProcedimiento tipoProcedimiento;
+
+    @Column(name = "FK_USU_PROC")
     private Long idUsuario;
 
-    @Column(name = "FK_EVO_PRO")
-    private String idEvolucion;
-
-    @ManyToOne
-    @JoinColumn(name = "FK_USU_PRO",insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_USU_PROC", insertable = false, updatable = false, nullable = false)
     private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_EVO_PRO",insertable = false,updatable = false)
-    private Evolucion evolucion;
+    @Column(name = "FK_EVO_PROC")
+    private String idEvolucion;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_EVO_PROC", insertable = false, updatable = false, nullable = false)
+    private Evolucion evolucion;
 
     @CreatedBy
     @Column(name = "MZSTPRO_USUARIO_CREACION")
@@ -64,16 +68,4 @@ public class Procedimiento {
     @LastModifiedDate
     @Column(name = "MZSTPRO_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
-
-
 }

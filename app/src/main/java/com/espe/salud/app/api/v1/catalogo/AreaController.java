@@ -26,16 +26,13 @@ public class AreaController {
 
     @Autowired
     public AreaController(
-            @Qualifier("AreaServiceImpl") GenericCRUDService<Area, AreaDTO> areaService) {
+            @Qualifier("areaServiceImpl") GenericCRUDService<Area, AreaDTO> areaService) {
         this.areaService = areaService;
     }
 
-    @Operation(summary = "Retorna el listado de todos las areas")
+    @Operation(summary = "Retorna el listado de todas las areas")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AreaDTO>> getAll() {
-        AreaDTO areaDTO = new AreaDTO();
-        return new ResponseEntity<>( areaService.findAll(areaDTO), HttpStatus.OK);
+        return new ResponseEntity<>( areaService.findAllOrderByNameASC(), HttpStatus.OK);
     }
-
-
 }
