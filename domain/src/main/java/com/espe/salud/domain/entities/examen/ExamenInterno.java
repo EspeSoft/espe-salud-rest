@@ -59,4 +59,9 @@ public class ExamenInterno {
     @LastModifiedBy
     @Column(name = "MZSTEXAINT_USUARIO_MODIFICACION")
     private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaRegistro = LocalDateTime.now();
+    }
 }
