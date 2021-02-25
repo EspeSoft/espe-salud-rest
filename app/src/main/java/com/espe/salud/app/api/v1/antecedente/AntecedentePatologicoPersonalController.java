@@ -49,7 +49,6 @@ public class AntecedentePatologicoPersonalController {
         AntecedentePatologicoPersonalDTO personalDTO= optional.get();
         personalDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
         personalDTO.setTomaMedicacion(dto.getTomaMedicacion());
-        personalDTO.setTipoEnfermedadPersonal(dto.getTipoEnfermedadPersonal());
         personalDTO.setDiagnostico(dto.getDiagnostico());
         personalDTO.setFechaDiagnostico(dto.getFechaDiagnostico());
         return new ResponseEntity<>(service.update(personalDTO),HttpStatus.ACCEPTED);

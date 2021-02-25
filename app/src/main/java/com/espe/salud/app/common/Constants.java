@@ -11,7 +11,7 @@ public class Constants {
     public static final String URI_API_V1_AREA = URI_API_V1 + "areas";
     public static final String URI_API_V1_ASO = URI_API_V1 + "asociaciones";
     public static final String URI_API_V1_COD_CIUO = URI_API_V1 + "codigos-ciuo";
-    public static final String URI_API_V1_DETEXALAB = URI_API_V1 + "detalles-laboratorio"; // TODO Revisar el nombre del endpoint
+    public static final String URI_API_V1_TIPDETEXALAB = URI_API_V1 + "tipos-detalles-laboratorio"; // TODO Revisar el nombre del endpoint
     public static final String URI_API_V1_DISP = URI_API_V1 + "dispensarios";
     public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos-enfermedad-cie10";
 
@@ -82,7 +82,7 @@ public class Constants {
     public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-perosnales";
     public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicacion-habitual";
 
-    public static final String URI_API_V1_EXALAB = URI_API_V1 + "examenes-laboratorio";
+    public static final String URI_API_V1_TIPEXALAB = URI_API_V1 + "tipos-examenes-laboratorio";
 
     public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipo-enfermedad-personal";
 

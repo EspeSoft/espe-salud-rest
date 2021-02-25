@@ -5,16 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 @Getter
 @Setter
-public class ExamenLaboratorioDTO implements Serializable {
+public class TipoDetalleExamenLaboratorioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
-
-
+    private String unidad;
+    private Long idTipoExamenLaboratorio;
 }

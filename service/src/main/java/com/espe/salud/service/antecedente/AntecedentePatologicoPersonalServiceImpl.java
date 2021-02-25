@@ -26,13 +26,8 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
 
     @Override
     public AntecedentePatologicoPersonalDTO save(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO) {
-        Optional<AntecedentePatologicoPersonal> optional=personalRepository.findById(antecedentePatologicoPersonalDTO.getId());
-        if (optional.isEmpty()){
-            AntecedentePatologicoPersonal domainObject=toEntity(antecedentePatologicoPersonalDTO);
-            return toDTO(personalRepository.save(domainObject));
-        }else {
-            throw  new ConflictException(String.format("Ya existe un antecedente patologico personal para el codigo [%s]",antecedentePatologicoPersonalDTO.getId()));
-        }
+        AntecedentePatologicoPersonal domainObject=toEntity(antecedentePatologicoPersonalDTO);
+        return toDTO(personalRepository.save(domainObject));
     }
 
     @Override
@@ -43,7 +38,7 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
 
     @Override
     public Optional<AntecedentePatologicoPersonalDTO> findById(Long codigo) {
-        return personalRepository.findByCodigo(codigo).map(antecedentePatologicoPersonal -> toDTO(antecedentePatologicoPersonal));
+        return personalRepository.findByCodigo(codigo).map(this::toDTO);
     }
 
     @Override
