@@ -1,7 +1,6 @@
 package com.espe.salud.service.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.Sede;
-import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.catalogo.SedeDTO;
 import org.springframework.stereotype.Service;
 

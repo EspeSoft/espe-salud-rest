@@ -1,8 +1,6 @@
 package com.espe.salud.app.api.v1.paciente;
 
 
-import com.espe.salud.domain.entities.paciente.Paciente;
-import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.paciente.PacienteBannerDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.dto.paciente.PacienteExternoDTO;
@@ -11,13 +9,10 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_PAC;
 

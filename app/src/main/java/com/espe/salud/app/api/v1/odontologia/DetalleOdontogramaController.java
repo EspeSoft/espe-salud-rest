@@ -1,11 +1,7 @@
 package com.espe.salud.app.api.v1.odontologia;
 
-import static com.espe.salud.app.common.Constants.URI_API_V1_PAR;
-
 import com.espe.salud.domain.entities.odontologia.*;
-import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.dto.odontologia.*;
-import com.espe.salud.service.GenericCRUDService;
 import com.espe.salud.service.odontologia.GenericCRUDServiceOdontograma;
 import com.espe.salud.service.odontologia.HistoriaClinicaOdontologicaService;
 import com.fasterxml.jackson.core.JsonProcessingException;

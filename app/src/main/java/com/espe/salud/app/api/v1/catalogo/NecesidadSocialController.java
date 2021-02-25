@@ -2,7 +2,6 @@ package com.espe.salud.app.api.v1.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.NecesidadSocial;
 import com.espe.salud.dto.catalogo.NecesidadSocialDTO;
-import com.espe.salud.dto.catalogo.ParentescoDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
