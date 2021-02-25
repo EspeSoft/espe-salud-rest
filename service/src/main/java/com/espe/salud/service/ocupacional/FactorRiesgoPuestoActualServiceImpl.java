@@ -27,12 +27,12 @@ public class FactorRiesgoPuestoActualServiceImpl implements FactorRiesgoPuestoAc
 
     @Override
     public FactorRiesgoPuestoActualDTO save(FactorRiesgoPuestoActualDTO factor) {
-        Optional<FactorRiesgoPuestoActual> optional = findExisting(factor);
+        Optional<FactorRiesgoPuestoActual> optional = repository.findByCodigo(factor.getId());
         if (!optional.isPresent()) {
             FactorRiesgoPuestoActual domainObject = toEntity(factor);
             return toDTO(repository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", factor.getId()));
+            throw new ConflictException(String.format("Ya existe un factor de riesgo para el puesto actual registrado para ese código[%s]", factor.getId()));
         }
     }
 
@@ -40,11 +40,6 @@ public class FactorRiesgoPuestoActualServiceImpl implements FactorRiesgoPuestoAc
     public FactorRiesgoPuestoActualDTO update(FactorRiesgoPuestoActualDTO factor) {
         FactorRiesgoPuestoActual domainObject = toEntity(factor);
         return toDTO(repository.save(domainObject));
-    }
-
-    @Override
-    public Optional<FactorRiesgoPuestoActual> findExisting(FactorRiesgoPuestoActualDTO factorDTO) {
-        return repository.findByCodigo(factorDTO.getId());
     }
 
     @Override
@@ -61,6 +56,11 @@ public class FactorRiesgoPuestoActualServiceImpl implements FactorRiesgoPuestoAc
     }
 
     @Override
+    public List<FactorRiesgoPuestoActualDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral) {
+        return mapper.toFactoreRiesgosPuestoActualDto(repository.findByAntecedenteLaboralCodigo(idAntecedenteLaboral));
+    }
+
+    @Override
     public FactorRiesgoPuestoActualDTO toDTO(FactorRiesgoPuestoActual factor) {
         return mapper.toFactorRiesgoPuestoActualDto(factor);
     }
@@ -68,12 +68,5 @@ public class FactorRiesgoPuestoActualServiceImpl implements FactorRiesgoPuestoAc
     @Override
     public FactorRiesgoPuestoActual toEntity(FactorRiesgoPuestoActualDTO dto) {
         return mapper.toFactorRiesgoPuestoActual(dto);
-    }
-
-    @Override
-    public List<FactorRiesgoPuestoActualDTO> findAll() {
-        List<FactorRiesgoPuestoActual> factores = new ArrayList<>();
-        repository.findAll().forEach(factores::add);
-        return mapper.toFactoreRiesgosPuestoActualDto(factores);
     }
 }

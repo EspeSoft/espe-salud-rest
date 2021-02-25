@@ -1,8 +1,12 @@
 package com.espe.salud.app.api.v1.ocupacional;
 
 import com.espe.salud.dto.ocupacional.ActividadExtralaboralDTO;
+import com.espe.salud.dto.ocupacional.AntecedenteLaboralDTO;
 import com.espe.salud.service.ocupacional.ActividadExtralaboralService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,22 +33,48 @@ public class ActividadExtralaboralController {
         this.serviceActividad = serviceActividad;
     }
 
-    @Operation(summary = "Retorna el listado de todos las actividades")
+    @Operation(summary = "Retorna las actividades extralaborales de una antedente laboral")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ActividadExtralaboralDTO>> getAll() {
-        return new ResponseEntity<>( serviceActividad.findAll(), HttpStatus.OK);
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<List<ActividadExtralaboralDTO>> retrieveByAntecedenteLaboral(
+            @Parameter(description = "El ID de un Antecedente Laboral", required = true, example = "1")
+            @RequestParam Long idAntecedente
+    ) {
+        return new ResponseEntity<>(serviceActividad.findByAntecedenteLaboral(idAntecedente), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna una actividad por su código")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ActividadExtralaboralDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity(serviceActividad.findByCodigo(codigo), HttpStatus.OK);
+    @Operation(summary = "Retorna una actividad por su id")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<List<ActividadExtralaboralDTO>> retrieve(
+            @Parameter(description = "El ID de la actividad extralaboral", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        return new ResponseEntity(serviceActividad.findByCodigo(id), HttpStatus.OK);
     }
 
-    @Operation(summary = "Edita una actividad por su código")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<ActividadExtralaboralDTO> update(@RequestBody ActividadExtralaboralDTO actividadDTO, @RequestParam Long codigo) {
-        Optional<ActividadExtralaboralDTO> newActividadExtralaboralDTOoptional = serviceActividad.findByCodigo(codigo);
+    @Operation(summary = "Guarda una nueva actividad")
+    @PostMapping("")
+    public ResponseEntity<ActividadExtralaboralDTO> save(@RequestBody ActividadExtralaboralDTO actividad){
+        return new ResponseEntity<>(serviceActividad.save(actividad), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Elimina una actividad por su id")
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        serviceActividad.delete(id);
+    }
+
+    @Operation(summary = "Edita una actividad extralaboral por su id")
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<ActividadExtralaboralDTO> update(
+            @RequestBody ActividadExtralaboralDTO actividadDTO,
+            @Parameter(description = "El ID de la actividad extralaboral", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        Optional<ActividadExtralaboralDTO> newActividadExtralaboralDTOoptional = serviceActividad.findByCodigo(id);
         ActividadExtralaboralDTO newActividadExtralaboralDTO = newActividadExtralaboralDTOoptional.get();
         newActividadExtralaboralDTO.setActividad(actividadDTO.getActividad());
         newActividadExtralaboralDTO.setEmpresa(actividadDTO.getEmpresa());
@@ -56,15 +86,4 @@ public class ActividadExtralaboralController {
         return new ResponseEntity<>(serviceActividad.update(newActividadExtralaboralDTO), HttpStatus.CREATED) ;
     }
 
-    @Operation(summary = "Guarda una nueva actividad")
-    @PostMapping("/")
-    public ResponseEntity<ActividadExtralaboralDTO> save(@RequestBody ActividadExtralaboralDTO actividad){
-        return new ResponseEntity<>(serviceActividad.save(actividad), HttpStatus.CREATED);
-    }
-
-    @Operation(summary = "Elimina una actividad por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        serviceActividad.delete(codigo);
-    }
 }

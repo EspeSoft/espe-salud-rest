@@ -1,8 +1,11 @@
 package com.espe.salud.app.api.v1.ocupacional;
 
 import com.espe.salud.dto.ocupacional.AntecedenteIncidenteTrabajoDTO;
+import com.espe.salud.dto.ocupacional.AntecedenteIncidenteTrabajoDTO;
 import com.espe.salud.service.ocupacional.AntecedenteIncidenteTrabajoService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,22 +33,51 @@ public class AntecedenteIncidenteTrabajoController {
         this.serviceAntecedente = serviceAntecedente;
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes")
+    @Operation(summary = "Retorna las antecedentes de incidentes de trabajo de un antecedente laboral")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<AntecedenteIncidenteTrabajoDTO>> getAll() {
-        return new ResponseEntity<>( serviceAntecedente.findAll(), HttpStatus.OK);
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<List<AntecedenteIncidenteTrabajoDTO>> retrieveByAntecedenteLaboral(
+            @Parameter(description = "El ID de un Antecedente Laboral", required = true, example = "1")
+            @RequestParam Long idAntecedente
+    ) {
+        return new ResponseEntity<>(serviceAntecedente.findByAntecedenteLaboral(idAntecedente), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna un antecedente por su código")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity(serviceAntecedente.findByCodigo(codigo), HttpStatus.OK);
+    @Operation(summary = "Retorna un antecedente por su id")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> retrieve(
+            @Parameter(description = "El ID de la actividad extralaboral", required = true, example = "1")
+            @RequestParam Long id
+    ) {
+        return new ResponseEntity(serviceAntecedente.findByCodigo(id), HttpStatus.OK);
     }
 
-    @Operation(summary = "Edita un antecedente por su código")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> update(@RequestBody AntecedenteIncidenteTrabajoDTO antecedenteDTO, @RequestParam Long codigo) {
-        Optional<AntecedenteIncidenteTrabajoDTO> newAntecedenteIncidenteTrabajoDTOoptional = serviceAntecedente.findByCodigo(codigo);
+    @Operation(summary = "Guarda un nuevo antecedente")
+    @PostMapping("")
+    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> save(@RequestBody AntecedenteIncidenteTrabajoDTO antecedente){
+        return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
+    }
+
+    @Operation(summary = "Elimina un antecedente por su código")
+    @DeleteMapping("/{id}")
+    public void delete(
+            @Parameter(description = "El ID del antecedente por incidente de trabajo", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        serviceAntecedente.delete(id);
+    }
+
+    @Operation(summary = "Edita un antecedente por su id")
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> update(
+            @RequestBody AntecedenteIncidenteTrabajoDTO antecedenteDTO,
+            @Parameter(description = "El ID del antecedente por incidente de trabajo", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        Optional<AntecedenteIncidenteTrabajoDTO> newAntecedenteIncidenteTrabajoDTOoptional = serviceAntecedente.findByCodigo(id);
         AntecedenteIncidenteTrabajoDTO newAntecedenteIncidenteTrabajoDTO = newAntecedenteIncidenteTrabajoDTOoptional.get();
         newAntecedenteIncidenteTrabajoDTO.setLugarAtencion(antecedenteDTO.getLugarAtencion());
         newAntecedenteIncidenteTrabajoDTO.setNaturaleza(antecedenteDTO.getNaturaleza());
@@ -58,17 +90,5 @@ public class AntecedenteIncidenteTrabajoController {
         newAntecedenteIncidenteTrabajoDTO.setRiesgoImplicado(antecedenteDTO.getRiesgoImplicado());
         newAntecedenteIncidenteTrabajoDTO.setSecuelas(antecedenteDTO.getSecuelas());
         return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteIncidenteTrabajoDTO), HttpStatus.CREATED) ;
-    }
-
-    @Operation(summary = "Guarda un nuevo antecedente")
-    @PostMapping("/")
-    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> save(@RequestBody AntecedenteIncidenteTrabajoDTO antecedente){
-        return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
-    }
-
-    @Operation(summary = "Elimina un antecedente por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        serviceAntecedente.delete(codigo);
     }
 }

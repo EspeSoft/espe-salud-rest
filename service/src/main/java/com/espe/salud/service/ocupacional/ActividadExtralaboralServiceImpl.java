@@ -27,12 +27,12 @@ public class ActividadExtralaboralServiceImpl implements ActividadExtralaboralSe
 
     @Override
     public ActividadExtralaboralDTO save(ActividadExtralaboralDTO actividad) {
-        Optional<ActividadExtralaboral> optional = findExisting(actividad);
+        Optional<ActividadExtralaboral> optional = repository.findByCodigo(actividad.getId());
         if (!optional.isPresent()) {
             ActividadExtralaboral domainObject = toEntity(actividad);
             return toDTO(repository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", actividad.getId()));
+            throw new ConflictException(String.format("Ya existe una actividad extralaboral para ese código[%s]", actividad.getId()));
         }
     }
 
@@ -40,11 +40,6 @@ public class ActividadExtralaboralServiceImpl implements ActividadExtralaboralSe
     public ActividadExtralaboralDTO update(ActividadExtralaboralDTO actividad) {
         ActividadExtralaboral domainObject = toEntity(actividad);
         return toDTO(repository.save(domainObject));
-    }
-
-    @Override
-    public Optional<ActividadExtralaboral> findExisting(ActividadExtralaboralDTO actividadDTO) {
-        return repository.findByCodigo(actividadDTO.getId());
     }
 
     @Override
@@ -61,6 +56,11 @@ public class ActividadExtralaboralServiceImpl implements ActividadExtralaboralSe
     }
 
     @Override
+    public List<ActividadExtralaboralDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral) {
+        return mapper.toActividadesExtralaboralesDto(repository.findByAntecedenteLaboralCodigo(idAntecedenteLaboral));
+    }
+
+    @Override
     public ActividadExtralaboralDTO toDTO(ActividadExtralaboral actividad) {
         return mapper.toActividadExtralaboralDto(actividad);
     }
@@ -70,10 +70,4 @@ public class ActividadExtralaboralServiceImpl implements ActividadExtralaboralSe
         return mapper.toActividadExtralaboral(dto);
     }
 
-    @Override
-    public List<ActividadExtralaboralDTO> findAll() {
-        List<ActividadExtralaboral> actividades = new ArrayList<>();
-        repository.findAll().forEach(actividades::add);
-        return mapper.toActividadesExtralaboralesDto(actividades);
-    }
 }
