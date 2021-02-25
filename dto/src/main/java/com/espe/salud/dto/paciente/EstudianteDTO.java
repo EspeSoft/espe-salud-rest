@@ -23,6 +23,5 @@ public class EstudianteDTO implements Serializable {
     private String direccionLugarEstudio;
     private Long idCantonEstudio;
     private Long idProvinciaEstudio;
-    private Long idSede;
 
 }

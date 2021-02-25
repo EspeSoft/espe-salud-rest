@@ -24,13 +24,15 @@ public class ActividadFisicaServicelmpl implements ActividadFisicaService {
     }
 
     @Override
-    public ActividadFisicaDTO save(ActividadFisicaDTO actividadFisica) {
-        Optional< ActividadFisica > optional = findExisting(actividadFisica);
-        if (!optional.isPresent()) {
-            ActividadFisica domainObject = toEntity(actividadFisica);
+    public ActividadFisicaDTO save(ActividadFisicaDTO actividadFisicaDTO) {
+        Optional<ActividadFisica> optional=actividadFisicaRepository.findById(actividadFisicaDTO.getId());
+
+        // Optional< ActividadFisica > optional = findExisting(actividadFisica);
+        if (!optional.isEmpty()) {
+            ActividadFisica domainObject = toEntity(actividadFisicaDTO);
             return toDTO(actividadFisicaRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", actividadFisica.getId()));
+            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", actividadFisicaDTO.getId()));
         }
     }
 

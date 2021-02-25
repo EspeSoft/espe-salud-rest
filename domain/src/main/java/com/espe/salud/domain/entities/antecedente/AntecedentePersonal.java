@@ -85,6 +85,13 @@ public class AntecedentePersonal {
     @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Discapacidad> discapacidad;
 
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<ActividadFisica> actividadFisica;
+
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<ConsumoNocivo> consumoNocivo;
+
 
 
     @CreatedBy

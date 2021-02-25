@@ -18,6 +18,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -87,6 +88,12 @@ public class Evolucion {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_NOTENF_EVO", insertable = false, updatable = false)
     private NotaEnfermeria notaEnfermeria;
+
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Diagnostico> diagnostico;
+
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Procedimiento> procedimiento;
 
     @CreatedDate
     @Column(name = "MZSTEVO_FECHA_CREACION")

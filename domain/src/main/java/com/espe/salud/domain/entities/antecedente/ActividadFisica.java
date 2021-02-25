@@ -37,6 +37,13 @@ public class ActividadFisica {
     @NotEmpty
     private String observacion;
 
+    @Column(name = "FK_ANTPATPER_ACTFIS")
+    private Long idAntecedentePersonal;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_ANTPATPER_ACTFIS",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
+
     @CreatedBy
     @Column(name = "MZSTACTFIS_USUARIO_CREACION")
     private String usuarioCreacion;

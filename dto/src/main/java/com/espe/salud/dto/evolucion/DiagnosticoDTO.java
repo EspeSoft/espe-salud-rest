@@ -17,4 +17,6 @@ public class DiagnosticoDTO  implements Serializable {
     private String prevencion;
     private String morbilidad;
     private String condicionDiagnostico;
+
+    private String idEvolucion;
 }

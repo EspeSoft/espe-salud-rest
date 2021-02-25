@@ -27,7 +27,6 @@ public class EmpleadoDTO implements Serializable {
     private Integer horasTrabajoMes;
     private String cumpleMisionServicio;
     private String situacionAdministrativa;
-    private Long idSede;
     private Long idCantonTrabajo;
     private Long idProvinciaTrabajo;
 

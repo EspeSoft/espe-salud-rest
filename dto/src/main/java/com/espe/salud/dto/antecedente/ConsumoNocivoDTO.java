@@ -22,4 +22,7 @@ public class ConsumoNocivoDTO implements Serializable {
     private String exConsumidor;
     private Integer tiempoAbstinenciaMes;
     private String observacion;
+
+    private Long idAntecedentePersonal;
+
 }
