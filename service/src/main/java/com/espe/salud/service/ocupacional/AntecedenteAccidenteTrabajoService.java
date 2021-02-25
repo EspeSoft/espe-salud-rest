@@ -9,10 +9,9 @@ import java.util.Optional;
 public interface AntecedenteAccidenteTrabajoService {
     AntecedenteAccidenteTrabajoDTO save  (AntecedenteAccidenteTrabajoDTO antecedente);
     AntecedenteAccidenteTrabajoDTO update(AntecedenteAccidenteTrabajoDTO antecedente);
-    Optional<AntecedenteAccidenteTrabajo> findExisting(AntecedenteAccidenteTrabajoDTO antecedenteDTO);
     Boolean delete(Long id);
     Optional<AntecedenteAccidenteTrabajoDTO > findByCodigo(Long codigo);
+    List<AntecedenteAccidenteTrabajoDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral);
     AntecedenteAccidenteTrabajoDTO  toDTO (AntecedenteAccidenteTrabajo antecedente);
     AntecedenteAccidenteTrabajo toEntity (AntecedenteAccidenteTrabajoDTO dto);
-    List<AntecedenteAccidenteTrabajoDTO> findAll();
 }

@@ -27,12 +27,12 @@ public class AntecedenteIncidenteTrabajoServiceImpl implements AntecedenteIncide
 
     @Override
     public AntecedenteIncidenteTrabajoDTO save(AntecedenteIncidenteTrabajoDTO antecedente) {
-        Optional<AntecedenteIncidenteTrabajo> optional = findExisting(antecedente);
+        Optional<AntecedenteIncidenteTrabajo> optional = repository.findByCodigo(antecedente.getId());
         if (!optional.isPresent()) {
             AntecedenteIncidenteTrabajo domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", antecedente.getId()));
+            throw new ConflictException(String.format("Ya existe un antecedente de incidente de trabajo registrado para ese código[%s]", antecedente.getId()));
         }
     }
 
@@ -40,11 +40,6 @@ public class AntecedenteIncidenteTrabajoServiceImpl implements AntecedenteIncide
     public AntecedenteIncidenteTrabajoDTO update(AntecedenteIncidenteTrabajoDTO antecedente) {
         AntecedenteIncidenteTrabajo domainObject = toEntity(antecedente);
         return toDTO(repository.save(domainObject));
-    }
-
-    @Override
-    public Optional<AntecedenteIncidenteTrabajo> findExisting(AntecedenteIncidenteTrabajoDTO antecedenteDTO) {
-        return repository.findByCodigo(antecedenteDTO.getId());
     }
 
     @Override
@@ -61,6 +56,11 @@ public class AntecedenteIncidenteTrabajoServiceImpl implements AntecedenteIncide
     }
 
     @Override
+    public List<AntecedenteIncidenteTrabajoDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral) {
+        return mapper.toAntecedentesIncidentesTrabajoDto(repository.findByAntecedenteLaboralCodigo(idAntecedenteLaboral));
+    }
+
+    @Override
     public AntecedenteIncidenteTrabajoDTO toDTO(AntecedenteIncidenteTrabajo antecedente) {
         return mapper.toAntecedenteIncidenteTrabajoDto(antecedente);
     }
@@ -68,12 +68,5 @@ public class AntecedenteIncidenteTrabajoServiceImpl implements AntecedenteIncide
     @Override
     public AntecedenteIncidenteTrabajo toEntity(AntecedenteIncidenteTrabajoDTO dto) {
         return mapper.toAntecedenteIncidenteTrabajo(dto);
-    }
-
-    @Override
-    public List<AntecedenteIncidenteTrabajoDTO> findAll() {
-        List<AntecedenteIncidenteTrabajo> antecedentes = new ArrayList<>();
-        repository.findAll().forEach(antecedentes::add);
-        return mapper.toAntecedentesIncidentesTrabajoDto(antecedentes);
     }
 }
