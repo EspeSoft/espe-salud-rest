@@ -50,7 +50,7 @@ public class AntecedenteEnfermedadProfesionalController {
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<AntecedenteEnfermedadProfesionalDTO> retrieve(
             @Parameter(description = "El ID de la actividad extralaboral", required = true, example = "1")
-            @RequestParam Long id
+            @PathVariable("id") Long id
     ) {
         return new ResponseEntity(serviceAntecedente.findByCodigo(id), HttpStatus.OK);
     }
