@@ -78,8 +78,8 @@ public class AntecedenteLaboralController {
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<AntecedenteLaboralDTO> update(
             @RequestBody AntecedenteLaboralDTO antecedenteDTO,
-            @RequestParam Long codigo) {
-        Optional<AntecedenteLaboralDTO> newAntecedenteLaboralDTOoptional = serviceAntecedente.findByCodigo(codigo);
+            @PathVariable("id") Long id) {
+        Optional<AntecedenteLaboralDTO> newAntecedenteLaboralDTOoptional = serviceAntecedente.findByCodigo(id);
         AntecedenteLaboralDTO newAntecedenteLaboralDTO = newAntecedenteLaboralDTOoptional.get();
         return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteLaboralDTO), HttpStatus.CREATED) ;
     }

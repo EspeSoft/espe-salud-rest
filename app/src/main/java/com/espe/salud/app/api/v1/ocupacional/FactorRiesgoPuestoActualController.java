@@ -50,7 +50,7 @@ public class FactorRiesgoPuestoActualController {
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<FactorRiesgoPuestoActualDTO> retrieve(
             @Parameter(description = "El ID del factor de riesgo", required = true, example = "1")
-            @RequestParam Long id
+            @PathVariable("id") Long id
     ) {
         return new ResponseEntity(serviceFactor.findByCodigo(id), HttpStatus.OK);
     }
