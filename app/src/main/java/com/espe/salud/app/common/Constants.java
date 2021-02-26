@@ -79,12 +79,12 @@ public class Constants {
     public static final String URI_API_V1_TIPO_PROC = URI_API_V1 + "tipos procedimiento";
     public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos-enfermedad-cie10";
 
-    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-perosnales";
+    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-personales";
     public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicacion-habitual";
 
     public static final String URI_API_V1_TIPEXALAB = URI_API_V1 + "tipos-examenes-laboratorio";
 
-    public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipo-enfermedad-personal";
+    public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipos-enfermedad-personal";
 
     public static final String URI_API_V1_ANTGIN = URI_API_V1 + "antecedentes-ginecologicos";
     public static final String URI_API_V1_EXASEX = URI_API_V1 + "examen-sexual";
