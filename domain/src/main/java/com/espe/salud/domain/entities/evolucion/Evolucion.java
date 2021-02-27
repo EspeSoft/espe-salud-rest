@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.entities.certificado.Certificado;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
@@ -89,6 +90,9 @@ public class Evolucion {
     @JoinColumn(name = "FK_NOTENF_EVO", insertable = false, updatable = false)
     private NotaEnfermeria notaEnfermeria;
 
+    @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Certificado> certificados;
+    
     @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Diagnostico> diagnostico;
 

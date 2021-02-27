@@ -1,9 +1,11 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.certificado.Certificado;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +20,7 @@ public class TipoCertificado {
 
     @Column(name = "MZSTCTIPCER_NOMBRE")
     private String nombre;
+
+    @OneToMany(mappedBy = "tipoCertificado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Certificado> certificados;
 }
