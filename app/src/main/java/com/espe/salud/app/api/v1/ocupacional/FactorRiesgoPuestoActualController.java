@@ -1,8 +1,11 @@
 package com.espe.salud.app.api.v1.ocupacional;
 
 import com.espe.salud.dto.ocupacional.FactorRiesgoPuestoActualDTO;
+import com.espe.salud.dto.ocupacional.FactorRiesgoPuestoActualDTO;
 import com.espe.salud.service.ocupacional.FactorRiesgoPuestoActualService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,35 +33,53 @@ public class FactorRiesgoPuestoActualController {
         this.serviceFactor = serviceFactor;
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes")
+    @Operation(summary = "Retorna las factores de riesgos del puesto actual de un antecedente laboral")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<FactorRiesgoPuestoActualDTO>> getAll() {
-        return new ResponseEntity<>( serviceFactor.findAll(), HttpStatus.OK);
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<List<FactorRiesgoPuestoActualDTO>> retrieveByAntecedenteLaboral(
+            @Parameter(description = "El ID de un Antecedente Laboral", required = true, example = "1")
+            @RequestParam Long idAntecedente
+    ) {
+        return new ResponseEntity<>(serviceFactor.findByAntecedenteLaboral(idAntecedente), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna un antecedente por su código")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<FactorRiesgoPuestoActualDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity(serviceFactor.findByCodigo(codigo), HttpStatus.OK);
+    @Operation(summary = "Retorna un factor por su id")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<FactorRiesgoPuestoActualDTO> retrieve(
+            @Parameter(description = "El ID del factor de riesgo", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        return new ResponseEntity(serviceFactor.findByCodigo(id), HttpStatus.OK);
     }
 
-    @Operation(summary = "Edita un antecedente por su código")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<FactorRiesgoPuestoActualDTO> update(@RequestBody FactorRiesgoPuestoActualDTO antecedenteDTO, @RequestParam Long codigo) {
-        Optional<FactorRiesgoPuestoActualDTO> newFactorRiesgoPuestoActualDTOoptional = serviceFactor.findByCodigo(codigo);
-        FactorRiesgoPuestoActualDTO newFactorRiesgoPuestoActualDTO = newFactorRiesgoPuestoActualDTOoptional.get();
-        return new ResponseEntity<>(serviceFactor.update(newFactorRiesgoPuestoActualDTO), HttpStatus.CREATED) ;
-    }
-
-    @Operation(summary = "Guarda un nuevo antecedente")
-    @PostMapping("/")
+    @Operation(summary = "Guarda un nuevo factor de riesgo")
+    @PostMapping("")
     public ResponseEntity<FactorRiesgoPuestoActualDTO> save(@RequestBody FactorRiesgoPuestoActualDTO antecedente){
         return new ResponseEntity<>(serviceFactor.save(antecedente), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Elimina un antecedente por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        serviceFactor.delete(codigo);
+    @Operation(summary = "Elimina un factor de riesgo por su id")
+    @DeleteMapping("/{id}")
+    public void delete(
+            @Parameter(description = "El ID del factor de riesgo del puesto actual", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        serviceFactor.delete(id);
     }
+    
+    @Operation(summary = "Edita un factor de riesgo por su id")
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<FactorRiesgoPuestoActualDTO> update(
+            @RequestBody FactorRiesgoPuestoActualDTO antecedenteDTO,
+            @Parameter(description = "El ID del factor de riesgo", required = true, example = "1")
+            @PathVariable("id") Long id
+    ) {
+        Optional<FactorRiesgoPuestoActualDTO> newFactorRiesgoPuestoActualDTOoptional = serviceFactor.findByCodigo(id);
+        FactorRiesgoPuestoActualDTO newFactorRiesgoPuestoActualDTO = newFactorRiesgoPuestoActualDTOoptional.get();
+        return new ResponseEntity<>(serviceFactor.update(newFactorRiesgoPuestoActualDTO), HttpStatus.CREATED) ;
+    }
+
 }

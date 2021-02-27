@@ -27,12 +27,12 @@ public class AntecedenteEnfermedadProfesionalServiceImpl implements AntecedenteE
 
     @Override
     public AntecedenteEnfermedadProfesionalDTO save(AntecedenteEnfermedadProfesionalDTO antecedente) {
-        Optional<AntecedenteEnfermedadProfesional> optional = findExisting(antecedente);
+        Optional<AntecedenteEnfermedadProfesional> optional = repository.findByCodigo(antecedente.getId());
         if (!optional.isPresent()) {
             AntecedenteEnfermedadProfesional domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", antecedente.getId()));
+            throw new ConflictException(String.format("Ya existe un antecedente de enfermedad profesional registrado para ese código[%s]", antecedente.getId()));
         }
     }
 
@@ -40,11 +40,6 @@ public class AntecedenteEnfermedadProfesionalServiceImpl implements AntecedenteE
     public AntecedenteEnfermedadProfesionalDTO update(AntecedenteEnfermedadProfesionalDTO antecedente) {
         AntecedenteEnfermedadProfesional domainObject = toEntity(antecedente);
         return toDTO(repository.save(domainObject));
-    }
-
-    @Override
-    public Optional<AntecedenteEnfermedadProfesional> findExisting(AntecedenteEnfermedadProfesionalDTO antecedenteDTO) {
-        return repository.findByCodigo(antecedenteDTO.getId());
     }
 
     @Override
@@ -61,6 +56,11 @@ public class AntecedenteEnfermedadProfesionalServiceImpl implements AntecedenteE
     }
 
     @Override
+    public List<AntecedenteEnfermedadProfesionalDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral) {
+        return mapper.toAntecedentesEnfermedadesProfesionalDto(repository.findByAntecedenteLaboralCodigo(idAntecedenteLaboral));
+    }
+
+    @Override
     public AntecedenteEnfermedadProfesionalDTO toDTO(AntecedenteEnfermedadProfesional antecedente) {
         return mapper.toAntecedenteEnfermedadProfesionalDto(antecedente);
     }
@@ -68,12 +68,5 @@ public class AntecedenteEnfermedadProfesionalServiceImpl implements AntecedenteE
     @Override
     public AntecedenteEnfermedadProfesional toEntity(AntecedenteEnfermedadProfesionalDTO dto) {
         return mapper.toAntecedenteEnfermedadProfesional(dto);
-    }
-
-    @Override
-    public List<AntecedenteEnfermedadProfesionalDTO> findAll() {
-        List<AntecedenteEnfermedadProfesional> antecedentes = new ArrayList<>();
-        repository.findAll().forEach(antecedentes::add);
-        return mapper.toAntecedentesEnfermedadesProfesionalDto(antecedentes);
     }
 }

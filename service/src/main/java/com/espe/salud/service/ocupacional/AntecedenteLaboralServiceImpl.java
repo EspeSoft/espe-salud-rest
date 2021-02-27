@@ -27,12 +27,12 @@ public class AntecedenteLaboralServiceImpl implements AntecedenteLaboralService 
 
     @Override
     public AntecedenteLaboralDTO save(AntecedenteLaboralDTO antecedente) {
-        Optional<AntecedenteLaboral> optional = findExisting(antecedente);
+        Optional<AntecedenteLaboral> optional = repository.findByCodigo(antecedente.getId());
         if (!optional.isPresent()) {
             AntecedenteLaboral domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", antecedente.getId()));
+            throw new ConflictException(String.format("Ya existe un antecedente laboral registrado para ese código[%s]", antecedente.getId()));
         }
     }
 
@@ -40,11 +40,6 @@ public class AntecedenteLaboralServiceImpl implements AntecedenteLaboralService 
     public AntecedenteLaboralDTO update(AntecedenteLaboralDTO antecedente) {
         AntecedenteLaboral domainObject = toEntity(antecedente);
         return toDTO(repository.save(domainObject));
-    }
-
-    @Override
-    public Optional<AntecedenteLaboral> findExisting(AntecedenteLaboralDTO antecedenteDTO) {
-        return repository.findByCodigo(antecedenteDTO.getId());
     }
 
     @Override
@@ -61,6 +56,11 @@ public class AntecedenteLaboralServiceImpl implements AntecedenteLaboralService 
     }
 
     @Override
+    public Optional<AntecedenteLaboralDTO> findByPaciente(Long idPaciente) {
+        return Optional.of(this.toDTO(repository.findByPacienteCodigo(idPaciente)));
+    }
+
+    @Override
     public AntecedenteLaboralDTO toDTO(AntecedenteLaboral antecedente) {
         return mapper.toAntecedenteLaboralDto(antecedente);
     }
@@ -70,10 +70,4 @@ public class AntecedenteLaboralServiceImpl implements AntecedenteLaboralService 
         return mapper.toAntecedenteLaboral(dto);
     }
 
-    @Override
-    public List<AntecedenteLaboralDTO> findAll() {
-        List<AntecedenteLaboral> antecedentes = new ArrayList<>();
-        repository.findAll().forEach(antecedentes::add);
-        return mapper.toAntecedentesLaboralesDto(antecedentes);
-    }
 }
