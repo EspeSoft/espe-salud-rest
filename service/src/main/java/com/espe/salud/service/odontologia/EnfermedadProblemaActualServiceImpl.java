@@ -60,7 +60,7 @@ public class EnfermedadProblemaActualServiceImpl implements EnfermedadProblemaAc
     @Override
     @Transactional(readOnly = true)
     public List<EnfermedadProblemaActualDTO> findByHistoriaClinica(Long idHistoria) {
-        return mapper.toEnfermedadesProblemasActualesDTO(domainRepository.findByHistoriaId(idHistoria));
+        return mapper.toEnfermedadesProblemasActualesDTO(domainRepository.findByHistoriaCodigo(idHistoria));
     }
 
     @Override

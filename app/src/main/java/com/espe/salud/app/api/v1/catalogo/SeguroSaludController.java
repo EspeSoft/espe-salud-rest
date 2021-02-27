@@ -18,7 +18,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_SEGSAL;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_SEGSAL})
-@Tag(name = "Gestiona el cátalodo de seguro salud")
+@Tag(description = "Gestiona el cátalodo de seguro salud", name = "Seguros de salud")
 public class SeguroSaludController {
 
     private final GenericCRUDService<SeguroSalud, SeguroSaludDTO> segurosaludService;

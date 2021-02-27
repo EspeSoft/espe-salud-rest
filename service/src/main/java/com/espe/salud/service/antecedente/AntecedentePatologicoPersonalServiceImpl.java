@@ -7,6 +7,7 @@ import com.espe.salud.mapper.antecedente.AntecedentePatologicoPersonalMapper;
 import com.espe.salud.persistence.antecedente.AntecedentePatologicoPersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +18,6 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     private final AntecedentePatologicoPersonalRepository personalRepository;
     private final AntecedentePatologicoPersonalMapper mapper;
 
-
     @Autowired
     public AntecedentePatologicoPersonalServiceImpl(AntecedentePatologicoPersonalRepository personalRepository, AntecedentePatologicoPersonalMapper mapper) {
         this.personalRepository = personalRepository;
@@ -25,33 +25,33 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     }
 
     @Override
+    @Transactional
     public AntecedentePatologicoPersonalDTO save(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO) {
-        Optional<AntecedentePatologicoPersonal> optional=personalRepository.findById(antecedentePatologicoPersonalDTO.getId());
-        if (optional.isPresent()){
-            AntecedentePatologicoPersonal domainObject=toEntity(antecedentePatologicoPersonalDTO);
-            return toDTO(personalRepository.save(domainObject));
-        }else {
-            throw  new ConflictException(String.format("Ya existe un antecedente patologico personal para el codigo [%s]",antecedentePatologicoPersonalDTO.getId()));
+        Optional<AntecedentePatologicoPersonal> optional = personalRepository.findByCodigo(antecedentePatologicoPersonalDTO.getId());
+        if (optional.isEmpty()) {
+            AntecedentePatologicoPersonal domainObject=mapper.toAntecedentePatologicoPersonal(antecedentePatologicoPersonalDTO);
+            return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.save(domainObject));
+        } else {
+            throw new ConflictException("Ya existe un antecedente patologico personal para ese ID");
         }
+
     }
 
     @Override
+    @Transactional
     public AntecedentePatologicoPersonalDTO update(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO) {
-        AntecedentePatologicoPersonal domainObject=toEntity(antecedentePatologicoPersonalDTO);
-        return toDTO(personalRepository.save(domainObject));
+        AntecedentePatologicoPersonal domainObject=mapper.toAntecedentePatologicoPersonal(antecedentePatologicoPersonalDTO);
+        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.save(domainObject));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<AntecedentePatologicoPersonalDTO> findById(Long codigo) {
-        return personalRepository.findByCodigo(codigo).map(antecedentePatologicoPersonal -> toDTO(antecedentePatologicoPersonal));
+        return personalRepository.findByCodigo(codigo).map(mapper::toAntecedentePatologicoPersonalDTO);
     }
 
     @Override
-    public List<AntecedentePatologicoPersonalDTO> findAll() {
-        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.findAll());
-    }
-
-    @Override
+    @Transactional
     public boolean deleteById(Long id) {
         return personalRepository.findByCodigo(id).map(antecedentePatologicoPersonal -> {
             personalRepository.deleteById(id);
@@ -60,12 +60,7 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     }
 
     @Override
-    public AntecedentePatologicoPersonalDTO toDTO(AntecedentePatologicoPersonal antecedentePatologicoPersonal) {
-        return mapper.toAntecedentePatologicoPersonalDTO(antecedentePatologicoPersonal);
-    }
-
-    @Override
-    public AntecedentePatologicoPersonal toEntity(AntecedentePatologicoPersonalDTO dto) {
-        return mapper.toAntecedentePatologicoPersonal(dto);
+    public List<AntecedentePatologicoPersonalDTO> findByAntecedente(Long idAntecedente) {
+        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.findByAntecedentePersonalCodigo(idAntecedente));
     }
 }

@@ -18,7 +18,7 @@ import java.util.List;
 import static com.espe.salud.app.common.Constants.URI_API_V1_NOT_ENF;
 
 @RestController
-@Tag(name = "Gestiona las notas de enfermeria de un paciente")
+@Tag(description = "Gestiona las notas de enfermeria de un paciente", name = "Notas de enfermeria")
 @RequestMapping(value = {URI_API_V1_NOT_ENF})
 public class NotaEnfermeriaController {
     private final NotaEnfermeriaService notaEnfermeriaService;
@@ -46,10 +46,8 @@ public class NotaEnfermeriaController {
 
     @GetMapping("/{id}")
     @Operation(summary = "Retorna una nota de enfermeria por su ID")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "OK"),
-            @ApiResponse(responseCode = "404", description = "Recurso no encontrado"),
-    })
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<NotaEnfermeriaDTO> retrieve(
             @Parameter(description = "El ID de la nota de enfermeria", required = true, example = "1")
             @PathVariable("id") Long id) {

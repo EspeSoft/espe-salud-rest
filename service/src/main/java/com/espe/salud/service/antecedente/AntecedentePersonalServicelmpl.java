@@ -2,76 +2,54 @@ package com.espe.salud.service.antecedente;
 
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.antecedente.AntecedentePersonal;
-import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.dto.antecedente.AntecedentePersonalDTO;
 import com.espe.salud.mapper.antecedente.AntecedentePersonalMapper;
 import com.espe.salud.persistence.antecedente.AntecedentePersonalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class AntecedentePersonalServicelmpl implements AntecedentePersonalService{
-    private final AntecedentePersonalRepository antecedentePersonalRepository;
+    private final AntecedentePersonalRepository repository;
     private final AntecedentePersonalMapper mapper;
 
     @Autowired
     public AntecedentePersonalServicelmpl(AntecedentePersonalRepository antecedentePersonalRepository, AntecedentePersonalMapper mapper) {
-        this.antecedentePersonalRepository = antecedentePersonalRepository;
+        this.repository = antecedentePersonalRepository;
         this.mapper = mapper;
     }
 
     @Override
+    @Transactional
     public AntecedentePersonalDTO save(AntecedentePersonalDTO antecedentePersonal) {
-        Optional<AntecedentePersonal> optional = findExisting(antecedentePersonal);
+        Optional<AntecedentePersonal> optional = repository.findByPacienteCodigo(antecedentePersonal.getIdPaciente());
         if (optional.isEmpty()) {
-            AntecedentePersonal domainObject = toEntity(antecedentePersonal);
-            return toDTO(antecedentePersonalRepository.save(domainObject));
+            AntecedentePersonal domainObject = mapper.toAntecedentePersonal(antecedentePersonal);
+            return mapper.toAntecedentePersonalDTO(repository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", antecedentePersonal.getId()));
+            throw new ConflictException(String.format("Ya existe un antecedente registrado para ese paciente[%s]", antecedentePersonal.getIdPaciente()));
         }
     }
 
     @Override
+    @Transactional
     public AntecedentePersonalDTO update(AntecedentePersonalDTO antecedentePersonal) {
-        AntecedentePersonal domainObject = toEntity(antecedentePersonal);
-        return toDTO(antecedentePersonalRepository.save(domainObject));
+        AntecedentePersonal domainObject = mapper.toAntecedentePersonal(antecedentePersonal);
+        return mapper.toAntecedentePersonalDTO(repository.save(domainObject));
     }
 
     @Override
-    public Optional<AntecedentePersonal> findExisting(AntecedentePersonalDTO antecedentePersonalDTO) {
-        return antecedentePersonalRepository.findByCodigo(antecedentePersonalDTO.getId());
+    @Transactional(readOnly = true)
+    public Optional<AntecedentePersonalDTO> findById(Long id) {
+        return repository.findByCodigo(id).map(mapper::toAntecedentePersonalDTO);
     }
 
     @Override
-    public Boolean delete(Long id) {
-        return antecedentePersonalRepository.findById(id).map(object -> {
-            antecedentePersonalRepository.deleteById(id);
-            return true;
-        }).orElse(false);
-    }
-
-    @Override
-    public Optional<AntecedentePersonalDTO> findByCodigo(Long codigo) {
-        return antecedentePersonalRepository.findByCodigo(codigo).map(mapper::toAntecedentePersonalDTO);
-    }
-
-    @Override
-    public AntecedentePersonalDTO toDTO(AntecedentePersonal antecedentePersonal) {
-        return mapper.toAntecedentePersonalDTO(antecedentePersonal);
-    }
-
-    @Override
-    public AntecedentePersonal toEntity(AntecedentePersonalDTO dto) {
-        return mapper.toAntecedentePersonal(dto);
-    }
-
-    @Override
-    public List<AntecedentePersonalDTO> findAll() {
-        List<AntecedentePersonal> antecedentePersonals = new ArrayList<>(antecedentePersonalRepository.findAll());
-        return mapper.toAntecedentesPersonalesDTO(antecedentePersonals);
+    @Transactional(readOnly = true)
+    public Optional<AntecedentePersonalDTO> findByPaciente(Long idPaciente) {
+        return repository.findByPacienteCodigo(idPaciente).map(mapper::toAntecedentePersonalDTO);
     }
 }

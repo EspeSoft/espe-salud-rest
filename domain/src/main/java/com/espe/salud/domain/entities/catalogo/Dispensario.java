@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
 
@@ -29,6 +30,18 @@ public class Dispensario {
     @Column(name = "MZSTCDIS_NOMBRE_IMAGEN")
     private String nombreImagen;
 
-    @OneToMany(mappedBy = "dispensario", cascade = CascadeType.ALL)
+    @Column(name = "MZSTCDIS_CAMPUS")
+    private String campus;
+
+    @Column(name = "MZSTCDIS_CANTON")
+    private String canton;
+
+    @Column(name = "MZSTCDIS_PROVINCIA")
+    private String provincia;
+
+    @OneToMany(mappedBy = "dispensario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Usuario> usuarios;
+
+    @OneToMany(mappedBy = "dispensario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Paciente> pacientes;
 }

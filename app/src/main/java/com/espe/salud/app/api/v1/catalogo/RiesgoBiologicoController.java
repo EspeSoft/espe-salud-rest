@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_BIO;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_BIO})
-@Tag(name = "Consulta el cátalogo de riesgos biológicos")
+@Tag(description = "Consulta el cátalogo de riesgos biológicos", name = "Riesgos biológicos")
 public class RiesgoBiologicoController {
     private final GenericCRUDService<RiesgoBiologico, RiesgoBiologicoDTO> riesgoBiologicoService;
 

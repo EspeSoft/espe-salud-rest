@@ -1,11 +1,13 @@
 package com.espe.salud.dto.paciente;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -16,36 +18,39 @@ public class PacienteDTO implements Serializable {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String numeroArchivo;
+    private String nombreCompleto;
     private Boolean activo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
-    private Boolean accesoBanner;
+    private Boolean aceptaTransfucion;
+    private String lateralidad;
+    private String tipoPaciente;
+    private Long idDispensario;
+
     private String apellidoPaterno;
-//    private String apellidoMaterno;
-//    private String primerNombre;
-//    private String segundoNombre;
-//    private String cedula;
-//    private LocalDate fechaNacimiento;
-//    private String sexo;
-//    private String estadoCivil;
-//    private String religion;
-//    private Boolean aceptaTransfucion;
-//    private String grupoSanguineo;
-//    private String lateralidad;
-//    private String instruccion;
-//    private String profesion;
-//    private String vinculadoEspe;
-//    private String pueblos;
-//    private String grupoCultural;
-//    private String seguroSalud;
-//    private String asociacionAfiliada;
-//    private String ciuo;
-//    private Long idConsultorio;
-//    private Long idPaisNacimiento;
-//    private Long idProvinciaNacimiento;
-//    private Long idCantonNacimiento;
-//    private Long idNacionalidad;
-//    private Long idNacionalidad2;
+    private String apellidoMaterno;
+    private String primerNombre;
+    private String segundoNombre;
+    private String cedula;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDateTime fechaNacimiento;
+    private String sexo;
+    private String estadoCivil;
+    private String religion;
+    private String grupoSanguineo;
+    private String instruccion;
+    private String profesion;
+    private String vinculadoEspe;
+    private String pueblos;
+    private String etnia;
+    private String seguroSalud;
+    private String asociacionAfiliada;
+    private String paisNacimiento;
+    private String provinciaNacimiento;
+    private String cantonNacimiento;
+    private String nacionalidad;
+    private String nacionalidad2;
     private ContactoDTO contacto;
     private List<ContactoEmergenciaDTO> contactosEmergencia;
 }

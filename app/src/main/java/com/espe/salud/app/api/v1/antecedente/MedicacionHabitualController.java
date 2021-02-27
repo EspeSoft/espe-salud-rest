@@ -1,7 +1,5 @@
 package com.espe.salud.app.api.v1.antecedente;
 
-
-import com.espe.salud.domain.entities.antecedente.MedicacionHabitual;
 import com.espe.salud.dto.antecedente.MedicacionHabitalDTO;
 import com.espe.salud.service.antecedente.MedicacionHabitualService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,7 +17,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_MED_HABITUAL;
 
 @RestController
-@Tag(name = "Gestiona medicamentos habituales")
+@Tag(description = "Gestiona medicamentos habituales", name = "Medicaciones habituales")
 @RequestMapping(value = {URI_API_V1_MED_HABITUAL})
 public class MedicacionHabitualController {
 
@@ -36,23 +34,26 @@ public class MedicacionHabitualController {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna un medicamento habitual por su codigo")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<MedicacionHabitalDTO> getById(@Parameter(description = "El codigo del medicamento habitual",required = true,example = "1") @PathVariable("codigo") Long id){
+    @Operation(summary = "Retorna un medicamento habitual por su ID")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<MedicacionHabitalDTO> getById(
+            @Parameter(description = "El ID del medicamento habitual",required = true,example = "1")
+            @PathVariable("id") Long id){
         return new ResponseEntity(service.findById(id),HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un medicamento habitual por su codigo")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<MedicacionHabitalDTO> update(@RequestBody MedicacionHabitalDTO dto,@RequestParam Long codigo){
+    @PutMapping(value = "/{id}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<MedicacionHabitalDTO> update(
+            @RequestBody MedicacionHabitalDTO dto, @PathVariable Long id){
 
-        Optional<MedicacionHabitalDTO> newMedicamentoHabitualDTOOptinal=service.findById(codigo);
+        Optional<MedicacionHabitalDTO> newMedicamentoHabitualDTOOptinal=service.findById(id);
         MedicacionHabitalDTO newMedicacionHabitualDTO=newMedicamentoHabitualDTOOptinal.get();
         newMedicacionHabitualDTO.setCantidad(dto.getCantidad());
         newMedicacionHabitualDTO.setDescripcionMedicamento(dto.getDescripcionMedicamento());
         newMedicacionHabitualDTO.setFrecuencia(dto.getFrecuencia());
         newMedicacionHabitualDTO.setObservacion(dto.getObservacion());
-        newMedicacionHabitualDTO.setAntecedentePersonal(dto.getAntecedentePersonal());
+        newMedicacionHabitualDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
         return new ResponseEntity<>(service.update(newMedicacionHabitualDTO),HttpStatus.ACCEPTED);
     }
 

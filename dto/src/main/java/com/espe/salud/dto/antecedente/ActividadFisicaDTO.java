@@ -18,4 +18,6 @@ public class ActividadFisicaDTO implements Serializable {
     private String frecuencia;
     private Integer horas;
     private String observacion;
+
+    private Long idAntecedentePersonal;
 }

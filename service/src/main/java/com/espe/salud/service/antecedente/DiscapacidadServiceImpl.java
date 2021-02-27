@@ -26,7 +26,7 @@ public class DiscapacidadServiceImpl  implements DiscapacidadService{
     @Override
     public DiscapacidadDTO save(DiscapacidadDTO discapacidadDTO) {
         Optional<Discapacidad> optinal=discapacidadRepository.findByCodigo(discapacidadDTO.getId());
-        if (!optinal.isPresent()){
+        if (!optinal.isEmpty()){
             Discapacidad domainObject=toEntity(discapacidadDTO);
             return toDTO(discapacidadRepository.save(domainObject));
         }else{

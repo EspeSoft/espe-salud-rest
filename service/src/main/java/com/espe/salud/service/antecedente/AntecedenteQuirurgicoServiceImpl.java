@@ -27,7 +27,7 @@ public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoSe
     @Override
     public AntecedenteQuirurgicoDTO save(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO) {
         Optional<AntecedenteQuirurgico> optional=domainRepository.findById(antecedenteQuirurgicoDTO.getId());
-        if (!optional.isPresent()){
+        if (!optional.isEmpty()){
             AntecedenteQuirurgico domainObject=toEntity(antecedenteQuirurgicoDTO);
             return toDTO(domainRepository.save(domainObject));
         }else{

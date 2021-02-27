@@ -1,5 +1,7 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.paciente.Paciente;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,11 +26,9 @@ public class AntecedentePersonal {
     @Column(name = "MZSTANTPER_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-
     @Column(name = "MZSTANTPER_ORIENTACION_SEXUAL")
     @NotEmpty
     private String orientacionSexual;
-
 
     @Column(name = "MZSTANTPER_IDENTIDAD_GENERO")
     @NotEmpty
@@ -39,33 +40,61 @@ public class AntecedentePersonal {
     @Column(name = "MZSTANTPER_DESCRIPCION_ALERGIA")
     private String descripcionAlergia;
 
-    @Column(name = "MZSTANTPER_TOMA_MEDICAMENTO")
-    private Boolean tomaMedicacion;
-
-    @Column(name = "MZSTANTPER_REALIZA_ACTIVIDAD_FISICA")
-    private Boolean realizaActividadFisica;
-
     @Column(name = "MZSTANTPER_FRECUENCIA_ALIMENTACION")
     private String frecuenciaAlimentacion;
 
     @Column(name = "MZSTANTPER_PREDOMINIO_ALIMENTARIO")
     private String predominioAlimentario;
 
-    @CreationTimestamp
-    @Column(name = "MZSTANTPER_HORA_SUEÑO")
-    private LocalTime horaSuenio;
-
-    @Column(name = "MZSTANTPER_HORA_DESPERTAR")
-    private LocalTime horaDespertar;
-
-    @Column(name = "MZSTANTPER_TOTAL_HORA_SUEÑO")
-    private LocalTime totalHorasSuenio;
-
     @Column(name = "MZSTANTPER_OBSERVACION_ALIMENTACION")
     private String observacionAlimentacion;
 
-    @Column(name = "MZSTANTPER_OBSERVACION_HABITO_SUEÑO")
+    @NotEmpty
+    @Column(name = "MZSTANTPER_HORA_SUENIO")
+    private String horaSuenio;
+
+    @NotEmpty
+    @Column(name = "MZSTANTPER_HORA_DESPERTAR")
+    private String horaDespertar;
+
+    @Column(name = "MZSTANTPER_OBSERVACION_HABITO_SUENIO")
     private String observacionHabitoSuenio;
+
+    @Column(name = "FK_PAC_ANTPER")
+    private Long idPaciente;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_PAC_ANTPER", updatable = false, insertable = false, nullable = false)
+    private Paciente paciente;
+
+    /*@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false)
+    private ActividadFisica actividadFisica;*/
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<MedicacionHabitual> medicacionHabitual;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<AntecedenteQuirurgico> antecedenteQuirurgico;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Discapacidad> discapacidad;
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ActividadFisica> actividadFisica;
+
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ConsumoNocivo> consumoNocivo;
+
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ExamenSexual> examenesSexuales;
 
     @CreatedBy
     @Column(name = "MZSTANTPER_USUARIO_CREACION")
@@ -81,17 +110,4 @@ public class AntecedentePersonal {
     @LastModifiedDate
     @Column(name = "MZSTANTPER_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
-
-
-
 }

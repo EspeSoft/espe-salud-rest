@@ -71,6 +71,9 @@ public class Evolucion {
     @JoinColumn(name = "FK_CDIS_EVO", insertable = false, updatable = false)
     private Dispensario dispensario;
 
+    @Column(name = "FK_PAC_EVO")
+    private Long idPaciente;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false)
     private Paciente paciente;
@@ -89,6 +92,12 @@ public class Evolucion {
 
     @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Certificado> certificados;
+    
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Diagnostico> diagnostico;
+
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Procedimiento> procedimiento;
 
     @CreatedDate
     @Column(name = "MZSTEVO_FECHA_CREACION")

@@ -19,4 +19,6 @@ public class DiscapacidadDTO implements Serializable {
     private String tipoDiscapacidad;
     private String porcentajeDiscapacidad;
     private String gradoDiscapacidad;
+
+    private Long idAntecedentePersonal;
 }

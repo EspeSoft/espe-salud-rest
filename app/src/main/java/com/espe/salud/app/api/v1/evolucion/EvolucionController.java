@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Tag(name = "Gestiona las evoluciones de un paciente")
+@Tag(description = "Gestiona las evoluciones de un paciente", name = "Evoluciones")
 @RequestMapping(value = {URI_API_V1_EVO})
 public class EvolucionController {
 

@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.examen.ExamenInterno;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -9,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -53,4 +55,7 @@ public class OrganoSistema {
         fechaModificacion = LocalDateTime.now();
     }
 
+    //relaciones
+    @OneToMany(mappedBy = "organoSistema", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ExamenInterno> examenesInternos;
 }

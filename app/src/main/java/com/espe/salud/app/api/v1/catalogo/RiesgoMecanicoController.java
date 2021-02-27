@@ -16,12 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_FIS;
 import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_MEC;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_MEC})
-@Tag(name = "Consulta el cátalogo de riesgos mecánicos")
+@Tag(description = "Consulta el cátalogo de riesgos mecánicos", name = "Riesgos mecánicos")
 public class RiesgoMecanicoController {
     private final GenericCRUDService<RiesgoMecanico, RiesgoMecanicoDTO> riesgoMecanicoService;
 

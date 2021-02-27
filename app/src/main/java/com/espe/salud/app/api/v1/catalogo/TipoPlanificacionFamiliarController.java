@@ -18,7 +18,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_PLA_FAM;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_TIP_PLA_FAM})
-@Tag(name = "Gestiona el catálogo de tipos de planificación familiar")
+@Tag(description = "Gestiona el catálogo de tipos de planificación familiar", name = "Tipos de planificaciones familiares")
 public class TipoPlanificacionFamiliarController {
     private final TipoPlanificacionFamiliarService service;
 

@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_ERG;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_ERG})
-@Tag(name = "Consulta el cátalogo de riesgos ergonómicos")
+@Tag(description = "Consulta el cátalogo de riesgos ergonómicos", name = "Riegos ergonómicos")
 public class RiesgoErgonomicoController {
     private final GenericCRUDService<RiesgoErgonomico, RiesgoErgonomicoDTO> riesgoErgonomicoService;
 

@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -35,9 +36,12 @@ public class MedicacionHabitual {
     @Column(name = "MZSTMEDHAB_OBSERVACION")
     private String observacion;
 
-    @Lob
-    @Column(name = "MZSTMEDHAB_ANTECEDENTE_PERSONAL")
-    private String antecedentePersonal;
+    @Column(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL")
+    private Long idAntecedentePersonal;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
     @Column(name = "MZSTMEDHAB_USUARIO_CREACION")
@@ -49,9 +53,9 @@ public class MedicacionHabitual {
 
     @CreatedDate
     @Column(name = "MZSTMEDHAB_FECHA_CREACION")
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
     @Column(name = "MZSTMEDHAB_FECHA_MODIFICACION")
-    private LocalDate fechaModificacion;
+    private LocalDateTime fechaModificacion;
 }

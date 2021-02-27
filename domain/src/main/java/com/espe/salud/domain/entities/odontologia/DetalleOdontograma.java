@@ -8,22 +8,28 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@MappedSuperclass
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class DetalleOdontograma {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Basic(optional = false)
-    @Column(name = "MZSTCDET_ODO_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTDETODO_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTCDET_ODO_TIPO")
+    @Column(name = "MZSTDETODO_TIPO")
     @Size(max=30, message = "{Size.DetalleOdontograma.tipo}")
     @NotEmpty(message = "{NotEmpty.DetalleOdontograma.tipo}")
     protected String tipo;
 
-    @Column(name = "MZSTCDET_ODO_HISTORIA_ID")
+
+    @Column(name = "FK_HISCLIODO_DETODO")
     private Long historiaId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_HISCLIODO_DETODO", insertable = false, updatable = false, nullable = false)
+    private HistoriaClinicaOdontologica historia;
 
 }

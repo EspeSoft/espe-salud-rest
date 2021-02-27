@@ -27,7 +27,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_ODO_ODO;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_ODO_ODO})
-@Tag(name = "Gestiona los detalles del odontograma como items individuales")
+@Tag(description = "Gestiona los detalles del odontograma como items individuales", name = "Detalles de odontograma")
 
 public class DetalleOdontogramaController {
 
@@ -55,7 +55,7 @@ public class DetalleOdontogramaController {
 
     @Operation(summary = "Retorna todos los detalles del odontograma")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<DetalleOdontogramaDTO>> retrieve(@PathVariable Long idPaciente) {
+    public ResponseEntity<List<DetalleOdontogramaDTO>> retrieve(@RequestParam Long idPaciente) {
 
         List<DetalleOdontogramaDTO> detalles = new ArrayList<>();
 
@@ -72,7 +72,7 @@ public class DetalleOdontogramaController {
 
     @PostMapping("")
     @Operation(summary = "Elimina los detalles anteriores y guarda los nuevos")
-    public ResponseEntity<List<Object>> save(@RequestBody List<Object> detalles, @PathVariable Long idPaciente) {
+    public ResponseEntity<List<Object>> save(@RequestBody List<Object> detalles, @RequestParam Long idPaciente) {
         Optional<HistoriaClinicaOdontologicaDTO> historiaExistente = historiaClinicaOdontologicaService.findByPaciente(idPaciente);
         ObjectMapper objectMapper = new ObjectMapper();
         if (historiaExistente.isPresent()) {
@@ -107,6 +107,7 @@ public class DetalleOdontogramaController {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
             }
+
 
             // Eliminar detalles anteriores
             detalleSimpleService.deleteByHistoriaClinica(historiaID);

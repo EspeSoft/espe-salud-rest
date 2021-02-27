@@ -20,7 +20,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_RIE_PSI;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_RIE_PSI})
-@Tag(name = "Consulta el cátalogo de riesgos psicosociales")
+@Tag(description = "Consulta el cátalogo de riesgos psicosociales", name = "Riegos psicosociales")
 public class RiesgoPsicosocialController {
     private final GenericCRUDService<RiesgoPsicosocial, RiesgoPsicosocialDTO> riesgoPsicosocialService;
 

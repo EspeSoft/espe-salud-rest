@@ -27,19 +27,20 @@ public class ProcedimientoServicelmpl implements ProcedimientoService{
     }
 
     @Override
-    public ProcedimientoDTO save(ProcedimientoDTO procedimiento) {
-        Optional<Procedimiento> optional = findExisting(procedimiento);
-        if (!optional.isPresent()) {
-            Procedimiento domainObject = toEntity(procedimiento);
+    public ProcedimientoDTO save(ProcedimientoDTO procedimientoDTO) {
+        Optional<Procedimiento> optional = procedimientoRepository.findById(procedimientoDTO.getId());
+        //Optional<Procedimiento> optional = findExisting(procedimiento);
+        if (!optional.isEmpty()) {
+            Procedimiento domainObject = toEntity(procedimientoDTO);
             return toDTO(procedimientoRepository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", procedimiento.getId()));
+            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", procedimientoDTO.getId()));
         }
     }
 
     @Override
-    public ProcedimientoDTO update(ProcedimientoDTO procedimiento) {
-        Procedimiento domainObject = toEntity(procedimiento);
+    public ProcedimientoDTO update(ProcedimientoDTO procedimientoDTO) {
+        Procedimiento domainObject = toEntity(procedimientoDTO);
         return toDTO(procedimientoRepository.save(domainObject));
     }
 
@@ -58,14 +59,9 @@ public class ProcedimientoServicelmpl implements ProcedimientoService{
     }
 
     @Override
-    public Optional<ProcedimientoDTO> findByCodigo(Long codigo) {
+    public Optional<ProcedimientoDTO> findById(Long codigo) {
         return procedimientoRepository.findByCodigo(codigo).map(procedimiento -> mapper.toProcedimientoDTO(procedimiento));
 }
-
-    //@Override
-    /*public Optional<ProcedimientoDTO> findById(Long codigo) {
-        return Optional.empty();
-    }*/
 
     @Override
     public ProcedimientoDTO toDTO(Procedimiento procedimiento) {

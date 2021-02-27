@@ -21,7 +21,7 @@ import java.util.List;
 import static com.espe.salud.app.common.Constants.URI_API_V1_USU;
 
 @RestController
-@Tag(name = "Gestiona los usuarios del sistema")
+@Tag(description = "Gestiona los usuarios del sistema", name = "Usuarios")
 @RequestMapping(value = {URI_API_V1_USU})
 public class UsuarioController {
     private final UsuarioService usuarioService;

@@ -16,7 +16,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_DIA;
 
 @RestController
-@Tag(name = "Gestiona los diagnostico de evaluacion")
+@Tag(description = "Gestiona los diagnostico de antecedentes", name = "Diagnósticos")
 @RequestMapping(value = URI_API_V1_DIA)
 public class DiagnosticoController {
     private final DiagnosticoService  diagnosticoService;
@@ -35,13 +35,13 @@ public class DiagnosticoController {
     @Operation(summary = "Retorna un diagnostico por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<DiagnosticoDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( diagnosticoService.findByCodigo(codigo), HttpStatus.OK);
+        return new ResponseEntity( diagnosticoService.findById(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un diagnostico por su código")
     @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<DiagnosticoDTO> update(@RequestBody DiagnosticoDTO diagnosticoDTO, @RequestParam Long codigo) {
-        Optional<DiagnosticoDTO> newDiagnosticoDTOoptional = diagnosticoService.findByCodigo(codigo);
+        Optional<DiagnosticoDTO> newDiagnosticoDTOoptional = diagnosticoService.findById(codigo);
         DiagnosticoDTO newDiagnosticoDTO = newDiagnosticoDTOoptional.get();
         newDiagnosticoDTO.setCodigoCIE(diagnosticoDTO.getCodigoCIE());
         newDiagnosticoDTO.setPrevencion(diagnosticoDTO.getPrevencion());
