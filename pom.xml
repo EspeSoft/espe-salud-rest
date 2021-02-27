@@ -35,7 +35,8 @@
 		<module>mapper</module>
 		<module>app</module>
 		<module>banner</module>
-	</modules>
+        <module>report</module>
+    </modules>
 
 	<dependencies>
 		<dependency>
