@@ -103,4 +103,7 @@ public class Constants {
     public static final String URI_API_V1_ANT_LAB = URI_API_V1 + "antecedentes-laborales";
     public static final String URI_API_V1_EXAMEN_EXTERNO = URI_API_V1 + "examenes-externos";
     public static final String URI_API_V1_EXAMEN_INTERNO = URI_API_V1 + "examenes-internos";
+    public static final String URI_API_V1_ORIENTACIONES_SEXUALES = URI_API_V1 + "orientaciones-sexuales";
+    public static final String URI_API_V1_IDENTIDADES_GENERO = URI_API_V1 + "identidades-genero";
+    public static final String URI_API_V1_FRECUENCIAS_ALIMENTACION = URI_API_V1 + "frecuencias-alimentacion";
 }

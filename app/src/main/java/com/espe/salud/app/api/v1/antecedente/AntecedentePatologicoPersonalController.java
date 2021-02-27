@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -50,24 +51,18 @@ public class AntecedentePatologicoPersonalController {
     @Operation(summary = "Edita un antecedente patologico personal por su ID")
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<AntecedentePatologicoPersonalDTO> update(
-            @RequestBody AntecedentePatologicoPersonalDTO dto, @PathVariable("id") Long id) {
+            @Valid @RequestBody AntecedentePatologicoPersonalDTO dto, @PathVariable("id") Long id) {
         Optional<AntecedentePatologicoPersonalDTO> optional = service.findById(id);
         if (optional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            AntecedentePatologicoPersonalDTO nuevo = optional.get();
-            nuevo.setFrecuenciaMedicacion(dto.getFrecuenciaMedicacion());
-            nuevo.setIdDiagnostico(dto.getIdDiagnostico());
-            nuevo.setObservaciones(dto.getObservaciones());
-            nuevo.setFechaDiagnostico(dto.getFechaDiagnostico());
-            nuevo.setIdTipoEnfermedadPersonal(dto.getIdTipoEnfermedadPersonal());
-            return new ResponseEntity<>(service.update(nuevo), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.update(dto), HttpStatus.ACCEPTED);
         }
     }
 
     @Operation(summary = "Guardar un nuevo antecedente patologico personal")
     @PostMapping("/")
-    public ResponseEntity<AntecedentePatologicoPersonalDTO> save(@RequestBody AntecedentePatologicoPersonalDTO dto) {
+    public ResponseEntity<AntecedentePatologicoPersonalDTO> save(@Valid @RequestBody AntecedentePatologicoPersonalDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 

@@ -6,14 +6,14 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "MZSTCTIPESTCOM", schema = "SALUD")
-public class TipoEstudioComplementario {
+@Table(name = "MZSTCIDEGEN", schema = "SALUD")
+public class IdentidadGenero {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "MZSTCTIPESTCOM_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTCIDEGEN_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
-    @Column(name = "MZSTCTIPESTCOM_NOMBRE")
+    @Column(name = "MZSTCIDEGEN_NOMBRE")
     private String nombre;
 }
