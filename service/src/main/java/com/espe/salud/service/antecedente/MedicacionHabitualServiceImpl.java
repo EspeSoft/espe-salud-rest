@@ -42,7 +42,7 @@ public class MedicacionHabitualServiceImpl implements MedicacionHabitualService 
 
     @Override
     public Optional<MedicacionHabitalDTO> findById(Long codigo) {
-        return medicacionHabitualRepository.findById(codigo).map(medicacionHabitual -> toDTO(medicacionHabitual));
+        return medicacionHabitualRepository.findById(codigo).map(this::toDTO);
     }
 
     @Override

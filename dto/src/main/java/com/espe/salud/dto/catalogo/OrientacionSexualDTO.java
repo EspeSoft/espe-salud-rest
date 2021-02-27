@@ -8,11 +8,10 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class DetalleExamenLaboratorioDTO implements Serializable {
+public class OrientacionSexualDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
-    private String unidad;
 }

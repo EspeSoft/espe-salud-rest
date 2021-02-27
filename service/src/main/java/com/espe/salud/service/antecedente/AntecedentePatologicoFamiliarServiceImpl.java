@@ -25,13 +25,8 @@ public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePato
 
     @Override
     public AntecedentePatologicoFamiliarDTO save(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO) {
-        Optional<AntecedentePatologicoFamiliar> optional=domainRepository.findById(antecedentePatologicoFamiliaDTO.getId());
-        if (!optional.isEmpty()){
-            AntecedentePatologicoFamiliar domainObject=toEntity(antecedentePatologicoFamiliaDTO);
-            return toDTO(domainRepository.save(domainObject));
-        }else{
-            throw new ConflictException(String.format("Ya existe un antecedente patologico familiar para el codigo [%s]",antecedentePatologicoFamiliaDTO.getId()));
-        }
+        AntecedentePatologicoFamiliar domainObject=toEntity(antecedentePatologicoFamiliaDTO);
+        return toDTO(domainRepository.save(domainObject));
     }
 
     @Override
