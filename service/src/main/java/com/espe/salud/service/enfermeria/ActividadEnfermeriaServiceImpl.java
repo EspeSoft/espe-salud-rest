@@ -3,9 +3,9 @@ package com.espe.salud.service.enfermeria;
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.enfermeria.ActividadEnfermeria;
 import com.espe.salud.dto.enfermeria.ActividadEnfermeriaDTO;
-import com.espe.salud.dto.examen.ExamenInternoDTO;
 import com.espe.salud.mapper.enfermeria.ActividadEnfermeriaMapper;
 import com.espe.salud.persistence.enfermeria.ActividadEnfermeriaRepository;
+import com.espe.salud.service.catalogo.DescripcionActividadEnfermeriaService;
 import com.espe.salud.service.catalogo.TipoActividadEnfermeriaService;
 import com.espe.salud.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +40,6 @@ public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaServic
             enfermeria.setUsuario(service.findById(enfermeria.getIdUsuario()).get());
             enfermeria.setTipoActividadEnfermeria(serviceTip.findById(enfermeria.getIdTipoActividadEnfermeria()).get());
             return enfermeria;
-
         } else {
             throw new ConflictException(String.format("Ya existe una actividad de enfermería registrada para ese código[%s]", actividadEnfermeria.getId()));
         }

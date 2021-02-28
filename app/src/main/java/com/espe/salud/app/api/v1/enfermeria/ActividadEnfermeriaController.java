@@ -78,12 +78,10 @@ public class ActividadEnfermeriaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             ActividadEnfermeriaDTO nuevo = optional.get();
-            nuevo.setDescripcion(dto.getDescripcion());
             nuevo.setIdTipoActividadEnfermeria(dto.getIdTipoActividadEnfermeria());
+            nuevo.setDescripcion(dto.getDescripcion());
             return new ResponseEntity<>( actividadEnfermeriaService.update(nuevo), HttpStatus.OK);
         }
     }
-
-
 
 }

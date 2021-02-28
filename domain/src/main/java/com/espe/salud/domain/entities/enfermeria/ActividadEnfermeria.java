@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.enfermeria;
 
 
+import com.espe.salud.domain.entities.catalogo.DescripcionActividadEnfermeria;
 import com.espe.salud.domain.entities.catalogo.TipoActividadEnfermeria;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;

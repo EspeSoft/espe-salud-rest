@@ -1,6 +1,7 @@
 package com.espe.salud.mapper.enfermeria;
 
 import com.espe.salud.domain.entities.enfermeria.ActividadEnfermeria;
+import com.espe.salud.dto.catalogo.DescripcionActividadEnfermeriaDTO;
 import com.espe.salud.dto.enfermeria.ActividadEnfermeriaDTO;
 import com.espe.salud.mapper.catalogo.TipoActividadEnfermeriaMapper;
 import org.mapstruct.InheritInverseConfiguration;
