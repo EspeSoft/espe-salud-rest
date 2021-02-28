@@ -15,5 +15,5 @@ public class TipoActividadEnfermeriaDTO implements Serializable {
 //    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
-    private List<DescripcionActividadEnfermeriaDTO> descripcionActividadEnfermerias;
+    private List<DescripcionActividadEnfermeriaDTO> descripciones;
 }

@@ -31,6 +31,9 @@ public class ActividadEnfermeria {
     @Column(name = "FK_TIPACTENF_ACTENF")
     private Long idTipoActividadEnfermeria;
 
+    @Column(name = "MZSTACTENF_DESCRIPCION")
+    private String descripcion;
+
     @Column(name = "FK_USU_ACTENF")
     private Long idUsuario;
 

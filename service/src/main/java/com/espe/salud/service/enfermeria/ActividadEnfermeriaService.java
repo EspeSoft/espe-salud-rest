@@ -13,4 +13,6 @@ public interface ActividadEnfermeriaService {
     ActividadEnfermeriaDTO toDTO(ActividadEnfermeria notaEnfermeria);
     ActividadEnfermeria toEntity(ActividadEnfermeriaDTO dto);
     boolean delete(Long actividadEnfemeriaId);
+    ActividadEnfermeriaDTO update(ActividadEnfermeriaDTO dto);
+
 }

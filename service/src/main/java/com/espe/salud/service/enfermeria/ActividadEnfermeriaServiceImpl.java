@@ -2,11 +2,11 @@ package com.espe.salud.service.enfermeria;
 
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.enfermeria.ActividadEnfermeria;
-import com.espe.salud.domain.entities.usuario.Usuario;
 import com.espe.salud.dto.enfermeria.ActividadEnfermeriaDTO;
-import com.espe.salud.dto.usuario.UsuarioDTO;
+import com.espe.salud.dto.examen.ExamenInternoDTO;
 import com.espe.salud.mapper.enfermeria.ActividadEnfermeriaMapper;
 import com.espe.salud.persistence.enfermeria.ActividadEnfermeriaRepository;
+import com.espe.salud.service.catalogo.TipoActividadEnfermeriaService;
 import com.espe.salud.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,12 +21,14 @@ public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaServic
     private final ActividadEnfermeriaRepository repository;
     private final ActividadEnfermeriaMapper mapper;
     private final UsuarioService service;
+    private final TipoActividadEnfermeriaService serviceTip;
 
     @Autowired
-    public ActividadEnfermeriaServiceImpl(ActividadEnfermeriaRepository repository, ActividadEnfermeriaMapper mapper, UsuarioService service) {
+    public ActividadEnfermeriaServiceImpl(ActividadEnfermeriaRepository repository, ActividadEnfermeriaMapper mapper, UsuarioService service, TipoActividadEnfermeriaService serviceTip) {
         this.repository = repository;
         this.mapper = mapper;
         this.service = service;
+        this.serviceTip = serviceTip;
     }
 
     @Override
@@ -35,7 +37,8 @@ public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaServic
         if (optional.isEmpty()) {
             ActividadEnfermeria domain = toEntity(actividadEnfermeria);
             ActividadEnfermeriaDTO enfermeria = mapper.toActividadEnfermeriaDTO(repository.save(domain));
-            enfermeria.setUsuarioDTO(service.findById(enfermeria.getIdUsuario()).get());
+            enfermeria.setUsuario(service.findById(enfermeria.getIdUsuario()).get());
+            enfermeria.setTipoActividadEnfermeria(serviceTip.findById(enfermeria.getIdTipoActividadEnfermeria()).get());
             return enfermeria;
 
         } else {
@@ -70,5 +73,15 @@ public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaServic
             repository.deleteById(actividadEnfemeriaId);
             return true;
         }).orElse(false);
+    }
+
+    @Override
+    @Transactional
+    public ActividadEnfermeriaDTO update(ActividadEnfermeriaDTO dto) {
+        ActividadEnfermeria domain = toEntity(dto);
+        ActividadEnfermeriaDTO enfermeria = mapper.toActividadEnfermeriaDTO(repository.save(domain));
+        enfermeria.setUsuario(service.findById(enfermeria.getIdUsuario()).get());
+        enfermeria.setTipoActividadEnfermeria(serviceTip.findById(enfermeria.getIdTipoActividadEnfermeria()).get());
+        return enfermeria;
     }
 }

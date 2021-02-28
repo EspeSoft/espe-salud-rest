@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_ACT_ENF;
 
@@ -58,8 +59,29 @@ public class ActividadEnfermeriaController {
 
     @Operation(summary = "Elimina una Actividad de Enfermería por su id")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        actividadEnfermeriaService.delete(id);
+    public ResponseEntity<Boolean> delete(
+            @Parameter(required = true, description = "El ID del examen interno", example = "1")
+            @PathVariable Long id) {
+        return new ResponseEntity<>(actividadEnfermeriaService.delete(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualiza un examen interno")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<ActividadEnfermeriaDTO> update(
+            @Valid @RequestBody ActividadEnfermeriaDTO dto,
+            @Parameter(description = "El ID de la actividad de enfermería ", required = true, example = "1")
+            @PathVariable("id") Long id) {
+        Optional<ActividadEnfermeriaDTO> optional = actividadEnfermeriaService.findById(id);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            ActividadEnfermeriaDTO nuevo = optional.get();
+            nuevo.setDescripcion(dto.getDescripcion());
+            nuevo.setIdTipoActividadEnfermeria(dto.getIdTipoActividadEnfermeria());
+            return new ResponseEntity<>( actividadEnfermeriaService.update(nuevo), HttpStatus.OK);
+        }
     }
 
 

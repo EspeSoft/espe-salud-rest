@@ -22,7 +22,7 @@ public class TipoActividadEnfermeria {
     private String nombre;
 
     @OneToMany(mappedBy = "tipoActividadEnfermeria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<DescripcionActividadEnfermeria> descripcionActividadEnfermerias;
+    private List<DescripcionActividadEnfermeria> descripciones;
 
     @OneToMany(mappedBy = "tipoActividadEnfermeria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ActividadEnfermeria> actividadesEnfermerias;
