@@ -3,6 +3,7 @@ package com.espe.salud.domain.entities.enfermeria;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.domain.entities.paciente.Paciente;
+import com.espe.salud.domain.entities.paciente.Persona;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import com.espe.salud.domain.enums.EstadoNotaEnfermeria;
@@ -45,11 +46,22 @@ public class NotaEnfermeria {
     @Column(name = "MZSTNOTENF_POST_CONSULTA", columnDefinition = "TEXT")
     private String postConsulta;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "MZSTPAC_SIGVIT",
+            joinColumns = {
+                    @JoinColumn(name = "FK_NOTENF", referencedColumnName = "MZSTNOTENF_CODIGO")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "FK_SIGVIT", referencedColumnName = "MZSTSIGVIT_CODIGO")})
     private SignoVital signoVital;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "MZSTPAC_ANT",
+            joinColumns = {
+                    @JoinColumn(name = "FK_NOTENF", referencedColumnName = "MZSTNOTENF_CODIGO")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "FK_ANT", referencedColumnName = "MZSTANT_CODIGO")})
     private Antropometria antropometria;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_NOTENF", insertable = false, updatable = false)

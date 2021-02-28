@@ -1,6 +1,5 @@
 package com.espe.salud.dto.enfermeria;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
