@@ -8,8 +8,9 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class UnidadDepartamentoDTO implements Serializable {
+public class FrecuenciaAlimentacionDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;

@@ -11,7 +11,7 @@ public class Constants {
     public static final String URI_API_V1_AREA = URI_API_V1 + "areas";
     public static final String URI_API_V1_ASO = URI_API_V1 + "asociaciones";
     public static final String URI_API_V1_COD_CIUO = URI_API_V1 + "codigos-ciuo";
-    public static final String URI_API_V1_DETEXALAB = URI_API_V1 + "detalles-laboratorio"; // TODO Revisar el nombre del endpoint
+    public static final String URI_API_V1_TIPDETEXALAB = URI_API_V1 + "tipos-detalles-laboratorio"; // TODO Revisar el nombre del endpoint
     public static final String URI_API_V1_DISP = URI_API_V1 + "dispensarios";
     public static final String URI_API_V1_ENFERMEDAD_CIE10 = URI_API_V1 + "tipos-enfermedad-cie10";
 
@@ -68,6 +68,7 @@ public class Constants {
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
 
+    public static final String URI_API_V1_CER = URI_API_V1+"certificados";
     public static final String URI_API_V1_SEGSAL = URI_API_V1 + "seguros-salud";
     public static final String URI_API_V1_TIPCER = URI_API_V1 + "tipos-certificado";
     public static final String URI_API_V1_UNIDEP = URI_API_V1 + "unidad-departamento";
@@ -79,12 +80,12 @@ public class Constants {
     public static final String URI_API_V1_TIPO_PROC = URI_API_V1 + "tipos procedimiento";
     public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos-enfermedad-cie10";
 
-    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-perosnales";
+    public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-personales";
     public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicacion-habitual";
 
-    public static final String URI_API_V1_EXALAB = URI_API_V1 + "examenes-laboratorio";
+    public static final String URI_API_V1_TIPEXALAB = URI_API_V1 + "tipos-examenes-laboratorio";
 
-    public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipo-enfermedad-personal";
+    public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipos-enfermedad-personal";
 
     public static final String URI_API_V1_ANTGIN = URI_API_V1 + "antecedentes-ginecologicos";
     public static final String URI_API_V1_EXASEX = URI_API_V1 + "examen-sexual";
@@ -103,4 +104,7 @@ public class Constants {
     public static final String URI_API_V1_ANT_LAB = URI_API_V1 + "antecedentes-laborales";
     public static final String URI_API_V1_EXAMEN_EXTERNO = URI_API_V1 + "examenes-externos";
     public static final String URI_API_V1_EXAMEN_INTERNO = URI_API_V1 + "examenes-internos";
+    public static final String URI_API_V1_ORIENTACIONES_SEXUALES = URI_API_V1 + "orientaciones-sexuales";
+    public static final String URI_API_V1_IDENTIDADES_GENERO = URI_API_V1 + "identidades-genero";
+    public static final String URI_API_V1_FRECUENCIAS_ALIMENTACION = URI_API_V1 + "frecuencias-alimentacion";
 }
