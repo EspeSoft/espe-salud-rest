@@ -19,7 +19,7 @@ import java.util.List;
 import static com.espe.salud.app.common.Constants.URI_API_V1_TIP_ACT_ENF;
 
 @RestController
-@Tag(description = "Gestiona el cátalodo de los tipos de actividades de enfermería", name = "Tipo Actividad Enfermeria")
+@Tag(description = "Gestiona el cátalodo de los tipos de actividades de enfermería", name = "Tipos de Actividades Enfermería")
 @RequestMapping(value = {URI_API_V1_TIP_ACT_ENF})
 public class TipoActividadEnfermeriaController {
 

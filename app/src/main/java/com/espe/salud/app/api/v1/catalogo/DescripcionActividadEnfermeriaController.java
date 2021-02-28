@@ -23,7 +23,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_DES_ACT_ENF;
 
 @RestController
 @RequestMapping(value = {URI_API_V1_DES_ACT_ENF})
-@Tag(description = "Gestiona el catálogo de descripciones de actividades de enfermería", name = "Descripcion Actividades Endfermeria")
+@Tag(description = "Gestiona el catálogo de descripciones de actividades de enfermería", name = "Descripciones de Actividades Enfermería")
 public class DescripcionActividadEnfermeriaController {
 
     private final DescripcionActividadEnfermeriaService service;

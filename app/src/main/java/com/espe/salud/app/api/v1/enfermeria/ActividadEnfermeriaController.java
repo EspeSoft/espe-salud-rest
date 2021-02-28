@@ -19,7 +19,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ACT_ENF;
 
 @RestController
-    @Tag(description = "Gestiona las actividades de enfermería de un paciente", name = "Actividades Enfermería")
+    @Tag(description = "Gestiona las actividades de enfermería de un paciente", name = "Actividades de Enfermería")
 @RequestMapping(value = {URI_API_V1_ACT_ENF})
 public class ActividadEnfermeriaController {
     private final ActividadEnfermeriaService actividadEnfermeriaService;
@@ -66,7 +66,7 @@ public class ActividadEnfermeriaController {
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Actualiza un examen interno")
+    @Operation(summary = "Actualiza una actividad de enfermería ")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<ActividadEnfermeriaDTO> update(
