@@ -1,5 +1,6 @@
 package com.espe.salud.service.evolucion;
 
+import com.espe.salud.common.exception.EspeSaludException;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 
@@ -11,4 +12,6 @@ public interface EvolucionService {
 
    EvolucionDTO toDTO(Evolucion evolucion);
    Evolucion toEntity(EvolucionDTO dto);
+
+   byte[] getCertificadoMedico(String idEvolucion);
 }

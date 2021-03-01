@@ -42,6 +42,11 @@
             <artifactId>common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.espe.salud</groupId>
+            <artifactId>report</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
         <!-- Modules -->
     </dependencies>
 </project>

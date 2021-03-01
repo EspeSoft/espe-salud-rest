@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {ContactoMapper.class, ContactoEmergenciaMapper.class})
+@Mapper(componentModel = "spring", uses = {ContactoMapper.class, ContactoEmergenciaMapper.class, EmpleadoMapper.class, EstudianteMapper.class})
 public interface PacienteMapper {
 
     @Mapping(source = "codigo", target = "id")
@@ -59,7 +59,7 @@ public interface PacienteMapper {
     @Mapping(source = "banner.nombres", target = "segundoNombre", qualifiedByName = "generateSecondPart")
     @Mapping(source = "banner.apellidos", target = "apellidoPaterno", qualifiedByName = "generateFirstPart")
     @Mapping(source = "banner.apellidos", target = "apellidoMaterno", qualifiedByName = "generateSecondPart")
-    @Mapping(source = "paciente.numeroArchivo", target = "cedula")
+    @Mapping(source = "banner.cedula", target = "cedula")
     @Mapping(source = "banner.fechaNacimiento", target = "fechaNacimiento", dateFormat = "yyyy-MM-dd")
     @Mapping(source = "banner.sexo", target = "sexo")
     @Mapping(source = "banner.estadoCivil", target = "estadoCivil")
@@ -71,16 +71,31 @@ public interface PacienteMapper {
     @Mapping(source = "banner.provinciaNacimiento", target = "provinciaNacimiento")
     @Mapping(source = "banner.cantonNacimiento", target = "cantonNacimiento")
     @Mapping(source = "banner.nacionalidad", target = "nacionalidad")
-    @Mapping(source = "banner.direccionCallePrincipal", target = "contacto.callePrincipal")
-    @Mapping(source = "banner.direccionCalleSecundaria", target = "contacto.calleSecundaria")
+    @Mapping(source = "banner.callePrincipal", target = "contacto.callePrincipal")
+    @Mapping(source = "banner.calleSecundaria", target = "contacto.calleSecundaria")
     @Mapping(source = "banner.referencia", target = "contacto.direccionReferencia")
     @Mapping(source = "banner.celular", target = "contacto.numeroCelular")
     @Mapping(source = "banner.telefono", target = "contacto.numeroConvencional")
+    @Mapping(source = "banner.extension", target = "contacto.extension")
     @Mapping(source = "banner.correoPersonal", target = "contacto.correoPersonal")
     @Mapping(source = "banner.correoInstitucional", target = "contacto.correoInstitucional")
     @Mapping(source = "banner.parroquiaResidencia", target = "contacto.parroquiaResidencia")
     @Mapping(source = "banner.cantonResidencia", target = "contacto.cantonResidencia")
     @Mapping(source = "banner.provinciaResidencia", target = "contacto.provinciaResidencia")
+    @Mapping(source = "banner.tipoParroquia", target = "contacto.zonaGeografica")
+    @Mapping(source = "banner.status", target = "status")
+    @Mapping(source = "banner.fechaIngresoESPE", target = "estudiante.fechaIngresoEspe", dateFormat = "yyyy-MM-dd")
+    @Mapping(source = "banner.programa", target = "estudiante.carrera")
+    @Mapping(source = "banner.nivel", target = "estudiante.nivel")
+    @Mapping(source = "banner.campus", target = "empleado.campus")
+    @Mapping(source = "banner.fechaIngresoESPE", target = "empleado.fechaIngresoLaboral", dateFormat = "yyyy-MM-dd")
+    @Mapping(source = "banner.seccion", target = "empleado.seccion")
+    @Mapping(source = "banner.departamento", target = "empleado.departamento")
+    @Mapping(source = "banner.cantonCampus", target = "empleado.cantonTrabajo")
+    @Mapping(source = "banner.provinciaCampus", target = "empleado.provinciaTrabajo")
+    @Mapping(source = "banner.direccionCampus", target = "empleado.direccionLaboral")
+    @Mapping(source = "banner.puesto", target = "empleado.cargoTrabajoActual")
+    @Mapping(source = "banner.tipoEmpleado", target = "empleado.areaTrabajo")
     @Mapping(source = "banner", target = "contactosEmergencia", qualifiedByName = "generatUniqueContactoEmergencia")
     PacienteDTO fromPacienteAndPersonaBannerToPacienteDTO(Paciente paciente, PersonaBanner banner);
 
@@ -104,11 +119,10 @@ public interface PacienteMapper {
 
     @Named("generatUniqueContactoEmergencia")
     static List<ContactoEmergenciaDTO> generateContactosEmergencia(PersonaBanner personaBanner) {
-        if (personaBanner.getContactoEmergenciaNombre() != null || personaBanner.getContactoEmergenciaApellido() != null) {
+        if (personaBanner.getContactoEmergenciaNombre() != null) {
             List<ContactoEmergenciaDTO> contactos = new ArrayList<>();
             ContactoEmergenciaDTO contacto = new ContactoEmergenciaDTO();
             contacto.setNombreContacto(personaBanner.getContactoEmergenciaNombre());
-            contacto.setApellidoContacto(personaBanner.getContactoEmergenciaApellido());
             contacto.setDireccion(personaBanner.getContactoEmergenciaDireccion());
             contacto.setTelefonoConvencional(personaBanner.getContactoEmergenciaTelefono());
             contacto.setTelefonoCelular(personaBanner.getContactoEmergenciaCelular());

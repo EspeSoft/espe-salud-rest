@@ -6,12 +6,13 @@ import com.espe.salud.dto.evolucion.EvolucionDTO;
 import com.espe.salud.service.evolucion.EvolucionService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.io.ByteArrayInputStream;
 
 @RestController
 @Tag(description = "Gestiona las evoluciones de un paciente", name = "Evoluciones")
@@ -29,5 +30,19 @@ public class EvolucionController {
     @PostMapping("/")
     public ResponseEntity<EvolucionDTO> save(@RequestBody EvolucionDTO evolucion) {
         return new ResponseEntity<>(evolucionService.save(evolucion), HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/reporte/certificado-medico/pdf")
+    public ResponseEntity<Object> generateCertificadoMedicoGeneral(
+            @RequestParam String idEvolucion) {
+        byte[] pdfContent = evolucionService.getCertificadoMedico(idEvolucion);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("content-disposition", "inline; filename=" + idEvolucion + ".pdf");
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        return ResponseEntity.ok().headers(headers).contentLength(pdfContent.length)
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new InputStreamResource(new ByteArrayInputStream(pdfContent)));
     }
 }

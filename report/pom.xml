@@ -26,5 +26,18 @@
             <artifactId>jasperreports-fonts</artifactId>
             <version>6.16.0</version>
         </dependency>
+
+        <!-- Modules -->
+        <dependency>
+            <groupId>com.espe.salud</groupId>
+            <artifactId>persistence</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.espe.salud</groupId>
+            <artifactId>common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <!-- Modules -->
     </dependencies>
 </project>

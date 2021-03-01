@@ -37,9 +37,6 @@ public class Paciente {
     @Column(name = "MZSTPAC_NOMBRE_COMPLETO")
     private String nombreCompleto;
 
-    @Column(name = "MZSTPAC_ACTIVO")
-    private Boolean activo;
-
     @Column(name = "MZSTPAC_ES_EMPLEADO")
     private Boolean esEmpleado;
 
@@ -102,15 +99,6 @@ public class Paciente {
     @LastModifiedBy
     @Column(name = "MZSTPAC_USUARIO_MODIFICACION")
     private String usuarioModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        this.activo = true;
-    }
-
-    public void disablePatient(){
-        this.activo = false;
-    }
 
     public void setPacienteAsExterno() {
         this.tipoPaciente = TipoPaciente.EXTERNO;

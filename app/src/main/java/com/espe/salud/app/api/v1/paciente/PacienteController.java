@@ -65,15 +65,6 @@ public class PacienteController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
-    @PutMapping("/{id}/disable")
-    @Operation(summary = "Cambia el estado de un paciente a INACTIVO")
-    public void darBajaPaciente(
-            @Parameter(description = "El ID del paciente", required = true, example = "1")
-            @PathVariable Long id) {
-        pacienteService.darBajaPaciente(id);
-    }
-
     @Operation(summary = "Retorna la lista de pacientes que inicien con el número de archivo")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping(value = "/search/numero-archivo", produces = {MediaType.APPLICATION_JSON_VALUE})

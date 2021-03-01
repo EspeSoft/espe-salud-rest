@@ -19,7 +19,6 @@ public class PacienteDTO implements Serializable {
     private Long id;
     private String numeroArchivo;
     private String nombreCompleto;
-    private Boolean activo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
     private Boolean aceptaTransfucion;
@@ -51,6 +50,9 @@ public class PacienteDTO implements Serializable {
     private String cantonNacimiento;
     private String nacionalidad;
     private String nacionalidad2;
+    private String status;
     private ContactoDTO contacto;
     private List<ContactoEmergenciaDTO> contactosEmergencia;
+    private EstudianteDTO estudiante;
+    private EmpleadoDTO empleado;
 }

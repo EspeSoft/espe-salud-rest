@@ -13,7 +13,6 @@ public interface PacienteService {
     PacienteDTO saveBanner(PacienteBannerDTO pacienteBannerDTO);
     PacienteDTO updatePacienteExterno(PacienteExternoDTO paciente);
     Optional<PacienteDTO> findById(Long codigo);
-    void darBajaPaciente(Long codigo);
     Optional<PacienteDTO> findExistingByNumeroArchivo(String numeroArchivo);
     boolean existsByNumeroArchivo(String numeroArchivo);
     List<PacienteDTO> findByNumeroArchivo(String numeroArchivo);

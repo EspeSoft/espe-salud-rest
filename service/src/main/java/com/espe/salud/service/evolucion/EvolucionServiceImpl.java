@@ -1,15 +1,16 @@
 package com.espe.salud.service.evolucion;
 
 import com.espe.salud.common.exception.ConflictException;
+import com.espe.salud.common.exception.EspeSaludException;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 import com.espe.salud.mapper.evolucion.EvolucionMapper;
 import com.espe.salud.persistence.evolucion.EvolucionRepository;
+import com.espe.salud.report.evolucion.EvolucionReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,12 +18,15 @@ public class EvolucionServiceImpl implements EvolucionService {
 
     private final EvolucionRepository evolucionRepository;
     private final EvolucionMapper mapper;
+    private final EvolucionReportService reportService;
 
     @Autowired
     public EvolucionServiceImpl(EvolucionRepository evolucionRepository,
-                                EvolucionMapper mapper) {
+                                EvolucionMapper mapper,
+                                EvolucionReportService reportService) {
         this.evolucionRepository = evolucionRepository;
         this.mapper = mapper;
+        this.reportService = reportService;
     }
 
     @Override
@@ -51,5 +55,12 @@ public class EvolucionServiceImpl implements EvolucionService {
     @Override
     public Evolucion toEntity(EvolucionDTO dto) {
         return mapper.toEvolucion(dto);
+    }
+
+    @Override
+    public byte[] getCertificadoMedico(String idEvolucion) {
+//        Optional<Evolucion> evolucion = evolucionRepository.find
+        Evolucion evolucion = new Evolucion();
+        return this.reportService.generateCertificadoMedicoGeneral(evolucion);
     }
 }
