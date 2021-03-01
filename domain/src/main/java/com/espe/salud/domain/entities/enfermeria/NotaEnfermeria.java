@@ -3,7 +3,6 @@ package com.espe.salud.domain.entities.enfermeria;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.domain.entities.paciente.Paciente;
-import com.espe.salud.domain.entities.paciente.Persona;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import com.espe.salud.domain.enums.EstadoNotaEnfermeria;
@@ -63,9 +62,18 @@ public class NotaEnfermeria {
     private Antropometria antropometria;
 
 
+    @Column(name = "FK_PAC_NOTENF")
+    private Long idPaciente;
+
+    @Column(name = "FK_CDIS_NOTENF")
+    private Long idDispensario;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_NOTENF", insertable = false, updatable = false)
     private Paciente paciente;
+
+    @Column(name = "FK_CARESAL_NOTENF")
+    private Long idAreaSalud;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CARESAL_NOTENF", insertable = false, updatable = false)
@@ -74,6 +82,9 @@ public class NotaEnfermeria {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CDIS_NOTENF", insertable = false, updatable = false)
     private Dispensario dispensario;
+
+    @Column(name = "FK_USU_NOTENF")
+    private Long idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_USU_NOTENF", insertable = false, updatable = false)

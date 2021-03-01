@@ -107,4 +107,5 @@ public class Constants {
     public static final String URI_API_V1_ORIENTACIONES_SEXUALES = URI_API_V1 + "orientaciones-sexuales";
     public static final String URI_API_V1_IDENTIDADES_GENERO = URI_API_V1 + "identidades-genero";
     public static final String URI_API_V1_FRECUENCIAS_ALIMENTACION = URI_API_V1 + "frecuencias-alimentacion";
+    public static final String URI_API_V1_AREAS_SALUD = URI_API_V1 + "areas-salud";
 }

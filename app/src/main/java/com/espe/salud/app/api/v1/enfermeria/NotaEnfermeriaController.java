@@ -32,16 +32,16 @@ public class NotaEnfermeriaController {
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping(value = "/paciente", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NotaEnfermeriaDTO>> getByPaciente(
-            @Parameter(required = true, description = "El ID del paciente", example = "1") @RequestParam Long paciente) {
-        return new ResponseEntity<>( notaEnfermeriaService.findByPaciente(paciente), HttpStatus.OK);
+            @Parameter(required = true, description = "El ID del paciente", example = "1") @RequestParam Long idPaciente) {
+        return new ResponseEntity<>( notaEnfermeriaService.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna las notas de enfermeria de un usuario")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping(value = "/usuario", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NotaEnfermeriaDTO>> getByUsuario(
-            @Parameter(required = true, description = "El ID del usuario", example = "1") @RequestParam Long usuario) {
-        return new ResponseEntity<>( notaEnfermeriaService.findByUsuario(usuario), HttpStatus.OK);
+            @Parameter(required = true, description = "El ID del usuario", example = "1") @RequestParam Long idUsuario) {
+        return new ResponseEntity<>( notaEnfermeriaService.findByUsuario(idUsuario), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
