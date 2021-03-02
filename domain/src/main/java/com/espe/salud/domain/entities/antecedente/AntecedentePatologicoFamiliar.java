@@ -35,11 +35,11 @@ public class AntecedentePatologicoFamiliar {
     @Column(name = "MZSTPATFAM_OBSERVACION")
     private String observacion;
 
-    @Column(name = "FK_ANTPER_ANTPATPER")
+    @Column(name = "FK_ANTPER_ANTQUI")
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_ANTPER_ANTPATPER",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_ANTPER_ANTQUI",insertable = false,updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

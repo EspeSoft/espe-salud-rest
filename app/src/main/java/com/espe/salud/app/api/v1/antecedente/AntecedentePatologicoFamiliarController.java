@@ -28,8 +28,14 @@ public class AntecedentePatologicoFamiliarController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares")
+    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares de un antecedente personal")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<AntecedentePatologicoFamiliarDTO>> getByCodigoAntecedentePersonal(@RequestParam Long idAntecedentePersonal){
+        return new ResponseEntity<>(service.findByIdAntecedentePersonal(idAntecedentePersonal), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares")
+    @GetMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AntecedentePatologicoFamiliarDTO>> getAll(){
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
@@ -48,6 +54,7 @@ public class AntecedentePatologicoFamiliarController {
         newAntecedentePatologicoFamiliaDTO.setDiagnostico(dto.getDiagnostico());
         newAntecedentePatologicoFamiliaDTO.setObservacion(dto.getObservacion());
         newAntecedentePatologicoFamiliaDTO.setParentezco(dto.getParentezco());
+        newAntecedentePatologicoFamiliaDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
         return new ResponseEntity<>(service.update(newAntecedentePatologicoFamiliaDTO),HttpStatus.ACCEPTED);
     }
 
