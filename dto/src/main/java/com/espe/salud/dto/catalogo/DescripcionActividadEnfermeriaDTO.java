@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class DescripcionActividadEnfermeriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+//    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
 }

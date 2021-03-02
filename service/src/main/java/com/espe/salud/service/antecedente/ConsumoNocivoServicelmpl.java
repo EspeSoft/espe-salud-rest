@@ -25,13 +25,14 @@ public class ConsumoNocivoServicelmpl  implements ConsumoNocivoService{
     }
 
     @Override
-    public ConsumoNocivoDTO save(ConsumoNocivoDTO consumoNocivo) {
-        Optional<ConsumoNocivo> optional = findExisting(consumoNocivo);
-        if (!optional.isPresent()) {
-            ConsumoNocivo domainObject = toEntity(consumoNocivo);
+    public ConsumoNocivoDTO save(ConsumoNocivoDTO consumoNocivoDTO) {
+        Optional<ConsumoNocivo> optional=consumoNocivoRepository.findById(consumoNocivoDTO.getId());
+        //Optional<ConsumoNocivo> optional = findExisting(consumoNocivo);
+        if (!optional.isEmpty()) {
+            ConsumoNocivo domainObject = toEntity(consumoNocivoDTO);
             return toDTO(consumoNocivoRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", consumoNocivo.getId()));
+            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", consumoNocivoDTO.getId()));
         }
     }
 

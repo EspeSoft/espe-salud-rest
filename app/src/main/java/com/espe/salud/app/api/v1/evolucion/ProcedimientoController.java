@@ -36,13 +36,13 @@ public class ProcedimientoController {
     @Operation(summary = "Retorna un procedimiento por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ProcedimientoDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( procedimientoService.findByCodigo(codigo), HttpStatus.OK);
+        return new ResponseEntity( procedimientoService.findById(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un procedimiento por su código")
     @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ProcedimientoDTO> update(@RequestBody ProcedimientoDTO procedimientoDTO, @RequestParam Long codigo) {
-        Optional<ProcedimientoDTO> newProcedimientoDTOoptional = procedimientoService.findByCodigo(codigo);
+        Optional<ProcedimientoDTO> newProcedimientoDTOoptional = procedimientoService.findById(codigo);
         ProcedimientoDTO newProcedimientoDTO = newProcedimientoDTOoptional.get();
         newProcedimientoDTO.setTipoProcedimiento(procedimientoDTO.getTipoProcedimiento());
         newProcedimientoDTO.setNumeroActividades(procedimientoDTO.getNumeroActividades());

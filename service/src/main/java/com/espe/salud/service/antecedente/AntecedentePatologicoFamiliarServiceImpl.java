@@ -24,8 +24,9 @@ public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePato
 
     @Override
     public AntecedentePatologicoFamiliarDTO save(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO) {
-        AntecedentePatologicoFamiliar domainObject = toEntity(antecedentePatologicoFamiliaDTO);
+        AntecedentePatologicoFamiliar domainObject=toEntity(antecedentePatologicoFamiliaDTO);
         return toDTO(domainRepository.save(domainObject));
+
     }
 
     @Override

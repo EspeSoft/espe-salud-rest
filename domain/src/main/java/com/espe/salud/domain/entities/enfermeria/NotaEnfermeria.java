@@ -45,15 +45,35 @@ public class NotaEnfermeria {
     @Column(name = "MZSTNOTENF_POST_CONSULTA", columnDefinition = "TEXT")
     private String postConsulta;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "MZSTPAC_SIGVIT",
+            joinColumns = {
+                    @JoinColumn(name = "FK_NOTENF", referencedColumnName = "MZSTNOTENF_CODIGO")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "FK_SIGVIT", referencedColumnName = "MZSTSIGVIT_CODIGO")})
     private SignoVital signoVital;
 
-    @Embedded
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "MZSTPAC_ANT",
+            joinColumns = {
+                    @JoinColumn(name = "FK_NOTENF", referencedColumnName = "MZSTNOTENF_CODIGO")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "FK_ANT", referencedColumnName = "MZSTANT_CODIGO")})
     private Antropometria antropometria;
+
+
+    @Column(name = "FK_PAC_NOTENF")
+    private Long idPaciente;
+
+    @Column(name = "FK_CDIS_NOTENF")
+    private Long idDispensario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_NOTENF", insertable = false, updatable = false)
     private Paciente paciente;
+
+    @Column(name = "FK_CARESAL_NOTENF")
+    private Long idAreaSalud;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CARESAL_NOTENF", insertable = false, updatable = false)
@@ -62,6 +82,9 @@ public class NotaEnfermeria {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CDIS_NOTENF", insertable = false, updatable = false)
     private Dispensario dispensario;
+
+    @Column(name = "FK_USU_NOTENF")
+    private Long idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_USU_NOTENF", insertable = false, updatable = false)

@@ -9,8 +9,10 @@ import java.util.Optional;
 public interface ActividadEnfermeriaService {
     ActividadEnfermeriaDTO save(ActividadEnfermeriaDTO actividadEnfermeria);
     Optional<ActividadEnfermeriaDTO> findById(Long codigo);
-//    List<ActividadEnfermeriaDTO> findByUsuario(Long pidm);
+    List<ActividadEnfermeriaDTO> findByUsuario(Long pidm);
     ActividadEnfermeriaDTO toDTO(ActividadEnfermeria notaEnfermeria);
     ActividadEnfermeria toEntity(ActividadEnfermeriaDTO dto);
     boolean delete(Long actividadEnfemeriaId);
+    ActividadEnfermeriaDTO update(ActividadEnfermeriaDTO dto);
+
 }

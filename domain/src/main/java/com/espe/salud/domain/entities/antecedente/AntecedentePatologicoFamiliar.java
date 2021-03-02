@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -51,11 +52,11 @@ public class AntecedentePatologicoFamiliar {
 
     @CreatedDate
     @Column(name = "MZSTPATFAM_FECHA_CREACION")
-    private LocalDate fechaCreacion;
+    private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
     @Column(name = "MZSTPATFAM_FECHA_MODIFICACION")
-    private LocalDate fechaModificacion;
+    private LocalDateTime fechaModificacion;
 
     @Column(name = "FK_TIPENF_PATFAM")
     private Long idTipoEnfermedadFamilia;

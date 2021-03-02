@@ -12,12 +12,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_ACT_ENF;
 
 @RestController
-    @Tag(description = "Gestiona las actividades de enfermería de un paciente", name = "Actividades Enfermería")
+    @Tag(description = "Gestiona las actividades de enfermería de un paciente", name = "Actividades de Enfermería")
 @RequestMapping(value = {URI_API_V1_ACT_ENF})
 public class ActividadEnfermeriaController {
     private final ActividadEnfermeriaService actividadEnfermeriaService;
@@ -28,19 +30,20 @@ public class ActividadEnfermeriaController {
     }
 
 
-//    @Operation(summary = "Retorna las actividades de enfermería de un usuario")
-//    @ApiResponse(responseCode = "200", description = "OK")
-//    @GetMapping(value = "/usuario", produces = {MediaType.APPLICATION_JSON_VALUE})
-//    public ResponseEntity<List<ActividadEnfermeriaDTO>> getByUsuario(
-//            @Parameter(required = true, description = "El ID del usuario", example = "1") @RequestParam Long usuario) {
-//        return new ResponseEntity<>( actividadEnfermeriaService.findByUsuario(usuario), HttpStatus.OK);
-//    }
+    @Operation(summary = "Retorna las actividades de enfermería de un usuario")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @GetMapping(value = "/usuario", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<ActividadEnfermeriaDTO>> getByUsuario(
+            @Parameter(required = true, description = "El ID del usuario", example = "62455")
+            @RequestParam Long idUsuario) {
+        return new ResponseEntity<>( actividadEnfermeriaService.findByUsuario(idUsuario), HttpStatus.OK);
+    }
 
     @GetMapping("/{id}")
     @Operation(summary = "Retorna una actividad de enfermería por su ID")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
-    public ResponseEntity<ActividadEnfermeriaDTO> retrieve(
+    public ResponseEntity<ActividadEnfermeriaDTO> findById(
             @Parameter(description = "El ID de la actividad de enfermería", required = true, example = "1")
             @PathVariable("id") Long id) {
         return actividadEnfermeriaService.findById(id)
@@ -50,7 +53,35 @@ public class ActividadEnfermeriaController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nueva actividad de enfermería")
-    public ResponseEntity<ActividadEnfermeriaDTO> save(@RequestBody ActividadEnfermeriaDTO actividadEnfermeriaDTO){
+    public ResponseEntity<ActividadEnfermeriaDTO> save(@Valid @RequestBody ActividadEnfermeriaDTO actividadEnfermeriaDTO){
         return new ResponseEntity<>(actividadEnfermeriaService.save(actividadEnfermeriaDTO), HttpStatus.CREATED);
     }
+
+    @Operation(summary = "Elimina una Actividad de Enfermería por su id")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(
+            @Parameter(required = true, description = "El ID del examen interno", example = "1")
+            @PathVariable Long id) {
+        return new ResponseEntity<>(actividadEnfermeriaService.delete(id), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Actualiza una actividad de enfermería ")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    public ResponseEntity<ActividadEnfermeriaDTO> update(
+            @Valid @RequestBody ActividadEnfermeriaDTO dto,
+            @Parameter(description = "El ID de la actividad de enfermería ", required = true, example = "1")
+            @PathVariable("id") Long id) {
+        Optional<ActividadEnfermeriaDTO> optional = actividadEnfermeriaService.findById(id);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            ActividadEnfermeriaDTO nuevo = optional.get();
+            nuevo.setIdTipoActividadEnfermeria(dto.getIdTipoActividadEnfermeria());
+            nuevo.setDescripcion(dto.getDescripcion());
+            return new ResponseEntity<>( actividadEnfermeriaService.update(nuevo), HttpStatus.OK);
+        }
+    }
+
 }

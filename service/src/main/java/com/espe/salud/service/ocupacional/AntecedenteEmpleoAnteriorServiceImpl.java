@@ -3,6 +3,7 @@ package com.espe.salud.service.ocupacional;
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.ocupacional.AntecedenteEmpleoAnterior;
 import com.espe.salud.domain.entities.ocupacional.AntecedenteEmpleoAnterior;
+import com.espe.salud.dto.ocupacional.AntecedenteAccidenteTrabajoDTO;
 import com.espe.salud.dto.ocupacional.AntecedenteEmpleoAnteriorDTO;
 import com.espe.salud.dto.ocupacional.AntecedenteEmpleoAnteriorDTO;
 import com.espe.salud.mapper.ocupacional.AntecedenteEmpleoAnteriorMapper;
@@ -28,12 +29,12 @@ public class AntecedenteEmpleoAnteriorServiceImpl implements AntecedenteEmpleoAn
 
     @Override
     public AntecedenteEmpleoAnteriorDTO save(AntecedenteEmpleoAnteriorDTO antecedente) {
-        Optional<AntecedenteEmpleoAnterior> optional = findExisting(antecedente);
+        Optional<AntecedenteEmpleoAnterior> optional = repository.findByCodigo(antecedente.getId());
         if (!optional.isPresent()) {
             AntecedenteEmpleoAnterior domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
         }else{
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", antecedente.getId()));
+            throw new ConflictException(String.format("Ya existe un antecedente de empleo anterior registrado para ese código[%s]", antecedente.getId()));
         }
     }
 
@@ -41,11 +42,6 @@ public class AntecedenteEmpleoAnteriorServiceImpl implements AntecedenteEmpleoAn
     public AntecedenteEmpleoAnteriorDTO update(AntecedenteEmpleoAnteriorDTO antecedente) {
         AntecedenteEmpleoAnterior domainObject = toEntity(antecedente);
         return toDTO(repository.save(domainObject));
-    }
-
-    @Override
-    public Optional<AntecedenteEmpleoAnterior> findExisting(AntecedenteEmpleoAnteriorDTO antecedenteDTO) {
-        return repository.findByCodigo(antecedenteDTO.getId());
     }
 
     @Override
@@ -62,6 +58,11 @@ public class AntecedenteEmpleoAnteriorServiceImpl implements AntecedenteEmpleoAn
     }
 
     @Override
+    public List<AntecedenteEmpleoAnteriorDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral) {
+        return mapper.toAntecedentesEmpleosAnteriorDto(repository.findByAntecedenteLaboralCodigo(idAntecedenteLaboral));
+    }
+
+    @Override
     public AntecedenteEmpleoAnteriorDTO toDTO(AntecedenteEmpleoAnterior antecedente) {
         return mapper.toAntecedenteEmpleoAnteriorDto(antecedente);
     }
@@ -69,12 +70,5 @@ public class AntecedenteEmpleoAnteriorServiceImpl implements AntecedenteEmpleoAn
     @Override
     public AntecedenteEmpleoAnterior toEntity(AntecedenteEmpleoAnteriorDTO dto) {
         return mapper.toAntecedenteEmpleoAnterior(dto);
-    }
-
-    @Override
-    public List<AntecedenteEmpleoAnteriorDTO> findAll() {
-        List<AntecedenteEmpleoAnterior> antecedentes = new ArrayList<>();
-        repository.findAll().forEach(antecedentes::add);
-        return mapper.toAntecedentesEmpleosAnteriorDto(antecedentes);
     }
 }

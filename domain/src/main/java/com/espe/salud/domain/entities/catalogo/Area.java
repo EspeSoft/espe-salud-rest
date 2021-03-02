@@ -1,11 +1,9 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "MZSTCARE", schema = "SALUD")
 public class Area {
@@ -19,7 +17,10 @@ public class Area {
     @Column(name = "MZSTCARE_NOMBRE")
     private String nombre;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_REG_ARE")
+    @Column(name = "FK_REG_ARE")
+    private Long idRegion;
+
+    @ManyToOne
+    @JoinColumn(name = "FK_REG_ARE", insertable = false, updatable = false)
     private Region region;
 }

@@ -2,7 +2,6 @@ package com.espe.salud.app.api.v1.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.OrganoSistema;
 import com.espe.salud.dto.catalogo.OrganoSistemaDTO;
-import com.espe.salud.dto.catalogo.RegionDTO;
 import com.espe.salud.service.GenericCRUDService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,10 +27,9 @@ public class OrganoSistemaController {
 
     @Autowired
     public OrganoSistemaController(
-            @Qualifier("OrganoSistemaServiceImpl")GenericCRUDService<OrganoSistema, OrganoSistemaDTO> organoSistemaService) {
+            @Qualifier("organoSistemaServiceImpl")GenericCRUDService<OrganoSistema, OrganoSistemaDTO> organoSistemaService) {
         this.organoSistemaService = organoSistemaService;
     }
-
 
     @Operation(summary = "Retorna el listado de todos los organos Sistema")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})

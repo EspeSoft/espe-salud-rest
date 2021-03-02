@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Setter
 public class MedicacionHabitalDTO implements Serializable {
     private static final long serialVersionUID = 1L;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String descripcionMedicamento;
     private String frecuencia;

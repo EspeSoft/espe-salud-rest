@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.paciente.Paciente;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,53 +40,61 @@ public class AntecedentePersonal {
     @Column(name = "MZSTANTPER_DESCRIPCION_ALERGIA")
     private String descripcionAlergia;
 
-    @Column(name = "MZSTANTPER_TOMA_MEDICAMENTO")
-    private Boolean tomaMedicacion;
-
-    @Column(name = "MZSTANTPER_REALIZA_ACTIVIDAD_FISICA")
-    private Boolean realizaActividadFisica;
-
     @Column(name = "MZSTANTPER_FRECUENCIA_ALIMENTACION")
     private String frecuenciaAlimentacion;
 
     @Column(name = "MZSTANTPER_PREDOMINIO_ALIMENTARIO")
     private String predominioAlimentario;
 
-    //@CreationTimestamp
-    @Column(name = "MZSTANTPER_HORA_SUEÑO")
-    //@JsonFormat(pattern = "KK:mm a")
-    private String horaSuenio;
-
-    @Column(name = "MZSTANTPER_HORA_DESPERTAR")
-    //@JsonFormat(pattern = "KK:mm a")
-    private String horaDespertar;
-
     @Column(name = "MZSTANTPER_OBSERVACION_ALIMENTACION")
     private String observacionAlimentacion;
 
-    @Column(name = "MZSTANTPER_OBSERVACION_HABITO_SUEÑO")
+    @NotEmpty
+    @Column(name = "MZSTANTPER_HORA_SUENIO")
+    private String horaSuenio;
+
+    @NotEmpty
+    @Column(name = "MZSTANTPER_HORA_DESPERTAR")
+    private String horaDespertar;
+
+    @Column(name = "MZSTANTPER_OBSERVACION_HABITO_SUENIO")
     private String observacionHabitoSuenio;
+
+    @Column(name = "FK_PAC_ANTPER")
+    private Long idPaciente;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "FK_PAC_ANTPER", updatable = false, insertable = false, nullable = false)
+    private Paciente paciente;
 
     /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false)
     private ActividadFisica actividadFisica;*/
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MedicacionHabitual> medicacionHabitual;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedenteQuirurgico> antecedenteQuirurgico;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Discapacidad> discapacidad;
 
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ActividadFisica> actividadFisica;
 
+
+    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ConsumoNocivo> consumoNocivo;
+
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ExamenSexual> examenesSexuales;
 
     @CreatedBy
     @Column(name = "MZSTANTPER_USUARIO_CREACION")
@@ -101,19 +110,4 @@ public class AntecedentePersonal {
     @LastModifiedDate
     @Column(name = "MZSTANTPER_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
-
-    @OneToMany(mappedBy = "antecedentePersonal", cascade = CascadeType.ALL)
-    private List<ExamenSexual> examenesSexuales;
-
-
 }

@@ -46,7 +46,7 @@ public class EstudioComplementarioController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Elimina un estudio complementario por su ID")
-    public ResponseEntity<Boolean> deleteUser(
+    public ResponseEntity<Boolean> delete(
             @Parameter(required = true, description = "El ID del estudio complementario", example = "1")
             @PathVariable Long id) {
         return new ResponseEntity<>(service.delete(id), HttpStatus.OK);

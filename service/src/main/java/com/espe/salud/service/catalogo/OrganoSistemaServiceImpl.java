@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service("OrganoSistemaServiceImpl")
+@Service("organoSistemaServiceImpl")
 public class OrganoSistemaServiceImpl extends GenericCRUDServiceImpl<OrganoSistema, OrganoSistemaDTO> {
     private final OrganoSistemaRepository organoSistemaRepository;
     private final OrganoSistemaMapper mapper;

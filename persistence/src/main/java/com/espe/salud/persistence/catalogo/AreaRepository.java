@@ -1,7 +1,6 @@
 package com.espe.salud.persistence.catalogo;
 
 import com.espe.salud.domain.entities.catalogo.Area;
-import com.espe.salud.domain.entities.catalogo.Region;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +11,5 @@ import java.util.Optional;
 public interface AreaRepository extends JpaRepository<Area, Long> {
     List<Area> findAllByOrderByNombreAsc();
     Optional<Area> findByCodigo(Long codigo);
-
+    List<Area> findByRegionCodigo(Long idRegion);
 }

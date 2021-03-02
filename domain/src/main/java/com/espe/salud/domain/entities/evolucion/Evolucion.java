@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.entities.certificado.Certificado;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
@@ -18,6 +19,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -69,8 +71,8 @@ public class Evolucion {
     @JoinColumn(name = "FK_CDIS_EVO", insertable = false, updatable = false)
     private Dispensario dispensario;
 
-//    @Column(name = "FK_PAC_EVO")
-//    private Long idPaciente;
+    @Column(name = "FK_PAC_EVO")
+    private Long idPaciente;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false)
@@ -87,6 +89,15 @@ public class Evolucion {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_NOTENF_EVO", insertable = false, updatable = false)
     private NotaEnfermeria notaEnfermeria;
+
+    @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Certificado> certificados;
+    
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Diagnostico> diagnostico;
+
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Procedimiento> procedimiento;
 
     @CreatedDate
     @Column(name = "MZSTEVO_FECHA_CREACION")

@@ -12,6 +12,6 @@ public class AreaSaludDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    private Integer id;
+    private Long id;
     private String nombre;
 }
