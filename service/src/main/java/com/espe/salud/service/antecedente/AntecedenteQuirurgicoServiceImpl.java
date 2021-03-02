@@ -1,6 +1,5 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.antecedente.AntecedenteQuirurgico;
 import com.espe.salud.dto.antecedente.AntecedenteQuirurgicoDTO;
 import com.espe.salud.mapper.antecedente.AntecedenteQuirurgicoMapper;
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoService{
+public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoService {
 
 
     private final AntecedenteQuirurgicoRepository domainRepository;
@@ -26,18 +25,14 @@ public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoSe
 
     @Override
     public AntecedenteQuirurgicoDTO save(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO) {
-        Optional<AntecedenteQuirurgico> optional=domainRepository.findById(antecedenteQuirurgicoDTO.getId());
-        if (!optional.isEmpty()){
-            AntecedenteQuirurgico domainObject=toEntity(antecedenteQuirurgicoDTO);
-            return toDTO(domainRepository.save(domainObject));
-        }else{
-            throw new ConflictException(String.format("Ya existe un antecedente quirurgico con el codigo [%s]",antecedenteQuirurgicoDTO.getId()));
-        }
+        AntecedenteQuirurgico domainObject = toEntity(antecedenteQuirurgicoDTO);
+        return toDTO(domainRepository.save(domainObject));
+
     }
 
     @Override
     public AntecedenteQuirurgicoDTO update(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO) {
-        AntecedenteQuirurgico domainObject=toEntity(antecedenteQuirurgicoDTO);
+        AntecedenteQuirurgico domainObject = toEntity(antecedenteQuirurgicoDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 
@@ -48,8 +43,12 @@ public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoSe
 
     @Override
     public List<AntecedenteQuirurgicoDTO> findAll() {
-
         return mapper.toAntecedenteQuirurgicoDTO(domainRepository.findAll());
+    }
+
+    @Override
+    public List<AntecedenteQuirurgicoDTO> findByIdAntecedente(Long idAntecedente) {
+        return mapper.toAntecedenteQuirurgicoDTO(domainRepository.findByIdAntecedentePersonal(idAntecedente));
     }
 
     @Override

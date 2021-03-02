@@ -42,11 +42,11 @@ public class Discapacidad {
     @Column(name = "MZSTDIS_GRADO_DISCAPACIDAD")
     private String gradoDiscapacidad;
 
-    @Column(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL")
+    @Column(name = "FK_ANTPER_ANTQUI")
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_ANTPER_ANTQUI",insertable = false,updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
