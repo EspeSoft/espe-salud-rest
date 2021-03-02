@@ -26,17 +26,17 @@ public class TipoEnfermedadServiceImpl extends GenericCRUDServiceImpl<TipoEnferm
     }
 
     @Override
-    public TipoEnfermedad mapTo(TipoEnfermedadDTO dtoObject){
+    public TipoEnfermedad mapTo(TipoEnfermedadDTO dtoObject) {
         return mapper.toTipoEnfermedad(dtoObject);
     }
 
     @Override
-    public TipoEnfermedadDTO build(TipoEnfermedad domainObject){
+    public TipoEnfermedadDTO build(TipoEnfermedad domainObject) {
         return mapper.toTipoEnfermedadDTO(domainObject);
     }
 
     @Override
-    public Optional<TipoEnfermedad> findExisting(TipoEnfermedadDTO domainObject){
+    public Optional<TipoEnfermedad> findExisting(TipoEnfermedadDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
     }
 

@@ -11,11 +11,17 @@ import java.util.Optional;
 public interface ExamenSexualService {
 
     ExamenSexualDTO save(ExamenSexualDTO examenSexualDTO);
+
     ExamenSexualDTO update(ExamenSexualDTO examenSexualDTO);
+
     Optional<ExamenSexualDTO> findById(Long codigo);
+
     List<ExamenSexualDTO> findAll();
+
     boolean deleteById(Long id);
+
     ExamenSexualDTO toDTO(ExamenSexual examenSexual);
+
     ExamenSexual toEntity(ExamenSexualDTO dto);
-    
+
 }

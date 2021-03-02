@@ -18,7 +18,7 @@ public class MedicacionHabitual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTMEDHAB_CODIGO")
+    @Column(name = "MZSTMEDHAB_CODIGO")
     private Long codigo;
 
     @Lob
@@ -40,7 +40,7 @@ public class MedicacionHabitual {
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

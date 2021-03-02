@@ -14,6 +14,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -53,6 +54,15 @@ public class Paciente {
     @Column(name = "MZSTPAC_TIPO_PACIENTE")
     @Enumerated(EnumType.STRING)
     private TipoPaciente tipoPaciente;
+
+    @Column(name = "MZSTPAC_VINCULADO_ESPE")
+    private String vinculadoEspe;
+
+    @Column(name = "MZSTPAC_SEGURO_SALUD")
+    private String seguroSalud;
+
+    @Column(name = "MZSTPAC_ASOCIACION_AFILIADA")
+    private String asociacionAfiliada;
 
     @Column(name = "FK_CDIS_PAC")
     private Long idDispensario;

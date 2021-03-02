@@ -17,7 +17,7 @@ public class Discapacidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTDIS_CODIGO")
+    @Column(name = "MZSTDIS_CODIGO")
     private Long codigo;
 
     @Column(name = "MZSTDIS_COLABORADOR_DISCAPACIDAD")
@@ -46,7 +46,7 @@ public class Discapacidad {
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

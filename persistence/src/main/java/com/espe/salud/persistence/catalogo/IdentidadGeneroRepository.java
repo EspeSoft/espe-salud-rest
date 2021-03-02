@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface IdentidadGeneroRepository extends JpaRepository<IdentidadGenero, Long> {
     List<IdentidadGenero> findAllByOrderByNombreAsc();
+
     Optional<IdentidadGenero> findByCodigo(Long codigo);
 }

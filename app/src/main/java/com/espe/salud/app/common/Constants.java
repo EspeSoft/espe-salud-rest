@@ -68,7 +68,7 @@ public class Constants {
 
     public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
 
-    public static final String URI_API_V1_CER = URI_API_V1+"certificados";
+    public static final String URI_API_V1_CER = URI_API_V1 + "certificados";
     public static final String URI_API_V1_SEGSAL = URI_API_V1 + "seguros-salud";
     public static final String URI_API_V1_TIPCER = URI_API_V1 + "tipos-certificado";
     public static final String URI_API_V1_UNIDEP = URI_API_V1 + "unidad-departamento";
@@ -107,4 +107,5 @@ public class Constants {
     public static final String URI_API_V1_ORIENTACIONES_SEXUALES = URI_API_V1 + "orientaciones-sexuales";
     public static final String URI_API_V1_IDENTIDADES_GENERO = URI_API_V1 + "identidades-genero";
     public static final String URI_API_V1_FRECUENCIAS_ALIMENTACION = URI_API_V1 + "frecuencias-alimentacion";
+    public static final String URI_API_V1_RELACIONES_ESPE = URI_API_V1 + "relaciones-espe";
 }

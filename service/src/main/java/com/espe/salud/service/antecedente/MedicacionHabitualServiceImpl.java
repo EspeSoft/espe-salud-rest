@@ -25,18 +25,18 @@ public class MedicacionHabitualServiceImpl implements MedicacionHabitualService 
 
     @Override
     public MedicacionHabitalDTO save(MedicacionHabitalDTO medicacionHabitalDTO) {
-        Optional<MedicacionHabitual> optional=findExisting(medicacionHabitalDTO);
-        if (optional.isEmpty()){
-            MedicacionHabitual domainObject=toEntity(medicacionHabitalDTO);
+        Optional<MedicacionHabitual> optional = findExisting(medicacionHabitalDTO);
+        if (optional.isEmpty()) {
+            MedicacionHabitual domainObject = toEntity(medicacionHabitalDTO);
             return toDTO(medicacionHabitualRepository.save(domainObject));
-        }else {
-            throw new ConflictException(String.format("Ya existe un medicamento habitual para el codigo [%s]",medicacionHabitalDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe un medicamento habitual para el codigo [%s]", medicacionHabitalDTO.getId()));
         }
     }
 
     @Override
     public MedicacionHabitalDTO update(MedicacionHabitalDTO medicacionHabitalDTO) {
-        MedicacionHabitual domainObject=toEntity(medicacionHabitalDTO);
+        MedicacionHabitual domainObject = toEntity(medicacionHabitalDTO);
         return toDTO(medicacionHabitualRepository.save(domainObject));
     }
 

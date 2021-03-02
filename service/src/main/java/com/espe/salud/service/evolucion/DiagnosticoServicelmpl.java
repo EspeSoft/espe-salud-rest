@@ -26,12 +26,12 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
 
     @Override
     public DiagnosticoDTO save(DiagnosticoDTO diagnosticoDTO) {
-        Optional <Diagnostico> optional = diagnosticoRepository.findById(diagnosticoDTO.getId());
+        Optional<Diagnostico> optional = diagnosticoRepository.findById(diagnosticoDTO.getId());
         //Optional<Diagnostico> optional = findExisting(diagnostico);
         if (!optional.isEmpty()) {
             Diagnostico domainObject = toEntity(diagnosticoDTO);
             return toDTO(diagnosticoRepository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", diagnosticoDTO.getId()));
         }
     }

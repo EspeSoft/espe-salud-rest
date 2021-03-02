@@ -32,13 +32,13 @@ public class ConsumoNocivoController {
     @Operation(summary = "Retorna el listado de todos los consumos nocivos")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ConsumoNocivoDTO>> getAll() {
-        return new ResponseEntity<>( consumoNocivoService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(consumoNocivoService.findAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna un consumo nocivo por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ConsumoNocivoDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( consumoNocivoService.findByCodigo(codigo), HttpStatus.OK);
+        return new ResponseEntity(consumoNocivoService.findByCodigo(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un consumo nocivo por su código")
@@ -55,12 +55,12 @@ public class ConsumoNocivoController {
         newConsumoNocivoDTO.setTiempoAbstinenciaMes(consumoNocivoDTO.getTiempoAbstinenciaMes());
         newConsumoNocivoDTO.setObservacion(consumoNocivoDTO.getObservacion());
 
-        return new ResponseEntity<>(consumoNocivoService.update(newConsumoNocivoDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(consumoNocivoService.update(newConsumoNocivoDTO), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Guarda un nuevo consumo nocivo")
     @PostMapping("/")
-    public ResponseEntity<ConsumoNocivoDTO> save(@RequestBody ConsumoNocivoDTO consumoNocivo){
+    public ResponseEntity<ConsumoNocivoDTO> save(@RequestBody ConsumoNocivoDTO consumoNocivo) {
         return new ResponseEntity<>(consumoNocivoService.save(consumoNocivo), HttpStatus.CREATED);
     }
 

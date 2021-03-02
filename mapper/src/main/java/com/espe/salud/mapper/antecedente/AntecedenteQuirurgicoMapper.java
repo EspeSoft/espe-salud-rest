@@ -16,6 +16,7 @@ public interface AntecedenteQuirurgicoMapper {
             @Mapping(source = "codigo", target = "id")
     })
     AntecedenteQuirurgicoDTO toAntecedenteQuirurgicoDTO(AntecedenteQuirurgico antecedenteQuirurgico);
+
     List<AntecedenteQuirurgicoDTO> toAntecedenteQuirurgicoDTO(List<AntecedenteQuirurgico> antecedenteQuirurgicos);
 
     @InheritInverseConfiguration

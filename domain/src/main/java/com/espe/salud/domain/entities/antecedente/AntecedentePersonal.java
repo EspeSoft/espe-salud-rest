@@ -71,26 +71,26 @@ public class AntecedentePersonal {
     @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false)
     private ActividadFisica actividadFisica;*/
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<MedicacionHabitual> medicacionHabitual;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedenteQuirurgico> antecedenteQuirurgico;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Discapacidad> discapacidad;
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ActividadFisica> actividadFisica;
 
 
-    @OneToMany(mappedBy = "antecedentePersonal",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ConsumoNocivo> consumoNocivo;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

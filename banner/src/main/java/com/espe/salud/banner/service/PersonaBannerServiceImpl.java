@@ -25,7 +25,7 @@ public class PersonaBannerServiceImpl implements PersonaBannerService {
         String url = API_URL + cedula;
         PersonaBanner[] response = restTemplate.getForObject(url, PersonaBanner[].class);
         assert response != null;
-        if (response.length > 0){
+        if (response.length > 0) {
             return Optional.of(response[0]);
         } else {
             return Optional.empty();

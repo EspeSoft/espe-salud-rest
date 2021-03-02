@@ -32,7 +32,7 @@ public class AntecedenteEnfermedadProfesionalController {
     ) {
         this.serviceAntecedente = serviceAntecedente;
     }
-    
+
     @Operation(summary = "Retorna los antecedentes de enfermedades profesionales de un antecedente laboral")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiResponse(responseCode = "200", description = "OK")
@@ -54,10 +54,10 @@ public class AntecedenteEnfermedadProfesionalController {
     ) {
         return new ResponseEntity(serviceAntecedente.findByCodigo(id), HttpStatus.OK);
     }
-    
+
     @Operation(summary = "Guarda un nuevo antecedente")
     @PostMapping("")
-    public ResponseEntity<AntecedenteEnfermedadProfesionalDTO> save(@RequestBody AntecedenteEnfermedadProfesionalDTO antecedente){
+    public ResponseEntity<AntecedenteEnfermedadProfesionalDTO> save(@RequestBody AntecedenteEnfermedadProfesionalDTO antecedente) {
         return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
     }
 
@@ -69,7 +69,7 @@ public class AntecedenteEnfermedadProfesionalController {
     ) {
         serviceAntecedente.delete(id);
     }
-    
+
     @Operation(summary = "Edita un antecedente por su id")
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<AntecedenteEnfermedadProfesionalDTO> update(
@@ -84,10 +84,10 @@ public class AntecedenteEnfermedadProfesionalController {
         newAntecedenteEnfermedadProfesionalDTO.setFecha(antecedenteDTO.getFecha());
         newAntecedenteEnfermedadProfesionalDTO.setHorasReposo(antecedenteDTO.getHorasReposo());
         newAntecedenteEnfermedadProfesionalDTO.setObservaciones(antecedenteDTO.getObservaciones());
-        newAntecedenteEnfermedadProfesionalDTO.setRecibioAtencion(antecedenteDTO.getRecibioAtencion()                );
+        newAntecedenteEnfermedadProfesionalDTO.setRecibioAtencion(antecedenteDTO.getRecibioAtencion());
         newAntecedenteEnfermedadProfesionalDTO.setRiesgoImplicado(antecedenteDTO.getRiesgoImplicado());
         newAntecedenteEnfermedadProfesionalDTO.setSecuelas(antecedenteDTO.getSecuelas());
-        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteEnfermedadProfesionalDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteEnfermedadProfesionalDTO), HttpStatus.CREATED);
     }
 
 }

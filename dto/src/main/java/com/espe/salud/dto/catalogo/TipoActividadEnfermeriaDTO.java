@@ -12,7 +12,7 @@ import java.util.List;
 public class TipoActividadEnfermeriaDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-//    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    //    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
     private List<DescripcionActividadEnfermeriaDTO> descripcionActividadEnfermerias;

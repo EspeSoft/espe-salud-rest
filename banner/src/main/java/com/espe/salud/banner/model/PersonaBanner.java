@@ -13,9 +13,10 @@ import java.time.LocalDateTime;
 public class PersonaBanner implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    /**DATOS GENERALES
+    /**
+     * DATOS GENERALES
      * Los siguientes datos son compartidos para cualquier tipo de usuario dentro de Banner
-    **/
+     **/
     @JsonProperty("id_banner")
     private String idBanner;
 
@@ -26,9 +27,9 @@ public class PersonaBanner implements Serializable {
     private String cedula;
 
     @JsonProperty("fecha_nacimiento")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
     private LocalDateTime fechaNacimiento;
-    
+
     private String sexo;
 
     private String genero;
@@ -49,7 +50,7 @@ public class PersonaBanner implements Serializable {
     private String codeOrgn;
 
     @JsonProperty("fecha_original")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
     private LocalDateTime fechaIngresoESPE;
 
     private String nacionalidad;
@@ -124,7 +125,8 @@ public class PersonaBanner implements Serializable {
 
     private String status;
 
-    /** DATOS ESTUDIANTE
+    /**
+     * DATOS ESTUDIANTE
      * Los siguientes datos son especificamente de un estudiante
      **/
 
@@ -132,7 +134,8 @@ public class PersonaBanner implements Serializable {
 
     private String programa;
 
-    /** DATOS EMPLEADO
+    /**
+     * DATOS EMPLEADO
      * Los siguientes datos son especificamente de un empleado
      **/
 
@@ -163,7 +166,7 @@ public class PersonaBanner implements Serializable {
     @JsonProperty("puesto")
     private String puesto;
 
-    public String getFullName(){
+    public String getFullName() {
         return this.nombres + " " + this.apellidos;
     }
 }

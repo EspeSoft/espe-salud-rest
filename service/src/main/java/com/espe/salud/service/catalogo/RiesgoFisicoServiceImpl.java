@@ -20,7 +20,7 @@ public class RiesgoFisicoServiceImpl extends GenericCRUDServiceImpl<RiesgoFisico
 
     @Autowired
     public RiesgoFisicoServiceImpl(RiesgoFisicoRepository domainRepository,
-                                    RiesgoFisicoMapper mapper) {
+                                   RiesgoFisicoMapper mapper) {
         this.domainRepository = domainRepository;
         this.mapper = mapper;
     }

@@ -8,10 +8,16 @@ import java.util.Optional;
 
 public interface AntecedentePatologicoFamiliarService {
     AntecedentePatologicoFamiliarDTO save(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO);
+
     AntecedentePatologicoFamiliarDTO update(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO);
+
     Optional<AntecedentePatologicoFamiliarDTO> findById(Long codigo);
+
     List<AntecedentePatologicoFamiliarDTO> findAll();
+
     boolean deleteById(Long id);
+
     AntecedentePatologicoFamiliarDTO toDTO(AntecedentePatologicoFamiliar antecedentePatologicoFamiliar);
+
     AntecedentePatologicoFamiliar toEntity(AntecedentePatologicoFamiliarDTO dto);
 }

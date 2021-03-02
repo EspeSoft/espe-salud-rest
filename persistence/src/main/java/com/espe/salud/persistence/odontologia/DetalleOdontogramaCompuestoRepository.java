@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface DetalleOdontogramaCompuestoRepository extends JpaRepository<DetalleOdontogramaCompuesto, Long> {
     Optional<DetalleOdontogramaCompuesto> findByCodigo(Long codigo);
+
     List<DetalleOdontogramaCompuesto> findByHistoriaId(Long historiaId);
 
 

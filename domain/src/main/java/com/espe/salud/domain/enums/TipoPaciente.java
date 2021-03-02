@@ -1,5 +1,5 @@
 package com.espe.salud.domain.enums;
 
-public enum  TipoPaciente {
+public enum TipoPaciente {
     EXTERNO, INTERNO
 }

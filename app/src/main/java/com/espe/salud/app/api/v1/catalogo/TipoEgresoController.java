@@ -34,7 +34,7 @@ public class TipoEgresoController {
     @Operation(summary = "Retorna el listado de todos los tipos de egreso en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoEgresoDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -49,7 +49,7 @@ public class TipoEgresoController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo tipo de egreso")
-    public ResponseEntity<TipoEgresoDTO> save(@RequestBody TipoEgresoDTO egresoDTO){
+    public ResponseEntity<TipoEgresoDTO> save(@RequestBody TipoEgresoDTO egresoDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(egresoDTO), HttpStatus.CREATED);
     }
 }

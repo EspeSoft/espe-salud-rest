@@ -32,7 +32,7 @@ public class PacienteDTO implements Serializable {
     private String segundoNombre;
     private String cedula;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime fechaNacimiento;
     private String sexo;
     private String estadoCivil;

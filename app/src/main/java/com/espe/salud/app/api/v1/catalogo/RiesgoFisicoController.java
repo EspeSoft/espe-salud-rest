@@ -33,7 +33,7 @@ public class RiesgoFisicoController {
     @Operation(summary = "Retorna el listado de todos los riesgo físicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoFisicoDTO>> getAll() {
-        return new ResponseEntity<>( riesgoFisicoService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(riesgoFisicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

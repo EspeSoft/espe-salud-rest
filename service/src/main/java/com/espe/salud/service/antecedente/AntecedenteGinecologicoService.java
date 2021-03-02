@@ -10,10 +10,16 @@ import java.util.Optional;
 @Service
 public interface AntecedenteGinecologicoService {
     AntecedenteGinecologicoDTO save(AntecedenteGinecologicoDTO antecedenteGinecologicoDTO);
+
     AntecedenteGinecologicoDTO update(AntecedenteGinecologicoDTO antecedenteGinecologicoDTO);
+
     Optional<AntecedenteGinecologicoDTO> findById(Long codigo);
+
     List<AntecedenteGinecologicoDTO> findAll();
+
     boolean deleteById(Long id);
+
     AntecedenteGinecologicoDTO toDTO(AntecedenteGinecologico antecedenteGinecologico);
+
     AntecedenteGinecologico toEntity(AntecedenteGinecologicoDTO dto);
 }

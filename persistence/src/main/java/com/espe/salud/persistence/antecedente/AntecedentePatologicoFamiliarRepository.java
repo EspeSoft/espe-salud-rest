@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AntecedentePatologicoFamiliarRepository extends JpaRepository<AntecedentePatologicoFamiliar,Long> {
+public interface AntecedentePatologicoFamiliarRepository extends JpaRepository<AntecedentePatologicoFamiliar, Long> {
     Optional<AntecedentePatologicoFamiliar> findByCodigo(Long codigo);
 }

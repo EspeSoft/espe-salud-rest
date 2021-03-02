@@ -50,6 +50,7 @@ public class DetalleOdontogramaCompuestoServiceImpl extends GenericCRUDServiceOd
     public List<DetalleOdontogramaCompuestoDTO> findByHistoriaClinica(Long historiaId) {
         return mapper.toDetalleOdontogramaCompuestoDTO(domainRepository.findByHistoriaId(historiaId));
     }
+
     @Override
     public void deleteByHistoriaClinica(Long historiaId) {
         domainRepository.findByHistoriaId(historiaId).forEach(detalle -> {

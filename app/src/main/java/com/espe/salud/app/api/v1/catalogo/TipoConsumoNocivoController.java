@@ -48,11 +48,12 @@ public class TipoConsumoNocivoController {
             @PathVariable("id") Long id) {
         return tipoConsumoNocivoService.findById(id)
                 .map(consumoNocivoDTO -> new ResponseEntity<>(consumoNocivoDTO, HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));    }
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nuevo consumo nocivo")
-    public ResponseEntity<TipoConsumoNocivoDTO> save(@Valid @RequestBody TipoConsumoNocivoDTO TIpoConsumoNocivoDTO){
+    public ResponseEntity<TipoConsumoNocivoDTO> save(@Valid @RequestBody TipoConsumoNocivoDTO TIpoConsumoNocivoDTO) {
         return new ResponseEntity<>(tipoConsumoNocivoService.save(TIpoConsumoNocivoDTO), HttpStatus.CREATED);
     }
 

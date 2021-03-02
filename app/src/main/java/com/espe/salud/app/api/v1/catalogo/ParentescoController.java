@@ -34,7 +34,7 @@ public class ParentescoController {
     @Operation(summary = "Retorna el listado de todos los parentescos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ParentescoDTO>> getAll() {
-        return new ResponseEntity<>( parentescoService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(parentescoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -49,7 +49,7 @@ public class ParentescoController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo parentesco")
-    public ResponseEntity<ParentescoDTO> save(@RequestBody ParentescoDTO parentescoDTO){
+    public ResponseEntity<ParentescoDTO> save(@RequestBody ParentescoDTO parentescoDTO) {
         return new ResponseEntity<>(parentescoService.saveOrUpdate(parentescoDTO), HttpStatus.CREATED);
     }
 

@@ -16,6 +16,7 @@ public interface NotaEnfermeriaMapper {
             @Mapping(source = "codigo", target = "id")
     })
     NotaEnfermeriaDTO toNotaEnfermeriaDTO(NotaEnfermeria notaEnfermeria);
+
     List<NotaEnfermeriaDTO> toNotasEnfermeriaDTO(List<NotaEnfermeria> notasEnfermeria);
 
     @InheritInverseConfiguration

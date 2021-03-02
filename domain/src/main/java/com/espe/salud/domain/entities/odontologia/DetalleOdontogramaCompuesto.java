@@ -24,7 +24,7 @@ public class DetalleOdontogramaCompuesto extends DetalleOdontogramaGrafico imple
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name="DETODOCOMPIEZAS")
+    @Column(name = "DETODOCOMPIEZAS")
     @CollectionTable(name = "DETODOCOMPIE")
     @ElementCollection
     private List<Integer> piezas = new ArrayList<Integer>();

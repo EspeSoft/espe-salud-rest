@@ -33,7 +33,7 @@ public class NotaEnfermeriaController {
     @GetMapping(value = "/paciente", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NotaEnfermeriaDTO>> getByPaciente(
             @Parameter(required = true, description = "El ID del paciente", example = "1") @RequestParam Long paciente) {
-        return new ResponseEntity<>( notaEnfermeriaService.findByPaciente(paciente), HttpStatus.OK);
+        return new ResponseEntity<>(notaEnfermeriaService.findByPaciente(paciente), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna las notas de enfermeria de un usuario")
@@ -41,7 +41,7 @@ public class NotaEnfermeriaController {
     @GetMapping(value = "/usuario", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NotaEnfermeriaDTO>> getByUsuario(
             @Parameter(required = true, description = "El ID del usuario", example = "1") @RequestParam Long usuario) {
-        return new ResponseEntity<>( notaEnfermeriaService.findByUsuario(usuario), HttpStatus.OK);
+        return new ResponseEntity<>(notaEnfermeriaService.findByUsuario(usuario), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -58,7 +58,7 @@ public class NotaEnfermeriaController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nueva nota de enfermeria")
-    public ResponseEntity<NotaEnfermeriaDTO> save(@RequestBody NotaEnfermeriaDTO notaEnfermeriaDTO){
+    public ResponseEntity<NotaEnfermeriaDTO> save(@RequestBody NotaEnfermeriaDTO notaEnfermeriaDTO) {
         return new ResponseEntity<>(notaEnfermeriaService.save(notaEnfermeriaDTO), HttpStatus.CREATED);
     }
 }

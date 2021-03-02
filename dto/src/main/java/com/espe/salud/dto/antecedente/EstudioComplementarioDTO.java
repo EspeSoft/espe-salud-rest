@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class EstudioComplementarioDTO implements Serializable{
+public class EstudioComplementarioDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DiscapacidadServiceImpl  implements DiscapacidadService{
+public class DiscapacidadServiceImpl implements DiscapacidadService {
 
     private final DiscapacidadRepository discapacidadRepository;
     private final DiscapacidadMapper mapper;
@@ -25,18 +25,18 @@ public class DiscapacidadServiceImpl  implements DiscapacidadService{
 
     @Override
     public DiscapacidadDTO save(DiscapacidadDTO discapacidadDTO) {
-        Optional<Discapacidad> optinal=discapacidadRepository.findByCodigo(discapacidadDTO.getId());
-        if (!optinal.isEmpty()){
-            Discapacidad domainObject=toEntity(discapacidadDTO);
+        Optional<Discapacidad> optinal = discapacidadRepository.findByCodigo(discapacidadDTO.getId());
+        if (!optinal.isEmpty()) {
+            Discapacidad domainObject = toEntity(discapacidadDTO);
             return toDTO(discapacidadRepository.save(domainObject));
-        }else{
-            throw  new ConflictException(String.format("Ya existe una discapacidad para el codigo [%s]",discapacidadDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe una discapacidad para el codigo [%s]", discapacidadDTO.getId()));
         }
     }
 
     @Override
     public DiscapacidadDTO update(DiscapacidadDTO discapacidadDTO) {
-        Discapacidad domainObject=toEntity(discapacidadDTO);
+        Discapacidad domainObject = toEntity(discapacidadDTO);
         return toDTO(discapacidadRepository.save(domainObject));
     }
 

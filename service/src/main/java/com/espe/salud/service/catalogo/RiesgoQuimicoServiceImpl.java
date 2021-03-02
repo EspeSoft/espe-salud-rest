@@ -22,7 +22,7 @@ public class RiesgoQuimicoServiceImpl extends GenericCRUDServiceImpl<RiesgoQuimi
 
     @Autowired
     public RiesgoQuimicoServiceImpl(RiesgoQuimicoRepository domainRepository,
-                                 RiesgoQuimicoMapper mapper) {
+                                    RiesgoQuimicoMapper mapper) {
         this.domainRepository = domainRepository;
         this.mapper = mapper;
     }

@@ -3,6 +3,7 @@ package com.espe.salud.mapper.catalogo;
 import com.espe.salud.domain.entities.catalogo.EnfermedadCIE10;
 import com.espe.salud.dto.catalogo.EnfermedadCIE10DTO;
 import org.mapstruct.Mapper;
+
 import java.util.List;
 
 @Mapper(componentModel = "spring", uses = {GrupoEnfermedadMapper.class})

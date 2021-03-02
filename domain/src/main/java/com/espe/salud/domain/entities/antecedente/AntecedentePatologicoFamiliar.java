@@ -20,7 +20,7 @@ public class AntecedentePatologicoFamiliar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTPATFAM_CODIGO")
+    @Column(name = "MZSTPATFAM_CODIGO")
     private Long codigo;
 
     @Lob
@@ -39,7 +39,7 @@ public class AntecedentePatologicoFamiliar {
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_ANTPER_ANTPATPER",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_ANTPER_ANTPATPER", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

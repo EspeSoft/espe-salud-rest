@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ExamenSexualServiceImpl implements ExamenSexualService{
+public class ExamenSexualServiceImpl implements ExamenSexualService {
 
     private final ExamenSexualRepository domainRepository;
     private final ExamenSexualMapper mapper;
@@ -25,18 +25,18 @@ public class ExamenSexualServiceImpl implements ExamenSexualService{
 
     @Override
     public ExamenSexualDTO save(ExamenSexualDTO examenSexualDTO) {
-        Optional<ExamenSexual> optional=domainRepository.findById(examenSexualDTO.getId());
-        if (!optional.isPresent()){
-            ExamenSexual domainObject=toEntity(examenSexualDTO);
+        Optional<ExamenSexual> optional = domainRepository.findById(examenSexualDTO.getId());
+        if (!optional.isPresent()) {
+            ExamenSexual domainObject = toEntity(examenSexualDTO);
             return toDTO(domainRepository.save(domainObject));
-        }else{
-            throw new ConflictException(String.format("Ya existe un examen sexual para el codigo [%s]",examenSexualDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe un examen sexual para el codigo [%s]", examenSexualDTO.getId()));
         }
     }
 
     @Override
     public ExamenSexualDTO update(ExamenSexualDTO examenSexualDTO) {
-        ExamenSexual domainObject=toEntity(examenSexualDTO);
+        ExamenSexual domainObject = toEntity(examenSexualDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 

@@ -16,6 +16,7 @@ public interface MedicacionHabitualMapper {
             @Mapping(source = "codigo", target = "id")
     })
     MedicacionHabitalDTO toMedicacionHabitualDTO(MedicacionHabitual medicacionHabitual);
+
     List<MedicacionHabitalDTO> toMedicacionHabitualDTO(List<MedicacionHabitual> medicacionHabitualList);
 
     @InheritInverseConfiguration

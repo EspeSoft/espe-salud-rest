@@ -23,23 +23,24 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_CER;
 @Tag(description = "Gestiona Certificados", name = "Certificados")
 @RequestMapping(value = {URI_API_V1_CER})
 public class CertificadoController {
-    
+
     private final CertificadoService service;
 
     @Autowired
     public CertificadoController(CertificadoService service) {
         this.service = service;
     }
+
     @Operation(summary = "Retorna el listado de todos los Certificados")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<CertificadoDTO>> getAll(){
+    public ResponseEntity<List<CertificadoDTO>> getAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna un certificadp por su codigo")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<CertificadoDTO> getById(@Parameter(description = "El codigo del certificado",required = true,example = "1") @PathVariable("codigo") Long id){
-        return new ResponseEntity(service.findById(id),HttpStatus.OK);
+    public ResponseEntity<CertificadoDTO> getById(@Parameter(description = "El codigo del certificado", required = true, example = "1") @PathVariable("codigo") Long id) {
+        return new ResponseEntity(service.findById(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna los certificados de un paciente")
@@ -47,18 +48,18 @@ public class CertificadoController {
     @GetMapping(value = "/paciente", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<CertificadoDTO>> findByPaciente(
             @Parameter(required = true, description = "El ID del paciente", example = "1") @RequestParam Long idPaciente) {
-        return new ResponseEntity<>( service.findByPaciente(idPaciente), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un certificado por su codigo")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<CertificadoDTO> update(@Valid @RequestBody CertificadoDTO dto, @RequestParam Long codigo){
+    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<CertificadoDTO> update(@Valid @RequestBody CertificadoDTO dto, @RequestParam Long codigo) {
 
-        Optional<CertificadoDTO> optional=service.findById(codigo);
-        if(optional.isEmpty()){
+        Optional<CertificadoDTO> optional = service.findById(codigo);
+        if (optional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else{
-            CertificadoDTO certificadoDTO= optional.get();
+        } else {
+            CertificadoDTO certificadoDTO = optional.get();
             certificadoDTO.setDiasReposo(dto.getDiasReposo());
             certificadoDTO.setDiagnosticoCie10(dto.getDiagnosticoCie10());
             certificadoDTO.setEquivalenteHorasLaborables(dto.getEquivalenteHorasLaborables());
@@ -71,20 +72,20 @@ public class CertificadoController {
             certificadoDTO.setEvolucionDTO(dto.getEvolucionDTO());
             certificadoDTO.setTipoCertificadoDTO(dto.getTipoCertificadoDTO());
 
-            return new ResponseEntity<>(service.update(certificadoDTO),HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.update(certificadoDTO), HttpStatus.ACCEPTED);
         }
 
     }
 
     @Operation(summary = "Guardar un nuevo certificado")
     @PostMapping("/")
-    public ResponseEntity<CertificadoDTO> save(@RequestBody CertificadoDTO dto){
-        return new ResponseEntity<>(service.save(dto),HttpStatus.CREATED);
+    public ResponseEntity<CertificadoDTO> save(@RequestBody CertificadoDTO dto) {
+        return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina un certificado por su codigo")
     @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
+    public void delete(@PathVariable Long codigo) {
         service.deleteById(codigo);
     }
 }

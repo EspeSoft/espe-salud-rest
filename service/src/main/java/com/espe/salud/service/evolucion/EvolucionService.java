@@ -7,11 +7,13 @@ import com.espe.salud.dto.evolucion.EvolucionDTO;
 import java.util.Optional;
 
 public interface EvolucionService {
-   EvolucionDTO save(EvolucionDTO evolucion);
-   Optional<Evolucion> findExisting(EvolucionDTO evolucionDTO);
+    EvolucionDTO save(EvolucionDTO evolucion);
 
-   EvolucionDTO toDTO(Evolucion evolucion);
-   Evolucion toEntity(EvolucionDTO dto);
+    Optional<Evolucion> findExisting(EvolucionDTO evolucionDTO);
 
-   byte[] getCertificadoMedico(String idEvolucion);
+    EvolucionDTO toDTO(Evolucion evolucion);
+
+    Evolucion toEntity(EvolucionDTO dto);
+
+    byte[] getCertificadoMedico(String idEvolucion);
 }

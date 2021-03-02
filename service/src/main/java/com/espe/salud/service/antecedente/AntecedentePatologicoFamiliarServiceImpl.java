@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePatologicoFamiliarService{
+public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePatologicoFamiliarService {
 
     private final AntecedentePatologicoFamiliarRepository domainRepository;
     private final AntecedentePatologicoFamiliarMapper mapper;
@@ -25,13 +25,13 @@ public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePato
 
     @Override
     public AntecedentePatologicoFamiliarDTO save(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO) {
-        AntecedentePatologicoFamiliar domainObject=toEntity(antecedentePatologicoFamiliaDTO);
+        AntecedentePatologicoFamiliar domainObject = toEntity(antecedentePatologicoFamiliaDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 
     @Override
     public AntecedentePatologicoFamiliarDTO update(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO) {
-        AntecedentePatologicoFamiliar domainObject=toEntity(antecedentePatologicoFamiliaDTO);
+        AntecedentePatologicoFamiliar domainObject = toEntity(antecedentePatologicoFamiliaDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 

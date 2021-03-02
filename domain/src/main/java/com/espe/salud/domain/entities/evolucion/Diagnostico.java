@@ -43,7 +43,7 @@ public class Diagnostico {
     private String idEvolucion;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_EVO_DIA",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_EVO_DIA", insertable = false, updatable = false)
     private Evolucion evolucion;
 
 

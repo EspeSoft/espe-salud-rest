@@ -10,12 +10,20 @@ import java.util.Optional;
 
 public interface PacienteService {
     PacienteDTO saveExternal(PacienteExternoDTO paciente);
+
     PacienteDTO saveBanner(PacienteBannerDTO pacienteBannerDTO);
+
     PacienteDTO updatePacienteExterno(PacienteExternoDTO paciente);
+
     Optional<PacienteDTO> findById(Long codigo);
+
     Optional<PacienteDTO> findExistingByNumeroArchivo(String numeroArchivo);
+
     boolean existsByNumeroArchivo(String numeroArchivo);
+
     List<PacienteDTO> findByNumeroArchivo(String numeroArchivo);
+
     List<PacienteDTO> findByFullName(String query);
+
     PacienteDTO mapPacienteInfo(Paciente paciente);
 }

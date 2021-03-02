@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaService{
+public class ActividadEnfermeriaServiceImpl implements ActividadEnfermeriaService {
 
     private final ActividadEnfermeriaRepository repository;
     private final ActividadEnfermeriaMapper mapper;

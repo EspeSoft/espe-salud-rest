@@ -22,7 +22,7 @@ public class AntecedentePatologicoPersonal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTANTPATPER_CODIGO")
+    @Column(name = "MZSTANTPATPER_CODIGO")
     private Long codigo;
 
     @Column(name = "MZSTANTPATPER_FECHA_DIAGNOSTICO")

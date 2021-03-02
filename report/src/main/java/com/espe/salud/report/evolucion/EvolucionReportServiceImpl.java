@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class EvolucionReportServiceImpl implements EvolucionReportService{
+public class EvolucionReportServiceImpl implements EvolucionReportService {
 
     @PostConstruct
     public void init() {

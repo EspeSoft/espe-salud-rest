@@ -31,7 +31,7 @@ public class EnfermedadCIE10Controller {
     @Operation(summary = "Retorna el listado de todas las enfermedades CIE10")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<EnfermedadCIE10DTO>> getAll() {
-        return new ResponseEntity<>( enfermedadCIE10Service.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(enfermedadCIE10Service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class EnfermedadCIE10Controller {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo grupo de enfermedad CIE10")
-    public ResponseEntity<EnfermedadCIE10DTO> save(@Valid @RequestBody EnfermedadCIE10DTO enfermedadCIE10DTO){
+    public ResponseEntity<EnfermedadCIE10DTO> save(@Valid @RequestBody EnfermedadCIE10DTO enfermedadCIE10DTO) {
         return new ResponseEntity<>(enfermedadCIE10Service.save(enfermedadCIE10DTO), HttpStatus.CREATED);
     }
 

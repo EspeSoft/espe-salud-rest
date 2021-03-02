@@ -57,7 +57,7 @@ public class AntecedenteIncidenteTrabajoController {
 
     @Operation(summary = "Guarda un nuevo antecedente")
     @PostMapping("")
-    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> save(@RequestBody AntecedenteIncidenteTrabajoDTO antecedente){
+    public ResponseEntity<AntecedenteIncidenteTrabajoDTO> save(@RequestBody AntecedenteIncidenteTrabajoDTO antecedente) {
         return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
     }
 
@@ -86,9 +86,9 @@ public class AntecedenteIncidenteTrabajoController {
         newAntecedenteIncidenteTrabajoDTO.setFecha(antecedenteDTO.getFecha());
         newAntecedenteIncidenteTrabajoDTO.setHorasReposo(antecedenteDTO.getHorasReposo());
         newAntecedenteIncidenteTrabajoDTO.setObservaciones(antecedenteDTO.getObservaciones());
-        newAntecedenteIncidenteTrabajoDTO.setRecibioAtencion(antecedenteDTO.getRecibioAtencion()                );
+        newAntecedenteIncidenteTrabajoDTO.setRecibioAtencion(antecedenteDTO.getRecibioAtencion());
         newAntecedenteIncidenteTrabajoDTO.setRiesgoImplicado(antecedenteDTO.getRiesgoImplicado());
         newAntecedenteIncidenteTrabajoDTO.setSecuelas(antecedenteDTO.getSecuelas());
-        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteIncidenteTrabajoDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteIncidenteTrabajoDTO), HttpStatus.CREATED);
     }
 }

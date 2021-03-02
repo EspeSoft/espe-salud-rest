@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.catalogo;
 
 import lombok.Data;
+
 import javax.persistence.*;
 
 @Data

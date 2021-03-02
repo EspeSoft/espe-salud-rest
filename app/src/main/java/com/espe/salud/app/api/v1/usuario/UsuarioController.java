@@ -35,7 +35,7 @@ public class UsuarioController {
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<UsuarioDTO>> getAll() {
-        return new ResponseEntity<>( usuarioService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(usuarioService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

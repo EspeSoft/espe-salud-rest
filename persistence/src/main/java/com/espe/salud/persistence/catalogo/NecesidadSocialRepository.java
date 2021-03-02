@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface NecesidadSocialRepository extends JpaRepository<NecesidadSocial, Long> {
     List<NecesidadSocial> findAllByOrderByNombreAsc();
+
     Optional<NecesidadSocial> findByCodigo(Long codigo);
 }

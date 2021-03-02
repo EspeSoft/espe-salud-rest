@@ -9,11 +9,18 @@ import java.util.Optional;
 
 public interface CertificadoService {
     CertificadoDTO save(CertificadoDTO certificadoDTO);
+
     CertificadoDTO update(CertificadoDTO certificadoDTO);
+
     Optional<CertificadoDTO> findById(Long codigo);
+
     List<CertificadoDTO> findByPaciente(Long pacienteCodigo);
+
     List<CertificadoDTO> findAll();
+
     boolean deleteById(Long id);
+
     CertificadoDTO toDTO(Certificado certificado);
+
     Certificado toEntity(CertificadoDTO dto);
 }

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ExamenSexualRepository extends JpaRepository<ExamenSexual,Long> {
+public interface ExamenSexualRepository extends JpaRepository<ExamenSexual, Long> {
     Optional<ExamenSexual> findByCodigo(Long codigo);
 }

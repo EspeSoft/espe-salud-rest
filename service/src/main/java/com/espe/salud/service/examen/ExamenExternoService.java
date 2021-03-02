@@ -7,8 +7,12 @@ import java.util.Optional;
 
 public interface ExamenExternoService {
     ExamenExternoDTO save(ExamenExternoDTO dto);
+
     Optional<ExamenExternoDTO> findById(Long id);
+
     List<ExamenExternoDTO> findByPaciente(Long idPaciente);
+
     ExamenExternoDTO update(ExamenExternoDTO dto);
+
     boolean delete(Long codigo);
 }

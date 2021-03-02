@@ -17,13 +17,13 @@ public class ExamenSexual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTEXASEX_CODIGO")
+    @Column(name = "MZSTEXASEX_CODIGO")
     private Long codigo;
 
     @Lob
     @Column(name = "MZSTEXASEX_FECHA")
     private LocalDate fecha;
-    
+
     @Lob
     @Column(name = "MZSTEXASEX_NOMBRE_EXAMEN")
     private String nombreExamen;

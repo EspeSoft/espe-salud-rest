@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface AreaRepository extends JpaRepository<Area, Long> {
     List<Area> findAllByOrderByNombreAsc();
+
     Optional<Area> findByCodigo(Long codigo);
+
     List<Area> findByRegionCodigo(Long idRegion);
 }

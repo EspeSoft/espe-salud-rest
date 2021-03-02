@@ -30,19 +30,19 @@ public class TipoPlanificacionFamiliarController {
     @Operation(summary = "Retorna el listado de los tipos de planificacion familiar de MUJERES")
     @GetMapping(value = "/findAllMujeres", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoPlanificacionFamiliarDTO>> findAllMujeres() {
-        return new ResponseEntity<>( service.findAllMujeres(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllMujeres(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna el listado los tipos de planificacion familiar de HOMBRES")
     @GetMapping(value = "/findAllHombres", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoPlanificacionFamiliarDTO>> findAllHombres() {
-        return new ResponseEntity<>( service.findAllHombres(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllHombres(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna el listado de todos los tipos de planificacion familiar en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoPlanificacionFamiliarDTO>> getAll() {
-        return new ResponseEntity<>( service.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -59,7 +59,7 @@ public class TipoPlanificacionFamiliarController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un tipo de planificación familiar")
-    public ResponseEntity<TipoPlanificacionFamiliarDTO> save(@RequestBody TipoPlanificacionFamiliarDTO dto){
+    public ResponseEntity<TipoPlanificacionFamiliarDTO> save(@RequestBody TipoPlanificacionFamiliarDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 }

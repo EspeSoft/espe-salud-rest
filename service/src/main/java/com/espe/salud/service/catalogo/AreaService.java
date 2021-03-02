@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface AreaService {
     List<AreaDTO> findAll();
+
     List<AreaDTO> findAllByRegion(Long idRegion);
+
     AreaDTO findById(Long id);
 }

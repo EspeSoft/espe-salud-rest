@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface NivelInstruccionRepository extends JpaRepository<NivelInstruccion, Long> {
     Optional<NivelInstruccion> findByCodigo(Long codigo);
+
     List<NivelInstruccion> findAllByOrderByNombreAsc();
 }

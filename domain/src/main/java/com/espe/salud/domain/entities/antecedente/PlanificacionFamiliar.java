@@ -17,7 +17,7 @@ public class PlanificacionFamiliar {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTPLAFAM_CODIGO")
+    @Column(name = "MZSTPLAFAM_CODIGO")
     private Long codigo;
 
     @Lob
@@ -35,27 +35,27 @@ public class PlanificacionFamiliar {
     @Lob
     @Column(name = "MZSTPLAFAM_EDAD_INICIO_PLANIFICACION_FAMILIAR")
     private Integer edadInicioPlanificacionFamiliar;
-    
+
     @Lob
     @Column(name = "MZSTPLAFAM_FRECUENCIA_PLANIFICACION_FAMILIAR")
     private String frecuenciaPlanificacionFamiliar;
-    
+
     @Lob
     @Column(name = "MZSTPLAFAM_TIPO_PLANIFICACION_FAMILIAR")
     private String tipoPlanificacionFamiliar;
-    
+
     @Lob
     @Column(name = "MZSTPLAFAM_HIJOS_VIVOS")
     private Integer hijosVivos;
-    
+
     @Lob
     @Column(name = "MZSTPLAFAM_HIJOS_MUERTOS")
     private Integer hijosMuertos;
-    
+
     @Lob
     @Column(name = "MZSTPLAFAM_OBSERVACION")
     private String observacion;
-    
+
     @Lob
     @Column(name = "MZSTPLAFAM_ANTECEDENTE_PERSONAL")
     private String antecedentePersonal;

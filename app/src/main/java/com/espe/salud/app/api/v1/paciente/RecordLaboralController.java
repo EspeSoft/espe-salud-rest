@@ -29,13 +29,13 @@ public class RecordLaboralController {
     @Operation(summary = "Retorna el listado de todos los records labirales")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RecordLaboralDTO>> getAll() {
-        return new ResponseEntity<>( recordLaboralService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(recordLaboralService.findAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna un reord laboral  por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<RecordLaboralDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( recordLaboralService.findByCodigo(codigo), HttpStatus.OK);
+        return new ResponseEntity(recordLaboralService.findByCodigo(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un record laboral por su código")
@@ -49,12 +49,12 @@ public class RecordLaboralController {
         newRecordLaboralDTO.setFechaReingreso(recordLaboralDTO.getFechaReingreso());
         newRecordLaboralDTO.setFechaSalidad(recordLaboralDTO.getFechaSalidad());
         newRecordLaboralDTO.setDiasEntreSalidoIngreso(recordLaboralDTO.getDiasEntreSalidoIngreso());
-        return new ResponseEntity<>(recordLaboralService.update(newRecordLaboralDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(recordLaboralService.update(newRecordLaboralDTO), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Guarda un nuevo record laboral")
     @PostMapping("/")
-    public ResponseEntity<RecordLaboralDTO> save(@RequestBody RecordLaboralDTO paciente){
+    public ResponseEntity<RecordLaboralDTO> save(@RequestBody RecordLaboralDTO paciente) {
         return new ResponseEntity<>(recordLaboralService.save(paciente), HttpStatus.CREATED);
     }
 

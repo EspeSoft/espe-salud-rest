@@ -17,7 +17,7 @@ public class EmpleadoDTO implements Serializable {
     private Long id;
     private String campus;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime fechaIngresoLaboral;
     private String seccion;
     private String departamento;

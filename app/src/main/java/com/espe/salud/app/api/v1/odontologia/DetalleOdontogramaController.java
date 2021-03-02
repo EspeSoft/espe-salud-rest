@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Optional;
+
 import static com.espe.salud.app.common.Constants.URI_API_V1_ODO_ODO;
 
 @RestController
@@ -44,7 +45,7 @@ public class DetalleOdontogramaController {
     public DetalleOdontogramaController(
             @Qualifier("detalleOdontogramaCuantitativoServiceImpl") GenericCRUDServiceOdontograma<DetalleOdontogramaCuantitativo, DetalleOdontogramaCuantitativoDTO> detalleCuantitativoService,
             @Qualifier("detalleOdontogramaSimpleServiceImpl") GenericCRUDServiceOdontograma<DetalleOdontogramaSimple, DetalleOdontogramaSimpleDTO> detalleSimpleService,
-            @Qualifier("detalleOdontogramaCompuestoServiceImpl")GenericCRUDServiceOdontograma<DetalleOdontogramaCompuesto, DetalleOdontogramaCompuestoDTO> detalleCompuestoService,
+            @Qualifier("detalleOdontogramaCompuestoServiceImpl") GenericCRUDServiceOdontograma<DetalleOdontogramaCompuesto, DetalleOdontogramaCompuestoDTO> detalleCompuestoService,
             HistoriaClinicaOdontologicaService historiaClinicaOdontologicaService) {
         this.detalleCuantitativoService = detalleCuantitativoService;
         this.detalleSimpleService = detalleSimpleService;
@@ -60,11 +61,11 @@ public class DetalleOdontogramaController {
         List<DetalleOdontogramaDTO> detalles = new ArrayList<>();
 
         Optional<HistoriaClinicaOdontologicaDTO> historiaExistente = historiaClinicaOdontologicaService.findByPaciente(idPaciente);
-        if(historiaExistente.isPresent()) {
+        if (historiaExistente.isPresent()) {
             detalles.addAll(detalleCuantitativoService.findByHistoriaClinica(historiaExistente.get().getId()));
             detalles.addAll(detalleSimpleService.findByHistoriaClinica(historiaExistente.get().getId()));
             detalles.addAll(detalleCompuestoService.findByHistoriaClinica(historiaExistente.get().getId()));
-            return new ResponseEntity<>( detalles, HttpStatus.OK);
+            return new ResponseEntity<>(detalles, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -92,18 +93,18 @@ public class DetalleOdontogramaController {
                         detallesSimples.add(detalleSimple);
                     } else {
                         DetalleOdontogramaCompuesto detalleCompuesto = this.tryParse(objectMapper, jsonString, DetalleOdontogramaCompuesto.class);
-                        if(detalleCompuesto != null) {
+                        if (detalleCompuesto != null) {
                             detalleCompuesto.setHistoriaId(historiaID);
                             detallesCompuestos.add(detalleCompuesto);
                         } else {
                             DetalleOdontogramaCuantitativo detalleCuantitativo = this.tryParse(objectMapper, jsonString, DetalleOdontogramaCuantitativo.class);
-                            if(detalleCuantitativo != null) {
+                            if (detalleCuantitativo != null) {
                                 detalleCuantitativo.setHistoriaId(historiaID);
                                 detallesCuantitativos.add(detalleCuantitativo);
                             }
                         }
                     }
-                } catch (JsonProcessingException  e) {
+                } catch (JsonProcessingException e) {
                     return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
                 }
             }
@@ -116,28 +117,27 @@ public class DetalleOdontogramaController {
 
             // Agregar nuevos detalles
             ListIterator<DetalleOdontogramaSimple> iteratorSimple = detallesSimples.listIterator();
-            while(iteratorSimple.hasNext()) {
+            while (iteratorSimple.hasNext()) {
                 detalleSimpleService.saveOrUpdate(detalleSimpleService.build(iteratorSimple.next()));
             }
 
             ListIterator<DetalleOdontogramaCompuesto> iteratorCompuesto = detallesCompuestos.listIterator();
-            while(iteratorCompuesto.hasNext()) {
+            while (iteratorCompuesto.hasNext()) {
                 detalleCompuestoService.saveOrUpdate(detalleCompuestoService.build(iteratorCompuesto.next()));
             }
 
             ListIterator<DetalleOdontogramaCuantitativo> iteratorCuantitativo = detallesCuantitativos.listIterator();
-            while(iteratorCuantitativo.hasNext()) {
+            while (iteratorCuantitativo.hasNext()) {
                 detalleCuantitativoService.saveOrUpdate(detalleCuantitativoService.build(iteratorCuantitativo.next()));
             }
-            return new ResponseEntity<>(detalles,HttpStatus.OK);
+            return new ResponseEntity<>(detalles, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(detalles,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(detalles, HttpStatus.NOT_FOUND);
         }
     }
 
 
-    private <T> T tryParse(ObjectMapper mapper, String jsonObject, Class<T> clazz)
-    {
+    private <T> T tryParse(ObjectMapper mapper, String jsonObject, Class<T> clazz) {
         try {
             return mapper.readValue(jsonObject, clazz);
         } catch (Exception ex) {

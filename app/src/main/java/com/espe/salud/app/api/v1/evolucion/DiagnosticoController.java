@@ -19,7 +19,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_DIA;
 @Tag(description = "Gestiona los diagnostico de antecedentes", name = "Diagnósticos")
 @RequestMapping(value = URI_API_V1_DIA)
 public class DiagnosticoController {
-    private final DiagnosticoService  diagnosticoService;
+    private final DiagnosticoService diagnosticoService;
 
     @Autowired
     public DiagnosticoController(DiagnosticoService diagnosticoService) {
@@ -29,13 +29,13 @@ public class DiagnosticoController {
     @Operation(summary = "Retorna el listado de todos los diagnosticos")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<DiagnosticoDTO>> getAll() {
-        return new ResponseEntity<>( diagnosticoService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(diagnosticoService.findAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna un diagnostico por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<DiagnosticoDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( diagnosticoService.findById(codigo), HttpStatus.OK);
+        return new ResponseEntity(diagnosticoService.findById(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un diagnostico por su código")
@@ -47,12 +47,12 @@ public class DiagnosticoController {
         newDiagnosticoDTO.setPrevencion(diagnosticoDTO.getPrevencion());
         newDiagnosticoDTO.setMorbilidad(diagnosticoDTO.getMorbilidad());
         newDiagnosticoDTO.setCondicionDiagnostico(diagnosticoDTO.getCondicionDiagnostico());
-        return new ResponseEntity<>(diagnosticoService.update(newDiagnosticoDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(diagnosticoService.update(newDiagnosticoDTO), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Guarda un nuevo diagnostico")
     @PostMapping("/")
-    public ResponseEntity<DiagnosticoDTO> save(@RequestBody DiagnosticoDTO diagnostico){
+    public ResponseEntity<DiagnosticoDTO> save(@RequestBody DiagnosticoDTO diagnostico) {
         return new ResponseEntity<>(diagnosticoService.save(diagnostico), HttpStatus.CREATED);
     }
 

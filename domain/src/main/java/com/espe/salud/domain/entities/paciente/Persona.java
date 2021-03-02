@@ -66,21 +66,11 @@ public class Persona {
     @Column(name = "MZSTPER_PROFESION")
     private String profesion;
 
-    @Column(name = "MZSTPER_VINCULADO_ESPE")
-    @NotEmpty
-    private String vinculadoEspe;
-
     @Column(name = "MZSTPER_PLURINACIONALIDAD")
     private String pueblos;
 
     @Column(name = "MZSTPER_ETNIA")
     private String etnia;
-
-    @Column(name = "MZSTPER_SEGURO_SALUD")
-    private String seguroSalud;
-
-    @Column(name = "MZSTPER_ASOCIACION_AFILIADA")
-    private String asociacionAfiliada;
 
     @NotNull
     @Column(name = "MZSTPER_PAIS_NACIMIENTO")
@@ -110,9 +100,9 @@ public class Persona {
     @OneToMany(mappedBy = "persona", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ContactoEmergencia> contactosEmergencia;
 
-    public void addToContactoEmergencia(List<ContactoEmergencia> contactos){
-        if(!contactos.isEmpty()){
-            for (ContactoEmergencia c: contactos) {
+    public void addToContactoEmergencia(List<ContactoEmergencia> contactos) {
+        if (!contactos.isEmpty()) {
+            for (ContactoEmergencia c : contactos) {
                 c.setPersona(this);
             }
             this.contactosEmergencia = contactos;
@@ -150,6 +140,6 @@ public class Persona {
         String sn = this.segundoNombre.toUpperCase();
         String ap = this.apellidoPaterno.toUpperCase();
         String am = this.apellidoMaterno.toUpperCase();
-        return  pn + " " + sn + " " + ap + " " + am;
+        return pn + " " + sn + " " + ap + " " + am;
     }
 }

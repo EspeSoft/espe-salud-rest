@@ -8,10 +8,16 @@ import java.util.Optional;
 
 public interface DiscapacidadService {
     DiscapacidadDTO save(DiscapacidadDTO discapacidadDTO);
+
     DiscapacidadDTO update(DiscapacidadDTO discapacidadDTO);
+
     Optional<DiscapacidadDTO> findById(Long codigo);
+
     List<DiscapacidadDTO> findAll();
+
     boolean deleteById(Long id);
+
     DiscapacidadDTO toDTO(Discapacidad discapacidad);
+
     Discapacidad toEntity(DiscapacidadDTO dto);
 }

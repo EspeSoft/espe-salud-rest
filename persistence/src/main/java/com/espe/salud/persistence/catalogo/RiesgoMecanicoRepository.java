@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface RiesgoMecanicoRepository extends JpaRepository<RiesgoMecanico, Long> {
     List<RiesgoMecanico> findAllByOrderByNombreAsc();
+
     Optional<RiesgoMecanico> findByCodigo(Long codigo);
 }

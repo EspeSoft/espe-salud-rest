@@ -32,12 +32,12 @@ public class TipoDiscapacidadController {
     @Operation(summary = "Retorna el listado de todos los tipos de discapacidad en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoDiscapacidadDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo tipo de discapaciad")
-    public ResponseEntity<TipoDiscapacidadDTO> save(@RequestBody TipoDiscapacidadDTO tipoDiscapacidadDTO){
+    public ResponseEntity<TipoDiscapacidadDTO> save(@RequestBody TipoDiscapacidadDTO tipoDiscapacidadDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(tipoDiscapacidadDTO), HttpStatus.CREATED);
     }
 

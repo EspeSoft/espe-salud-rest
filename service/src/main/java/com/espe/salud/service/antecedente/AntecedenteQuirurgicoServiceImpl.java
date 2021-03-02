@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoService{
+public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoService {
 
 
     private final AntecedenteQuirurgicoRepository domainRepository;
@@ -26,18 +26,18 @@ public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoSe
 
     @Override
     public AntecedenteQuirurgicoDTO save(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO) {
-        Optional<AntecedenteQuirurgico> optional=domainRepository.findById(antecedenteQuirurgicoDTO.getId());
-        if (!optional.isEmpty()){
-            AntecedenteQuirurgico domainObject=toEntity(antecedenteQuirurgicoDTO);
+        Optional<AntecedenteQuirurgico> optional = domainRepository.findById(antecedenteQuirurgicoDTO.getId());
+        if (!optional.isEmpty()) {
+            AntecedenteQuirurgico domainObject = toEntity(antecedenteQuirurgicoDTO);
             return toDTO(domainRepository.save(domainObject));
-        }else{
-            throw new ConflictException(String.format("Ya existe un antecedente quirurgico con el codigo [%s]",antecedenteQuirurgicoDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe un antecedente quirurgico con el codigo [%s]", antecedenteQuirurgicoDTO.getId()));
         }
     }
 
     @Override
     public AntecedenteQuirurgicoDTO update(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO) {
-        AntecedenteQuirurgico domainObject=toEntity(antecedenteQuirurgicoDTO);
+        AntecedenteQuirurgico domainObject = toEntity(antecedenteQuirurgicoDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 

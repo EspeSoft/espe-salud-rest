@@ -36,8 +36,8 @@ public class DispensarioController {
     }
 
     @Operation(summary = "Retorna el listado de dispensarios")
-    @GetMapping(value = "",produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<DispensarioDTO>> getAll(){
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<DispensarioDTO>> getAll() {
 
         return new ResponseEntity<>(dispensarioService.findAll(), HttpStatus.OK);
     }
@@ -59,7 +59,7 @@ public class DispensarioController {
     @Operation(summary = "Retorna una imagen por su nombre")
     @GetMapping(value = "/images/{nombre}", produces = MediaType.IMAGE_JPEG_VALUE)
     public void getImageByNombre(HttpServletResponse response, @PathVariable("nombre") String nombre) throws IOException {
-        ClassPathResource imgFile = new ClassPathResource("images/" + nombre +".jpg");
+        ClassPathResource imgFile = new ClassPathResource("images/" + nombre + ".jpg");
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         StreamUtils.copy(imgFile.getInputStream(), response.getOutputStream());
     }

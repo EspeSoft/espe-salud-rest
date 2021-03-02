@@ -11,11 +11,17 @@ import java.util.Optional;
 public interface PlanificacionFamiliarService {
 
     PlanificacionFamiliarDTO save(PlanificacionFamiliarDTO planificacionFamiliarDTO);
+
     PlanificacionFamiliarDTO update(PlanificacionFamiliarDTO planificacionFamiliarDTO);
+
     Optional<PlanificacionFamiliarDTO> findById(Long codigo);
+
     List<PlanificacionFamiliarDTO> findAll();
+
     boolean deleteById(Long id);
+
     PlanificacionFamiliarDTO toDTO(PlanificacionFamiliar planificacionFamiliar);
+
     PlanificacionFamiliar toEntity(PlanificacionFamiliarDTO dto);
-    
+
 }

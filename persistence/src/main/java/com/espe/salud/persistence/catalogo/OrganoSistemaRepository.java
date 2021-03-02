@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface OrganoSistemaRepository extends JpaRepository<OrganoSistema, Long>{
+public interface OrganoSistemaRepository extends JpaRepository<OrganoSistema, Long> {
     List<OrganoSistema> findAllByOrderByNombreAsc();
+
     Optional<OrganoSistema> findByCodigo(Long codigo);
 }

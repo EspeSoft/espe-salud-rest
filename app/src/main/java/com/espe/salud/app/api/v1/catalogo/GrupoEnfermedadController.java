@@ -31,7 +31,7 @@ public class GrupoEnfermedadController {
     @Operation(summary = "Retorna el listado de todos los grupos de enfermedades CIE10")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<GrupoEnfermedadDTO>> getAll() {
-        return new ResponseEntity<>( grupoEnfermedadService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(grupoEnfermedadService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class GrupoEnfermedadController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo grupo de enfermedad CIE10")
-    public ResponseEntity<GrupoEnfermedadDTO> save(@Valid @RequestBody GrupoEnfermedadDTO grupoEnfermedadDTO){
+    public ResponseEntity<GrupoEnfermedadDTO> save(@Valid @RequestBody GrupoEnfermedadDTO grupoEnfermedadDTO) {
         return new ResponseEntity<>(grupoEnfermedadService.save(grupoEnfermedadDTO), HttpStatus.CREATED);
     }
 }

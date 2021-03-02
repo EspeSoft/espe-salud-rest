@@ -16,6 +16,7 @@ public interface AntecedentePatologicoPersonalMapper {
             @Mapping(source = "codigo", target = "id")
     })
     AntecedentePatologicoPersonalDTO toAntecedentePatologicoPersonalDTO(AntecedentePatologicoPersonal antecedentePatologicoPersonal);
+
     List<AntecedentePatologicoPersonalDTO> toAntecedentePatologicoPersonalDTO(List<AntecedentePatologicoPersonal> antecedentePatologicoPersonals);
 
     @InheritInverseConfiguration

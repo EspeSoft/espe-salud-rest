@@ -109,37 +109,37 @@ public class FactorRiesgoPuestoActual {
     @Column(name = "MZSTFACRIEPUEACT_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
-    public void addRiesgosFisico(RiesgoFisico riesgoFisico){
+    public void addRiesgosFisico(RiesgoFisico riesgoFisico) {
         if (this.riesgosFisico == null)
             this.riesgosFisico = new ArrayList<>();
         this.riesgosFisico.add(riesgoFisico);
     }
 
-    public void addRiesgosQuimico(RiesgoQuimico riesgoQuimico){
+    public void addRiesgosQuimico(RiesgoQuimico riesgoQuimico) {
         if (this.riesgosQuimico == null)
             this.riesgosQuimico = new ArrayList<>();
         this.riesgosQuimico.add(riesgoQuimico);
     }
 
-    public void addRiesgosMecanico(RiesgoMecanico riesgoMecanico){
+    public void addRiesgosMecanico(RiesgoMecanico riesgoMecanico) {
         if (this.riesgosMecanico == null)
             this.riesgosMecanico = new ArrayList<>();
         this.riesgosMecanico.add(riesgoMecanico);
     }
 
-    public void addRiesgosBiologico(RiesgoBiologico riesgoBiologico){
+    public void addRiesgosBiologico(RiesgoBiologico riesgoBiologico) {
         if (this.riesgosBiologico == null)
             this.riesgosBiologico = new ArrayList<>();
         this.riesgosBiologico.add(riesgoBiologico);
     }
 
-    public void addRiesgosErgonomico(RiesgoErgonomico riesgoErgonomico){
+    public void addRiesgosErgonomico(RiesgoErgonomico riesgoErgonomico) {
         if (this.riesgosErgonomico == null)
             this.riesgosErgonomico = new ArrayList<>();
         this.riesgosErgonomico.add(riesgoErgonomico);
     }
 
-    public void addRiesgosPsicosocial(RiesgoPsicosocial riesgoPsicosocial){
+    public void addRiesgosPsicosocial(RiesgoPsicosocial riesgoPsicosocial) {
         if (this.riesgosPsicosocial == null)
             this.riesgosPsicosocial = new ArrayList<>();
         this.riesgosPsicosocial.add(riesgoPsicosocial);
