@@ -26,7 +26,10 @@ public class SignoVital {
     private Long codigo;
 
     @Column(name = "MZSTSIGVIT_PRESION_ARTERIAL")
-    private String presionArterial;
+    private Long presionArterial;
+
+    @Column(name = "MZSTSIGVIT_PRESION_ARTERIAL2")
+    private Long presionArterial2;
 
     @Column(name = "MZSTSIGVIT_FRECUENCIA_CARDIACA")
     private Double frecuenciaCardiaca;

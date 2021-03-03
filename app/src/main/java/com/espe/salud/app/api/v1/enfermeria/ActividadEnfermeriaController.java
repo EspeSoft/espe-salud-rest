@@ -39,6 +39,7 @@ public class ActividadEnfermeriaController {
         return new ResponseEntity<>( actividadEnfermeriaService.findByUsuario(idUsuario), HttpStatus.OK);
     }
 
+
     @GetMapping("/{id}")
     @Operation(summary = "Retorna una actividad de enfermería por su ID")
     @ApiResponse(responseCode = "200", description = "OK")
@@ -60,7 +61,7 @@ public class ActividadEnfermeriaController {
     @Operation(summary = "Elimina una Actividad de Enfermería por su id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(
-            @Parameter(required = true, description = "El ID del examen interno", example = "1")
+            @Parameter(required = true, description = "El ID de la actividad de enfermería", example = "1")
             @PathVariable Long id) {
         return new ResponseEntity<>(actividadEnfermeriaService.delete(id), HttpStatus.OK);
     }

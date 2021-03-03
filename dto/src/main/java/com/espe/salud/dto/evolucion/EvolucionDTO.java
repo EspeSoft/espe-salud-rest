@@ -1,13 +1,22 @@
 package com.espe.salud.dto.evolucion;
 
+import com.espe.salud.dto.catalogo.DispensarioDTO;
+import com.espe.salud.dto.catalogo.MotivoAtencionDTO;
+import com.espe.salud.dto.certificado.CertificadoDTO;
+import com.espe.salud.dto.enfermeria.NotaEnfermeriaDTO;
+import com.espe.salud.dto.paciente.PacienteDTO;
+import com.espe.salud.dto.usuario.AreaSaludDTO;
+import com.espe.salud.dto.usuario.UsuarioDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,4 +27,57 @@ public class EvolucionDTO implements Serializable {
     private String id;
 
     private LocalDateTime fechaInicio;
+
+    private String estado;
+
+    private LocalDateTime fechaFinalizacion;
+
+    private String observacion;
+
+    private String motivoConsulta;
+
+    private Long idMotivoAtencion;
+
+    private String notaEvolucion;
+
+    private Long responsablePidm;
+
+    private Boolean esEnfermedadOcupacional;
+
+    private Long idDispensario;
+
+    private Long idPaciente;
+
+    private Long idAreaSalud;
+
+    private Long idNotaEnfermeria;
+
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private DispensarioDTO dispensario;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private PacienteDTO paciente;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private AreaSaludDTO areaSalud;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private MotivoAtencionDTO motivoAtencion;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private NotaEnfermeriaDTO notaEnfermeria;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private UsuarioDTO usuario;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private List<CertificadoDTO> certificados;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private List<DiagnosticoDTO> diagnostico;
+
+    @Schema(accessMode = AccessMode.READ_ONLY)
+    private List<ProcedimientoDTO> procedimiento;
+
 }

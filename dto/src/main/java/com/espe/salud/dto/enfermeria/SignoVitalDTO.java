@@ -14,7 +14,8 @@ public class SignoVitalDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String presionArterial;
+    private Long presionArterial;
+    private Long presionArterial2;
     private Double frecuenciaCardiaca;
     private Double frecuenciaRespiratoria;
     private Double temperatura;

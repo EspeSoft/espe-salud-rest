@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.usuario;
 
+import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -20,4 +21,7 @@ public class AreaSalud {
 
     @OneToMany(mappedBy = "areaSalud", cascade = CascadeType.ALL)
     private List<Usuario> usuariosSalud;
+
+    @OneToMany(mappedBy = "areaSalud", cascade = CascadeType.ALL)
+    private List<Evolucion> evoluciones;
 }
