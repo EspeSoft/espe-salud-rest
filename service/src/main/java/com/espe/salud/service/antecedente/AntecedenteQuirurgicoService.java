@@ -11,6 +11,7 @@ public interface AntecedenteQuirurgicoService {
     AntecedenteQuirurgicoDTO update(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO);
     Optional<AntecedenteQuirurgicoDTO> findById(Long codigo);
     List<AntecedenteQuirurgicoDTO> findAll();
+    List<AntecedenteQuirurgicoDTO> findByIdAntecedente(Long idAntecedente);
     boolean deleteById(Long codigo);
     AntecedenteQuirurgicoDTO toDTO(AntecedenteQuirurgico antecedenteQuirurgico);
     AntecedenteQuirurgico toEntity(AntecedenteQuirurgicoDTO dto);

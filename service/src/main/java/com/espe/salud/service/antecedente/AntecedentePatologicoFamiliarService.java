@@ -11,6 +11,7 @@ public interface AntecedentePatologicoFamiliarService {
     AntecedentePatologicoFamiliarDTO update(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO);
     Optional<AntecedentePatologicoFamiliarDTO> findById(Long codigo);
     List<AntecedentePatologicoFamiliarDTO> findAll();
+    List<AntecedentePatologicoFamiliarDTO> findByIdAntecedentePersonal(Long codigo);
     boolean deleteById(Long id);
     AntecedentePatologicoFamiliarDTO toDTO(AntecedentePatologicoFamiliar antecedentePatologicoFamiliar);
     AntecedentePatologicoFamiliar toEntity(AntecedentePatologicoFamiliarDTO dto);
