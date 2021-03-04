@@ -1,6 +1,5 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.antecedente.Discapacidad;
 import com.espe.salud.dto.antecedente.DiscapacidadDTO;
 import com.espe.salud.mapper.antecedente.DiscapacidadMapper;
@@ -25,13 +24,8 @@ public class DiscapacidadServiceImpl implements DiscapacidadService {
 
     @Override
     public DiscapacidadDTO save(DiscapacidadDTO discapacidadDTO) {
-        Optional<Discapacidad> optinal = discapacidadRepository.findByCodigo(discapacidadDTO.getId());
-        if (!optinal.isEmpty()) {
-            Discapacidad domainObject = toEntity(discapacidadDTO);
-            return toDTO(discapacidadRepository.save(domainObject));
-        } else {
-            throw new ConflictException(String.format("Ya existe una discapacidad para el codigo [%s]", discapacidadDTO.getId()));
-        }
+        Discapacidad domainObject = toEntity(discapacidadDTO);
+        return toDTO(discapacidadRepository.save(domainObject));
     }
 
     @Override
@@ -48,6 +42,11 @@ public class DiscapacidadServiceImpl implements DiscapacidadService {
     @Override
     public List<DiscapacidadDTO> findAll() {
         return mapper.toDiscapacidadDTO(discapacidadRepository.findAll());
+    }
+
+    @Override
+    public List<DiscapacidadDTO> findByIdAntecedentePersonal(Long idAntecedentePersonal) {
+        return mapper.toDiscapacidadDTO(discapacidadRepository.findByIdAntecedentePersonal(idAntecedentePersonal));
     }
 
     @Override

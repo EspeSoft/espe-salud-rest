@@ -14,7 +14,7 @@ public interface AntecedenteQuirurgicoService {
     Optional<AntecedenteQuirurgicoDTO> findById(Long codigo);
 
     List<AntecedenteQuirurgicoDTO> findAll();
-
+    List<AntecedenteQuirurgicoDTO> findByIdAntecedente(Long idAntecedente);
     boolean deleteById(Long codigo);
 
     AntecedenteQuirurgicoDTO toDTO(AntecedenteQuirurgico antecedenteQuirurgico);

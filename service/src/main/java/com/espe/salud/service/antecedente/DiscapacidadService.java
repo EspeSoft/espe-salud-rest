@@ -14,7 +14,7 @@ public interface DiscapacidadService {
     Optional<DiscapacidadDTO> findById(Long codigo);
 
     List<DiscapacidadDTO> findAll();
-
+    List<DiscapacidadDTO> findByIdAntecedentePersonal(Long idAntecedentePersonal);
     boolean deleteById(Long id);
 
     DiscapacidadDTO toDTO(Discapacidad discapacidad);

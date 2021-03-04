@@ -1,10 +1,13 @@
 package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.Dispensario;
+import com.espe.salud.domain.entities.catalogo.MotivoAtencion;
 import com.espe.salud.domain.entities.certificado.Certificado;
+import com.espe.salud.domain.entities.enfermeria.Antropometria;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
+import com.espe.salud.domain.entities.usuario.Usuario;
 import com.espe.salud.domain.enums.EstadoNotaEvolucion;
 import com.espe.salud.domain.generators.StringPrefixedSequenceIdGenerator;
 import lombok.Data;
@@ -56,8 +59,8 @@ public class Evolucion {
     @Column(name = "MZSTEVO_MOTIVO_CONSULTA")
     private String motivoConsulta;
 
-    @Column(name = "MZSTEVO_MOTIVO_ATENCION")
-    private String motivoAtencion;
+    @Column(name = "FK_CMOTIATE_EVO")
+    private Long idMotivoAtencion;
 
     @Column(name = "MZSTEVO_NOTA_EVOLUCION", columnDefinition = "TEXT")
     private String notaEvolucion;
@@ -65,12 +68,12 @@ public class Evolucion {
     @Column(name = "MZSTEVO_ES_ENFERMEDAD_OCUPACIONAL")
     private Boolean esEnfermedadOcupacional;
 
-    @Embedded
-    private Referencia referencia;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CDIS_EVO", insertable = false, updatable = false)
     private Dispensario dispensario;
+
+    @Column(name = "FK_CDIS_EVO")
+    private Long idDispensario;
 
     @Column(name = "FK_PAC_EVO")
     private Long idPaciente;
@@ -79,17 +82,34 @@ public class Evolucion {
     @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false)
     private Paciente paciente;
 
+    @Column(name = "FK_USU_EVO")
+    private Long responsablePidm;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_EVO_EVO", insertable = false, updatable = false)
-    private Evolucion evolucionPadre;
+    @JoinColumn(name = "FK_USU_EVO",insertable = false,updatable = false)
+    private Usuario usuario;
+
+    @Column(name = "FK_CARESAL_EVO")
+    private Long idAreaSalud;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_CARESAL_EVO", insertable = false, updatable = false)
     private AreaSalud areaSalud;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_NOTENF_EVO", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_CMOTIATE_EVO", insertable = false, updatable = false)
+    private MotivoAtencion motivoAtencion;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "MZSTEVO_ANT",
+            joinColumns = {
+                    @JoinColumn(name = "FK_EVO", referencedColumnName = "MZSTEVO_CODIGO")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "FK_NOTENF", referencedColumnName = "MZSTNOTENF_CODIGO")})
     private NotaEnfermeria notaEnfermeria;
+
+    @Column(name = "FK_NOTENF")
+    private Long idNotaEnfermeria;
 
     @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Certificado> certificados;

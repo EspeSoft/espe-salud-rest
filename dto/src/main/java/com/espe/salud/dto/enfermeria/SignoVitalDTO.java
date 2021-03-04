@@ -1,5 +1,6 @@
 package com.espe.salud.dto.enfermeria;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,10 @@ import java.time.LocalDate;
 public class SignoVitalDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String presionArterial;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private Long id;
+    private Long presionArterial;
+    private Long presionArterial2;
     private Double frecuenciaCardiaca;
     private Double frecuenciaRespiratoria;
     private Double temperatura;

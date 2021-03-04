@@ -1,6 +1,5 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.antecedente.AntecedenteQuirurgico;
 import com.espe.salud.dto.antecedente.AntecedenteQuirurgicoDTO;
 import com.espe.salud.mapper.antecedente.AntecedenteQuirurgicoMapper;
@@ -26,13 +25,9 @@ public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoSe
 
     @Override
     public AntecedenteQuirurgicoDTO save(AntecedenteQuirurgicoDTO antecedenteQuirurgicoDTO) {
-        Optional<AntecedenteQuirurgico> optional = domainRepository.findById(antecedenteQuirurgicoDTO.getId());
-        if (!optional.isEmpty()) {
-            AntecedenteQuirurgico domainObject = toEntity(antecedenteQuirurgicoDTO);
-            return toDTO(domainRepository.save(domainObject));
-        } else {
-            throw new ConflictException(String.format("Ya existe un antecedente quirurgico con el codigo [%s]", antecedenteQuirurgicoDTO.getId()));
-        }
+        AntecedenteQuirurgico domainObject = toEntity(antecedenteQuirurgicoDTO);
+        return toDTO(domainRepository.save(domainObject));
+
     }
 
     @Override
@@ -48,8 +43,12 @@ public class AntecedenteQuirurgicoServiceImpl implements AntecedenteQuirurgicoSe
 
     @Override
     public List<AntecedenteQuirurgicoDTO> findAll() {
-
         return mapper.toAntecedenteQuirurgicoDTO(domainRepository.findAll());
+    }
+
+    @Override
+    public List<AntecedenteQuirurgicoDTO> findByIdAntecedente(Long idAntecedente) {
+        return mapper.toAntecedenteQuirurgicoDTO(domainRepository.findByIdAntecedentePersonal(idAntecedente));
     }
 
     @Override

@@ -35,11 +35,11 @@ public class AntecedenteQuirurgico {
     @Column(name = "MZSTANTQUI_SECUELAS")
     private String secuelas;
 
-    @Column(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL")
+    @Column(name = "FK_ANTPER_ANTQUI")
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_MZSTANTPATPER_ANTECEDENTE_PERSONAL", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_ANTPER_ANTQUI",insertable = false,updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.enfermeria;
 
 
+import com.espe.salud.domain.entities.catalogo.DescripcionActividadEnfermeria;
 import com.espe.salud.domain.entities.catalogo.TipoActividadEnfermeria;
 import com.espe.salud.domain.entities.usuario.Usuario;
 import lombok.Data;
@@ -30,6 +31,9 @@ public class ActividadEnfermeria {
 
     @Column(name = "FK_TIPACTENF_ACTENF")
     private Long idTipoActividadEnfermeria;
+
+    @Column(name = "MZSTACTENF_DESCRIPCION")
+    private String descripcion;
 
     @Column(name = "FK_USU_ACTENF")
     private Long idUsuario;

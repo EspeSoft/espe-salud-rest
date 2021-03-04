@@ -18,7 +18,7 @@ public interface MedicacionHabitualService {
     Optional<MedicacionHabitual> findExisting(MedicacionHabitalDTO medicacionHabitalDTO);
 
     List<MedicacionHabitalDTO> findAll();
-
+    List<MedicacionHabitalDTO> findByIdAntecedentePersonal(Long idAntecedentePersonal);
     boolean deleteById(Long id);
 
     MedicacionHabitalDTO toDTO(MedicacionHabitual medicacionHabitual);

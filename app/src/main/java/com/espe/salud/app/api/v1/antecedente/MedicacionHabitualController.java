@@ -9,7 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +36,14 @@ public class MedicacionHabitualController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos los medicamentos habituales")
+    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares de un antecedente personal")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<List<MedicacionHabitalDTO>> getByCodigoAntecedentePersonal(@RequestParam Long idAntecedentePersonal) {
+        return new ResponseEntity<>(service.findByIdAntecedentePersonal(idAntecedentePersonal), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Retorna el listado de todos los medicamentos habituales")
+    @GetMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<MedicacionHabitalDTO>> getAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }

@@ -11,7 +11,7 @@ public interface AntecedentePatologicoFamiliarService {
     AntecedentePatologicoFamiliarDTO update(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO);
 
     Optional<AntecedentePatologicoFamiliarDTO> findById(Long codigo);
-
+    
     boolean deleteById(Long id);
 
     List<AntecedentePatologicoFamiliarDTO> findByPaciente(Long idPaciente);

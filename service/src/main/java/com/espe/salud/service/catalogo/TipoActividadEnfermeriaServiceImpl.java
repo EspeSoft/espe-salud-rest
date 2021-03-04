@@ -23,7 +23,7 @@ public class TipoActividadEnfermeriaServiceImpl implements TipoActividadEnfermer
 
     @Override
     public Optional<TipoActividadEnfermeriaDTO> findById(Long id) {
-        return Optional.empty();
+        return repository.findByCodigo(id).map(this::toDTO);
     }
 
     @Override

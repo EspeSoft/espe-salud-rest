@@ -105,4 +105,5 @@ public class Constants {
     public static final String URI_API_V1_RELACIONES_ESPE = URI_API_V1 + "relaciones-espe";
     public static final String URI_API_V1_CONTACTOS_EMERGENCIA = URI_API_V1 + "contactos-emergencia";
     public static final String URI_API_V1_PLURINACIONALIDAD = URI_API_V1 + "plurinacionalidades";
+    public static final String URI_API_V1_AREAS_SALUD = URI_API_V1 + "areas-salud";
 }

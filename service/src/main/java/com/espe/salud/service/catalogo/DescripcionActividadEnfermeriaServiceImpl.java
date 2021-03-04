@@ -33,6 +33,11 @@ public class DescripcionActividadEnfermeriaServiceImpl implements DescripcionAct
     }
 
     @Override
+    public List<DescripcionActividadEnfermeriaDTO> findByDescripcion(Long id) {
+        return mapper.toDescripcionesActividadEnfermeriaDTO(repository.findByTipoActividadEnfermeriaCodigo(id));
+    }
+
+    @Override
     public DescripcionActividadEnfermeriaDTO toDTO(DescripcionActividadEnfermeria descripcionActividadEnfermeria) {
         return mapper.toDescripcionActividadEnfermeriaDTO(descripcionActividadEnfermeria);
     }

@@ -13,4 +13,5 @@ public interface DescripcionActividadEnfermeriaRepository extends JpaRepository<
     Optional<DescripcionActividadEnfermeria> findByCodigo(Long codigo);
 
     List<DescripcionActividadEnfermeria> findAllByOrderByNombreAsc();
+    List<DescripcionActividadEnfermeria> findByTipoActividadEnfermeriaCodigo(Long id);
 }
