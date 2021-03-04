@@ -42,19 +42,10 @@ public class RepertorioMedicamentoController {
     @Operation(summary = "Retorna un medicamento por su ID")
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
-    public ResponseEntity<RepertorioMedicamentoDTO> findById(
+    public ResponseEntity<RepertorioMedicamentoDTO> getById(
             @Parameter(description = "El ID del medicamento", required = true, example = "1")
             @PathVariable("id") Long id) {
         return  new ResponseEntity<>(service.findById(id), HttpStatus.OK);
-    }
-    @GetMapping("/{id}")
-    @Operation(summary = "Retorna un repertorio de un medicamento por su ID")
-    @ApiResponse(responseCode = "200", description = "OK")
-    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
-    public ResponseEntity<RepertorioMedicamentoDTO> retrieve(
-            @Parameter(description = "El ID del repertorio del medicamento", required = true, example = "1")
-            @PathVariable("id") Long id) {
-        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
     @PostMapping("/")
