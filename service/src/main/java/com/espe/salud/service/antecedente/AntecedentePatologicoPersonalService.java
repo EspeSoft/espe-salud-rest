@@ -14,5 +14,5 @@ public interface AntecedentePatologicoPersonalService {
 
     boolean deleteById(Long id);
 
-    List<AntecedentePatologicoPersonalDTO> findByAntecedente(Long idAntecedente);
+    List<AntecedentePatologicoPersonalDTO> findByPaciente(Long idPaciente);
 }

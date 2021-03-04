@@ -22,4 +22,5 @@ public class PacienteBannerDTO implements Serializable {
     private String vinculadoEspe;
     private String seguroSalud;
     private String asociacionAfiliada;
+    private String instruccion;
 }

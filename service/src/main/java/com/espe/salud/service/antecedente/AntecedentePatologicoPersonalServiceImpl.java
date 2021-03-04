@@ -60,7 +60,8 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     }
 
     @Override
-    public List<AntecedentePatologicoPersonalDTO> findByAntecedente(Long idAntecedente) {
-        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.findByAntecedentePersonalCodigo(idAntecedente));
+    @Transactional(readOnly = true)
+    public List<AntecedentePatologicoPersonalDTO> findByPaciente(Long idPaciente) {
+        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }

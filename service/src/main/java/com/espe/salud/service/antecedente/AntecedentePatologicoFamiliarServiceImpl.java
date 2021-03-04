@@ -7,6 +7,7 @@ import com.espe.salud.mapper.antecedente.AntecedentePatologicoFamiliarMapper;
 import com.espe.salud.persistence.antecedente.AntecedentePatologicoFamiliarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,25 +25,28 @@ public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePato
     }
 
     @Override
+    @Transactional
     public AntecedentePatologicoFamiliarDTO save(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO) {
-        AntecedentePatologicoFamiliar domainObject = toEntity(antecedentePatologicoFamiliaDTO);
-        return toDTO(domainRepository.save(domainObject));
+        Optional<AntecedentePatologicoFamiliar> optional = domainRepository.findByCodigo(antecedentePatologicoFamiliaDTO.getId());
+        if (optional.isEmpty()) {
+            AntecedentePatologicoFamiliar domainObject = mapper.toAntecedentePatologicoFamiliar(antecedentePatologicoFamiliaDTO);
+            return mapper.toAntecedentePatologicoFamiliarDTO(domainRepository.save(domainObject));
+        } else {
+            throw new ConflictException("Ya existe un antecedente patológico familiar para ese ID");
+        }
     }
 
     @Override
+    @Transactional
     public AntecedentePatologicoFamiliarDTO update(AntecedentePatologicoFamiliarDTO antecedentePatologicoFamiliaDTO) {
-        AntecedentePatologicoFamiliar domainObject = toEntity(antecedentePatologicoFamiliaDTO);
-        return toDTO(domainRepository.save(domainObject));
+        AntecedentePatologicoFamiliar domainObject = mapper.toAntecedentePatologicoFamiliar(antecedentePatologicoFamiliaDTO);
+        return mapper.toAntecedentePatologicoFamiliarDTO(domainRepository.save(domainObject));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<AntecedentePatologicoFamiliarDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(antecedentePatologicoFamiliar -> toDTO(antecedentePatologicoFamiliar));
-    }
-
-    @Override
-    public List<AntecedentePatologicoFamiliarDTO> findAll() {
-        return mapper.toAntecedentePatologicoFamiliarDTO(domainRepository.findAll());
+        return domainRepository.findById(codigo).map(mapper::toAntecedentePatologicoFamiliarDTO);
     }
 
     @Override
@@ -54,12 +58,8 @@ public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePato
     }
 
     @Override
-    public AntecedentePatologicoFamiliarDTO toDTO(AntecedentePatologicoFamiliar antecedentePatologicoFamiliar) {
-        return mapper.toAntecedentePatologicoFamiliarDTO(antecedentePatologicoFamiliar);
-    }
-
-    @Override
-    public AntecedentePatologicoFamiliar toEntity(AntecedentePatologicoFamiliarDTO dto) {
-        return mapper.toAntecedentePatologicoFamiliar(dto);
+    @Transactional(readOnly = true)
+    public List<AntecedentePatologicoFamiliarDTO> findByPaciente(Long idPaciente) {
+        return mapper.toAntecedentesPatologicoFamiliarDTO(domainRepository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }

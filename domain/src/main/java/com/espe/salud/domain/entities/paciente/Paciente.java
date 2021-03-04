@@ -14,7 +14,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -64,6 +63,9 @@ public class Paciente {
     @Column(name = "MZSTPAC_ASOCIACION_AFILIADA")
     private String asociacionAfiliada;
 
+    @Column(name = "MZSTPAC_INSTRUCCION")
+    private String instruccion;
+
     @Column(name = "FK_CDIS_PAC")
     private Long idDispensario;
 
@@ -112,6 +114,8 @@ public class Paciente {
 
     public void setPacienteAsExterno() {
         this.tipoPaciente = TipoPaciente.EXTERNO;
+        this.esEmpleado = false;
+        this.esEstudiante = false;
     }
 
     public void setPacienteAsInterno() {
