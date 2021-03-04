@@ -5,6 +5,7 @@ import com.espe.salud.domain.entities.catalogo.MotivoAtencion;
 import com.espe.salud.domain.entities.certificado.Certificado;
 import com.espe.salud.domain.entities.enfermeria.Antropometria;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
+import com.espe.salud.domain.entities.paciente.ContactoEmergencia;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
@@ -113,13 +114,34 @@ public class Evolucion {
 
     @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Certificado> certificados;
+    
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Diagnostico> diagnosticos;
 
-    @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Diagnostico> diagnostico;
+    public void addToDiagnosticos(List<Diagnostico> diagnosticosEv){
+        if(!diagnosticosEv.isEmpty()){
+            for (Diagnostico d: diagnosticosEv) {
+                d.setEvolucion(this);
+            }
+            this.diagnosticos = diagnosticosEv;
+        }
+    }
 
-    @OneToMany(mappedBy = "evolucion", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Procedimiento> procedimiento;
 
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Procedimiento> procedimientos;
+
+    @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    private List<Prescripcion> prescripciones;
+
+    public void addToPrescripciones(List<Prescripcion> prescripcionesEv){
+        if(!prescripcionesEv.isEmpty()){
+            for (Prescripcion d: prescripcionesEv) {
+                d.setEvolucion(this);
+            }
+            this.prescripciones = prescripcionesEv;
+        }
+    }
     @CreatedDate
     @Column(name = "MZSTEVO_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
@@ -135,4 +157,10 @@ public class Evolucion {
     @LastModifiedBy
     @Column(name = "MZSTEVO_USUARIO_MODIFICACION")
     private String usuarioModificacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaInicio = LocalDateTime.now();
+    }
+
 }

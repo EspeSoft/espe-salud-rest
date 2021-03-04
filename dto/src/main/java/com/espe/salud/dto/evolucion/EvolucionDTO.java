@@ -13,6 +13,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -26,38 +29,36 @@ public class EvolucionDTO implements Serializable {
     @Schema(accessMode = AccessMode.READ_ONLY)
     private String id;
 
-    private LocalDateTime fechaInicio;
-
+    @NotEmpty
     private String estado;
 
-    private LocalDateTime fechaFinalizacion;
-
-    private String observacion;
-
+    @NotNull
     private String motivoConsulta;
 
+    @NotNull
     private Long idMotivoAtencion;
 
+    @NotEmpty
     private String notaEvolucion;
 
+    @NotNull
     private Long responsablePidm;
 
     private Boolean esEnfermedadOcupacional;
 
+    @NotNull
     private Long idDispensario;
 
+    @NotNull
     private Long idPaciente;
 
+    @NotNull
     private Long idAreaSalud;
 
     private Long idNotaEnfermeria;
 
-
     @Schema(accessMode = AccessMode.READ_ONLY)
     private DispensarioDTO dispensario;
-
-    @Schema(accessMode = AccessMode.READ_ONLY)
-    private PacienteDTO paciente;
 
     @Schema(accessMode = AccessMode.READ_ONLY)
     private AreaSaludDTO areaSalud;
@@ -71,13 +72,9 @@ public class EvolucionDTO implements Serializable {
     @Schema(accessMode = AccessMode.READ_ONLY)
     private UsuarioDTO usuario;
 
-    @Schema(accessMode = AccessMode.READ_ONLY)
-    private List<CertificadoDTO> certificados;
+    List<@Valid DiagnosticoDTO> diagnosticos;
 
-    @Schema(accessMode = AccessMode.READ_ONLY)
-    private List<DiagnosticoDTO> diagnostico;
+    List<@Valid PrescripcionDTO> prescripciones;
 
-    @Schema(accessMode = AccessMode.READ_ONLY)
-    private List<ProcedimientoDTO> procedimiento;
 
 }

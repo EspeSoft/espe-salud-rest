@@ -22,4 +22,5 @@ public interface DiagnosticoService {
     Diagnostico toEntity(DiagnosticoDTO dto);
 
     List<DiagnosticoDTO> findAll();
+    List<DiagnosticoDTO> findByEvolucion(String id);
 }

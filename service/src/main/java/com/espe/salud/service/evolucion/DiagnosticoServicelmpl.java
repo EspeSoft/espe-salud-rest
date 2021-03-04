@@ -7,6 +7,7 @@ import com.espe.salud.mapper.evolucion.DiagnosticoMapper;
 import com.espe.salud.persistence.evolucion.DiagnosticoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,21 +26,23 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
     }
 
     @Override
+    @Transactional
     public DiagnosticoDTO save(DiagnosticoDTO diagnosticoDTO) {
-        Optional<Diagnostico> optional = diagnosticoRepository.findById(diagnosticoDTO.getId());
-        //Optional<Diagnostico> optional = findExisting(diagnostico);
-        if (!optional.isEmpty()) {
+        Optional <Diagnostico> optional = findExisting(diagnosticoDTO);
+        if (optional.isEmpty()) {
             Diagnostico domainObject = toEntity(diagnosticoDTO);
-            return toDTO(diagnosticoRepository.save(domainObject));
-        } else {
-            throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", diagnosticoDTO.getId()));
+            DiagnosticoDTO nuevo= toDTO(diagnosticoRepository.save(domainObject));
+            return nuevo;
+        }else{
+            throw new ConflictException(String.format("Ya existe un diagnóstico registrado para ese código[%s]", diagnosticoDTO.getId()));
         }
     }
 
     @Override
     public DiagnosticoDTO update(DiagnosticoDTO diagnosticoDTO) {
         Diagnostico domainObject = toEntity(diagnosticoDTO);
-        return toDTO(diagnosticoRepository.save(domainObject));
+        DiagnosticoDTO nuevo= toDTO(diagnosticoRepository.save(domainObject));
+        return nuevo;
     }
 
     @Override
@@ -48,6 +51,7 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
     }
 
     @Override
+    @Transactional
     public Boolean delete(Long id) {
         return diagnosticoRepository.findById(id).map(object -> {
             diagnosticoRepository.deleteById(id);
@@ -57,7 +61,7 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
 
     @Override
     public Optional<DiagnosticoDTO> findById(Long codigo) {
-        return diagnosticoRepository.findByCodigo(codigo).map(diagnostico -> mapper.toDiagnosticoDTO(diagnostico));
+        return diagnosticoRepository.findByCodigo(codigo).map(mapper::toDiagnosticoDTO);
     }
 
 
@@ -73,8 +77,12 @@ public class DiagnosticoServicelmpl implements DiagnosticoService {
 
     @Override
     public List<DiagnosticoDTO> findAll() {
-        List<Diagnostico> diagnosticos = new ArrayList<>();
-        diagnosticoRepository.findAll().forEach(diagnosticos::add);
+        List<Diagnostico> diagnosticos = new ArrayList<>(diagnosticoRepository.findAll());
         return mapper.toDiagnosticosDTO(diagnosticos);
+    }
+
+    @Override
+    public List<DiagnosticoDTO> findByEvolucion(String id) {
+        return mapper.toDiagnosticosDTO(diagnosticoRepository.findByEvolucionCodigo(id));
     }
 }

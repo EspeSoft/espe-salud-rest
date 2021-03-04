@@ -11,4 +11,5 @@ public interface DiagnosticoRepository extends JpaRepository<Diagnostico, Long> 
     Optional<Diagnostico> findByCodigo(Long codigo);
 
     List<Diagnostico> findAllByCodigo(Long codigo);
+    List<Diagnostico> findByEvolucionCodigo(String codigo);
 }

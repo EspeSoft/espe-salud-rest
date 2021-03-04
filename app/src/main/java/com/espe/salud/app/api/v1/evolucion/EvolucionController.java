@@ -34,7 +34,7 @@ public class EvolucionController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<EvolucionDTO> save(@RequestBody EvolucionDTO evolucion) {
+    public ResponseEntity<EvolucionDTO> save(@Valid @RequestBody EvolucionDTO evolucion) {
         return new ResponseEntity<>(evolucionService.save(evolucion), HttpStatus.CREATED);
     }
 
@@ -53,7 +53,7 @@ public class EvolucionController {
     @Operation(summary = "Elimina una Evolución por su id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(
-            @Parameter(required = true, description = "El ID de la evolución", example = "1")
+            @Parameter(required = true, description = "El ID de la evolución", example = "EV_0000001")
             @PathVariable String id) {
         return new ResponseEntity<>(evolucionService.delete(id), HttpStatus.OK);
     }
@@ -89,10 +89,7 @@ public class EvolucionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             EvolucionDTO nuevo = optional.get();
-            nuevo.setFechaInicio(dto.getFechaInicio());
             nuevo.setEstado(dto.getEstado());
-            nuevo.setFechaFinalizacion(dto.getFechaFinalizacion());
-            nuevo.setObservacion(dto.getObservacion());
             nuevo.setIdMotivoAtencion(dto.getIdMotivoAtencion());
             nuevo.setResponsablePidm(dto.getResponsablePidm());
             nuevo.setEsEnfermedadOcupacional(dto.getEsEnfermedadOcupacional());

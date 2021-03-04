@@ -32,6 +32,7 @@ public class EvolucionServiceImpl implements EvolucionService {
     private final UsuarioService serviceUsu;
     private final GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot;
 
+
     @Autowired
     public EvolucionServiceImpl(EvolucionRepository evolucionRepository,
                                 EvolucionMapper mapper, AreaSaludService serviceArea, NotaEnfermeriaService serviceNotEnf, @Qualifier("dispensarioServiceImpl") DispensarioService serviceDisp, PacienteService servicePac, UsuarioService serviceUsu, @Qualifier("motivoAtencionServiceImpl") GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot) {
@@ -51,11 +52,13 @@ public class EvolucionServiceImpl implements EvolucionService {
         Optional<Evolucion> optional = findExisting(evolucion);
         if (optional.isEmpty()) {
             Evolucion domainObject = toEntity(evolucion);
+            domainObject.addToDiagnosticos(domainObject.getDiagnosticos());
+            domainObject.addToPrescripciones(domainObject.getPrescripciones());
             EvolucionDTO evolucionNuevo= toDTO(evolucionRepository.save(domainObject));
             evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
-            evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).get());
+            evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).orElse(null));
             evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
-            evolucionNuevo.setPaciente(servicePac.findById(evolucionNuevo.getIdPaciente()).get());
+
             evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).get());
             evolucionNuevo.setMotivoAtencion(serviceMot.findById(evolucionNuevo.getIdMotivoAtencion()));
             return evolucionNuevo;
@@ -96,7 +99,6 @@ public class EvolucionServiceImpl implements EvolucionService {
         evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
         evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).get());
         evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
-        evolucionNuevo.setPaciente(servicePac.findById(evolucionNuevo.getIdPaciente()).get());
         evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).get());
         evolucionNuevo.setMotivoAtencion(serviceMot.findById(evolucionNuevo.getIdMotivoAtencion()));
         return evolucionNuevo;

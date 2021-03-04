@@ -1,8 +1,10 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.evolucion.Evolucion;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,4 +19,7 @@ public class MotivoAtencion {
 
     @Column(name = "MZSTCMOTATE_NOMBRE")
     private String nombre;
+
+    @OneToMany(mappedBy = "areaSalud", cascade = CascadeType.ALL)
+    private List<Evolucion> evoluciones;
 }

@@ -1,4 +1,4 @@
-package com.espe.salud.dto.evolucion;
+package com.espe.salud.dto.catalogo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -8,14 +8,10 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class DiagnosticoDTO implements Serializable {
+public class RepertorioMedicamentoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String codigoCIE;
-    private String prevencion;
-    private String morbilidad;
-    private String condicionDiagnostico;
-    private String idEvolucion;
+    private String nombre;
 }
