@@ -40,7 +40,7 @@ public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
     @Override
     @Transactional(readOnly = true)
     public Optional<NotaEnfermeriaDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(this::toDTO);
+        return domainRepository.findByCodigo(codigo).map(this::toDTO);
     }
 
     @Override

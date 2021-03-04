@@ -50,7 +50,7 @@ public class Constants {
 
 
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimientos";
-    public static final String URI_API_V1_DIA = URI_API_V1 + "diagnosticos";
+    public static final String URI_API_V1_DIA = URI_API_V1 + "evolucion/{idEvolucion}/diagnosticos";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "records-laborales";
     public static final String URI_API_V1_ACT_FIS = URI_API_V1 + "actividades-fisicas";
     public static final String URI_API_V1_ANT_PER = URI_API_V1 + "antecedentes-personales";
@@ -108,4 +108,8 @@ public class Constants {
     public static final String URI_API_V1_IDENTIDADES_GENERO = URI_API_V1 + "identidades-genero";
     public static final String URI_API_V1_FRECUENCIAS_ALIMENTACION = URI_API_V1 + "frecuencias-alimentacion";
     public static final String URI_API_V1_AREAS_SALUD = URI_API_V1 + "areas-salud";
+    public static final String URI_API_V1_PRESC = URI_API_V1 + "prescripciones";
+    public static final String URI_API_V1_REP_MED = URI_API_V1 + "repertorios-medicamento";
+
+
 }

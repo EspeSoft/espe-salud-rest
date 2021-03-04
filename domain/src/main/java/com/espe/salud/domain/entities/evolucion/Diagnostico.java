@@ -39,13 +39,13 @@ public class Diagnostico {
     @NotEmpty
     private String condicionDiagnostico;
 
-    @Column(name = "FK_EVO_DIA")
-    private String idEvolucion;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_EVO_DIA",insertable = false,updatable = false)
     private Evolucion evolucion;
 
+    @Column(name = "FK_EVO_DIA")
+    private String idEvolucion;
 
     @CreatedDate
     @Column(name = "MZSTDIA_FECHA_CREACION")
