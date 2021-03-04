@@ -20,7 +20,9 @@ public interface EvolucionMapper {
             @Mapping(source = "codigo", target = "id")
     })
     EvolucionDTO toEvolucionDTO(Evolucion evolucion);
+
     List<EvolucionDTO> toEvolucionesDTO(List<Evolucion> evoluciones);
+
     @InheritInverseConfiguration
     Evolucion toEvolucion(EvolucionDTO dto);
 }

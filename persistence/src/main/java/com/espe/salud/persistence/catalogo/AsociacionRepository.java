@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface AsociacionRepository extends JpaRepository<Asociacion,Long> {
+public interface AsociacionRepository extends JpaRepository<Asociacion, Long> {
     Optional<Asociacion> findByCodigo(Long codigo);
+
     List<Asociacion> findAllByOrderByNombreAsc();
 }

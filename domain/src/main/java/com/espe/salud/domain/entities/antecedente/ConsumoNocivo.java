@@ -56,7 +56,7 @@ public class ConsumoNocivo {
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_ANTPATPER_CONNOC",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_ANTPATPER_CONNOC", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
@@ -83,7 +83,6 @@ public class ConsumoNocivo {
     public void preUpdate() {
         fechaModificacion = LocalDateTime.now();
     }
-
 
 
 }

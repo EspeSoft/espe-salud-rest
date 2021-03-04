@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface CodigoCIUORepository extends JpaRepository<CodigoCIUO, String> {
     List<CodigoCIUO> findByCodigoStartingWithOrDescripcionStartingWith(String codigo, String descripcion);
+
     Optional<CodigoCIUO> findByCodigo(String codigo);
 }

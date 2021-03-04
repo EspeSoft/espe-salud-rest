@@ -41,7 +41,7 @@ public class ActividadFisica {
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_ANTPATPER_ACTFIS",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_ANTPATPER_ACTFIS", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy

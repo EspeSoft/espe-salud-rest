@@ -19,7 +19,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ANT_PATOLOGICO_PERSONAL;
 
 @RestController
-@Tag(description = "Gestiona antecedentes patologicos personales", name = "Antecedentes patológicos personales")
+@Tag(description = "Gestiona antecedentes patológicos personales de un paciente", name = "Antecedentes patológicos personales")
 @RequestMapping(value = {URI_API_V1_ANT_PATOLOGICO_PERSONAL})
 public class AntecedentePatologicoPersonalController {
 
@@ -30,12 +30,12 @@ public class AntecedentePatologicoPersonalController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de los antecedentes patologicos personales por antecedente")
+    @Operation(summary = "Retorna el listado de los antecedentes patologicos personales de un paciente")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<AntecedentePatologicoPersonalDTO>> findByAntecedente(
-            @Parameter(description = "El ID del antecedente", required = true, example = "1")
-            @RequestParam Long idAntecedente) {
-        return new ResponseEntity<>(service.findByAntecedente(idAntecedente), HttpStatus.OK);
+    public ResponseEntity<List<AntecedentePatologicoPersonalDTO>> findByPaciente(
+            @Parameter(description = "El ID del paciente", required = true, example = "1")
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna un antecedente patologico personal por su ID")

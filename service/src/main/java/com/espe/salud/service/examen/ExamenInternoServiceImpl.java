@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ExamenInternoServiceImpl implements ExamenInternoService{
+public class ExamenInternoServiceImpl implements ExamenInternoService {
 
     private final ExamenInternoRepository repository;
     private final ExamenInternoMapper mapper;
@@ -42,7 +42,7 @@ public class ExamenInternoServiceImpl implements ExamenInternoService{
             ExamenInternoDTO examenInternoDTO = mapper.toExamenInternoDTO(repository.save(domainObject));
             examenInternoDTO.setOrganoSistema(organoSistemaService.findById(examenInternoDTO.getIdOrganoSistema()));
             return examenInternoDTO;
-        }else{
+        } else {
             throw new ConflictException("Ya existe un examen registrado para ese id");
         }
     }

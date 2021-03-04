@@ -15,8 +15,9 @@ public interface CertificadoMapper {
             @Mapping(source = "codigo", target = "id")
     })
     CertificadoDTO toCertificadoDTO(Certificado certificado);
+
     List<CertificadoDTO> toCertificadoDTO(List<Certificado> certificados);
 
     @InheritInverseConfiguration
-    Certificado toCertificado (CertificadoDTO dto);
+    Certificado toCertificado(CertificadoDTO dto);
 }

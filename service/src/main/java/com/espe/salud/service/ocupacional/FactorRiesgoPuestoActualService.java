@@ -8,11 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FactorRiesgoPuestoActualService {
-    FactorRiesgoPuestoActualDTO save  (FactorRiesgoPuestoActualDTO factor);
+    FactorRiesgoPuestoActualDTO save(FactorRiesgoPuestoActualDTO factor);
+
     FactorRiesgoPuestoActualDTO update(FactorRiesgoPuestoActualDTO factor);
+
     Boolean delete(Long id);
-    Optional<FactorRiesgoPuestoActualDTO > findByCodigo(Long codigo);
+
+    Optional<FactorRiesgoPuestoActualDTO> findByCodigo(Long codigo);
+
     List<FactorRiesgoPuestoActualDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral);
-    FactorRiesgoPuestoActualDTO  toDTO (FactorRiesgoPuestoActual factor);
-    FactorRiesgoPuestoActual toEntity (FactorRiesgoPuestoActualDTO dto);
+
+    FactorRiesgoPuestoActualDTO toDTO(FactorRiesgoPuestoActual factor);
+
+    FactorRiesgoPuestoActual toEntity(FactorRiesgoPuestoActualDTO dto);
 }

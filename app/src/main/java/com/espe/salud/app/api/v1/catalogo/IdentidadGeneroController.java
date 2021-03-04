@@ -33,7 +33,7 @@ public class IdentidadGeneroController {
     @Operation(summary = "Retorna el listado de todas las identidades de género en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<IdentidadGeneroDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class IdentidadGeneroController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nueva identidad de género")
-    public ResponseEntity<IdentidadGeneroDTO> save(@RequestBody IdentidadGeneroDTO identidadGeneroDTO){
+    public ResponseEntity<IdentidadGeneroDTO> save(@RequestBody IdentidadGeneroDTO identidadGeneroDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(identidadGeneroDTO), HttpStatus.CREATED);
     }
 

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class PlanificacionFamiliarServiceImpl implements PlanificacionFamiliarService{
+public class PlanificacionFamiliarServiceImpl implements PlanificacionFamiliarService {
 
     private final PlanificacionFamiliarRepository domainRepository;
     private final PlanificacionFamiliarMapper mapper;
@@ -25,18 +25,18 @@ public class PlanificacionFamiliarServiceImpl implements PlanificacionFamiliarSe
 
     @Override
     public PlanificacionFamiliarDTO save(PlanificacionFamiliarDTO planificacionFamiliarDTO) {
-        Optional<PlanificacionFamiliar> optional=domainRepository.findById(planificacionFamiliarDTO.getId());
-        if (!optional.isPresent()){
-            PlanificacionFamiliar domainObject=toEntity(planificacionFamiliarDTO);
+        Optional<PlanificacionFamiliar> optional = domainRepository.findById(planificacionFamiliarDTO.getId());
+        if (!optional.isPresent()) {
+            PlanificacionFamiliar domainObject = toEntity(planificacionFamiliarDTO);
             return toDTO(domainRepository.save(domainObject));
-        }else{
-            throw new ConflictException(String.format("Ya existe una planificacion familiar para el codigo [%s]",planificacionFamiliarDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe una planificacion familiar para el codigo [%s]", planificacionFamiliarDTO.getId()));
         }
     }
 
     @Override
     public PlanificacionFamiliarDTO update(PlanificacionFamiliarDTO planificacionFamiliarDTO) {
-        PlanificacionFamiliar domainObject=toEntity(planificacionFamiliarDTO);
+        PlanificacionFamiliar domainObject = toEntity(planificacionFamiliarDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 

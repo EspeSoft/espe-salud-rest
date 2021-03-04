@@ -17,7 +17,7 @@ public class AntecedenteQuirurgico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTANTQUI_CODIGO")
+    @Column(name = "MZSTANTQUI_CODIGO")
     private Long codigo;
 
     @Lob

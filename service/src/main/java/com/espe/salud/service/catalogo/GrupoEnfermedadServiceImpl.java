@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GrupoEnfermedadServiceImpl implements GrupoEnfermedadService{
+public class GrupoEnfermedadServiceImpl implements GrupoEnfermedadService {
     private final GrupoEnfermedadRepository grupoEnfermedadRepository;
     private final GrupoEnfermedadMapper mapper;
 

@@ -29,14 +29,14 @@ public class ActividadFisicaController {
     @Operation(summary = "Retorna el listado de todas las actividades fisicas")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ActividadFisicaDTO>> getAll() {
-        return new ResponseEntity<>( actividadFisicaService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(actividadFisicaService.findAll(), HttpStatus.OK);
     }
 
 
     @Operation(summary = "Retorna una Actividad Física por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ActividadFisicaDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( actividadFisicaService.findByCodigo(codigo), HttpStatus.OK);
+        return new ResponseEntity(actividadFisicaService.findByCodigo(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita una actividead física  por su código")
@@ -48,12 +48,12 @@ public class ActividadFisicaController {
         newActividadFisicaDTO.setFrecuencia(actividadFisicaDTO.getFrecuencia());
         newActividadFisicaDTO.setHoras(actividadFisicaDTO.getHoras());
         newActividadFisicaDTO.setObservacion(actividadFisicaDTO.getObservacion());
-        return new ResponseEntity<>(actividadFisicaService.update(newActividadFisicaDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(actividadFisicaService.update(newActividadFisicaDTO), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Guarda una nueva Actividad Fisica ")
     @PostMapping("/")
-    public ResponseEntity<ActividadFisicaDTO> save(@RequestBody ActividadFisicaDTO actividadFisica){
+    public ResponseEntity<ActividadFisicaDTO> save(@RequestBody ActividadFisicaDTO actividadFisica) {
         return new ResponseEntity<>(actividadFisicaService.save(actividadFisica), HttpStatus.CREATED);
     }
 

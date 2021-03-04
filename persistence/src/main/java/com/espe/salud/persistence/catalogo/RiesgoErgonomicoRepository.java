@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface RiesgoErgonomicoRepository extends JpaRepository<RiesgoErgonomico, Long> {
     List<RiesgoErgonomico> findAllByOrderByNombreAsc();
+
     Optional<RiesgoErgonomico> findByCodigo(Long codigo);
-    
+
 }

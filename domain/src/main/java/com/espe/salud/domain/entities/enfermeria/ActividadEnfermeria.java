@@ -39,11 +39,11 @@ public class ActividadEnfermeria {
     private Long idUsuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_TIPACTENF_ACTENF",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_TIPACTENF_ACTENF", insertable = false, updatable = false)
     private TipoActividadEnfermeria tipoActividadEnfermeria;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_USU_ACTENF",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_USU_ACTENF", insertable = false, updatable = false)
     private Usuario usuario;
 
     @CreatedBy

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public interface AntecedenteQuirurgicoRepository extends JpaRepository<AntecedenteQuirurgico,Long> {
     Optional<AntecedenteQuirurgico> findByCodigo(Long codigo);
 

@@ -8,12 +8,19 @@ import java.util.Optional;
 
 public interface ConsumoNocivoService {
     ConsumoNocivoDTO save(ConsumoNocivoDTO actividadFisicaDTO);
+
     ConsumoNocivoDTO update(ConsumoNocivoDTO consumoNocivo);
+
     Optional<ConsumoNocivo> findExisting(ConsumoNocivoDTO pacienteDTO);
+
     Boolean delete(Long id);
+
     Optional<ConsumoNocivoDTO> findByCodigo(Long codigo);
+
     ConsumoNocivoDTO toDTO(ConsumoNocivo consumoNocivo);
+
     ConsumoNocivo toEntity(ConsumoNocivoDTO dto);
+
     List<ConsumoNocivoDTO> findAll();
 }
 

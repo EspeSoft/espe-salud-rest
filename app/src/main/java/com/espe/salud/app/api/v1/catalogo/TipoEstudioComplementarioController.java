@@ -33,7 +33,7 @@ public class TipoEstudioComplementarioController {
     @Operation(summary = "Retorna el listado de todos los tipos de estudio complementarios en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoEstudioComplementarioDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class TipoEstudioComplementarioController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo tipo de estudio complementario")
-    public ResponseEntity<TipoEstudioComplementarioDTO> save(@RequestBody TipoEstudioComplementarioDTO dto){
+    public ResponseEntity<TipoEstudioComplementarioDTO> save(@RequestBody TipoEstudioComplementarioDTO dto) {
         return new ResponseEntity<>(service.saveOrUpdate(dto), HttpStatus.CREATED);
     }
 

@@ -33,7 +33,7 @@ public class RiesgoErgonomicoController {
     @Operation(summary = "Retorna el listado de todos los riesgo ergonómicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoErgonomicoDTO>> getAll() {
-        return new ResponseEntity<>( riesgoErgonomicoService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(riesgoErgonomicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

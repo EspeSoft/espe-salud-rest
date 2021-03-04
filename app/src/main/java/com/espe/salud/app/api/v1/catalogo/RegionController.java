@@ -32,9 +32,8 @@ public class RegionController {
     @Operation(summary = "Retorna el listado de todas las regiones")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RegionDTO>> getAll() {
-        return new ResponseEntity<>( regionService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(regionService.findAllOrderByNameASC(), HttpStatus.OK);
     }
-
 
 
 }

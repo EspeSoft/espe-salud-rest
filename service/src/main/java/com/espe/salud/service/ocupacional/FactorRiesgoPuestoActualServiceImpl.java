@@ -31,7 +31,7 @@ public class FactorRiesgoPuestoActualServiceImpl implements FactorRiesgoPuestoAc
         if (!optional.isPresent()) {
             FactorRiesgoPuestoActual domainObject = toEntity(factor);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un factor de riesgo para el puesto actual registrado para ese código[%s]", factor.getId()));
         }
     }

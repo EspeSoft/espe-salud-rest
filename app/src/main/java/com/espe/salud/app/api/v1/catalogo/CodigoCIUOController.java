@@ -30,7 +30,7 @@ public class CodigoCIUOController {
     @Operation(summary = "Retorna el listado de todos los codigo CIUO")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<CodigoCIUODTO>> getAll() {
-        return new ResponseEntity<>( service.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{codigo}")
@@ -50,12 +50,12 @@ public class CodigoCIUOController {
     @GetMapping(value = "/findByCodeOrDescription", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<CodigoCIUODTO>> findByCodeOrDescriptio(
             @Parameter(required = true, description = "El Codigo CIUO o el nombre del OFICIO", example = "01") @RequestParam String query) {
-        return new ResponseEntity<>( service.findByCodigoOrDescription(query), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByCodigoOrDescription(query), HttpStatus.OK);
     }
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo código CIUO")
-    public ResponseEntity<CodigoCIUODTO> save(@RequestBody CodigoCIUODTO codigoCIUODTO){
+    public ResponseEntity<CodigoCIUODTO> save(@RequestBody CodigoCIUODTO codigoCIUODTO) {
         return new ResponseEntity<>(service.save(codigoCIUODTO), HttpStatus.CREATED);
     }
 }

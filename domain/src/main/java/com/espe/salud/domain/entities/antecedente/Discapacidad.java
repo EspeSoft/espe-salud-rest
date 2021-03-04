@@ -17,7 +17,7 @@ public class Discapacidad {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTDIS_CODIGO")
+    @Column(name = "MZSTDIS_CODIGO")
     private Long codigo;
 
     @Column(name = "MZSTDIS_COLABORADOR_DISCAPACIDAD")

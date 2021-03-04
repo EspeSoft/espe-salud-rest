@@ -27,10 +27,10 @@ public abstract class DetalleTrabajo {
 
     @Column(name = "MZSTDETTRA_MESES")
     private Float meses;
-    
+
     @Column(name = "MZSTDETTRA_USABAN_SEGURIDAD")
     private Boolean usabanSeguridad;
-    
+
     @Column(name = "MZSTDETTRA_VIGILANCIA_SALUD")
     private Boolean vigilanciaSalud;
 

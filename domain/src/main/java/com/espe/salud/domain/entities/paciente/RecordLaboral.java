@@ -23,7 +23,7 @@ public class RecordLaboral {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTRECLAB_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTRECLAB_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @Column(name = "MZSTRECLAB_FECHA_REGISTRO")
@@ -32,7 +32,7 @@ public class RecordLaboral {
     private LocalDate fechaRegistro;
 
     @Column(name = "MZSTRECLAB_CAUSA")
-    @Size(max=50)
+    @Size(max = 50)
     @NotEmpty
     private String causa;
 

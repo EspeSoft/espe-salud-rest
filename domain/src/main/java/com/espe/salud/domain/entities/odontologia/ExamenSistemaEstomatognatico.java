@@ -16,15 +16,15 @@ public class ExamenSistemaEstomatognatico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTEXASISEST_CODIGO")
+    @Column(name = "MZSTEXASISEST_CODIGO")
     private Long codigo;
 
-    @Column(name="MZSTEXASISEST_UNIDAD_ESTOMATOGNATICA")
+    @Column(name = "MZSTEXASISEST_UNIDAD_ESTOMATOGNATICA")
     @NotEmpty
     private String unidadEstomatognatica;
 
-    @Column(name="MZSTEXASISEST_CODIGO_CIE_ASOCIADO")
-    @Size(max=12)
+    @Column(name = "MZSTEXASISEST_CODIGO_CIE_ASOCIADO")
+    @Size(max = 12)
     @NotEmpty
     private String codigoCIEAsociado;
 

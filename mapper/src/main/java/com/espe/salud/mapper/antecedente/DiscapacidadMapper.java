@@ -17,6 +17,7 @@ public interface DiscapacidadMapper {
             @Mapping(source = "codigo", target = "id")
     })
     DiscapacidadDTO toDiscapacidadDTO(Discapacidad discapacidad);
+
     List<DiscapacidadDTO> toDiscapacidadDTO(List<Discapacidad> discapacidads);
 
     @InheritInverseConfiguration

@@ -3,13 +3,14 @@ package com.espe.salud.domain.entities.odontologia;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class DetalleOdontograma {
 
 
@@ -20,7 +21,7 @@ public abstract class DetalleOdontograma {
     private Long codigo;
 
     @Column(name = "MZSTDETODO_TIPO")
-    @Size(max=30, message = "{Size.DetalleOdontograma.tipo}")
+    @Size(max = 30, message = "{Size.DetalleOdontograma.tipo}")
     @NotEmpty(message = "{NotEmpty.DetalleOdontograma.tipo}")
     protected String tipo;
 

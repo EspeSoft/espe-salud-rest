@@ -32,7 +32,7 @@ public class IndicadorSaludBucalController {
 
     @PostMapping("")
     @Operation(summary = "Guarda y retorna un indicador de salud bucal")
-    public ResponseEntity<IndicadorSaludBucalDTO> save(@RequestBody IndicadorSaludBucalDTO indicadorSaludBucalDTO){
+    public ResponseEntity<IndicadorSaludBucalDTO> save(@RequestBody IndicadorSaludBucalDTO indicadorSaludBucalDTO) {
         return new ResponseEntity<>(indicadorSaludBucalService.save(indicadorSaludBucalDTO), HttpStatus.CREATED);
     }
 
@@ -65,17 +65,17 @@ public class IndicadorSaludBucalController {
 
     @Operation(summary = "Elimina una historia clínica por su código")
     @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
+    public void delete(@PathVariable Long codigo) {
         indicadorSaludBucalService.delete(codigo);
     }
 
     @Operation(summary = "Actualiza un indicador de salud bucal por su código")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<IndicadorSaludBucalDTO> update(
             @RequestBody IndicadorSaludBucalDTO dto,
-            @PathVariable Long codigo){
-        Optional<IndicadorSaludBucalDTO> indicadorSaludBucalDTOOptional =  indicadorSaludBucalService.findById(codigo);
-        if(indicadorSaludBucalDTOOptional.isPresent()) {
+            @PathVariable Long codigo) {
+        Optional<IndicadorSaludBucalDTO> indicadorSaludBucalDTOOptional = indicadorSaludBucalService.findById(codigo);
+        if (indicadorSaludBucalDTOOptional.isPresent()) {
             IndicadorSaludBucalDTO IndicadorSaludBucalDTO = indicadorSaludBucalDTOOptional.get();
             IndicadorSaludBucalDTO.setNivelEnfermedadPeriodontal(dto.getNivelEnfermedadPeriodontal());
             IndicadorSaludBucalDTO.setNivelFluorosis(dto.getNivelFluorosis());

@@ -32,6 +32,6 @@ public class TipoExamenLaboratorioController {
     @Operation(summary = "Retorna el listado de todos los tipos de exámenes de laboratorio")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoExamenLaboratorioDTO>> getAll() {
-        return new ResponseEntity<>( examenLaboratorioService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(examenLaboratorioService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }

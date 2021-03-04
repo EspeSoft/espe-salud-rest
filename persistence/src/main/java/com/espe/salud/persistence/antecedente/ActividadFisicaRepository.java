@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ActividadFisicaRepository extends JpaRepository<ActividadFisica, Long> {
     Optional<ActividadFisica> findByCodigo(Long codigo);
+
     List<ActividadFisica> findAllByCodigo(Long codigo);
 }

@@ -10,6 +10,7 @@ import java.util.Optional;
 @Repository
 public interface TipoActividadEnfermeriaRepository extends JpaRepository<TipoActividadEnfermeria, Long> {
     Optional<TipoActividadEnfermeria> findByCodigo(Long codigo);
+
     List<TipoActividadEnfermeria> findAllByOrderByNombreAsc();
 //    List<TipoActividadEnfermeria> findByNombreStartingWith(String nombre);
 }

@@ -8,11 +8,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ActividadExtralaboralService {
-    ActividadExtralaboralDTO save  (ActividadExtralaboralDTO actividad);
+    ActividadExtralaboralDTO save(ActividadExtralaboralDTO actividad);
+
     ActividadExtralaboralDTO update(ActividadExtralaboralDTO actividad);
+
     Boolean delete(Long id);
-    Optional<ActividadExtralaboralDTO > findByCodigo(Long codigo);
+
+    Optional<ActividadExtralaboralDTO> findByCodigo(Long codigo);
+
     List<ActividadExtralaboralDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral);
-    ActividadExtralaboralDTO  toDTO (ActividadExtralaboral actividad);
-    ActividadExtralaboral toEntity (ActividadExtralaboralDTO dto);
+
+    ActividadExtralaboralDTO toDTO(ActividadExtralaboral actividad);
+
+    ActividadExtralaboral toEntity(ActividadExtralaboralDTO dto);
 }

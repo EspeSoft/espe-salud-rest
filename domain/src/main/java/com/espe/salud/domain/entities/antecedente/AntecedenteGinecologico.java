@@ -18,7 +18,7 @@ public class AntecedenteGinecologico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTANTGIN_CODIGO")
+    @Column(name = "MZSTANTGIN_CODIGO")
     private Long codigo;
 
     @Lob
@@ -32,7 +32,7 @@ public class AntecedenteGinecologico {
     @Lob
     @Column(name = "MZSTANTGIN_FECHA_ULTIMA_MENSTRUACION")
     private LocalDate fechaUltimaMenstruacion;
-    
+
     @Lob
     @Column(name = "MZSTANTGIN_GESTAS")
     private Integer gestas;
@@ -44,7 +44,7 @@ public class AntecedenteGinecologico {
     @Lob
     @Column(name = "MZSTANTGIN_NUMERO_CESAREAS")
     private Integer numeroCesareas;
-    
+
     @Lob
     @Column(name = "MZSTANTGIN_NUMERO_ABORTOS")
     private Integer numeroAbortos;

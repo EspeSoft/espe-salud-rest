@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface RegionRepository extends JpaRepository<Region, Long> {
     List<Region> findAllByOrderByNombreAsc();
+
     Optional<Region> findByCodigo(Long codigo);
 }

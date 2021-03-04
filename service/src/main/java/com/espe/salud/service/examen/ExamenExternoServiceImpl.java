@@ -46,7 +46,7 @@ public class ExamenExternoServiceImpl implements ExamenExternoService {
             examenExternoDTO.setArea(areaService.findById(examenExternoDTO.getIdArea()));
             examenExternoDTO.setRegion(regionService.findById(examenExternoDTO.getIdRegion()));
             return examenExternoDTO;
-        }else{
+        } else {
             throw new ConflictException("Ya existe un examen registrado para ese id");
         }
     }

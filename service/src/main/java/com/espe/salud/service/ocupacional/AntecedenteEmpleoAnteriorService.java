@@ -9,11 +9,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AntecedenteEmpleoAnteriorService {
-    AntecedenteEmpleoAnteriorDTO save  (AntecedenteEmpleoAnteriorDTO antecedente);
+    AntecedenteEmpleoAnteriorDTO save(AntecedenteEmpleoAnteriorDTO antecedente);
+
     AntecedenteEmpleoAnteriorDTO update(AntecedenteEmpleoAnteriorDTO antecedente);
+
     Boolean delete(Long id);
-    Optional<AntecedenteEmpleoAnteriorDTO > findByCodigo(Long codigo);
+
+    Optional<AntecedenteEmpleoAnteriorDTO> findByCodigo(Long codigo);
+
     List<AntecedenteEmpleoAnteriorDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral);
-    AntecedenteEmpleoAnteriorDTO  toDTO (AntecedenteEmpleoAnterior antecedente);
-    AntecedenteEmpleoAnterior toEntity (AntecedenteEmpleoAnteriorDTO dto);
+
+    AntecedenteEmpleoAnteriorDTO toDTO(AntecedenteEmpleoAnterior antecedente);
+
+    AntecedenteEmpleoAnterior toEntity(AntecedenteEmpleoAnteriorDTO dto);
 }

@@ -45,7 +45,7 @@ public class HistoriaClinicaOdontologicaServiceImpl implements HistoriaClinicaOd
 
     @Override
     public HistoriaClinicaOdontologicaDTO update(HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO) {
-        HistoriaClinicaOdontologica domainObject=toEntity(historiaClinicaOdontologicaDTO);
+        HistoriaClinicaOdontologica domainObject = toEntity(historiaClinicaOdontologicaDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 

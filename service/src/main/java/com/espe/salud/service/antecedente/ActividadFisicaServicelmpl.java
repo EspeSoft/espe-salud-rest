@@ -25,7 +25,7 @@ public class ActividadFisicaServicelmpl implements ActividadFisicaService {
 
     @Override
     public ActividadFisicaDTO save(ActividadFisicaDTO actividadFisicaDTO) {
-        Optional<ActividadFisica> optional=actividadFisicaRepository.findById(actividadFisicaDTO.getId());
+        Optional<ActividadFisica> optional = actividadFisicaRepository.findById(actividadFisicaDTO.getId());
 
         // Optional< ActividadFisica > optional = findExisting(actividadFisica);
         if (!optional.isEmpty()) {
@@ -49,7 +49,7 @@ public class ActividadFisicaServicelmpl implements ActividadFisicaService {
 
     @Override
     public Boolean delete(Long id) {
-        return  actividadFisicaRepository.findById(id).map(object -> {
+        return actividadFisicaRepository.findById(id).map(object -> {
             actividadFisicaRepository.deleteById(id);
             return true;
         }).orElse(false);

@@ -57,7 +57,7 @@ public class ActividadExtralaboralController {
 
     @Operation(summary = "Guarda una nueva actividad")
     @PostMapping("")
-    public ResponseEntity<ActividadExtralaboralDTO> save(@RequestBody ActividadExtralaboralDTO actividad){
+    public ResponseEntity<ActividadExtralaboralDTO> save(@RequestBody ActividadExtralaboralDTO actividad) {
         return new ResponseEntity<>(serviceActividad.save(actividad), HttpStatus.CREATED);
     }
 
@@ -83,7 +83,7 @@ public class ActividadExtralaboralController {
         newActividadExtralaboralDTO.setPuestoTrabajo(actividadDTO.getPuestoTrabajo());
         newActividadExtralaboralDTO.setUsabanSeguridad(actividadDTO.getUsabanSeguridad());
         newActividadExtralaboralDTO.setVigilanciaSalud(actividadDTO.getVigilanciaSalud());
-        return new ResponseEntity<>(serviceActividad.update(newActividadExtralaboralDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceActividad.update(newActividadExtralaboralDTO), HttpStatus.CREATED);
     }
 
 }

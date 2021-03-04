@@ -27,7 +27,6 @@ public class Empleado {
 
     @Column(name = "MZSTEMP_FECHA_INGRESO_LABORAL")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @PastOrPresent
     private LocalDate fechaIngresoLaboral;
 
     @Column(name = "MZSTEMP_UNIDAD_DEPARTAMENTO")

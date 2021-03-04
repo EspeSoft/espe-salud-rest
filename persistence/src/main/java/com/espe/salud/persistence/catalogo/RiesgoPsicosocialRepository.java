@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface RiesgoPsicosocialRepository extends JpaRepository<RiesgoPsicosocial, Long> {
     List<RiesgoPsicosocial> findAllByOrderByNombreAsc();
+
     Optional<RiesgoPsicosocial> findByCodigo(Long codigo);
 }

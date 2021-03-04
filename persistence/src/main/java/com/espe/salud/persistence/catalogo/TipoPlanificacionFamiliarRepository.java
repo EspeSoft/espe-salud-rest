@@ -11,6 +11,8 @@ import java.util.Optional;
 @Repository
 public interface TipoPlanificacionFamiliarRepository extends JpaRepository<TipoPlanificacionFamiliar, Long> {
     List<TipoPlanificacionFamiliar> findAllByOrderByNombreAsc();
+
     Optional<TipoPlanificacionFamiliar> findByCodigo(Long codigo);
+
     List<TipoPlanificacionFamiliar> findBySexoOrSexoOrderByNombreAsc(SexoTipoPlanificacionFamiliar ambos, SexoTipoPlanificacionFamiliar sexo);
 }

@@ -1,11 +1,13 @@
 package com.espe.salud.dto.paciente;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 public class EmpleadoDTO implements Serializable {
@@ -13,21 +15,26 @@ public class EmpleadoDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private LocalDate fechaIngresoLaboral;
-    private String unidadDepartamento;
-    private String observacionHorario;
-    private String parroquia;
+    private String campus;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private LocalDateTime fechaIngresoLaboral;
+    private String seccion;
+    private String departamento;
+    private String cantonTrabajo;
+    private String provinciaTrabajo;
     private String direccionLaboral;
     private String areaTrabajo;
     private String cargoTrabajoActual;
-    private String actividadeRelevante;
+
+    private String parroquiaTrabajo;
+    private String ciuo;
+    private String actividadesRelevantes;
     private String tipoJornadaLaboral;
     private Integer horasTrabajoDia;
     private Integer horasTrabajoSemana;
     private Integer horasTrabajoMes;
     private String cumpleMisionServicio;
+    private String observacionHorario;
     private String situacionAdministrativa;
-    private Long idCantonTrabajo;
-    private Long idProvinciaTrabajo;
-
 }

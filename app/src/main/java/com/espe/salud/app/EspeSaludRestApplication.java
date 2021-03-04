@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @PropertySource("classpath:data.properties")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableJpaAuditing
-public class EspeSaludRestApplication{
+public class EspeSaludRestApplication {
     public static void main(String[] args) {
         SpringApplication.run(EspeSaludRestApplication.class, args);
     }

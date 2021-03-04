@@ -19,7 +19,7 @@ import java.util.Optional;
 import static com.espe.salud.app.common.Constants.URI_API_V1_ACT_ENF;
 
 @RestController
-    @Tag(description = "Gestiona las actividades de enfermería de un paciente", name = "Actividades de Enfermería")
+@Tag(description = "Gestiona las actividades de enfermería de un paciente", name = "Actividades de Enfermería")
 @RequestMapping(value = {URI_API_V1_ACT_ENF})
 public class ActividadEnfermeriaController {
     private final ActividadEnfermeriaService actividadEnfermeriaService;
@@ -36,7 +36,7 @@ public class ActividadEnfermeriaController {
     public ResponseEntity<List<ActividadEnfermeriaDTO>> getByUsuario(
             @Parameter(required = true, description = "El ID del usuario", example = "62455")
             @RequestParam Long idUsuario) {
-        return new ResponseEntity<>( actividadEnfermeriaService.findByUsuario(idUsuario), HttpStatus.OK);
+        return new ResponseEntity<>(actividadEnfermeriaService.findByUsuario(idUsuario), HttpStatus.OK);
     }
 
 
@@ -54,7 +54,7 @@ public class ActividadEnfermeriaController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nueva actividad de enfermería")
-    public ResponseEntity<ActividadEnfermeriaDTO> save(@Valid @RequestBody ActividadEnfermeriaDTO actividadEnfermeriaDTO){
+    public ResponseEntity<ActividadEnfermeriaDTO> save(@Valid @RequestBody ActividadEnfermeriaDTO actividadEnfermeriaDTO) {
         return new ResponseEntity<>(actividadEnfermeriaService.save(actividadEnfermeriaDTO), HttpStatus.CREATED);
     }
 

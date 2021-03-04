@@ -26,17 +26,17 @@ public class TipoExamenLaboratorioServiceImpl extends GenericCRUDServiceImpl<Tip
     }
 
     @Override
-    public TipoExamenLaboratorio mapTo(TipoExamenLaboratorioDTO dtoObject){
+    public TipoExamenLaboratorio mapTo(TipoExamenLaboratorioDTO dtoObject) {
         return mapper.toExamenLaboratorio(dtoObject);
     }
 
     @Override
-    public TipoExamenLaboratorioDTO build(TipoExamenLaboratorio domainObject){
+    public TipoExamenLaboratorioDTO build(TipoExamenLaboratorio domainObject) {
         return mapper.toExamenLaboratorioDTO(domainObject);
     }
 
     @Override
-    public Optional<TipoExamenLaboratorio> findExisting(TipoExamenLaboratorioDTO domainObject){
+    public Optional<TipoExamenLaboratorio> findExisting(TipoExamenLaboratorioDTO domainObject) {
         return domainRepository.findByCodigo(domainObject.getId());
     }
 

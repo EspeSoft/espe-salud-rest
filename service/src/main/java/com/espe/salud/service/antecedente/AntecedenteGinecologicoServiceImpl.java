@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AntecedenteGinecologicoServiceImpl implements AntecedenteGinecologicoService{
+public class AntecedenteGinecologicoServiceImpl implements AntecedenteGinecologicoService {
 
     private final AntecedenteGinecologicoRepository domainRepository;
     private final AntecedenteGinecologicoMapper mapper;
@@ -25,18 +25,18 @@ public class AntecedenteGinecologicoServiceImpl implements AntecedenteGinecologi
 
     @Override
     public AntecedenteGinecologicoDTO save(AntecedenteGinecologicoDTO antecedenteGinecologicoDTO) {
-        Optional<AntecedenteGinecologico> optional=domainRepository.findById(antecedenteGinecologicoDTO.getId());
-        if (!optional.isPresent()){
-            AntecedenteGinecologico domainObject=toEntity(antecedenteGinecologicoDTO);
+        Optional<AntecedenteGinecologico> optional = domainRepository.findById(antecedenteGinecologicoDTO.getId());
+        if (!optional.isPresent()) {
+            AntecedenteGinecologico domainObject = toEntity(antecedenteGinecologicoDTO);
             return toDTO(domainRepository.save(domainObject));
-        }else{
-            throw new ConflictException(String.format("Ya existe un antecedente ginecológico para el codigo [%s]",antecedenteGinecologicoDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe un antecedente ginecológico para el codigo [%s]", antecedenteGinecologicoDTO.getId()));
         }
     }
 
     @Override
     public AntecedenteGinecologicoDTO update(AntecedenteGinecologicoDTO antecedenteGinecologicoDTO) {
-        AntecedenteGinecologico domainObject=toEntity(antecedenteGinecologicoDTO);
+        AntecedenteGinecologico domainObject = toEntity(antecedenteGinecologicoDTO);
         return toDTO(domainRepository.save(domainObject));
     }
 

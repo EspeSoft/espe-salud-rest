@@ -19,7 +19,6 @@ public class PacienteDTO implements Serializable {
     private Long id;
     private String numeroArchivo;
     private String nombreCompleto;
-    private Boolean activo;
     private Boolean esEstudiante;
     private Boolean esEmpleado;
     private Boolean aceptaTransfucion;
@@ -33,7 +32,7 @@ public class PacienteDTO implements Serializable {
     private String segundoNombre;
     private String cedula;
 
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime fechaNacimiento;
     private String sexo;
     private String estadoCivil;
@@ -51,6 +50,9 @@ public class PacienteDTO implements Serializable {
     private String cantonNacimiento;
     private String nacionalidad;
     private String nacionalidad2;
+    private String status;
     private ContactoDTO contacto;
     private List<ContactoEmergenciaDTO> contactosEmergencia;
+    private EstudianteDTO estudiante;
+    private EmpleadoDTO empleado;
 }

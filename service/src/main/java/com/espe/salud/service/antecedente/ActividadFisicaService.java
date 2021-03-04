@@ -8,11 +8,18 @@ import java.util.Optional;
 
 public interface ActividadFisicaService {
     ActividadFisicaDTO save(ActividadFisicaDTO actividadFisicaDTO);
+
     ActividadFisicaDTO update(ActividadFisicaDTO actividadFisica);
+
     Optional<ActividadFisica> findExisting(ActividadFisicaDTO actividadFisicaDTO);
+
     Boolean delete(Long id);
+
     Optional<ActividadFisicaDTO> findByCodigo(Long codigo);
+
     ActividadFisicaDTO toDTO(ActividadFisica actividadFisica);
+
     ActividadFisica toEntity(ActividadFisicaDTO dto);
+
     List<ActividadFisicaDTO> findAll();
 }

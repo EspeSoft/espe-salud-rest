@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
+public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService {
 
     private final NotaEnfermeriaRepository domainRepository;
     private final NotaEnfermeriaMapper mapper;

@@ -14,10 +14,10 @@ public interface ProcedimientoMapper {
     @Mappings({
             @Mapping(source = "codigo", target = "id")
     })
-    ProcedimientoDTO toProcedimientoDTO (Procedimiento procedimiento);
+    ProcedimientoDTO toProcedimientoDTO(Procedimiento procedimiento);
 
     List<ProcedimientoDTO> toProcedimientosDTO(List<Procedimiento> procedimientos);
 
     @InheritInverseConfiguration
-    Procedimiento  toProcedimiento(ProcedimientoDTO dto);
+    Procedimiento toProcedimiento(ProcedimientoDTO dto);
 }

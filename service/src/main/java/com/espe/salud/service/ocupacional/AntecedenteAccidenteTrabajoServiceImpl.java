@@ -23,8 +23,7 @@ public class AntecedenteAccidenteTrabajoServiceImpl implements AntecedenteAccide
     @Autowired
     public AntecedenteAccidenteTrabajoServiceImpl(
             AntecedenteAccidenteTrabajoRepository repository,
-            AntecedenteAccidenteTrabajoMapper mapper)
-    {
+            AntecedenteAccidenteTrabajoMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
@@ -35,7 +34,7 @@ public class AntecedenteAccidenteTrabajoServiceImpl implements AntecedenteAccide
         if (!optional.isPresent()) {
             AntecedenteAccidenteTrabajo domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un antecedente de accidente de trabajo para ese código[%s]", antecedente.getId()));
         }
     }

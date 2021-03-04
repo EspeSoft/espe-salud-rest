@@ -18,7 +18,7 @@ public class MedicacionHabitual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTMEDHAB_CODIGO")
+    @Column(name = "MZSTMEDHAB_CODIGO")
     private Long codigo;
 
     @Lob

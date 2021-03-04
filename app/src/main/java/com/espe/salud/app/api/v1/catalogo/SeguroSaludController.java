@@ -32,6 +32,6 @@ public class SeguroSaludController {
     @Operation(summary = "Retorna el listado de todos los seguros salud en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<SeguroSaludDTO>> getAll() {
-        return new ResponseEntity<>( segurosaludService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(segurosaludService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }

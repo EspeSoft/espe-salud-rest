@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ConsumoNocivoServicelmpl  implements ConsumoNocivoService{
+public class ConsumoNocivoServicelmpl implements ConsumoNocivoService {
 
     private final ConsumoNocivoRepository consumoNocivoRepository;
     private final ConsumoNocivoMapper mapper;
@@ -26,7 +26,7 @@ public class ConsumoNocivoServicelmpl  implements ConsumoNocivoService{
 
     @Override
     public ConsumoNocivoDTO save(ConsumoNocivoDTO consumoNocivoDTO) {
-        Optional<ConsumoNocivo> optional=consumoNocivoRepository.findById(consumoNocivoDTO.getId());
+        Optional<ConsumoNocivo> optional = consumoNocivoRepository.findById(consumoNocivoDTO.getId());
         //Optional<ConsumoNocivo> optional = findExisting(consumoNocivo);
         if (!optional.isEmpty()) {
             ConsumoNocivo domainObject = toEntity(consumoNocivoDTO);

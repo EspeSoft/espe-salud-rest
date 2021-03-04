@@ -26,7 +26,7 @@ public class EstudianteController {
 
 
     @PostMapping("/")
-    public ResponseEntity<EstudianteDTO> save(@RequestBody EstudianteDTO paciente){
+    public ResponseEntity<EstudianteDTO> save(@RequestBody EstudianteDTO paciente) {
         return new ResponseEntity<>(estudianteService.save(paciente), HttpStatus.CREATED);
     }
 }

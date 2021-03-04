@@ -16,6 +16,7 @@ public interface AreaSaludMapper {
             @Mapping(source = "codigo", target = "id")
     })
     AreaSaludDTO toAreaSaludDTO(AreaSalud areaSalud);
+
     List<AreaSaludDTO> toAreasSaludDTO(List<AreaSalud> areasSalud);
 
     @InheritInverseConfiguration

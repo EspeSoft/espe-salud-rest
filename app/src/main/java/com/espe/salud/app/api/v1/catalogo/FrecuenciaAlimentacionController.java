@@ -34,7 +34,7 @@ public class FrecuenciaAlimentacionController {
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<FrecuenciaAlimentacionDTO>> getAll() {
         FrecuenciaAlimentacionDTO dto = new FrecuenciaAlimentacionDTO();
-        return new ResponseEntity<>( service.findAll(dto), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAll(dto), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -49,7 +49,7 @@ public class FrecuenciaAlimentacionController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nueva frecuencia de alimentación")
-    public ResponseEntity<FrecuenciaAlimentacionDTO> save(@RequestBody FrecuenciaAlimentacionDTO frecuenciaAlimentacionDTO){
+    public ResponseEntity<FrecuenciaAlimentacionDTO> save(@RequestBody FrecuenciaAlimentacionDTO frecuenciaAlimentacionDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(frecuenciaAlimentacionDTO), HttpStatus.CREATED);
     }
 }

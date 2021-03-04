@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@Transactional
 public interface MedicacionHabitualRepository extends JpaRepository<MedicacionHabitual, Long> {
     Optional<MedicacionHabitual> findByCodigo(Long codigo);
 

@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePatologicoPersonalService{
+public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePatologicoPersonalService {
 
     private final AntecedentePatologicoPersonalRepository personalRepository;
     private final AntecedentePatologicoPersonalMapper mapper;
@@ -29,7 +29,7 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     public AntecedentePatologicoPersonalDTO save(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO) {
         Optional<AntecedentePatologicoPersonal> optional = personalRepository.findByCodigo(antecedentePatologicoPersonalDTO.getId());
         if (optional.isEmpty()) {
-            AntecedentePatologicoPersonal domainObject=mapper.toAntecedentePatologicoPersonal(antecedentePatologicoPersonalDTO);
+            AntecedentePatologicoPersonal domainObject = mapper.toAntecedentePatologicoPersonal(antecedentePatologicoPersonalDTO);
             return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.save(domainObject));
         } else {
             throw new ConflictException("Ya existe un antecedente patologico personal para ese ID");
@@ -40,7 +40,7 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     @Override
     @Transactional
     public AntecedentePatologicoPersonalDTO update(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO) {
-        AntecedentePatologicoPersonal domainObject=mapper.toAntecedentePatologicoPersonal(antecedentePatologicoPersonalDTO);
+        AntecedentePatologicoPersonal domainObject = mapper.toAntecedentePatologicoPersonal(antecedentePatologicoPersonalDTO);
         return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.save(domainObject));
     }
 
@@ -60,7 +60,8 @@ public class AntecedentePatologicoPersonalServiceImpl implements AntecedentePato
     }
 
     @Override
-    public List<AntecedentePatologicoPersonalDTO> findByAntecedente(Long idAntecedente) {
-        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.findByAntecedentePersonalCodigo(idAntecedente));
+    @Transactional(readOnly = true)
+    public List<AntecedentePatologicoPersonalDTO> findByPaciente(Long idPaciente) {
+        return mapper.toAntecedentePatologicoPersonalDTO(personalRepository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }

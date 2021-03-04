@@ -32,7 +32,7 @@ public class EnfermedadProblemaActualController {
 
     @PostMapping("")
     @Operation(summary = "Guarda y retorna una nueva enfermedad o problema actual")
-    public ResponseEntity<EnfermedadProblemaActualDTO> save(@RequestBody EnfermedadProblemaActualDTO enfermedadProblemaActualDTO){
+    public ResponseEntity<EnfermedadProblemaActualDTO> save(@RequestBody EnfermedadProblemaActualDTO enfermedadProblemaActualDTO) {
         return new ResponseEntity<>(enfermedadProblemaActualService.save(enfermedadProblemaActualDTO), HttpStatus.CREATED);
     }
 
@@ -64,17 +64,17 @@ public class EnfermedadProblemaActualController {
 
     @Operation(summary = "Elimina una enfermedad o problema actual por su código")
     @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
+    public void delete(@PathVariable Long codigo) {
         enfermedadProblemaActualService.delete(codigo);
     }
 
     @Operation(summary = "Actualiza una enfermedad o problema actual por su código")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<EnfermedadProblemaActualDTO> update(
             @RequestBody EnfermedadProblemaActualDTO dto,
-            @PathVariable Long codigo){
-        Optional<EnfermedadProblemaActualDTO> enfermedadProblemaActualDTOOptional =  enfermedadProblemaActualService.findById(codigo);
-        if(enfermedadProblemaActualDTOOptional.isPresent()) {
+            @PathVariable Long codigo) {
+        Optional<EnfermedadProblemaActualDTO> enfermedadProblemaActualDTOOptional = enfermedadProblemaActualService.findById(codigo);
+        if (enfermedadProblemaActualDTOOptional.isPresent()) {
             EnfermedadProblemaActualDTO enfermedadProblemaActualDTO = enfermedadProblemaActualDTOOptional.get();
             enfermedadProblemaActualDTO.setCodigoCie(dto.getCodigoCie());
             enfermedadProblemaActualDTO.setDescripcion(dto.getDescripcion());

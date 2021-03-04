@@ -35,12 +35,12 @@ public class EstudioComplementarioController {
     public ResponseEntity<List<EstudioComplementarioDTO>> findByPaciente(
             @Parameter(description = "El ID de un paciente", required = true, example = "1")
             @RequestParam Long idPaciente) {
-        return new ResponseEntity<>( service.findByPaciente(idPaciente), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo estudio complementario")
-    public ResponseEntity<EstudioComplementarioDTO> save(@RequestBody EstudioComplementarioDTO dto){
+    public ResponseEntity<EstudioComplementarioDTO> save(@RequestBody EstudioComplementarioDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
@@ -57,8 +57,8 @@ public class EstudioComplementarioController {
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<EstudioComplementarioDTO> update(@Valid @RequestBody EstudioComplementarioDTO dto,
-            @Parameter(description = "El ID del estudio complementario", required = true, example = "1")
-            @PathVariable("id") Long id) {
+                                                           @Parameter(description = "El ID del estudio complementario", required = true, example = "1")
+                                                           @PathVariable("id") Long id) {
         Optional<EstudioComplementarioDTO> optional = service.findById(id);
         if (optional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -67,7 +67,7 @@ public class EstudioComplementarioController {
             nuevo.setDescripcionEstudio(dto.getDescripcionEstudio());
             nuevo.setFechaEstudio(dto.getFechaEstudio());
             nuevo.setNombreEstudio(dto.getNombreEstudio());
-            return new ResponseEntity<>( service.update(nuevo), HttpStatus.OK);
+            return new ResponseEntity<>(service.update(nuevo), HttpStatus.OK);
         }
     }
 

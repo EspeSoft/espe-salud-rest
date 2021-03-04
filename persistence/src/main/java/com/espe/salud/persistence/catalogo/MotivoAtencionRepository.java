@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface MotivoAtencionRepository extends JpaRepository<MotivoAtencion, Long> {
     List<MotivoAtencion> findAllByOrderByNombreAsc();
+
     Optional<MotivoAtencion> findByCodigo(Long codigo);
 }

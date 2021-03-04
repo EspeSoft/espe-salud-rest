@@ -27,7 +27,7 @@ public class OrganoSistemaController {
 
     @Autowired
     public OrganoSistemaController(
-            @Qualifier("organoSistemaServiceImpl")GenericCRUDService<OrganoSistema, OrganoSistemaDTO> organoSistemaService) {
+            @Qualifier("organoSistemaServiceImpl") GenericCRUDService<OrganoSistema, OrganoSistemaDTO> organoSistemaService) {
         this.organoSistemaService = organoSistemaService;
     }
 
@@ -35,7 +35,7 @@ public class OrganoSistemaController {
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<OrganoSistemaDTO>> getAll() {
         OrganoSistemaDTO organoSistemaDTO = new OrganoSistemaDTO();
-        return new ResponseEntity<>( organoSistemaService.findAll(organoSistemaDTO), HttpStatus.OK);
+        return new ResponseEntity<>(organoSistemaService.findAll(organoSistemaDTO), HttpStatus.OK);
     }
 
 }

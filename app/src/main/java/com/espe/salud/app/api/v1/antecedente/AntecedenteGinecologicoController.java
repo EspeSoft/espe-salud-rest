@@ -30,39 +30,39 @@ public class AntecedenteGinecologicoController {
 
     @Operation(summary = "Retorna el listado de todos los antecedentes ginecológicos")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<AntecedenteGinecologicoDTO>> getAll(){
+    public ResponseEntity<List<AntecedenteGinecologicoDTO>> getAll() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna un antecedente ginecológico por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<AntecedenteGinecologicoDTO> getById(@Parameter(description = "El codigo del antecedente ginecológico",required = true,example = "1") @PathVariable("codigo") Long id){
-        return new ResponseEntity(service.findById(id),HttpStatus.OK);
+    public ResponseEntity<AntecedenteGinecologicoDTO> getById(@Parameter(description = "El codigo del antecedente ginecológico", required = true, example = "1") @PathVariable("codigo") Long id) {
+        return new ResponseEntity(service.findById(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un anecedente ginecológico por su codigo")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<AntecedenteGinecologicoDTO> update(@RequestBody AntecedenteGinecologicoDTO dto,@RequestParam Long codigo){
-        Optional<AntecedenteGinecologicoDTO> newAntecedenteGinecologicoDTOoptional=service.findById(codigo);
-        AntecedenteGinecologicoDTO newAntecedenteGinecologicoDTO= newAntecedenteGinecologicoDTOoptional.get();
+    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<AntecedenteGinecologicoDTO> update(@RequestBody AntecedenteGinecologicoDTO dto, @RequestParam Long codigo) {
+        Optional<AntecedenteGinecologicoDTO> newAntecedenteGinecologicoDTOoptional = service.findById(codigo);
+        AntecedenteGinecologicoDTO newAntecedenteGinecologicoDTO = newAntecedenteGinecologicoDTOoptional.get();
         newAntecedenteGinecologicoDTO.setCicloMenstruacion(dto.getCicloMenstruacion());
         newAntecedenteGinecologicoDTO.setFechaUltimaMenstruacion(dto.getFechaUltimaMenstruacion());
         newAntecedenteGinecologicoDTO.setGestas(dto.getGestas());
         newAntecedenteGinecologicoDTO.setNumeroPartosVaginales(dto.getNumeroPartosVaginales());
         newAntecedenteGinecologicoDTO.setNumeroCesareas(dto.getNumeroCesareas());
         newAntecedenteGinecologicoDTO.setNumeroAbortos(dto.getNumeroAbortos());
-        return new ResponseEntity<>(service.update(newAntecedenteGinecologicoDTO),HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(service.update(newAntecedenteGinecologicoDTO), HttpStatus.ACCEPTED);
     }
 
     @Operation(summary = "Guardar un nuevo antecedente ginecológico")
     @PostMapping("/")
-    public ResponseEntity<AntecedenteGinecologicoDTO> save(@RequestBody AntecedenteGinecologicoDTO dto){
-        return new ResponseEntity<>(service.save(dto),HttpStatus.CREATED);
+    public ResponseEntity<AntecedenteGinecologicoDTO> save(@RequestBody AntecedenteGinecologicoDTO dto) {
+        return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina un antecedente ginecológico por su código")
     @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
+    public void delete(@PathVariable Long codigo) {
         service.deleteById(codigo);
     }
 }

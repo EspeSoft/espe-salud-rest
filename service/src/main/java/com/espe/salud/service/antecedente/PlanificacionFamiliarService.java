@@ -7,15 +7,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public interface PlanificacionFamiliarService {
 
     PlanificacionFamiliarDTO save(PlanificacionFamiliarDTO planificacionFamiliarDTO);
+
     PlanificacionFamiliarDTO update(PlanificacionFamiliarDTO planificacionFamiliarDTO);
+
     Optional<PlanificacionFamiliarDTO> findById(Long codigo);
+
     List<PlanificacionFamiliarDTO> findAll();
+
     boolean deleteById(Long id);
+
     PlanificacionFamiliarDTO toDTO(PlanificacionFamiliar planificacionFamiliar);
+
     PlanificacionFamiliar toEntity(PlanificacionFamiliarDTO dto);
-    
+
 }

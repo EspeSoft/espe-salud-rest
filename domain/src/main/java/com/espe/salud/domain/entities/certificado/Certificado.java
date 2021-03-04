@@ -22,7 +22,7 @@ public class Certificado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTCER_CODIGO")
+    @Column(name = "MZSTCER_CODIGO")
     private Long codigo;
 
     @Column(name = "MZSTCER_FECHA_DESDE")

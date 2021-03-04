@@ -33,7 +33,7 @@ public class RiesgoMecanicoController {
     @Operation(summary = "Retorna el listado de todos los riesgo mecánicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoMecanicoDTO>> getAll() {
-        return new ResponseEntity<>( riesgoMecanicoService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(riesgoMecanicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

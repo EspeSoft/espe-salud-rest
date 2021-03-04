@@ -21,7 +21,7 @@ import static com.espe.salud.app.common.Constants.URI_API_V1_EXA_SIS_EST;
 @Tag(name = "Gestiona los exámenes de sistema estomatognático de un paciente")
 @RequestMapping(value = {URI_API_V1_EXA_SIS_EST})
 public class ExamenSistemaEstomatognaticoController {
-    
+
     private final ExamenSistemaEstomatognaticoService examenSistemaEstomatognaticoService;
 
     public ExamenSistemaEstomatognaticoController(ExamenSistemaEstomatognaticoService examenSistemaEstomatognaticoService) {
@@ -30,7 +30,7 @@ public class ExamenSistemaEstomatognaticoController {
 
     @PostMapping("")
     @Operation(summary = "Guarda y retorna una nueva exámen del sistema estomatognático")
-    public ResponseEntity<ExamenSistemaEstomatognaticoDTO> save(@RequestBody ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO){
+    public ResponseEntity<ExamenSistemaEstomatognaticoDTO> save(@RequestBody ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO) {
         return new ResponseEntity<>(examenSistemaEstomatognaticoService.save(examenSistemaEstomatognaticoDTO), HttpStatus.CREATED);
     }
 
@@ -62,17 +62,17 @@ public class ExamenSistemaEstomatognaticoController {
 
     @Operation(summary = "Elimina una historia clínica por su código")
     @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
+    public void delete(@PathVariable Long codigo) {
         examenSistemaEstomatognaticoService.delete(codigo);
     }
 
     @Operation(summary = "Actualiza una historia clínica por su código")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ExamenSistemaEstomatognaticoDTO> update(
             @RequestBody ExamenSistemaEstomatognaticoDTO dto,
-            @PathVariable Long codigo){
-        Optional<ExamenSistemaEstomatognaticoDTO> examenSistemaEstomatognaticoDTOOptional =  examenSistemaEstomatognaticoService.findById(codigo);
-        if(examenSistemaEstomatognaticoDTOOptional.isPresent()) {
+            @PathVariable Long codigo) {
+        Optional<ExamenSistemaEstomatognaticoDTO> examenSistemaEstomatognaticoDTOOptional = examenSistemaEstomatognaticoService.findById(codigo);
+        if (examenSistemaEstomatognaticoDTOOptional.isPresent()) {
             ExamenSistemaEstomatognaticoDTO ExamenSistemaEstomatognaticoDTO = examenSistemaEstomatognaticoDTOOptional.get();
             ExamenSistemaEstomatognaticoDTO.setCodigoCIEAsociado(dto.getCodigoCIEAsociado());
             ExamenSistemaEstomatognaticoDTO.setUnidadEstomatognatica(dto.getUnidadEstomatognatica());

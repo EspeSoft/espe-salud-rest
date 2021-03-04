@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ParentescoRepository extends JpaRepository<Parentesco, Long> {
     List<Parentesco> findAllByOrderByNombreAsc();
+
     Optional<Parentesco> findByCodigo(Long codigo);
 }

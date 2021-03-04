@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service("asociacionServiceImpl")
-public class AsociacionServiceImpl  extends GenericCRUDServiceImpl<Asociacion, AsociacionDTO> {
+public class AsociacionServiceImpl extends GenericCRUDServiceImpl<Asociacion, AsociacionDTO> {
 
     private final AsociacionRepository domainRepository;
 
