@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 
 @Data
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTDIA", schema = "SALUD")
 public class Diagnostico {
 
@@ -39,9 +38,8 @@ public class Diagnostico {
     @NotEmpty
     private String condicionDiagnostico;
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_EVO_DIA",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_EVO_DIA", insertable=false , updatable = false, nullable = false)
     private Evolucion evolucion;
 
     @Column(name = "FK_EVO_DIA")

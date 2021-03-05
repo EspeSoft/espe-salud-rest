@@ -15,19 +15,15 @@ public class PrescripcionDTO implements Serializable {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
-
     private Integer cantidad;
 
     private String dosis;
 
-    private String presentación;
+    private String presentacion;
 
     private String indicacion;
 
     private String idEvolucion;
 
-    private Long idMedicamento;
-
-    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private RepertorioMedicamentoDTO medicamento;
 }

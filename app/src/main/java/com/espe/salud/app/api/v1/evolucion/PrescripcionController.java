@@ -30,6 +30,7 @@ public class PrescripcionController {
     }
 
     @PostMapping("/")
+    @Operation(summary = "Guarda y retorna una nueva prescripción")
     public ResponseEntity<PrescripcionDTO> save(@RequestBody PrescripcionDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
@@ -78,10 +79,10 @@ public class PrescripcionController {
             PrescripcionDTO nuevo = optional.get();
             nuevo.setCantidad(dto.getCantidad());
             nuevo.setDosis(dto.getDosis());
-            nuevo.setPresentación(dto.getPresentación());
+            nuevo.setPresentacion(dto.getPresentacion());
             nuevo.setIndicacion(dto.getIndicacion());
             nuevo.setIdEvolucion(dto.getIdEvolucion());
-            nuevo.setIdMedicamento(dto.getIdMedicamento());
+            nuevo.setMedicamento(dto.getMedicamento());
             return new ResponseEntity<>( service.update(nuevo), HttpStatus.OK);
         }
     }
