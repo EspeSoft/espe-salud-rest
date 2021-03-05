@@ -50,7 +50,7 @@ public class EvolucionServiceImpl implements EvolucionService {
     @Override
     @Transactional
     public EvolucionDTO save(EvolucionDTO evolucion) {
-        Optional<Evolucion> optional = findExisting(evolucion);
+        Optional<Evolucion> optional = evolucionRepository.findByCodigo(evolucion.getId());
         if (optional.isEmpty()) {
             Evolucion domainObject = toEntity(evolucion);
             domainObject.addToDiagnosticos(domainObject.getDiagnosticos());
@@ -59,7 +59,6 @@ public class EvolucionServiceImpl implements EvolucionService {
             evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
             evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).orElse(null));
             evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
-
             evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).get());
             evolucionNuevo.setMotivoAtencion(serviceMot.findById(evolucionNuevo.getIdMotivoAtencion()));
             return evolucionNuevo;

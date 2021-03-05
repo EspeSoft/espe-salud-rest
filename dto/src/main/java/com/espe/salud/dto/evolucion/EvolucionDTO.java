@@ -72,9 +72,9 @@ public class EvolucionDTO implements Serializable {
     @Schema(accessMode = AccessMode.READ_ONLY)
     private UsuarioDTO usuario;
 
-    List<@Valid DiagnosticoDTO> diagnosticos;
+    List<DiagnosticoDTO> diagnosticos;
 
-    List<@Valid PrescripcionDTO> prescripciones;
+    List<PrescripcionDTO> prescripciones;
 
 
 }

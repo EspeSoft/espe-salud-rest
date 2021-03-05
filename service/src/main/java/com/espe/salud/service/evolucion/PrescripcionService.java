@@ -9,9 +9,6 @@ import java.util.Optional;
 
 public interface PrescripcionService {
     PrescripcionDTO save(PrescripcionDTO dto);
-    Optional<Prescripcion> findExisting(PrescripcionDTO dto);
-    PrescripcionDTO toDTO(Prescripcion prescripcion);
-    Prescripcion toEntity(PrescripcionDTO dto);
     Boolean delete(Long id);
     PrescripcionDTO update(PrescripcionDTO dto);
     Optional<PrescripcionDTO> findById(Long id);

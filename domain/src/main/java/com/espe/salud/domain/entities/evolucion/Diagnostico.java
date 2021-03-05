@@ -32,20 +32,17 @@ public class Diagnostico {
     private String prevencion;
 
     @Column(name = "MZSTDIA_PMORBILIDAD")
-    @NotEmpty
     private String morbilidad;
 
     @Column(name = "MZSTDIA_CONDICION__DIAGNOSTICO")
-    @NotEmpty
     private String condicionDiagnostico;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_EVO_DIA", insertable = false, updatable = false)
-    private Evolucion evolucion;
 
     @Column(name = "FK_EVO_DIA")
     private String idEvolucion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_EVO_DIA")
+    private Evolucion evolucion;
 
     @CreatedDate
     @Column(name = "MZSTDIA_FECHA_CREACION")
@@ -66,10 +63,5 @@ public class Diagnostico {
     @PrePersist
     public void prePersist() {
         fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
     }
 }
