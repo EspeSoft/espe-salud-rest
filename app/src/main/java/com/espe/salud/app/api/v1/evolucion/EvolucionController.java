@@ -88,17 +88,7 @@ public class EvolucionController {
         if (optional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            EvolucionDTO nuevo = optional.get();
-            nuevo.setEstado(dto.getEstado());
-            nuevo.setIdMotivoAtencion(dto.getIdMotivoAtencion());
-            nuevo.setResponsablePidm(dto.getResponsablePidm());
-            nuevo.setEsEnfermedadOcupacional(dto.getEsEnfermedadOcupacional());
-            nuevo.setIdDispensario(dto.getIdDispensario());
-            nuevo.setIdPaciente(dto.getIdPaciente());
-            nuevo.setIdAreaSalud(dto.getIdAreaSalud());
-            nuevo.setIdNotaEnfermeria(dto.getIdNotaEnfermeria());
-            nuevo.setNotaEvolucion(dto.getNotaEvolucion());
-            return new ResponseEntity<>( evolucionService.update(nuevo), HttpStatus.OK);
+            return new ResponseEntity<>( evolucionService.update(dto), HttpStatus.OK);
         }
     }
 }

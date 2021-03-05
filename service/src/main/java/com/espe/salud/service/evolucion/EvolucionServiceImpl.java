@@ -10,7 +10,6 @@ import com.espe.salud.persistence.evolucion.EvolucionRepository;
 import com.espe.salud.service.GenericCRUDService;
 import com.espe.salud.service.catalogo.DispensarioService;
 import com.espe.salud.service.enfermeria.NotaEnfermeriaService;
-import com.espe.salud.service.paciente.PacienteService;
 import com.espe.salud.service.usuario.AreaSaludService;
 import com.espe.salud.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,20 +28,24 @@ public class EvolucionServiceImpl implements EvolucionService {
     private final AreaSaludService serviceArea;
     private final NotaEnfermeriaService serviceNotEnf;
     private final DispensarioService serviceDisp;
-    private final PacienteService servicePac;
     private final UsuarioService serviceUsu;
     private final GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot;
 
 
     @Autowired
-    public EvolucionServiceImpl(EvolucionRepository evolucionRepository,
-                                EvolucionMapper mapper, AreaSaludService serviceArea, NotaEnfermeriaService serviceNotEnf, @Qualifier("dispensarioServiceImpl") DispensarioService serviceDisp, PacienteService servicePac, UsuarioService serviceUsu, @Qualifier("motivoAtencionServiceImpl") GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot) {
+    public EvolucionServiceImpl(
+            EvolucionRepository evolucionRepository,
+            EvolucionMapper mapper,
+            AreaSaludService serviceArea,
+            NotaEnfermeriaService serviceNotEnf,
+            @Qualifier("dispensarioServiceImpl") DispensarioService serviceDisp,
+            UsuarioService serviceUsu,
+            @Qualifier("motivoAtencionServiceImpl") GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot) {
         this.evolucionRepository = evolucionRepository;
         this.mapper = mapper;
         this.serviceArea = serviceArea;
         this.serviceNotEnf = serviceNotEnf;
         this.serviceDisp = serviceDisp;
-        this.servicePac = servicePac;
         this.serviceUsu = serviceUsu;
         this.serviceMot = serviceMot;
     }

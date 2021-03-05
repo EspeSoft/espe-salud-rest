@@ -1,6 +1,5 @@
 package com.espe.salud.service.evolucion;
 
-import com.espe.salud.common.exception.EspeSaludException;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 

@@ -14,11 +14,18 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {AreaSaludMapper.class, NotaEnfermeriaMapper.class, DispensarioMapper.class, UsuarioMapper.class, MotivoAtencionMapper.class })
+@Mapper(componentModel = "spring", uses = {
+        AreaSaludMapper.class,
+        NotaEnfermeriaMapper.class,
+        DispensarioMapper.class,
+        UsuarioMapper.class,
+        MotivoAtencionMapper.class,
+        DiagnosticoMapper.class,
+        PrescripcionMapper.class
+})
 public interface EvolucionMapper {
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
+
+    @Mapping(source = "codigo", target = "id")
     EvolucionDTO toEvolucionDTO(Evolucion evolucion);
 
     List<EvolucionDTO> toEvolucionesDTO(List<Evolucion> evoluciones);

@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Getter
@@ -13,9 +14,10 @@ public class DiagnosticoDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+
+    @NotNull
     private String codigoCIE;
     private String prevencion;
     private String morbilidad;
     private String condicionDiagnostico;
-    private String idEvolucion;
 }

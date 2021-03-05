@@ -23,7 +23,5 @@ public class PrescripcionDTO implements Serializable {
 
     private String indicacion;
 
-    private String idEvolucion;
-
     private RepertorioMedicamentoDTO medicamento;
 }

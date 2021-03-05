@@ -81,7 +81,6 @@ public class PrescripcionController {
             nuevo.setDosis(dto.getDosis());
             nuevo.setPresentacion(dto.getPresentacion());
             nuevo.setIndicacion(dto.getIndicacion());
-            nuevo.setIdEvolucion(dto.getIdEvolucion());
             nuevo.setMedicamento(dto.getMedicamento());
             return new ResponseEntity<>( service.update(nuevo), HttpStatus.OK);
         }
