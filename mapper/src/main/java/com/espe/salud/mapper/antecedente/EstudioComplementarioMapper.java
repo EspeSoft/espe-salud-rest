@@ -18,8 +18,6 @@ public interface EstudioComplementarioMapper {
 
     List<EstudioComplementarioDTO> toEstudiosComplementarioDTO(List<EstudioComplementario> estudiosComplementarios);
 
-    List<EstudioComplementario> toEstudiosComplementarios(List<EstudioComplementarioDTO> estudiosDTO);
-
     @InheritInverseConfiguration
     EstudioComplementario toEstudioComplementario(EstudioComplementarioDTO dto);
 }

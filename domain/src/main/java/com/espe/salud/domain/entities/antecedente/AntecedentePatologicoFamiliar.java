@@ -2,7 +2,6 @@ package com.espe.salud.domain.entities.antecedente;
 
 import com.espe.salud.domain.entities.catalogo.EnfermedadCIE10;
 import com.espe.salud.domain.entities.catalogo.TipoEnfermedad;
-import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -11,7 +10,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data

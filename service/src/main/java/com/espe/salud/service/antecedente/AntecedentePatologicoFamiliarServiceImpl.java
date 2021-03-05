@@ -1,5 +1,6 @@
 package com.espe.salud.service.antecedente;
 
+import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.antecedente.AntecedentePatologicoFamiliar;
 import com.espe.salud.dto.antecedente.AntecedentePatologicoFamiliarDTO;
 import com.espe.salud.mapper.antecedente.AntecedentePatologicoFamiliarMapper;
@@ -45,12 +46,7 @@ public class AntecedentePatologicoFamiliarServiceImpl implements AntecedentePato
     @Override
     @Transactional(readOnly = true)
     public Optional<AntecedentePatologicoFamiliarDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(mapper::toAntecedentePatologicoFamiliarDTO);
-    }
-
-    @Override
-    public List<AntecedentePatologicoFamiliarDTO> findByIdAntecedentePersonal(Long codigo) {
-        return mapper.toAntecedentePatologicoFamiliarDTO(domainRepository.findByIdAntecedentePersonal(codigo));
+        return domainRepository.findByCodigo(codigo).map(mapper::toAntecedentePatologicoFamiliarDTO);
     }
 
     @Override

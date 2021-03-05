@@ -1,7 +1,7 @@
 package com.espe.salud.mapper.antecedente;
 
 import com.espe.salud.domain.entities.antecedente.MedicacionHabitual;
-import com.espe.salud.dto.antecedente.MedicacionHabitalDTO;
+import com.espe.salud.dto.antecedente.MedicacionHabitualDTO;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -12,13 +12,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface MedicacionHabitualMapper {
 
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
-    MedicacionHabitalDTO toMedicacionHabitualDTO(MedicacionHabitual medicacionHabitual);
+    @Mapping(source = "codigo", target = "id")
+    MedicacionHabitualDTO toMedicacionHabitualDTO(MedicacionHabitual medicacionHabitual);
 
-    List<MedicacionHabitalDTO> toMedicacionHabitualDTO(List<MedicacionHabitual> medicacionHabitualList);
+    List<MedicacionHabitualDTO> toMedicacionesHabitualesDTO(List<MedicacionHabitual> medicacionHabitualList);
 
     @InheritInverseConfiguration
-    MedicacionHabitual toMedicacionHabitual(MedicacionHabitalDTO dto);
+    MedicacionHabitual toMedicacionHabitual(MedicacionHabitualDTO dto);
 }

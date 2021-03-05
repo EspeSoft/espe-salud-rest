@@ -76,7 +76,7 @@ public class Constants {
     public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos-enfermedad-cie10";
 
     public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-personales";
-    public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicacion-habitual";
+    public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicaciones-habituales";
 
     public static final String URI_API_V1_TIPEXALAB = URI_API_V1 + "tipos-examenes-laboratorio";
 
@@ -108,6 +108,6 @@ public class Constants {
     public static final String URI_API_V1_AREAS_SALUD = URI_API_V1 + "areas-salud";
     public static final String URI_API_V1_PRESC = URI_API_V1 + "prescripciones";
     public static final String URI_API_V1_REP_MED = URI_API_V1 + "repertorios-medicamento";
-
+    public static final String URI_API_V1_HOS = URI_API_V1 + "hospitalizaciones";
 
 }

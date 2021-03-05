@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.entities.antecedente.EstudioComplementario;
+import com.espe.salud.domain.entities.antecedente.Hospitalizacion;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.domain.enums.Lateralidad;
@@ -95,6 +96,9 @@ public class Paciente {
 
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EstudioComplementario> estudiosComplementarios;
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Hospitalizacion> hospitalizaciones;
 
     @CreatedDate
     @Column(name = "MZSTPAC_FECHA_CREACION")

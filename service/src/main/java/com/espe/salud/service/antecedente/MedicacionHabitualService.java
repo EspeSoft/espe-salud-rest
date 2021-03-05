@@ -1,27 +1,19 @@
 package com.espe.salud.service.antecedente;
 
-
-import com.espe.salud.domain.entities.antecedente.MedicacionHabitual;
-import com.espe.salud.dto.antecedente.MedicacionHabitalDTO;
+import com.espe.salud.dto.antecedente.MedicacionHabitualDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface MedicacionHabitualService {
 
-    MedicacionHabitalDTO save(MedicacionHabitalDTO medicacionHabitalDTO);
+    MedicacionHabitualDTO save(MedicacionHabitualDTO medicacionHabitualDTO);
 
-    MedicacionHabitalDTO update(MedicacionHabitalDTO medicacionHabitalDTO);
+    MedicacionHabitualDTO update(MedicacionHabitualDTO medicacionHabitualDTO);
 
-    Optional<MedicacionHabitalDTO> findById(Long codigo);
+    Optional<MedicacionHabitualDTO> findById(Long codigo);
 
-    Optional<MedicacionHabitual> findExisting(MedicacionHabitalDTO medicacionHabitalDTO);
-
-    List<MedicacionHabitalDTO> findAll();
-    List<MedicacionHabitalDTO> findByIdAntecedentePersonal(Long idAntecedentePersonal);
     boolean deleteById(Long id);
 
-    MedicacionHabitalDTO toDTO(MedicacionHabitual medicacionHabitual);
-
-    MedicacionHabitual toEntity(MedicacionHabitalDTO dto);
+    List<MedicacionHabitualDTO> findByPaciente(Long idPaciente);
 }

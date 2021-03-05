@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-public class MedicacionHabitalDTO implements Serializable {
+public class MedicacionHabitualDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
