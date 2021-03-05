@@ -7,6 +7,7 @@ import com.espe.salud.dto.enfermeria.NotaEnfermeriaDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.dto.usuario.AreaSaludDTO;
 import com.espe.salud.dto.usuario.UsuarioDTO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.AccessMode;
 import lombok.Getter;
@@ -28,6 +29,9 @@ public class EvolucionDTO implements Serializable {
 
     @Schema(accessMode = AccessMode.READ_ONLY)
     private String id;
+
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime fechaInicio;
 
     @NotEmpty
     private String estado;

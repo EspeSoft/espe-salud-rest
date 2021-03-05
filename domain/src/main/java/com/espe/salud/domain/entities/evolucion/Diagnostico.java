@@ -39,11 +39,8 @@ public class Diagnostico {
     private String condicionDiagnostico;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_EVO_DIA", insertable=false , updatable = false, nullable = false)
+    @JoinColumn(name = "FK_EVO_DIA")
     private Evolucion evolucion;
-
-    @Column(name = "FK_EVO_DIA")
-    private String idEvolucion;
 
     @CreatedDate
     @Column(name = "MZSTDIA_FECHA_CREACION")
@@ -61,13 +58,4 @@ public class Diagnostico {
     @Column(name = "MZSTDIA_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
 }
