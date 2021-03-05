@@ -72,7 +72,7 @@ public class CertificadoController {
             certificadoDTO.setEvolucionDTO(dto.getEvolucionDTO());
             certificadoDTO.setTipoCertificadoDTO(dto.getTipoCertificadoDTO());
 
-            return new ResponseEntity<>(service.update(certificadoDTO), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.update(certificadoDTO), HttpStatus.OK);
         }
 
     }

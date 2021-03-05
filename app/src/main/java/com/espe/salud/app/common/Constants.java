@@ -61,7 +61,7 @@ public class Constants {
 
     public static final String URI_API_V1_ANTE_PAT_FAM = URI_API_V1 + "antecedentes-patologicos-familiares";
     public static final String URI_API_V1_ANTE_QUIRURGICO = URI_API_V1 + "antecedentes-quirurgicos";
-    public static final String URI_API_V1_DISCAPACIDAD = URI_API_V1 + "dicapacidades";
+    public static final String URI_API_V1_DISCAPACIDAD = URI_API_V1 + "discapacidades";
 
 
     public static final String URI_API_V1_CER = URI_API_V1 + "certificados";

@@ -56,7 +56,7 @@ public class AntecedentePatologicoPersonalController {
         if (optional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(service.update(dto), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
         }
     }
 
