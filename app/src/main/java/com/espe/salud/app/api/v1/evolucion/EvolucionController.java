@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,5 +91,19 @@ public class EvolucionController {
         } else {
             return new ResponseEntity<>( evolucionService.update(dto), HttpStatus.OK);
         }
+    }
+
+    @GetMapping(value = "/reporte/certificado-medico/pdf")
+    public ResponseEntity<Object> generateCertificadoMedicoGeneral(
+            @RequestParam String idEvolucion) {
+        byte[] pdfContent = evolucionService.getCertificadoMedico(idEvolucion);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("content-disposition", "inline; filename=" + idEvolucion + ".pdf");
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        return ResponseEntity.ok().headers(headers).contentLength(pdfContent.length)
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new InputStreamResource(new ByteArrayInputStream(pdfContent)));
     }
 }

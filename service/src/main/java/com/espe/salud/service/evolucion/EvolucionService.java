@@ -16,4 +16,5 @@ public interface EvolucionService {
    Optional<EvolucionDTO> findById(String id);
    List<EvolucionDTO> findByUsuario(Long pidm);
    List<EvolucionDTO> findByPaciente(Long id);
+   byte[] getCertificadoMedico(String idEvolucion);
 }

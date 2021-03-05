@@ -7,6 +7,7 @@ import com.espe.salud.dto.catalogo.MotivoAtencionDTO;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 import com.espe.salud.mapper.evolucion.EvolucionMapper;
 import com.espe.salud.persistence.evolucion.EvolucionRepository;
+import com.espe.salud.report.evolucion.EvolucionReportService;
 import com.espe.salud.service.GenericCRUDService;
 import com.espe.salud.service.catalogo.DispensarioService;
 import com.espe.salud.service.enfermeria.NotaEnfermeriaService;
@@ -30,6 +31,7 @@ public class EvolucionServiceImpl implements EvolucionService {
     private final DispensarioService serviceDisp;
     private final UsuarioService serviceUsu;
     private final GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot;
+    private final EvolucionReportService reportService;
 
 
     @Autowired
@@ -38,6 +40,7 @@ public class EvolucionServiceImpl implements EvolucionService {
             EvolucionMapper mapper,
             AreaSaludService serviceArea,
             NotaEnfermeriaService serviceNotEnf,
+            EvolucionReportService reportService,
             @Qualifier("dispensarioServiceImpl") DispensarioService serviceDisp,
             UsuarioService serviceUsu,
             @Qualifier("motivoAtencionServiceImpl") GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot) {
@@ -48,6 +51,7 @@ public class EvolucionServiceImpl implements EvolucionService {
         this.serviceDisp = serviceDisp;
         this.serviceUsu = serviceUsu;
         this.serviceMot = serviceMot;
+        this.reportService = reportService;
     }
 
     @Override
@@ -120,5 +124,12 @@ public class EvolucionServiceImpl implements EvolucionService {
     @Override
     public List<EvolucionDTO> findByPaciente(Long id) {
         return mapper.toEvolucionesDTO(evolucionRepository.findByPacienteCodigo(id));
+    }
+
+    @Override
+    public byte[] getCertificadoMedico(String idEvolucion) {
+//        Optional<Evolucion> evolucion = evolucionRepository.find
+        Evolucion evolucion = new Evolucion();
+        return this.reportService.generateCertificadoMedicoGeneral(evolucion);
     }
 }
