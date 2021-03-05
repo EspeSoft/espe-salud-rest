@@ -109,5 +109,6 @@ public class Constants {
     public static final String URI_API_V1_PRESC = URI_API_V1 + "prescripciones";
     public static final String URI_API_V1_REP_MED = URI_API_V1 + "repertorios-medicamento";
     public static final String URI_API_V1_HOS = URI_API_V1 + "hospitalizaciones";
+    public static final String URI_API_V1_FRE_MED_HAB = URI_API_V1 + "frecuencias-medicacion-habitual";
 
 }
