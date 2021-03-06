@@ -12,6 +12,7 @@ import com.espe.salud.persistence.catalogo.RepertorioMedicamentoRepository;
 import com.espe.salud.persistence.evolucion.PrescripcionRepository;
 import com.espe.salud.persistence.usuario.AreaSaludRepository;
 import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -80,7 +81,9 @@ public class EvolucionReportServiceImpl implements EvolucionReportService {
 //            parameters.put("hmapMedicamento", hmapMedicamento);
 //            parameters.put("createdBy", "javacodegeek.com");
 
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters);
+            JRBeanCollectionDataSource data = new JRBeanCollectionDataSource(evolucion.getPrescripciones());
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, data);
             if (jasperPrint == null) {
                 throw new EspeSaludException("No se pudo generar el certificado");
             }
