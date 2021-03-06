@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.FrecuenciaMedicacionHabitual;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,8 +26,12 @@ public class MedicacionHabitual {
     @Column(name = "MZSTMEDHAB_DESCRIPCION_MEDICAMENTO")
     private String descripcionMedicamento;
 
-    @Column(name = "MZSTMEDHAB_FRECUENCIA")
-    private String frecuencia;
+    @Column(name = "FK_FREMEDHAB_MEDHAB")
+    private Long idFrecuencia;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_FREMEDHAB_MEDHAB", insertable = false, updatable = false, nullable = false)
+    private FrecuenciaMedicacionHabitual frecuencia;
 
     @Column(name = "MZSTMEDHAB_CANTIDAD")
     private Integer cantidad;
