@@ -63,8 +63,8 @@ public class ActividadExtralaboralController {
 
     @Operation(summary = "Elimina una actividad por su id")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        serviceActividad.delete(id);
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(serviceActividad.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita una actividad extralaboral por su id")
