@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Getter
@@ -19,5 +20,6 @@ public class ActividadFisicaDTO implements Serializable {
     private Integer horas;
     private String observacion;
 
+    @NotNull
     private Long idAntecedentePersonal;
 }

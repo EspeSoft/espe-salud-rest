@@ -4,14 +4,14 @@ import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTACTFIS", schema = "SALUD")
 public class ActividadFisica {
 
@@ -22,26 +22,22 @@ public class ActividadFisica {
     private Long codigo;
 
     @Column(name = "MZSTACTFIS_NOMBRE_ACTIVIDAD")
-    @NotEmpty
     private String nombreActividad;
 
     @Column(name = "MZSTACTFIS_FRECUENCIA")
-    @NotEmpty
     private String frecuencia;
 
     @Column(name = "MZSTACTFIS_HORAS")
-    @NotNull
     private Integer horas;
 
     @Column(name = "MZSTACTFIS_OBSERVACION")
-    @NotEmpty
     private String observacion;
 
-    @Column(name = "FK_ANTPATPER_ACTFIS")
+    @Column(name = "FK_ANTPER_ACTFIS")
     private Long idAntecedentePersonal;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_ANTPATPER_ACTFIS", insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false, nullable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
@@ -58,14 +54,4 @@ public class ActividadFisica {
     @LastModifiedDate
     @Column(name = "MZSTACTFIS_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
 }

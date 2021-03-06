@@ -1,26 +1,19 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.domain.entities.antecedente.ConsumoNocivo;
 import com.espe.salud.dto.antecedente.ConsumoNocivoDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ConsumoNocivoService {
-    ConsumoNocivoDTO save(ConsumoNocivoDTO actividadFisicaDTO);
+    ConsumoNocivoDTO save(ConsumoNocivoDTO dto);
 
-    ConsumoNocivoDTO update(ConsumoNocivoDTO consumoNocivo);
+    ConsumoNocivoDTO update(ConsumoNocivoDTO dto);
 
-    Optional<ConsumoNocivo> findExisting(ConsumoNocivoDTO pacienteDTO);
+    Optional<ConsumoNocivoDTO> findById(Long codigo);
 
-    Boolean delete(Long id);
+    boolean deleteById(Long id);
 
-    Optional<ConsumoNocivoDTO> findByCodigo(Long codigo);
-
-    ConsumoNocivoDTO toDTO(ConsumoNocivo consumoNocivo);
-
-    ConsumoNocivo toEntity(ConsumoNocivoDTO dto);
-
-    List<ConsumoNocivoDTO> findAll();
+    List<ConsumoNocivoDTO> findByPaciente(Long idPaciente);
 }
 

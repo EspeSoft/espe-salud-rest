@@ -7,73 +7,59 @@ import com.espe.salud.mapper.antecedente.ActividadFisicaMapper;
 import com.espe.salud.persistence.antecedente.ActividadFisicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ActividadFisicaServicelmpl implements ActividadFisicaService {
-    private final ActividadFisicaRepository actividadFisicaRepository;
+    private final ActividadFisicaRepository repository;
     private final ActividadFisicaMapper mapper;
 
     @Autowired
     public ActividadFisicaServicelmpl(ActividadFisicaRepository actividadFisicaRepository, ActividadFisicaMapper mapper) {
-        this.actividadFisicaRepository = actividadFisicaRepository;
+        this.repository = actividadFisicaRepository;
         this.mapper = mapper;
     }
 
     @Override
-    public ActividadFisicaDTO save(ActividadFisicaDTO actividadFisicaDTO) {
-        Optional<ActividadFisica> optional = actividadFisicaRepository.findById(actividadFisicaDTO.getId());
-
-        // Optional< ActividadFisica > optional = findExisting(actividadFisica);
-        if (!optional.isEmpty()) {
-            ActividadFisica domainObject = toEntity(actividadFisicaDTO);
-            return toDTO(actividadFisicaRepository.save(domainObject));
+    @Transactional
+    public ActividadFisicaDTO save(ActividadFisicaDTO dto) {
+        Optional<ActividadFisica> optional = repository.findByCodigo(dto.getId());
+        if (optional.isEmpty()) {
+            ActividadFisica domainObject = mapper.toActividadFisica(dto);
+            return mapper.toActividadFisicaDTO(repository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", actividadFisicaDTO.getId()));
+            throw new ConflictException("Ya existe una actividad física para ese ID");
         }
     }
 
     @Override
-    public ActividadFisicaDTO update(ActividadFisicaDTO actividadFisica) {
-        ActividadFisica domainObject = toEntity(actividadFisica);
-        return toDTO(actividadFisicaRepository.save(domainObject));
+    @Transactional
+    public ActividadFisicaDTO update(ActividadFisicaDTO dto) {
+        ActividadFisica domainObject = mapper.toActividadFisica(dto);
+        return mapper.toActividadFisicaDTO(repository.save(domainObject));
     }
 
     @Override
-    public Optional<ActividadFisica> findExisting(ActividadFisicaDTO actividadFisicaDTO) {
-        return actividadFisicaRepository.findByCodigo(actividadFisicaDTO.getId());
+    @Transactional(readOnly = true)
+    public Optional<ActividadFisicaDTO> findById(Long codigo) {
+        return repository.findByCodigo(codigo).map(mapper::toActividadFisicaDTO);
     }
 
     @Override
-    public Boolean delete(Long id) {
-        return actividadFisicaRepository.findById(id).map(object -> {
-            actividadFisicaRepository.deleteById(id);
+    @Transactional
+    public boolean deleteById(Long id) {
+        return repository.findById(id).map(object -> {
+            repository.deleteById(id);
             return true;
         }).orElse(false);
     }
 
     @Override
-    public Optional<ActividadFisicaDTO> findByCodigo(Long codigo) {
-        return actividadFisicaRepository.findByCodigo(codigo).map(actividadFisica -> mapper.toActividadFisicaDTO(actividadFisica));
-    }
-
-    @Override
-    public ActividadFisicaDTO toDTO(ActividadFisica actividadFisica) {
-        return mapper.toActividadFisicaDTO(actividadFisica);
-    }
-
-    @Override
-    public ActividadFisica toEntity(ActividadFisicaDTO dto) {
-        return mapper.toActividadFisica(dto);
-    }
-
-    @Override
-    public List<ActividadFisicaDTO> findAll() {
-        List<ActividadFisica> actividadFisicas = new ArrayList<>();
-        actividadFisicaRepository.findAll().forEach(actividadFisicas::add);
-        return mapper.toActicidadesFisicasDTO(actividadFisicas);
+    @Transactional(readOnly = true)
+    public List<ActividadFisicaDTO> findByPaciente(Long idPaciente) {
+        return mapper.toActividadesFisicasDTO(repository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }

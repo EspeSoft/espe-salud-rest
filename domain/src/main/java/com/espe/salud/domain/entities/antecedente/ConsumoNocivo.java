@@ -1,17 +1,19 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.TipoConsumoNocivo;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTCONNOC", schema = "SALUD")
 public class ConsumoNocivo {
 
@@ -21,42 +23,36 @@ public class ConsumoNocivo {
     @Column(name = "MZSTCONNOC_CODIGO")
     private Long codigo;
 
-    @Column(name = "MZSTCONNOC_NOMBRE_NOCIVO")
-    @NotEmpty
-    private String nombreConsumoNocivo;
+    @Column(name = "MZSTCONNOC_FECHA_REGISTRO")
+    private LocalDate fechaRegistro;
 
-    @Column(name = "MZSTCONNOC_CONSUMO")
-    private String consume;
+    @Column(name = "MZSTCONNOC_FECHA_TENTATIVA_INICIO")
+    private LocalDate fechaTentativaInicio;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPCONNOC_CONNOC")
+    private TipoConsumoNocivo nombreConsumoNocivo;
 
     @Column(name = "MZSTCONNOC_TIEMPO_CONSUMO_MES")
-    @NotNull
     private Integer tiempoConsumoMes;
 
     @Column(name = "MZSTCONNOC_FRECUENCIA_CONSUMO")
-    @NotEmpty
     private String frecuenciaConsumo;
 
     @Column(name = "MZSTCONNOC_CANTIDAD_CONSUMO")
-    @NotNull
     private Integer cantidadConsumo;
 
-    @Column(name = "MZSTCONNOC_EXCONSUMO")
-    @NotEmpty
-    private String exConsumidor;
-
     @Column(name = "MZSTCONNOC_TIEMPO_ABSTINENCIA_MES")
-    @NotNull
     private Integer tiempoAbstinenciaMes;
 
     @Column(name = "MZSTCONNOC_OBSERVACION")
-    @NotEmpty
     private String observacion;
 
-    @Column(name = "FK_ANTPATPER_CONNOC")
+    @Column(name = "FK_ANTPER_CONNOC")
     private Long idAntecedentePersonal;
 
     @ManyToOne
-    @JoinColumn(name = "FK_ANTPATPER_CONNOC", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_ANTPER_CONNOC", insertable = false, updatable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
@@ -73,16 +69,5 @@ public class ConsumoNocivo {
     @LastModifiedDate
     @Column(name = "MZSTCONNOC_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @PrePersist
-    public void prePersist() {
-        fechaCreacion = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        fechaModificacion = LocalDateTime.now();
-    }
-
 
 }
