@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.RepertorioMedicamento;
+import com.espe.salud.domain.entities.paciente.ContactoEmergencia;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -35,7 +37,12 @@ public class Prescripcion {
     @Column(name = "MZSTPRES_INIDICACION")
     private String indicacion;
 
+    @Column(name = "MZSTPRES_NOMBRE_MEDICAMENTO")
     private String nombreMedicamento;
+
+    public void addToNombreMedicamento(RepertorioMedicamento medicamento) {
+        this.nombreMedicamento = medicamento.getNombre();
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_EVO_PRES")

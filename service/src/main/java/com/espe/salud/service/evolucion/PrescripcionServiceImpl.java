@@ -30,7 +30,7 @@ public class PrescripcionServiceImpl implements PrescripcionService{
         Optional<Prescripcion> optional = repository.findByCodigo(dto.getId());
         if (optional.isEmpty()) {
             Prescripcion domainObject = mapper.toPrescripcion(dto);
-            domainObject.setNombreMedicamento(domainObject.getMedicamento().getNombre());
+            domainObject.addToNombreMedicamento(domainObject.getMedicamento());
             if(domainObject.getMedicamento().getCodigo() == null){
                 repositoryMed.save(domainObject.getMedicamento());
             }

@@ -4,6 +4,7 @@ import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.catalogo.MotivoAtencion;
 import com.espe.salud.domain.entities.catalogo.RepertorioMedicamento;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
+import com.espe.salud.domain.entities.evolucion.Prescripcion;
 import com.espe.salud.dto.catalogo.MotivoAtencionDTO;
 import com.espe.salud.dto.catalogo.RepertorioMedicamentoDTO;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
@@ -64,6 +65,9 @@ public class EvolucionServiceImpl implements EvolucionService {
             Evolucion domainObject = toEntity(evolucion);
             domainObject.addToDiagnosticos(domainObject.getDiagnosticos());
             domainObject.addToPrescripciones(domainObject.getPrescripciones());
+            for (Prescripcion d: domainObject.getPrescripciones()) {
+                d.addToNombreMedicamento(d.getMedicamento());
+            }
             EvolucionDTO evolucionNuevo= toDTO(evolucionRepository.save(domainObject));
             evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
             evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).orElse(null));

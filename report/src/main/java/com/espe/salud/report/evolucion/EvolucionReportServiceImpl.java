@@ -58,7 +58,7 @@ public class EvolucionReportServiceImpl implements EvolucionReportService {
         hmapDispensario = (HashMap<String, String>) lstDispensarios.stream().collect(Collectors.toMap(Dispensario::getInstitucionSistema, Dispensario::getUnidadOperativa));
         hmapAreaSalud = (HashMap<Long, String>) lstAreaSalud.stream().collect(Collectors.toMap(AreaSalud::getCodigo,AreaSalud::getNombre));
         hmapPrescripcion = (HashMap<String, Integer>) lstPrescrip.stream().collect(Collectors.toMap(Prescripcion::getDosis, Prescripcion::getCantidad));
-//        hmapMedicamento = (HashMap<String, String>) lstPrescrip.stream().collect(Collectors.toMap(Prescripcion::getPresentacion, Prescripcion::getNombreMedicamento));
+        hmapMedicamento = (HashMap<String, String>) lstPrescrip.stream().collect(Collectors.toMap(Prescripcion::getPresentacion, Prescripcion::getNombreMedicamento));
     }
 
     @Override
@@ -78,7 +78,7 @@ public class EvolucionReportServiceImpl implements EvolucionReportService {
             parameters.put("hmapDispensario", hmapDispensario);
             parameters.put("hmapAreaSalud", hmapAreaSalud);
             parameters.put("hmapPrescripcion", hmapPrescripcion);
-//            parameters.put("hmapMedicamento", hmapMedicamento);
+            parameters.put("hmapMedicamento", hmapMedicamento);
 //            parameters.put("createdBy", "javacodegeek.com");
 
             JRBeanCollectionDataSource data = new JRBeanCollectionDataSource(evolucion.getPrescripciones());
