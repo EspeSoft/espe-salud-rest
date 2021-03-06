@@ -16,5 +16,4 @@ public class RepertorioMedicamento {
 
     @Column(name = "MZSTCREPMED_NOMBRE")
     private String nombre;
-
 }
