@@ -63,11 +63,11 @@ public class AntecedenteEnfermedadProfesionalController {
 
     @Operation(summary = "Elimina un antecedente por su código")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @Parameter(description = "El ID del antecedente de enfermedades profesionales", required = true, example = "1")
             @PathVariable("id") Long id
     ) {
-        serviceAntecedente.delete(id);
+        return new ResponseEntity<>(serviceAntecedente.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un antecedente por su id")
