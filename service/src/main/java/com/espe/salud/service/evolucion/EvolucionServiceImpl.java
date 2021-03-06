@@ -65,9 +65,6 @@ public class EvolucionServiceImpl implements EvolucionService {
             Evolucion domainObject = toEntity(evolucion);
             domainObject.addToDiagnosticos(domainObject.getDiagnosticos());
             domainObject.addToPrescripciones(domainObject.getPrescripciones());
-            for (Prescripcion d: domainObject.getPrescripciones()) {
-                d.addToNombreMedicamento(d.getMedicamento());
-            }
             EvolucionDTO evolucionNuevo= toDTO(evolucionRepository.save(domainObject));
             evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
             evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).orElse(null));

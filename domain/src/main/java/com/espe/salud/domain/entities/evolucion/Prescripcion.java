@@ -37,13 +37,6 @@ public class Prescripcion {
     @Column(name = "MZSTPRES_INIDICACION")
     private String indicacion;
 
-    @Column(name = "MZSTPRES_NOMBRE_MEDICAMENTO")
-    private String nombreMedicamento;
-
-    public void addToNombreMedicamento(RepertorioMedicamento medicamento) {
-        this.nombreMedicamento = medicamento.getNombre();
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_EVO_PRES")
     private Evolucion evolucion;
