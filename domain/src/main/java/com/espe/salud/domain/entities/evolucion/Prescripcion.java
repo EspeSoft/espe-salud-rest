@@ -35,6 +35,8 @@ public class Prescripcion {
     @Column(name = "MZSTPRES_INIDICACION")
     private String indicacion;
 
+    private String nombreMedicamento;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_EVO_PRES")
     private Evolucion evolucion;

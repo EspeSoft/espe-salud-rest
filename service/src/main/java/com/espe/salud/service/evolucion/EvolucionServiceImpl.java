@@ -2,8 +2,10 @@ package com.espe.salud.service.evolucion;
 
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.catalogo.MotivoAtencion;
+import com.espe.salud.domain.entities.catalogo.RepertorioMedicamento;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.dto.catalogo.MotivoAtencionDTO;
+import com.espe.salud.dto.catalogo.RepertorioMedicamentoDTO;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 import com.espe.salud.mapper.evolucion.EvolucionMapper;
 import com.espe.salud.persistence.evolucion.EvolucionRepository;
@@ -128,8 +130,11 @@ public class EvolucionServiceImpl implements EvolucionService {
 
     @Override
     public byte[] getCertificadoMedico(String idEvolucion) {
-//        Optional<Evolucion> evolucion = evolucionRepository.find
-        Evolucion evolucion = new Evolucion();
-        return this.reportService.generateCertificadoMedicoGeneral(evolucion);
+        if(evolucionRepository.findByCodigo(idEvolucion).isPresent()){
+            Evolucion evolucion = evolucionRepository.findByCodigo(idEvolucion).get();
+            return this.reportService.generateCertificadoMedicoGeneral(evolucion);
+        }else {
+            throw new ConflictException(String.format("El código[%s] de Evolución no existe", idEvolucion));
+        }
     }
 }
