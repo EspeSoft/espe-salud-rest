@@ -21,6 +21,9 @@ public class Usuario {
     @Column(name = "MZSTUSU_NOMBRES")
     private String nombres;
 
+    @Column(name = "MZSTUSU_CEDULA")
+    private String cedula;
+
     @Column(name = "MZSTUSU_ACTIVO")
     private Boolean activo;
 
