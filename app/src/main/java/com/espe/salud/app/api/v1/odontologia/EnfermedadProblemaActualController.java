@@ -32,11 +32,13 @@ public class EnfermedadProblemaActualController {
 
     @PostMapping("")
     @Operation(summary = "Guarda y retorna una nueva enfermedad o problema actual")
-    public ResponseEntity<EnfermedadProblemaActualDTO> save(@RequestBody EnfermedadProblemaActualDTO enfermedadProblemaActualDTO) {
-        return new ResponseEntity<>(enfermedadProblemaActualService.save(enfermedadProblemaActualDTO), HttpStatus.CREATED);
+    public ResponseEntity<EnfermedadProblemaActualDTO> save(
+            @RequestBody EnfermedadProblemaActualDTO enfermedadProblemaActualDTO,
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(enfermedadProblemaActualService.save(enfermedadProblemaActualDTO, idPaciente), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/historiaClinica", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Retorna una lista de enfermedades y/o problemas de un paciente")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
@@ -44,8 +46,8 @@ public class EnfermedadProblemaActualController {
     })
     public ResponseEntity<List<EnfermedadProblemaActualDTO>> getByHistoriaClinica(
             @Parameter(required = true, description = "El ID de la historia clinica", example = "1")
-            @RequestParam Long historiaClinica) {
-        return new ResponseEntity<>(enfermedadProblemaActualService.findByHistoriaClinica(historiaClinica), HttpStatus.OK);
+            @RequestParam Long idHistoria) {
+        return new ResponseEntity<>(enfermedadProblemaActualService.findByHistoriaClinica(idHistoria), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -63,17 +65,17 @@ public class EnfermedadProblemaActualController {
     }
 
     @Operation(summary = "Elimina una enfermedad o problema actual por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        enfermedadProblemaActualService.delete(codigo);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        enfermedadProblemaActualService.delete(id);
     }
 
     @Operation(summary = "Actualiza una enfermedad o problema actual por su código")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<EnfermedadProblemaActualDTO> update(
             @RequestBody EnfermedadProblemaActualDTO dto,
-            @PathVariable Long codigo) {
-        Optional<EnfermedadProblemaActualDTO> enfermedadProblemaActualDTOOptional = enfermedadProblemaActualService.findById(codigo);
+            @PathVariable Long id) {
+        Optional<EnfermedadProblemaActualDTO> enfermedadProblemaActualDTOOptional = enfermedadProblemaActualService.findById(id);
         if (enfermedadProblemaActualDTOOptional.isPresent()) {
             EnfermedadProblemaActualDTO enfermedadProblemaActualDTO = enfermedadProblemaActualDTOOptional.get();
             enfermedadProblemaActualDTO.setCodigoCie(dto.getCodigoCie());

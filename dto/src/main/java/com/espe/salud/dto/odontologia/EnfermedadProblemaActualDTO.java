@@ -16,6 +16,6 @@ public class EnfermedadProblemaActualDTO implements Serializable {
     private Long id;
     private String descripcion;
     private String codigoCie;
-    private Long historiaId;
+    private Long idHistoria;
 
 }

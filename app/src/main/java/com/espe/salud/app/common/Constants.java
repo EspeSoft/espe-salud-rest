@@ -33,7 +33,7 @@ public class Constants {
     public static final String URI_API_V1_ENF_PRO_ACT = URI_API_V1 + "enfermedad-problema-actual";
     public static final String URI_API_V1_ODO_ODO = URI_API_V1 + "odontograma";
     public static final String URI_API_V1_IND_SAL_BUC = URI_API_V1 + "indicador-salud-bucal";
-    public static final String URI_API_V1_EXA_SIS_EST = URI_API_V1 + "examen-sistema-estomatignatico";
+    public static final String URI_API_V1_EXA_SIS_EST = URI_API_V1 + "examen-sistema-estomatognatico";
 
     public static final String URI_API_V1_USU = URI_API_V1 + "usuarios";
     public static final String URI_API_V1_TIP_DIS = URI_API_V1 + "tipos-discapacidad";

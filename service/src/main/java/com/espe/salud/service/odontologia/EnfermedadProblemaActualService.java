@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface EnfermedadProblemaActualService {
 
-    EnfermedadProblemaActualDTO save(EnfermedadProblemaActualDTO enfermedadProblemaActualDTO);
+    EnfermedadProblemaActualDTO save(EnfermedadProblemaActualDTO enfermedadProblemaActualDTO, Long idPaciente);
 
     boolean delete(Long id);
 
