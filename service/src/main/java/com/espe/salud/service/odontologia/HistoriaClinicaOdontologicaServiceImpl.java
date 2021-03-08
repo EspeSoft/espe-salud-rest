@@ -25,13 +25,14 @@ public class HistoriaClinicaOdontologicaServiceImpl implements HistoriaClinicaOd
     }
 
     @Override
-    public HistoriaClinicaOdontologicaDTO save(HistoriaClinicaOdontologicaDTO historiaClinicaOdontologica) {
-        Optional<HistoriaClinicaOdontologica> optional = domainRepository.findByCodigo(historiaClinicaOdontologica.getId());
+    public HistoriaClinicaOdontologicaDTO save(HistoriaClinicaOdontologicaDTO historiaClinicaOdontologica, Long idPaciente) {
+        Optional<HistoriaClinicaOdontologica> optional = domainRepository.findByCodigo(idPaciente);
         if (optional.isEmpty()) {
+            historiaClinicaOdontologica.setIdPaciente(idPaciente);
             HistoriaClinicaOdontologica domainObject = toEntity(historiaClinicaOdontologica);
             return toDTO(domainRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe una historia clinica registrada para ese código[%s]", historiaClinicaOdontologica.getId()));
+            throw new ConflictException(String.format("Ya existe una historia clinica registrada para ese código[%s]", idPaciente));
         }
     }
 
