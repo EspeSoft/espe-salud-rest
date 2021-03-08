@@ -1,6 +1,8 @@
 package com.espe.salud.domain.entities.antecedente;
 
 import com.espe.salud.domain.entities.catalogo.TipoConsumoNocivo;
+import com.espe.salud.domain.enums.EstadoNotaEnfermeria;
+import com.espe.salud.domain.enums.TipoConsumidor;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -23,13 +25,17 @@ public class ConsumoNocivo {
     @Column(name = "MZSTCONNOC_CODIGO")
     private Long codigo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "MZSTCONNOC_TIPO_CONSUMIDOR")
+    private TipoConsumidor tipoConsumidor;
+
     @Column(name = "MZSTCONNOC_FECHA_REGISTRO")
     private LocalDate fechaRegistro;
 
     @Column(name = "MZSTCONNOC_FECHA_TENTATIVA_INICIO")
     private LocalDate fechaTentativaInicio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
     @JoinColumn(name = "FK_TIPCONNOC_CONNOC")
     private TipoConsumoNocivo nombreConsumoNocivo;
 
@@ -40,7 +46,7 @@ public class ConsumoNocivo {
     private String frecuenciaConsumo;
 
     @Column(name = "MZSTCONNOC_CANTIDAD_CONSUMO")
-    private Integer cantidadConsumo;
+    private String cantidadConsumo;
 
     @Column(name = "MZSTCONNOC_TIEMPO_ABSTINENCIA_MES")
     private Integer tiempoAbstinenciaMes;
@@ -70,4 +76,8 @@ public class ConsumoNocivo {
     @Column(name = "MZSTCONNOC_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
 
+    @PrePersist
+    void prePersist() {
+        fechaRegistro = LocalDate.now();
+    }
 }

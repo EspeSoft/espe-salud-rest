@@ -17,12 +17,14 @@ public class ConsumoNocivoDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+    private String tipoConsumidor;
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private LocalDate fechaRegistro;
     private LocalDate fechaTentativaInicio;
     private TipoConsumoNocivoDTO nombreConsumoNocivo;
     private Integer tiempoConsumoMes;
     private String frecuenciaConsumo;
-    private Integer cantidadConsumo;
+    private String cantidadConsumo;
     private Integer tiempoAbstinenciaMes;
     private String observacion;
 

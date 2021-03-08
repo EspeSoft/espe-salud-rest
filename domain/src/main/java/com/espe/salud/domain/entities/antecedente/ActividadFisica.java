@@ -28,7 +28,7 @@ public class ActividadFisica {
     private String frecuencia;
 
     @Column(name = "MZSTACTFIS_HORAS")
-    private Integer horas;
+    private Integer tiempoHoras;
 
     @Column(name = "MZSTACTFIS_OBSERVACION")
     private String observacion;
