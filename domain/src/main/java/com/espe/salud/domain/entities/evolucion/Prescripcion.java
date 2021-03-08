@@ -41,7 +41,11 @@ public class Prescripcion {
     @JoinColumn(name = "FK_EVO_PRES")
     private Evolucion evolucion;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.ALL
+            })
     @JoinColumn(name = "FK_REPMED_PRES")
     private RepertorioMedicamento medicamento;
 
