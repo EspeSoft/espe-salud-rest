@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface ActividadEnfermeriaRepository extends JpaRepository<ActividadEnfermeria, Long> {
 
     Optional<ActividadEnfermeria> findByCodigo(Long codigo);
+
     List<ActividadEnfermeria> findByUsuarioPidm(Long pidm);
 }

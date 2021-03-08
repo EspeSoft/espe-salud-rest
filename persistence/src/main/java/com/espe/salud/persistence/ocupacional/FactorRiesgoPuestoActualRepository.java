@@ -9,5 +9,6 @@ import java.util.Optional;
 
 public interface FactorRiesgoPuestoActualRepository extends JpaRepository<FactorRiesgoPuestoActual, Long> {
     Optional<FactorRiesgoPuestoActual> findByCodigo(Long codigo);
+
     List<FactorRiesgoPuestoActual> findByAntecedenteLaboralCodigo(Long idAntecedenteLaboral);
 }

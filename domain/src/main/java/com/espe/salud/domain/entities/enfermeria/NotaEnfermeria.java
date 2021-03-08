@@ -26,7 +26,7 @@ public class NotaEnfermeria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTNOTENF_CODIGO")
+    @Column(name = "MZSTNOTENF_CODIGO")
     private Long codigo;
 
     @Column(name = "MZSTNOTENF_FECHA_INICIO")
@@ -110,7 +110,7 @@ public class NotaEnfermeria {
     private String usuarioModificacion;
 
     @PrePersist
-    void prePersist(){
+    void prePersist() {
         fechaInicio = LocalDateTime.now();
         estado = EstadoNotaEnfermeria.INICIADO;
     }

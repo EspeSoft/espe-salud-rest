@@ -1,5 +1,6 @@
 package com.espe.salud.app.api.v1.antecedente;
 
+import com.espe.salud.dto.antecedente.AntecedentePatologicoFamiliarDTO;
 import com.espe.salud.dto.antecedente.PlanificacionFamiliarDTO;
 import com.espe.salud.service.antecedente.PlanificacionFamiliarService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,47 +30,51 @@ public class PlanificacionFamiliarController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos las Planificaciones Familiares")
-    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<PlanificacionFamiliarDTO>> getAll(){
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
-    }
-
-    @Operation(summary = "Retorna una planificación familiar por su código")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<PlanificacionFamiliarDTO> getById(@Parameter(description = "El codigo dela planificación familiar",required = true,example = "1") @PathVariable("codigo") Long id){
-        return new ResponseEntity(service.findById(id),HttpStatus.OK);
-    }
-
-    @Operation(summary = "Edita una planificación familiar por su codigo")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<PlanificacionFamiliarDTO> update(@RequestBody PlanificacionFamiliarDTO dto,@RequestParam Long codigo){
-        Optional<PlanificacionFamiliarDTO> newPlanificacionFamiliarDTOoptional=service.findById(codigo);
-        PlanificacionFamiliarDTO newPlanificacionFamiliarDTO= newPlanificacionFamiliarDTOoptional.get();
-        newPlanificacionFamiliarDTO.setFecha(dto.getFecha());
-        newPlanificacionFamiliarDTO.setVidaSexualActiva(dto.getVidaSexualActiva());
-        newPlanificacionFamiliarDTO.setMetodoPlanificacion(dto.getMetodoPlanificacion());
-        newPlanificacionFamiliarDTO.setEdadInicioPlanificacionFamiliar(dto.getEdadInicioPlanificacionFamiliar());
-        newPlanificacionFamiliarDTO.setFrecuenciaPlanificacionFamiliar(dto.getFrecuenciaPlanificacionFamiliar());
-        newPlanificacionFamiliarDTO.setTipoPlanificacionFamiliar(dto.getTipoPlanificacionFamiliar());
-        newPlanificacionFamiliarDTO.setHijosVivos(dto.getHijosVivos());
-        newPlanificacionFamiliarDTO.setHijosMuertos(dto.getHijosMuertos());
-        newPlanificacionFamiliarDTO.setObservacion(dto.getObservacion());
-        newPlanificacionFamiliarDTO.setAntecedentePersonal(dto.getAntecedentePersonal());
-        return new ResponseEntity<>(service.update(newPlanificacionFamiliarDTO),HttpStatus.ACCEPTED);
-    }
-
-    @Operation(summary = "Guardar una nueva planificación familiar")
-    @PostMapping("/")
-    public ResponseEntity<PlanificacionFamiliarDTO> save(@RequestBody PlanificacionFamiliarDTO dto){
-        return new ResponseEntity<>(service.save(dto),HttpStatus.CREATED);
-    }
-
-    @Operation(summary = "Elimina una planificación familiar por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
-        service.deleteById(codigo);
-    }
+//
+//    @Operation(summary = "Retorna el listado de los antecedentes patológicos familiares de un paciente")
+//    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<List<PlanificacionFamiliarDTO>> findByPaciente(
+//            @Parameter(description = "El ID del paciente", required = true, example = "1")
+//            @RequestParam Long idPaciente) {
+//        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
+//    }
+//
+//    @Operation(summary = "Retorna un antecedente patológico familiar por su ID")
+//    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<AntecedentePatologicoFamiliarDTO> getById(
+//            @Parameter(description = "ID del antecedente patológico familiar", required = true, example = "1")
+//            @PathVariable("id") Long id) {
+//        return service.findById(id)
+//                .map(antecedente -> new ResponseEntity<>(antecedente, HttpStatus.OK))
+//                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+//    }
+//
+//    @Operation(summary = "Edita un antecedente patológico familiar por su ID")
+//    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+//    public ResponseEntity<AntecedentePatologicoFamiliarDTO> update(
+//            @Valid @RequestBody AntecedentePatologicoFamiliarDTO dto, @PathVariable("id") Long id) {
+//        Optional<AntecedentePatologicoFamiliarDTO> optional = service.findById(id);
+//        if (optional.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        } else {
+//            return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
+//        }
+//    }
+//
+//
+//    @Operation(summary = "Guardar un nuevo antecedente patológico familiar")
+//    @PostMapping("/")
+//    public ResponseEntity<AntecedentePatologicoFamiliarDTO> save(@Valid @RequestBody AntecedentePatologicoFamiliarDTO dto) {
+//        return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
+//    }
+//
+//    @Operation(summary = "Elimina un antecedente patológico familiar por su ID")
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Boolean> delete(
+//            @Parameter(description = "ID del antecedente patológico familiar", required = true, example = "1")
+//            @PathVariable Long id) {
+//        return new ResponseEntity<>(service.deleteById(id), HttpStatus.OK);
+//    }
 }
 
 

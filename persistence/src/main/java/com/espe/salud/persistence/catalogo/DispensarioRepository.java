@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DispensarioRepository extends JpaRepository<Dispensario,Long> {
+public interface DispensarioRepository extends JpaRepository<Dispensario, Long> {
 
     Optional<Dispensario> findByCodigo(Long codigo);
+
     Optional<Dispensario> findByNombreImagen(String nombreImagen);
 }

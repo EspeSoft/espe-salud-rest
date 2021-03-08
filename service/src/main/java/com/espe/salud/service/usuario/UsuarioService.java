@@ -8,10 +8,14 @@ import java.util.Optional;
 
 public interface UsuarioService {
     Optional<UsuarioDTO> findById(Long pidm);
+
     UsuarioDTO save(UsuarioDTO usuarioDTO);
+
     List<UsuarioDTO> findAll();
+
     boolean delete(Long pidm);
 
     UsuarioDTO toDTO(Usuario usuario);
+
     Usuario toEntity(UsuarioDTO dto);
 }

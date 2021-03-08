@@ -9,5 +9,6 @@ import java.util.Optional;
 
 public interface ActividadExtralaboralRepository extends JpaRepository<ActividadExtralaboral, Long> {
     Optional<ActividadExtralaboral> findByCodigo(Long codigo);
+
     List<ActividadExtralaboral> findByAntecedenteLaboralCodigo(Long idAntecedenteLaboral);
 }

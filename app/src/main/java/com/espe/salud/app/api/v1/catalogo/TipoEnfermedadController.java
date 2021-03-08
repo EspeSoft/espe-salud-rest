@@ -33,6 +33,6 @@ public class TipoEnfermedadController {
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoEnfermedadDTO>> getAll() {
         TipoEnfermedadDTO tipoEnfermedadDTO = new TipoEnfermedadDTO();
-        return new ResponseEntity<>( tipoEnfermedadService.findAll(tipoEnfermedadDTO), HttpStatus.OK);
+        return new ResponseEntity<>(tipoEnfermedadService.findAll(tipoEnfermedadDTO), HttpStatus.OK);
     }
 }

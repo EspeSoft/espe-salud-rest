@@ -33,7 +33,7 @@ public class HistoriaClinicaOdontologicaController {
     @PostMapping("")
     @Operation(summary = "Guarda y retorna una nueva historia clínica")
     public ResponseEntity<HistoriaClinicaOdontologicaDTO> save(
-            @RequestBody HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO){
+            @RequestBody HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO) {
         return new ResponseEntity<>(historiaClinicaOdontologicaService.save(historiaClinicaOdontologicaDTO), HttpStatus.CREATED);
     }
 
@@ -74,17 +74,17 @@ public class HistoriaClinicaOdontologicaController {
 
     @Operation(summary = "Elimina una historia clínica por su código")
     @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo){
+    public void delete(@PathVariable Long codigo) {
         historiaClinicaOdontologicaService.delete(codigo);
     }
-    
+
     @Operation(summary = "Actualiza una historia clínica por su código")
-    @PutMapping(value = "/{codigo}",produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<HistoriaClinicaOdontologicaDTO> update(
             @RequestBody HistoriaClinicaOdontologicaDTO dto,
             @PathVariable Long codigo) {
-        Optional<HistoriaClinicaOdontologicaDTO> historiaClinicaOdontologicaOptional =  historiaClinicaOdontologicaService.findById(codigo);
-        if(historiaClinicaOdontologicaOptional.isPresent()) {
+        Optional<HistoriaClinicaOdontologicaDTO> historiaClinicaOdontologicaOptional = historiaClinicaOdontologicaService.findById(codigo);
+        if (historiaClinicaOdontologicaOptional.isPresent()) {
             HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO = historiaClinicaOdontologicaOptional.get();
             historiaClinicaOdontologicaDTO.setCodigoProfesional(dto.getCodigoProfesional());
             historiaClinicaOdontologicaDTO.setFechaApertura(dto.getFechaApertura());

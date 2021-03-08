@@ -31,7 +31,7 @@ public class AntecedenteLaboralServiceImpl implements AntecedenteLaboralService 
         if (!optional.isPresent()) {
             AntecedenteLaboral domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un antecedente laboral registrado para ese código[%s]", antecedente.getId()));
         }
     }

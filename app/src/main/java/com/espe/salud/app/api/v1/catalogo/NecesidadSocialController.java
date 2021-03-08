@@ -36,7 +36,7 @@ public class NecesidadSocialController {
     @Operation(summary = "Retorna el listado de todas necesidades sociales en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NecesidadSocialDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -53,7 +53,7 @@ public class NecesidadSocialController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nueva necesidad social")
-    public ResponseEntity<NecesidadSocialDTO> save(@RequestBody NecesidadSocialDTO necesidadSocialDTO){
+    public ResponseEntity<NecesidadSocialDTO> save(@RequestBody NecesidadSocialDTO necesidadSocialDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(necesidadSocialDTO), HttpStatus.CREATED);
     }
 

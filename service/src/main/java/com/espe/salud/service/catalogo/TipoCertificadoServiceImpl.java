@@ -38,7 +38,7 @@ public class TipoCertificadoServiceImpl extends GenericCRUDServiceImpl<TipoCerti
     @Override
     public Optional<TipoCertificado> findExisting(TipoCertificadoDTO domainObject) {
 
-        return domainRepository.findByCodigo(domainObject.getId()) ;
+        return domainRepository.findByCodigo(domainObject.getId());
     }
 
     @Override

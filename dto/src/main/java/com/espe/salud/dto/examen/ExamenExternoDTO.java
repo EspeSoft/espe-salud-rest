@@ -21,7 +21,7 @@ public class ExamenExternoDTO implements Serializable {
     private String descripcion;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime fechaRegistro;
 
     @NotNull

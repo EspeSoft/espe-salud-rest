@@ -33,7 +33,7 @@ public class RiesgoBiologicoController {
     @Operation(summary = "Retorna el listado de todos los riesgo biológicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoBiologicoDTO>> getAll() {
-        return new ResponseEntity<>( riesgoBiologicoService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(riesgoBiologicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

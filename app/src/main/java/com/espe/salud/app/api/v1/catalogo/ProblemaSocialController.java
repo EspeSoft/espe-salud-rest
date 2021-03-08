@@ -34,7 +34,7 @@ public class ProblemaSocialController {
     @Operation(summary = "Retorna el listado de todos los problemas sociales en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ProblemaSocialDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -49,7 +49,7 @@ public class ProblemaSocialController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo problema social")
-    public ResponseEntity<ProblemaSocialDTO> save(@RequestBody ProblemaSocialDTO problemaSocialDTO){
+    public ResponseEntity<ProblemaSocialDTO> save(@RequestBody ProblemaSocialDTO problemaSocialDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(problemaSocialDTO), HttpStatus.CREATED);
     }
 }

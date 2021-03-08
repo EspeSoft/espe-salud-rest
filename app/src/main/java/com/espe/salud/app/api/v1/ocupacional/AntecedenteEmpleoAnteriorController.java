@@ -58,17 +58,17 @@ public class AntecedenteEmpleoAnteriorController {
 
     @Operation(summary = "Guarda un nuevo antecedente")
     @PostMapping("")
-    public ResponseEntity<AntecedenteEmpleoAnteriorDTO> save(@RequestBody AntecedenteEmpleoAnteriorDTO antecedente){
+    public ResponseEntity<AntecedenteEmpleoAnteriorDTO> save(@RequestBody AntecedenteEmpleoAnteriorDTO antecedente) {
         return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina un antecedente por su código")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @Parameter(description = "El ID del antecedente de empleo anterior", required = true, example = "1")
             @PathVariable("id") Long id
     ) {
-        serviceAntecedente.delete(id);
+        return new ResponseEntity<>(serviceAntecedente.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un antecedente por su id")
@@ -87,6 +87,6 @@ public class AntecedenteEmpleoAnteriorController {
         newAntecedenteEmpleoAnteriorDTO.setPuestoTrabajo(antecedenteDTO.getPuestoTrabajo());
         newAntecedenteEmpleoAnteriorDTO.setUsabanSeguridad(antecedenteDTO.getUsabanSeguridad());
         newAntecedenteEmpleoAnteriorDTO.setVigilanciaSalud(antecedenteDTO.getVigilanciaSalud());
-        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteEmpleoAnteriorDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteEmpleoAnteriorDTO), HttpStatus.CREATED);
     }
 }

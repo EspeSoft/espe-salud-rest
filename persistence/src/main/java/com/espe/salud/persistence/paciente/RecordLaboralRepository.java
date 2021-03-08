@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface RecordLaboralRepository extends JpaRepository<RecordLaboral, Long> {
     Optional<RecordLaboral> findByCodigo(Long codigo);
+
     List<RecordLaboral> findAllByCodigo(Long codigo);
 }

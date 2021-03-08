@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface TipoDiscapacidadRepository extends JpaRepository<TipoDiscapacidad, Long> {
     Optional<TipoDiscapacidad> findByCodigo(Long codigo);
+
     List<TipoDiscapacidad> findAllByOrderByNombreAsc();
 }

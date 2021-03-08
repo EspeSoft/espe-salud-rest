@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface EnfermedadCIE10Repository extends JpaRepository<EnfermedadCIE10, String> {
     Optional<EnfermedadCIE10> findByCodigo(String codigo);
+
     List<EnfermedadCIE10> findAllByOrderByNombreAsc();
+
     List<EnfermedadCIE10> findByCodigoStartingWithOrNombreStartingWith(String codigo, String nombre);
 }

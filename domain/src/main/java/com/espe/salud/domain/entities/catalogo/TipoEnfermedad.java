@@ -23,7 +23,6 @@ public class TipoEnfermedad {
     @Column(name = "MZSTCTIPENF_NOMBRE")
     private String nombre;
 
-    @OneToMany(mappedBy = "tipoEnfermedad", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tipoEnfermedadFamiliar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<AntecedentePatologicoFamiliar> antecedentesPatologicosFamiliares;
-
 }

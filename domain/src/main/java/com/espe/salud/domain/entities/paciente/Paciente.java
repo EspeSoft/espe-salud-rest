@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.paciente;
 
 import com.espe.salud.domain.entities.antecedente.EstudioComplementario;
+import com.espe.salud.domain.entities.antecedente.Hospitalizacion;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
 import com.espe.salud.domain.enums.Lateralidad;
@@ -37,9 +38,6 @@ public class Paciente {
     @Column(name = "MZSTPAC_NOMBRE_COMPLETO")
     private String nombreCompleto;
 
-    @Column(name = "MZSTPAC_ACTIVO")
-    private Boolean activo;
-
     @Column(name = "MZSTPAC_ES_EMPLEADO")
     private Boolean esEmpleado;
 
@@ -56,6 +54,18 @@ public class Paciente {
     @Column(name = "MZSTPAC_TIPO_PACIENTE")
     @Enumerated(EnumType.STRING)
     private TipoPaciente tipoPaciente;
+
+    @Column(name = "MZSTPAC_VINCULADO_ESPE")
+    private String vinculadoEspe;
+
+    @Column(name = "MZSTPAC_SEGURO_SALUD")
+    private String seguroSalud;
+
+    @Column(name = "MZSTPAC_ASOCIACION_AFILIADA")
+    private String asociacionAfiliada;
+
+    @Column(name = "MZSTPAC_INSTRUCCION")
+    private String instruccion;
 
     @Column(name = "FK_CDIS_PAC")
     private Long idDispensario;
@@ -87,6 +97,9 @@ public class Paciente {
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<EstudioComplementario> estudiosComplementarios;
 
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Hospitalizacion> hospitalizaciones;
+
     @CreatedDate
     @Column(name = "MZSTPAC_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
@@ -103,17 +116,10 @@ public class Paciente {
     @Column(name = "MZSTPAC_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
-    @PrePersist
-    public void prePersist() {
-        this.activo = true;
-    }
-
-    public void disablePatient(){
-        this.activo = false;
-    }
-
     public void setPacienteAsExterno() {
         this.tipoPaciente = TipoPaciente.EXTERNO;
+        this.esEmpleado = false;
+        this.esEstudiante = false;
     }
 
     public void setPacienteAsInterno() {

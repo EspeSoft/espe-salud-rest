@@ -1,7 +1,6 @@
 package com.espe.salud.service.catalogo;
 
 
-
 import com.espe.salud.domain.entities.catalogo.DescripcionActividadEnfermeria;
 import com.espe.salud.dto.catalogo.DescripcionActividadEnfermeriaDTO;
 import com.espe.salud.dto.enfermeria.ActividadEnfermeriaDTO;

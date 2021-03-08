@@ -33,7 +33,7 @@ public class RiesgoPsicosocialController {
     @Operation(summary = "Retorna el listado de todos los riesgo psicosociales en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoPsicosocialDTO>> getAll() {
-        return new ResponseEntity<>( riesgoPsicosocialService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(riesgoPsicosocialService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }
 

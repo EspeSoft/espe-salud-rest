@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
 public class PersonaBanner implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * DATOS GENERALES
+     * Los siguientes datos son compartidos para cualquier tipo de usuario dentro de Banner
+     **/
     @JsonProperty("id_banner")
     private String idBanner;
 
@@ -20,14 +24,15 @@ public class PersonaBanner implements Serializable {
 
     private String nombres;
 
-    @JsonProperty("numero_documento")
-    private String numeroDocumento;
+    private String cedula;
 
     @JsonProperty("fecha_nacimiento")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
     private LocalDateTime fechaNacimiento;
-    
+
     private String sexo;
+
+    private String genero;
 
     @JsonProperty("estado_civil")
     private String estadoCivil;
@@ -37,9 +42,6 @@ public class PersonaBanner implements Serializable {
 
     private String religion;
 
-    @JsonProperty("identificacion_etnia")
-    private String identificacionEtnia;
-
     private String prefijo;
 
     private String titulo;
@@ -47,43 +49,64 @@ public class PersonaBanner implements Serializable {
     @JsonProperty("code_orgn")
     private String codeOrgn;
 
-    @JsonProperty("tipo_empleado")
-    private String tipoEmpleado;
-
-    @JsonProperty("estado_empleado")
-    private String estadoEmpleado;
+    @JsonProperty("fecha_original")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.S")
+    private LocalDateTime fechaIngresoESPE;
 
     private String nacionalidad;
+
+    @JsonProperty("identificacion_etnia")
+    private String identificacionEtnia;
 
     @JsonProperty("pais_dn")
     private String paisNacimiento;
 
-    @JsonProperty("pais_pr")
-    private String paisResidencia;
-
-    private String provincia;
-
-    private String canton;
+    @JsonProperty("provincia_dn")
+    private String provinciaNacimiento;
 
     @JsonProperty("canton_dn")
     private String cantonNacimiento;
 
-    @JsonProperty("canton_pr")
-    private String cantonResidencia;
-
-    @JsonProperty("canton_campus")
-    private String cantonCampus;
-
-    private String parroquia;
-
     @JsonProperty("parroquia_dn")
     private String parroquiaNacimiento;
+
+    @JsonProperty("pais_pr")
+    private String paisResidencia;
+
+    @JsonProperty("provincia_pr")
+    private String provinciaResidencia;
+
+    @JsonProperty("canton_pr")
+    private String cantonResidencia;
 
     @JsonProperty("parroquia_pr")
     private String parroquiaResidencia;
 
-    @JsonProperty("contacto_apellido")
-    private String contactoEmergenciaApellido;
+    @JsonProperty("calle_principal")
+    private String callePrincipal;
+
+    @JsonProperty("calle_secundaria")
+    private String calleSecundaria;
+
+    @JsonProperty("referencia")
+    private String referencia;
+
+    @JsonProperty("tipo_parroquia")
+    private String tipoParroquia;
+
+    private String plurinacionalidad;
+
+    private String telefono;
+
+    private String celular;
+
+    private String extension;
+
+    @JsonProperty("correo_institucional")
+    private String correoInstitucional;
+
+    @JsonProperty("correo_personal")
+    private String correoPersonal;
 
     @JsonProperty("contacto_nombre")
     private String contactoEmergenciaNombre;
@@ -97,29 +120,27 @@ public class PersonaBanner implements Serializable {
     @JsonProperty("contacto_celular")
     private String contactoEmergenciaCelular;
 
-    @JsonProperty("contacto_provincia")
-    private String contactoEmergenciaProvincia;
-
-    @JsonProperty("contacto_parroquia")
-    private String contactoEmergenciaParroquia;
-
     @JsonProperty("contacto_direccion")
     private String contactoEmergenciaDireccion;
 
-    @JsonProperty("contacto_direccion_calle_principal")
-    private String direccionCallePrincipal;
+    private String status;
 
-    @JsonProperty("contacto_direccion_calle_secundaria")
-    private String direccionCalleSecundaria;
+    /**
+     * DATOS ESTUDIANTE
+     * Los siguientes datos son especificamente de un estudiante
+     **/
 
-    @JsonProperty("contacto_direccion_referencia")
-    private String direccionReferencia;
+    private String nivel;
 
-    @JsonProperty("referencia")
-    private String referencia;
+    private String programa;
 
-    @JsonProperty("fecha_original")
-    private String fechaIngresoESPE;
+    /**
+     * DATOS EMPLEADO
+     * Los siguientes datos son especificamente de un empleado
+     **/
+
+    @JsonProperty("tipo_empleado")
+    private String tipoEmpleado;
 
     @JsonProperty("seccion")
     private String seccion;
@@ -136,44 +157,16 @@ public class PersonaBanner implements Serializable {
     @JsonProperty("provincia_campus")
     private String provinciaCampus;
 
-    @JsonProperty("puesto")
-    private String puesto;
-
-    @JsonProperty("correo_institucional")
-    private String correoInstitucional;
-
-    @JsonProperty("correo_personal")
-    private String correoPersonal;
-
-    @JsonProperty("provincia_dn")
-    private String provinciaNacimiento;
-
-    @JsonProperty("provincia_pr")
-    private String provinciaResidencia;
-
-    @JsonProperty("tipo_parroquia")
-    private String tipoParroquia;
-
-    private String plurinacionalidad;
-
-    private String telefono;
-
-    private String celular;
-
-    private String extension;
-
-    private String status;
-
-    private String nivel;
-
-    private String programa;
-
-    private String escuela;
+    @JsonProperty("canton_campus")
+    private String cantonCampus;
 
     @JsonProperty("direccion_campus")
     private String direccionCampus;
 
-    public String getFullName(){
+    @JsonProperty("puesto")
+    private String puesto;
+
+    public String getFullName() {
         return this.nombres + " " + this.apellidos;
     }
 }

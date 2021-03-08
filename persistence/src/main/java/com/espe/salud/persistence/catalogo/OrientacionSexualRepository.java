@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface OrientacionSexualRepository extends JpaRepository<OrientacionSexual, Long> {
     List<OrientacionSexual> findAllByOrderByNombreAsc();
+
     Optional<OrientacionSexual> findByCodigo(Long codigo);
 }

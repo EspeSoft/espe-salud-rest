@@ -9,12 +9,15 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +35,7 @@ public class EvolucionController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<EvolucionDTO> save(@RequestBody EvolucionDTO evolucion) {
+    public ResponseEntity<EvolucionDTO> save(@Valid @RequestBody EvolucionDTO evolucion) {
         return new ResponseEntity<>(evolucionService.save(evolucion), HttpStatus.CREATED);
     }
 
@@ -51,7 +54,7 @@ public class EvolucionController {
     @Operation(summary = "Elimina una Evolución por su id")
     @DeleteMapping("/{id}")
     public ResponseEntity<Boolean> delete(
-            @Parameter(required = true, description = "El ID de la evolución", example = "1")
+            @Parameter(required = true, description = "El ID de la evolución", example = "EV_0000001")
             @PathVariable String id) {
         return new ResponseEntity<>(evolucionService.delete(id), HttpStatus.OK);
     }
@@ -86,20 +89,21 @@ public class EvolucionController {
         if (optional.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
-            EvolucionDTO nuevo = optional.get();
-            nuevo.setFechaInicio(dto.getFechaInicio());
-            nuevo.setEstado(dto.getEstado());
-            nuevo.setFechaFinalizacion(dto.getFechaFinalizacion());
-            nuevo.setObservacion(dto.getObservacion());
-            nuevo.setIdMotivoAtencion(dto.getIdMotivoAtencion());
-            nuevo.setResponsablePidm(dto.getResponsablePidm());
-            nuevo.setEsEnfermedadOcupacional(dto.getEsEnfermedadOcupacional());
-            nuevo.setIdDispensario(dto.getIdDispensario());
-            nuevo.setIdPaciente(dto.getIdPaciente());
-            nuevo.setIdAreaSalud(dto.getIdAreaSalud());
-            nuevo.setIdNotaEnfermeria(dto.getIdNotaEnfermeria());
-            nuevo.setNotaEvolucion(dto.getNotaEvolucion());
-            return new ResponseEntity<>( evolucionService.update(nuevo), HttpStatus.OK);
+            return new ResponseEntity<>( evolucionService.update(dto), HttpStatus.OK);
         }
+    }
+
+    @GetMapping(value = "/reporte/certificado-medico/pdf")
+    public ResponseEntity<Object> generateCertificadoMedicoGeneral(
+            @RequestParam String idEvolucion) {
+        byte[] pdfContent = evolucionService.getCertificadoMedico(idEvolucion);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("content-disposition", "inline; filename=" + idEvolucion + ".pdf");
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        return ResponseEntity.ok().headers(headers).contentLength(pdfContent.length)
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new InputStreamResource(new ByteArrayInputStream(pdfContent)));
     }
 }

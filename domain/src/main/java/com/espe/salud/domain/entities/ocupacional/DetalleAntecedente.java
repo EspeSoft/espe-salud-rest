@@ -10,7 +10,7 @@ import javax.persistence.MappedSuperclass;
 @Data
 @MappedSuperclass
 public abstract class DetalleAntecedente extends AntecedenteTrabajo {
-    
+
     @Column(name = "MZSTDETANT_LUGAR_ATENCION")
     private String lugarAtencion;
 

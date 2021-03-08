@@ -62,16 +62,16 @@ public class AntecedenteLaboralController {
 
     @Operation(summary = "Guarda un nuevo antecedente laboral")
     @PostMapping("")
-    public ResponseEntity<AntecedenteLaboralDTO> save(@RequestBody AntecedenteLaboralDTO antecedente){
+    public ResponseEntity<AntecedenteLaboralDTO> save(@RequestBody AntecedenteLaboralDTO antecedente) {
         return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina un antecedente por su id")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @PathVariable("id") Long id
     ) {
-        serviceAntecedente.delete(id);
+        return new ResponseEntity<>(serviceAntecedente.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un antecedente por su ID")
@@ -81,6 +81,6 @@ public class AntecedenteLaboralController {
             @PathVariable("id") Long id) {
         Optional<AntecedenteLaboralDTO> newAntecedenteLaboralDTOoptional = serviceAntecedente.findByCodigo(id);
         AntecedenteLaboralDTO newAntecedenteLaboralDTO = newAntecedenteLaboralDTOoptional.get();
-        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteLaboralDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteLaboralDTO), HttpStatus.CREATED);
     }
 }

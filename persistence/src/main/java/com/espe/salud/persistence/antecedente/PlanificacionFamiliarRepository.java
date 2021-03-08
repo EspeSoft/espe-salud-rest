@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PlanificacionFamiliarRepository extends JpaRepository<PlanificacionFamiliar,Long> {
+public interface PlanificacionFamiliarRepository extends JpaRepository<PlanificacionFamiliar, Long> {
     Optional<PlanificacionFamiliar> findByCodigo(Long codigo);
 }

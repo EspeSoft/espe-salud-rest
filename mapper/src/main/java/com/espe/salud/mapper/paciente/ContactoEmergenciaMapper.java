@@ -14,9 +14,9 @@ public interface ContactoEmergenciaMapper {
     @Mappings({
             @Mapping(source = "codigo", target = "id")
     })
-    ContactoEmergenciaDTO toContactoEmergencia(ContactoEmergencia contactoEmergencia);
+    ContactoEmergenciaDTO toContactoEmergenciaDTO(ContactoEmergencia contactoEmergencia);
 
-    List<ContactoEmergenciaDTO> toContactosEmergenciaDTO(List<ContactoEmergencia> contactoEmergencias);
+    List<ContactoEmergenciaDTO> toContactosEmergenciaDTO(List<ContactoEmergencia> contactosEmergencia);
 
     @InheritInverseConfiguration
     ContactoEmergencia toContactoEmergencia(ContactoEmergenciaDTO dto);

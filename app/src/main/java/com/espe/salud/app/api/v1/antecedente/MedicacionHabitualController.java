@@ -1,6 +1,6 @@
 package com.espe.salud.app.api.v1.antecedente;
 
-import com.espe.salud.dto.antecedente.MedicacionHabitalDTO;
+import com.espe.salud.dto.antecedente.MedicacionHabitualDTO;
 import com.espe.salud.service.antecedente.MedicacionHabitualService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_MED_HABITUAL;
 
 @RestController
-@Tag(description = "Gestiona medicamentos habituales", name = "Medicaciones habituales")
+@Tag(description = "Gestiona los medicamentos habituales de un paciente", name = "Medicaciones habituales")
 @RequestMapping(value = {URI_API_V1_MED_HABITUAL})
 public class MedicacionHabitualController {
 
@@ -36,50 +37,48 @@ public class MedicacionHabitualController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares de un antecedente personal")
+    @Operation(summary = "Retorna el listado de todas las medicaciones habituales de un paciente")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<MedicacionHabitalDTO>> getByCodigoAntecedentePersonal(@RequestParam Long idAntecedentePersonal) {
-        return new ResponseEntity<>(service.findByIdAntecedentePersonal(idAntecedentePersonal), HttpStatus.OK);
+    public ResponseEntity<List<MedicacionHabitualDTO>> findByPaciente(
+            @Parameter(description = "El ID del paciente", required = true, example = "1")
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna el listado de todos los medicamentos habituales")
-    @GetMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<MedicacionHabitalDTO>> getAll() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
-    }
-
-    @Operation(summary = "Retorna un medicamento habitual por su ID")
+    @Operation(summary = "Retorna una medicación habitual por su ID")
     @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<MedicacionHabitalDTO> getById(
-            @Parameter(description = "El ID del medicamento habitual", required = true, example = "1")
+    public ResponseEntity<MedicacionHabitualDTO> getById(
+            @Parameter(description = "ID medicación habitual", required = true, example = "1")
             @PathVariable("id") Long id) {
-        return new ResponseEntity(service.findById(id), HttpStatus.OK);
+        return service.findById(id)
+                .map(medicacion -> new ResponseEntity<>(medicacion, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @Operation(summary = "Edita un medicamento habitual por su codigo")
+    @Operation(summary = "Edita una medicación habitual por su ID")
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<MedicacionHabitalDTO> update(
-            @RequestBody MedicacionHabitalDTO dto, @PathVariable Long id) {
-
-        Optional<MedicacionHabitalDTO> newMedicamentoHabitualDTOOptinal = service.findById(id);
-        MedicacionHabitalDTO newMedicacionHabitualDTO = newMedicamentoHabitualDTOOptinal.get();
-        newMedicacionHabitualDTO.setCantidad(dto.getCantidad());
-        newMedicacionHabitualDTO.setDescripcionMedicamento(dto.getDescripcionMedicamento());
-        newMedicacionHabitualDTO.setFrecuencia(dto.getFrecuencia());
-        newMedicacionHabitualDTO.setObservacion(dto.getObservacion());
-        newMedicacionHabitualDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
-        return new ResponseEntity<>(service.update(newMedicacionHabitualDTO), HttpStatus.ACCEPTED);
+    public ResponseEntity<MedicacionHabitualDTO> update(
+            @Valid @RequestBody MedicacionHabitualDTO dto, @PathVariable("id") Long id) {
+        Optional<MedicacionHabitualDTO> optional = service.findById(id);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
+        }
     }
 
-    @Operation(summary = "Guardar un nuevo medicamento habitual")
+
+    @Operation(summary = "Guardar una nueva medicación habitual")
     @PostMapping("/")
-    public ResponseEntity<MedicacionHabitalDTO> save(@RequestBody MedicacionHabitalDTO dto) {
+    public ResponseEntity<MedicacionHabitualDTO> save(@Valid @RequestBody MedicacionHabitualDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Elimina un medicamento habitual por su codigo")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        service.deleteById(codigo);
+    @Operation(summary = "Elimina un antecedente patológico familiar por su ID")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(
+            @Parameter(description = "ID del antecedente patológico familiar", required = true, example = "1")
+            @PathVariable Long id) {
+        return new ResponseEntity<>(service.deleteById(id), HttpStatus.OK);
     }
 }

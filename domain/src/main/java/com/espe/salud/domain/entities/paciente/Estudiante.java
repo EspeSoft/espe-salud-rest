@@ -25,7 +25,6 @@ public class Estudiante {
 
     @Column(name = "MZSTEST_FECHA_INGRESO_ESPE")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @PastOrPresent
     private LocalDate fechaIngresoEspe;
 
     @Column(name = "MZSTEST_DEPARTAMENTO")

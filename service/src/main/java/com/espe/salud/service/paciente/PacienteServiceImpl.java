@@ -85,17 +85,6 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    @Transactional
-    public void darBajaPaciente(Long codigo) {
-        Optional<Paciente> optionalPaciente = pacienteRepository.findById(codigo);
-        if (optionalPaciente.isPresent()) {
-            Paciente paciente = optionalPaciente.get();
-            paciente.disablePatient();
-            pacienteRepository.save(paciente);
-        }
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Optional<PacienteDTO> findExistingByNumeroArchivo(String numeroArchivo) {
         return pacienteRepository.findByNumeroArchivo(numeroArchivo).map(this::mapPacienteInfo);

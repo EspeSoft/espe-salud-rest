@@ -57,14 +57,14 @@ public class ActividadExtralaboralController {
 
     @Operation(summary = "Guarda una nueva actividad")
     @PostMapping("")
-    public ResponseEntity<ActividadExtralaboralDTO> save(@RequestBody ActividadExtralaboralDTO actividad){
+    public ResponseEntity<ActividadExtralaboralDTO> save(@RequestBody ActividadExtralaboralDTO actividad) {
         return new ResponseEntity<>(serviceActividad.save(actividad), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina una actividad por su id")
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") Long id) {
-        serviceActividad.delete(id);
+    public ResponseEntity<Boolean> delete(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(serviceActividad.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita una actividad extralaboral por su id")
@@ -83,7 +83,7 @@ public class ActividadExtralaboralController {
         newActividadExtralaboralDTO.setPuestoTrabajo(actividadDTO.getPuestoTrabajo());
         newActividadExtralaboralDTO.setUsabanSeguridad(actividadDTO.getUsabanSeguridad());
         newActividadExtralaboralDTO.setVigilanciaSalud(actividadDTO.getVigilanciaSalud());
-        return new ResponseEntity<>(serviceActividad.update(newActividadExtralaboralDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceActividad.update(newActividadExtralaboralDTO), HttpStatus.CREATED);
     }
 
 }

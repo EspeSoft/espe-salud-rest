@@ -8,5 +8,6 @@ import java.util.Optional;
 
 public interface RiesgoBiologicoRepository extends JpaRepository<RiesgoBiologico, Long> {
     List<RiesgoBiologico> findAllByOrderByNombreAsc();
+
     Optional<RiesgoBiologico> findByCodigo(Long codigo);
 }

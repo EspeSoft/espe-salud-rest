@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-public class AntecedentePersonalServicelmpl implements AntecedentePersonalService{
+public class AntecedentePersonalServicelmpl implements AntecedentePersonalService {
     private final AntecedentePersonalRepository repository;
     private final AntecedentePersonalMapper mapper;
 

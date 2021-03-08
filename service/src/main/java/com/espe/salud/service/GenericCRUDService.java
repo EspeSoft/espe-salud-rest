@@ -13,6 +13,7 @@ public interface GenericCRUDService<DOMAIN, DTO> {
 
     /**
      * Permite mapear un objeto serializable a un objeto de dominio
+     *
      * @param dtoObject
      * @return
      */
@@ -20,6 +21,7 @@ public interface GenericCRUDService<DOMAIN, DTO> {
 
     /**
      * Permite serializar un objeto de dominio
+     *
      * @param domainObject
      * @return
      */
@@ -27,10 +29,13 @@ public interface GenericCRUDService<DOMAIN, DTO> {
 
     /**
      * Permite encontrar un objeto existente con la misma clave primaria
+     *
      * @param domainObject
      * @return
      */
     public abstract Optional<DOMAIN> findExisting(DTO domainObject);
+
     public abstract List<DTO> findAllOrderByNameASC();
+
     public abstract boolean delete(Long id);
 }

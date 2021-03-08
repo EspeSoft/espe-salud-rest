@@ -10,7 +10,9 @@ import java.util.Optional;
 @Repository
 public interface CertificadoRepository extends JpaRepository<Certificado, Long> {
     Optional<Certificado> findByCodigo(Long codigo);
+
     List<Certificado> findByEvolucion_Paciente(Long codigoEvolucion);
+
     List<Certificado> findAllByCodigo(Long codigo);
 
 }

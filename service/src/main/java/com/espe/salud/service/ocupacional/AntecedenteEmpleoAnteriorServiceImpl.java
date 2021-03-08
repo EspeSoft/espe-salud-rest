@@ -33,7 +33,7 @@ public class AntecedenteEmpleoAnteriorServiceImpl implements AntecedenteEmpleoAn
         if (!optional.isPresent()) {
             AntecedenteEmpleoAnterior domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un antecedente de empleo anterior registrado para ese código[%s]", antecedente.getId()));
         }
     }

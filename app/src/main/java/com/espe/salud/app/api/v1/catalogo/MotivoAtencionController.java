@@ -33,7 +33,7 @@ public class MotivoAtencionController {
     @Operation(summary = "Retorna el listado de todos los motivos de atención en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<MotivoAtencionDTO>> getAll() {
-        return new ResponseEntity<>( motivoAtencionService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(motivoAtencionService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class MotivoAtencionController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo motivo de atención")
-    public ResponseEntity<MotivoAtencionDTO> save(@RequestBody MotivoAtencionDTO motivoAtencionDTO){
+    public ResponseEntity<MotivoAtencionDTO> save(@RequestBody MotivoAtencionDTO motivoAtencionDTO) {
         return new ResponseEntity<>(motivoAtencionService.saveOrUpdate(motivoAtencionDTO), HttpStatus.CREATED);
     }
 

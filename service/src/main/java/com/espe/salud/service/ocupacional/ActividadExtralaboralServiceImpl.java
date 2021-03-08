@@ -31,7 +31,7 @@ public class ActividadExtralaboralServiceImpl implements ActividadExtralaboralSe
         if (!optional.isPresent()) {
             ActividadExtralaboral domainObject = toEntity(actividad);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe una actividad extralaboral para ese código[%s]", actividad.getId()));
         }
     }

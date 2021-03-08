@@ -33,6 +33,6 @@ public class RiesgoQuimicoController {
     @Operation(summary = "Retorna el listado de todos los riesgo químicos en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RiesgoQuimicoDTO>> getAll() {
-        return new ResponseEntity<>( riesgoQuimicoService.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(riesgoQuimicoService.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }

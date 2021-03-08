@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
+public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService {
 
     private final NotaEnfermeriaRepository domainRepository;
     private final NotaEnfermeriaMapper mapper;
@@ -40,7 +40,7 @@ public class NotaEnfermeriaServiceImpl implements NotaEnfermeriaService{
     @Override
     @Transactional(readOnly = true)
     public Optional<NotaEnfermeriaDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(this::toDTO);
+        return domainRepository.findByCodigo(codigo).map(this::toDTO);
     }
 
     @Override

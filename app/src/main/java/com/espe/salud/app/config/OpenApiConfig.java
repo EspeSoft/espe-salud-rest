@@ -10,12 +10,18 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OpenApiConfig {
 
-    @Value("${application-version}")           String apiVersion;
-    @Value("${application-title}")             String apiTitle;
-    @Value("${application-description}")       String apiDescription;
-    @Value("${application-apiTermsOfServiceUrl}") String apiTermsOfServiceUrl;
-    @Value("${application-apiLicense}")           String apiLicense;
-    @Value("${application-apiLicenseUrl}")        String apiLicenseUrl;
+    @Value("${application-version}")
+    String apiVersion;
+    @Value("${application-title}")
+    String apiTitle;
+    @Value("${application-description}")
+    String apiDescription;
+    @Value("${application-apiTermsOfServiceUrl}")
+    String apiTermsOfServiceUrl;
+    @Value("${application-apiLicense}")
+    String apiLicense;
+    @Value("${application-apiLicenseUrl}")
+    String apiLicenseUrl;
 
 
     @Bean

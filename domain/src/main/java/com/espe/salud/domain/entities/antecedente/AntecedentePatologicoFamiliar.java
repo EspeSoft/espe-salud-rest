@@ -1,68 +1,69 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.EnfermedadCIE10;
 import com.espe.salud.domain.entities.catalogo.TipoEnfermedad;
-import com.espe.salud.domain.entities.paciente.Paciente;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "MZSTPATFAM", schema = "SALUD")
+@EntityListeners(AuditingEntityListener.class)
+@Table(name = "MZSTANTPATFAM", schema = "SALUD")
 public class AntecedentePatologicoFamiliar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTPATFAM_CODIGO")
+    @Column(name = "MZSTANTPATFAM_CODIGO")
     private Long codigo;
 
-    @Lob
-    @Column(name = "MZSTPATFAM_PARENTEZCO")
-    private String parentezco;
+    @Column(name = "MZSTANTPATFAM_PARENTESCO")
+    private String parentesco;
 
-    @Lob
-    @Column(name = "MZSTPATFAM_DIAGNOSTICO")
-    private String diagnostico;
-
-    @Lob
-    @Column(name = "MZSTPATFAM_OBSERVACION")
+    @Column(name = "MZSTANTPATFAM_OBSERVACION", columnDefinition = "TEXT")
     private String observacion;
 
-    @Column(name = "FK_ANTPER_ANTQUI")
+    @Column(name = "FK_ENFCIE10_ANTPATFAM")
+    private String idDiagnostico;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ENFCIE10_ANTPATFAM", insertable = false, updatable = false, nullable = false)
+    private EnfermedadCIE10 diagnostico;
+
+    @Column(name = "FK_TIPENF_ANTPATFAM")
+    private Long idTipoEnfermedadFamiliar;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPENF_ANTPATFAM", insertable = false, updatable = false, nullable = false)
+    private TipoEnfermedad tipoEnfermedadFamiliar;
+
+    @Column(name = "FK_ANTPER_ANTPATFAM")
     private Long idAntecedentePersonal;
 
-    @ManyToOne
-    @JoinColumn(name = "FK_ANTPER_ANTQUI",insertable = false,updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_ANTPER_ANTPATFAM", insertable = false, updatable = false, nullable = false)
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
-    @Column(name = "MZSTPATFAM_USUARIO_CREACION")
+    @Column(name = "MZSTANTPATFAM_USUARIO_CREACION")
     private String usuarioCreacion;
 
     @LastModifiedBy
-    @Column(name = "MZSTPATFAM_USUARIO_MODIFICACION")
+    @Column(name = "MZSTANTPATFAM_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
     @CreatedDate
-    @Column(name = "MZSTPATFAM_FECHA_CREACION")
+    @Column(name = "MZSTANTPATFAM_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
-    @Column(name = "MZSTPATFAM_FECHA_MODIFICACION")
+    @Column(name = "MZSTANTPATFAM_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
-
-    @Column(name = "FK_TIPENF_PATFAM")
-    private Long idTipoEnfermedadFamilia;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_TIPENF_PATFAM", insertable = false, updatable = false, nullable = false)
-    private TipoEnfermedad tipoEnfermedad;
-
 }

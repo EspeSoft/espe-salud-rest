@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface SeguroSaludRepository extends JpaRepository<SeguroSalud, Long> {
     Optional<SeguroSalud> findByCodigo(Long codigo);
+
     List<SeguroSalud> findAllByOrderByNombreAsc();
 }

@@ -34,7 +34,7 @@ public class OrientacionSexualController {
     @Operation(summary = "Retorna el listado de las orientaciones sexuales en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<OrientacionSexualDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -49,7 +49,7 @@ public class OrientacionSexualController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nueva orientación sexual")
-    public ResponseEntity<OrientacionSexualDTO> save(@RequestBody OrientacionSexualDTO orientacionSexualDTO){
+    public ResponseEntity<OrientacionSexualDTO> save(@RequestBody OrientacionSexualDTO orientacionSexualDTO) {
         return new ResponseEntity<>(service.saveOrUpdate(orientacionSexualDTO), HttpStatus.CREATED);
     }
 

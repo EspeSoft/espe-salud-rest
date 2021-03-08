@@ -15,19 +15,22 @@ public class IndicadorSaludBucal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTINDSALBUC_CODIGO")
+    @Column(name = "MZSTINDSALBUC_CODIGO")
     private Long codigo;
 
-    @Column(name="MZSTINDSALBUC_NIVEL_ENFERMEDAD_PERIODONTAL")
-    @Min(1) @Max(3)
+    @Column(name = "MZSTINDSALBUC_NIVEL_ENFERMEDAD_PERIODONTAL")
+    @Min(1)
+    @Max(3)
     private Integer nivelEnfermedadPeriodontal;
 
-    @Column(name="MZSTINDSALBUC_NIVEL_MALOCLUSION")
-    @Min(1) @Max(3)
+    @Column(name = "MZSTINDSALBUC_NIVEL_MALOCLUSION")
+    @Min(1)
+    @Max(3)
     private Integer nivelMaloclusion;
 
-    @Column(name="MZSTINDSALBUC_NIVEL_FLUOROSIS")
-    @Min(1) @Max(3)
+    @Column(name = "MZSTINDSALBUC_NIVEL_FLUOROSIS")
+    @Min(1)
+    @Max(3)
     private Integer nivelFluorosis;
 
 

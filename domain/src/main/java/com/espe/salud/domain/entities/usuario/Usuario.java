@@ -48,7 +48,7 @@ public class Usuario {
     private List<Procedimiento> procedimiento;
 
     @PrePersist
-    void prePersist(){
+    void prePersist() {
         activo = true;
     }
 

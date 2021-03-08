@@ -34,6 +34,6 @@ public class NivelInstruccionController {
     @Operation(summary = "Retorna el listado de todos los niveles de instruccion en orden alfabético")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<NivelInstruccionDTO>> getAll() {
-        return new ResponseEntity<>( service.findAllOrderByNameASC(), HttpStatus.OK);
+        return new ResponseEntity<>(service.findAllOrderByNameASC(), HttpStatus.OK);
     }
 }

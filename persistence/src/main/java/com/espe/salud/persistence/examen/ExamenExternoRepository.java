@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface ExamenExternoRepository extends JpaRepository<ExamenExterno, Long> {
     Optional<ExamenExterno> findByCodigo(Long codigo);
+
     List<ExamenExterno> findByPacienteCodigo(Long idPaciente);
 }

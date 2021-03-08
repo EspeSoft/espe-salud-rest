@@ -33,13 +33,13 @@ public class PacienteController {
 
     @Operation(summary = "Guarda un nuevo paciente, registrado en el sistema banner ESPE")
     @PostMapping("/save/banner/")
-    public ResponseEntity<PacienteDTO> saveBanner(@Valid @RequestBody PacienteBannerDTO paciente){
+    public ResponseEntity<PacienteDTO> saveBanner(@Valid @RequestBody PacienteBannerDTO paciente) {
         return new ResponseEntity<>(pacienteService.saveBanner(paciente), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Guarda un nuevo paciente, externo a la ESPE")
     @PostMapping("/save/external/")
-    public ResponseEntity<PacienteDTO> saveExternal(@Valid @RequestBody PacienteExternoDTO paciente){
+    public ResponseEntity<PacienteDTO> saveExternal(@Valid @RequestBody PacienteExternoDTO paciente) {
         return new ResponseEntity<>(pacienteService.saveExternal(paciente), HttpStatus.CREATED);
     }
 
@@ -65,22 +65,13 @@ public class PacienteController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-
-    @PutMapping("/{id}/disable")
-    @Operation(summary = "Cambia el estado de un paciente a INACTIVO")
-    public void darBajaPaciente(
-            @Parameter(description = "El ID del paciente", required = true, example = "1")
-            @PathVariable Long id) {
-        pacienteService.darBajaPaciente(id);
-    }
-
     @Operation(summary = "Retorna la lista de pacientes que inicien con el número de archivo")
     @ApiResponse(responseCode = "200", description = "OK")
     @GetMapping(value = "/search/numero-archivo", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<PacienteDTO>> findByNumeroArchivo(
             @Parameter(required = true, description = "Número de archivo del paciente", example = "0301971495")
             @RequestParam String numeroArchivo) {
-        return new ResponseEntity<>( pacienteService.findByNumeroArchivo(numeroArchivo), HttpStatus.OK);
+        return new ResponseEntity<>(pacienteService.findByNumeroArchivo(numeroArchivo), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna la lista de pacientes que inicien con el nombre")
@@ -89,7 +80,7 @@ public class PacienteController {
     public ResponseEntity<List<PacienteDTO>> findByFullNombre(
             @Parameter(required = true, description = "Nombre del paciente", example = "LUIS")
             @RequestParam String nombre) {
-        return new ResponseEntity<>( pacienteService.findByFullName(nombre), HttpStatus.OK);
+        return new ResponseEntity<>(pacienteService.findByFullName(nombre), HttpStatus.OK);
     }
 
     @Operation(summary = "Verifica si existe un paciente con el número de archivo")
@@ -97,7 +88,7 @@ public class PacienteController {
     @GetMapping("/verify-exist")
     public ResponseEntity<Boolean> checkIfExistPaciente(
             @Parameter(required = true, description = "Número de archivo del paciente", example = "0301971495")
-            @RequestParam String numeroArchivo){
+            @RequestParam String numeroArchivo) {
         return new ResponseEntity<>(pacienteService.existsByNumeroArchivo(numeroArchivo), HttpStatus.OK);
     }
 }

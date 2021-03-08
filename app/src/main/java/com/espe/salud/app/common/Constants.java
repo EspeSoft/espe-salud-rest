@@ -37,7 +37,6 @@ public class Constants {
 
     public static final String URI_API_V1_USU = URI_API_V1 + "usuarios";
     public static final String URI_API_V1_TIP_DIS = URI_API_V1 + "tipos-discapacidad";
-    public static final String URI_API_V1_NAC_PUE = URI_API_V1 + "nacionalidades-pueblos";
     public static final String URI_API_V1_MOT_ATE = URI_API_V1 + "motivos-atencion";
     public static final String URI_API_V1_NEC_SOC = URI_API_V1 + "necesidades-sociales";
     public static final String URI_API_V1_TIP_PLA_FAM = URI_API_V1 + "tipos-planificacion-familiar";
@@ -50,7 +49,7 @@ public class Constants {
 
 
     public static final String URI_API_V1_PRO = URI_API_V1 + "procedimientos";
-    public static final String URI_API_V1_DIA = URI_API_V1 + "diagnosticos";
+    public static final String URI_API_V1_DIA = URI_API_V1 + "evolucion/{idEvolucion}/diagnosticos";
     public static final String URI_API_V1_REC_LAB = URI_API_V1 + "records-laborales";
     public static final String URI_API_V1_ACT_FIS = URI_API_V1 + "actividades-fisicas";
     public static final String URI_API_V1_ANT_PER = URI_API_V1 + "antecedentes-personales";
@@ -60,18 +59,14 @@ public class Constants {
     public static final String URI_API_V1_ORG_SIST = URI_API_V1 + "organos-sistema";
 
 
-    public static final String URI_API_V1_GRU_CUL = URI_API_V1 + "grupo-cultural";
-    public static final String URI_API_V1_ANTE_PAT_FAM = URI_API_V1 + "antecedente-patologico-familiar";
-    public static final String URI_API_V1_ANTE_QUIRURGICO = URI_API_V1 + "antecedente-quirurgico";
-    public static final String URI_API_V1_DISCAPACIDAD = URI_API_V1 + "dicapacidad";
+    public static final String URI_API_V1_ANTE_PAT_FAM = URI_API_V1 + "antecedentes-patologicos-familiares";
+    public static final String URI_API_V1_ANTE_QUIRURGICO = URI_API_V1 + "antecedentes-quirurgicos";
+    public static final String URI_API_V1_DISCAPACIDAD = URI_API_V1 + "discapacidades";
 
 
-    public static final String URI_API_V1_PAI = URI_API_V1 + "pais";
-
-    public static final String URI_API_V1_CER = URI_API_V1+"certificados";
+    public static final String URI_API_V1_CER = URI_API_V1 + "certificados";
     public static final String URI_API_V1_SEGSAL = URI_API_V1 + "seguros-salud";
     public static final String URI_API_V1_TIPCER = URI_API_V1 + "tipos-certificado";
-    public static final String URI_API_V1_UNIDEP = URI_API_V1 + "unidad-departamento";
 
 
     public static final String URI_API_V1_TIP_ENF = URI_API_V1 + "tipos-enfermedades";
@@ -81,7 +76,7 @@ public class Constants {
     public static final String URI_API_V1_GRUPO_ENFERMEDAD = URI_API_V1 + "grupos-enfermedad-cie10";
 
     public static final String URI_API_V1_ANT_PATOLOGICO_PERSONAL = URI_API_V1 + "antecedentes-patologicos-personales";
-    public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicacion-habitual";
+    public static final String URI_API_V1_MED_HABITUAL = URI_API_V1 + "medicaciones-habituales";
 
     public static final String URI_API_V1_TIPEXALAB = URI_API_V1 + "tipos-examenes-laboratorio";
 
@@ -107,5 +102,14 @@ public class Constants {
     public static final String URI_API_V1_ORIENTACIONES_SEXUALES = URI_API_V1 + "orientaciones-sexuales";
     public static final String URI_API_V1_IDENTIDADES_GENERO = URI_API_V1 + "identidades-genero";
     public static final String URI_API_V1_FRECUENCIAS_ALIMENTACION = URI_API_V1 + "frecuencias-alimentacion";
+    public static final String URI_API_V1_RELACIONES_ESPE = URI_API_V1 + "relaciones-espe";
+    public static final String URI_API_V1_CONTACTOS_EMERGENCIA = URI_API_V1 + "contactos-emergencia";
+    public static final String URI_API_V1_PLURINACIONALIDAD = URI_API_V1 + "plurinacionalidades";
     public static final String URI_API_V1_AREAS_SALUD = URI_API_V1 + "areas-salud";
+    public static final String URI_API_V1_PRESC = URI_API_V1 + "prescripciones";
+    public static final String URI_API_V1_REP_MED = URI_API_V1 + "repertorios-medicamento";
+    public static final String URI_API_V1_HOS = URI_API_V1 + "hospitalizaciones";
+    public static final String URI_API_V1_FRE_MED_HAB = URI_API_V1 + "frecuencias-medicacion-habitual";
+    public static final String URI_API_V1_TIP_EXA_SEX = URI_API_V1 + "tipos-examenes-sexuales";
+
 }

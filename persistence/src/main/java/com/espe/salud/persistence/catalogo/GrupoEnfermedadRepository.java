@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface GrupoEnfermedadRepository extends JpaRepository<GrupoEnfermedad, String> {
     Optional<GrupoEnfermedad> findByCodigo(String codigo);
+
     List<GrupoEnfermedad> findAllByOrderByNombreAsc();
 }

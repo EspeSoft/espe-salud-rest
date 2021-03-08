@@ -10,6 +10,8 @@ import java.util.Optional;
 @Repository
 public interface TipoConsumoNocivoRepository extends JpaRepository<TipoConsumoNocivo, Long> {
     Optional<TipoConsumoNocivo> findByCodigo(Long codigo);
+
     List<TipoConsumoNocivo> findAllByOrderByNombreAsc();
+
     List<TipoConsumoNocivo> findByNombreStartingWith(String nombre);
 }

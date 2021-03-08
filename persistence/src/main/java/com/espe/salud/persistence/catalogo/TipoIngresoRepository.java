@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface TipoIngresoRepository extends JpaRepository<TipoIngreso, Long> {
     List<TipoIngreso> findAllByOrderByNombreAsc();
+
     Optional<TipoIngreso> findByCodigo(Long codigo);
 }

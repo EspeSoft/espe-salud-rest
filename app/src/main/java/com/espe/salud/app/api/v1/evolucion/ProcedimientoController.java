@@ -22,21 +22,21 @@ public class ProcedimientoController {
     private final ProcedimientoService procedimientoService;
 
     @Autowired
-    public ProcedimientoController (ProcedimientoService procedimientoService){
+    public ProcedimientoController(ProcedimientoService procedimientoService) {
         this.procedimientoService = procedimientoService;
     }
 
     @Operation(summary = "Retorna el listado de todos los procedimientos")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<ProcedimientoDTO>> getAll() {
-        return new ResponseEntity<>( procedimientoService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(procedimientoService.findAll(), HttpStatus.OK);
     }
 
 
     @Operation(summary = "Retorna un procedimiento por su código")
     @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ProcedimientoDTO> findByCodigo(@RequestParam Long codigo) {
-        return new ResponseEntity( procedimientoService.findById(codigo), HttpStatus.OK);
+        return new ResponseEntity(procedimientoService.findById(codigo), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un procedimiento por su código")
@@ -47,13 +47,13 @@ public class ProcedimientoController {
         newProcedimientoDTO.setTipoProcedimiento(procedimientoDTO.getTipoProcedimiento());
         newProcedimientoDTO.setNumeroActividades(procedimientoDTO.getNumeroActividades());
         newProcedimientoDTO.setNota(procedimientoDTO.getNota());
-       // newProcedimientoDTO.setIdResponsable(procedimientoDTO.getIdResponsable());
-        return new ResponseEntity<>(procedimientoService.update(newProcedimientoDTO), HttpStatus.CREATED) ;
+        // newProcedimientoDTO.setIdResponsable(procedimientoDTO.getIdResponsable());
+        return new ResponseEntity<>(procedimientoService.update(newProcedimientoDTO), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Guarda un nuevo procedimiento")
     @PostMapping("/")
-    public ResponseEntity<ProcedimientoDTO> save(@RequestBody ProcedimientoDTO procedimiento){
+    public ResponseEntity<ProcedimientoDTO> save(@RequestBody ProcedimientoDTO procedimiento) {
         return new ResponseEntity<>(procedimientoService.save(procedimiento), HttpStatus.CREATED);
     }
 

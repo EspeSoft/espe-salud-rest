@@ -17,6 +17,7 @@ public interface ActividadEnfermeriaMapper{
             @Mapping(source = "codigo", target = "id")
     })
     ActividadEnfermeriaDTO toActividadEnfermeriaDTO(ActividadEnfermeria actividadEnfermeria);
+
     List<ActividadEnfermeriaDTO> toActividadesEnfermeriasDTO(List<ActividadEnfermeria> actividadesEnfermerias);
 
     @InheritInverseConfiguration

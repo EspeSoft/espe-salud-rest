@@ -31,7 +31,7 @@ public class AntecedenteEnfermedadProfesionalServiceImpl implements AntecedenteE
         if (!optional.isPresent()) {
             AntecedenteEnfermedadProfesional domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un antecedente de enfermedad profesional registrado para ese código[%s]", antecedente.getId()));
         }
     }

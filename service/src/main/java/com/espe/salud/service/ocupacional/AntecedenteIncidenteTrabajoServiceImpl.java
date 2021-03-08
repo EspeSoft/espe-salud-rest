@@ -31,7 +31,7 @@ public class AntecedenteIncidenteTrabajoServiceImpl implements AntecedenteIncide
         if (!optional.isPresent()) {
             AntecedenteIncidenteTrabajo domainObject = toEntity(antecedente);
             return toDTO(repository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un antecedente de incidente de trabajo registrado para ese código[%s]", antecedente.getId()));
         }
     }

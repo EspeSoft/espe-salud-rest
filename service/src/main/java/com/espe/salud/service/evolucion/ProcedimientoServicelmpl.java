@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProcedimientoServicelmpl implements ProcedimientoService{
+public class ProcedimientoServicelmpl implements ProcedimientoService {
 
     private final ProcedimientoRepository procedimientoRepository;
     private final ProcedimientoMapper mapper;
@@ -33,7 +33,7 @@ public class ProcedimientoServicelmpl implements ProcedimientoService{
         if (!optional.isEmpty()) {
             Procedimiento domainObject = toEntity(procedimientoDTO);
             return toDTO(procedimientoRepository.save(domainObject));
-        }else{
+        } else {
             throw new ConflictException(String.format("Ya existe un procedimiento registrada para ese código[%s]", procedimientoDTO.getId()));
         }
     }
@@ -61,7 +61,7 @@ public class ProcedimientoServicelmpl implements ProcedimientoService{
     @Override
     public Optional<ProcedimientoDTO> findById(Long codigo) {
         return procedimientoRepository.findByCodigo(codigo).map(procedimiento -> mapper.toProcedimientoDTO(procedimiento));
-}
+    }
 
     @Override
     public ProcedimientoDTO toDTO(Procedimiento procedimiento) {

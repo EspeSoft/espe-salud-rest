@@ -7,10 +7,10 @@ import com.espe.salud.dto.catalogo.MotivoAtencionDTO;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
 import com.espe.salud.mapper.evolucion.EvolucionMapper;
 import com.espe.salud.persistence.evolucion.EvolucionRepository;
+import com.espe.salud.report.evolucion.EvolucionReportService;
 import com.espe.salud.service.GenericCRUDService;
 import com.espe.salud.service.catalogo.DispensarioService;
 import com.espe.salud.service.enfermeria.NotaEnfermeriaService;
-import com.espe.salud.service.paciente.PacienteService;
 import com.espe.salud.service.usuario.AreaSaludService;
 import com.espe.salud.service.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,34 +29,43 @@ public class EvolucionServiceImpl implements EvolucionService {
     private final AreaSaludService serviceArea;
     private final NotaEnfermeriaService serviceNotEnf;
     private final DispensarioService serviceDisp;
-    private final PacienteService servicePac;
     private final UsuarioService serviceUsu;
     private final GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot;
+    private final EvolucionReportService reportService;
+
 
     @Autowired
-    public EvolucionServiceImpl(EvolucionRepository evolucionRepository,
-                                EvolucionMapper mapper, AreaSaludService serviceArea, NotaEnfermeriaService serviceNotEnf, @Qualifier("dispensarioServiceImpl") DispensarioService serviceDisp, PacienteService servicePac, UsuarioService serviceUsu, @Qualifier("motivoAtencionServiceImpl") GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot) {
+    public EvolucionServiceImpl(
+            EvolucionRepository evolucionRepository,
+            EvolucionMapper mapper,
+            AreaSaludService serviceArea,
+            NotaEnfermeriaService serviceNotEnf,
+            EvolucionReportService reportService,
+            @Qualifier("dispensarioServiceImpl") DispensarioService serviceDisp,
+            UsuarioService serviceUsu,
+            @Qualifier("motivoAtencionServiceImpl") GenericCRUDService<MotivoAtencion, MotivoAtencionDTO> serviceMot) {
         this.evolucionRepository = evolucionRepository;
         this.mapper = mapper;
         this.serviceArea = serviceArea;
         this.serviceNotEnf = serviceNotEnf;
         this.serviceDisp = serviceDisp;
-        this.servicePac = servicePac;
         this.serviceUsu = serviceUsu;
         this.serviceMot = serviceMot;
+        this.reportService = reportService;
     }
 
     @Override
     @Transactional
     public EvolucionDTO save(EvolucionDTO evolucion) {
-        Optional<Evolucion> optional = findExisting(evolucion);
+        Optional<Evolucion> optional = evolucionRepository.findByCodigo(evolucion.getId());
         if (optional.isEmpty()) {
             Evolucion domainObject = toEntity(evolucion);
+            domainObject.addToDiagnosticos(domainObject.getDiagnosticos());
+            domainObject.addToPrescripciones(domainObject.getPrescripciones());
             EvolucionDTO evolucionNuevo= toDTO(evolucionRepository.save(domainObject));
             evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
-            evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).get());
+            evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).orElse(null));
             evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
-            evolucionNuevo.setPaciente(servicePac.findById(evolucionNuevo.getIdPaciente()).get());
             evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).get());
             evolucionNuevo.setMotivoAtencion(serviceMot.findById(evolucionNuevo.getIdMotivoAtencion()));
             return evolucionNuevo;
@@ -97,7 +106,6 @@ public class EvolucionServiceImpl implements EvolucionService {
         evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
         evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).get());
         evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
-        evolucionNuevo.setPaciente(servicePac.findById(evolucionNuevo.getIdPaciente()).get());
         evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).get());
         evolucionNuevo.setMotivoAtencion(serviceMot.findById(evolucionNuevo.getIdMotivoAtencion()));
         return evolucionNuevo;
@@ -116,5 +124,12 @@ public class EvolucionServiceImpl implements EvolucionService {
     @Override
     public List<EvolucionDTO> findByPaciente(Long id) {
         return mapper.toEvolucionesDTO(evolucionRepository.findByPacienteCodigo(id));
+    }
+
+    @Override
+    public byte[] getCertificadoMedico(String idEvolucion) {
+//        Optional<Evolucion> evolucion = evolucionRepository.find
+        Evolucion evolucion = new Evolucion();
+        return this.reportService.generateCertificadoMedicoGeneral(evolucion);
     }
 }

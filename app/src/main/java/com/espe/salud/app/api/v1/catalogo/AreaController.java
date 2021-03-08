@@ -30,7 +30,7 @@ public class AreaController {
     @Operation(summary = "Retorna el listado de todas las areas")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<AreaDTO>> getAll() {
-        return new ResponseEntity<>( areaService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(areaService.findAll(), HttpStatus.OK);
     }
 
     @Operation(summary = "Retorna el listado de todas las areas de una región")
@@ -39,6 +39,6 @@ public class AreaController {
             @Parameter(description = "El ID de la region", required = true, example = "1")
             @RequestParam Long idRegion
     ) {
-        return new ResponseEntity<>( areaService.findAllByRegion(idRegion), HttpStatus.OK);
+        return new ResponseEntity<>(areaService.findAllByRegion(idRegion), HttpStatus.OK);
     }
 }

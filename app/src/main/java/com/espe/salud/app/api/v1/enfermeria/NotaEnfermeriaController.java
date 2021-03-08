@@ -58,7 +58,7 @@ public class NotaEnfermeriaController {
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna una nueva nota de enfermeria")
-    public ResponseEntity<NotaEnfermeriaDTO> save(@RequestBody NotaEnfermeriaDTO notaEnfermeriaDTO){
+    public ResponseEntity<NotaEnfermeriaDTO> save(@RequestBody NotaEnfermeriaDTO notaEnfermeriaDTO) {
         return new ResponseEntity<>(notaEnfermeriaService.save(notaEnfermeriaDTO), HttpStatus.CREATED);
     }
 }

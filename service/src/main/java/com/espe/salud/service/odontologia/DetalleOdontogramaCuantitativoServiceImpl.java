@@ -50,6 +50,7 @@ public class DetalleOdontogramaCuantitativoServiceImpl extends GenericCRUDServic
     public List<DetalleOdontogramaCuantitativoDTO> findByHistoriaClinica(Long historiaId) {
         return mapper.toDetalleOdontogramaCuantitativoDTO(domainRepository.findByHistoriaId(historiaId));
     }
+
     @Override
     public void deleteByHistoriaClinica(Long historiaId) {
         domainRepository.findByHistoriaId(historiaId).forEach(detalle -> {

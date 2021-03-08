@@ -26,7 +26,7 @@ public class TipoProcedimientoController {
 
     @Autowired
     public TipoProcedimientoController(
-            @Qualifier("TipoProcedimientoServiceImpl")GenericCRUDService<TipoProcedimiento, TipoProcedimientoDTO> tipoProcedimientoService) {
+            @Qualifier("TipoProcedimientoServiceImpl") GenericCRUDService<TipoProcedimiento, TipoProcedimientoDTO> tipoProcedimientoService) {
         this.tipoProcedimientoService = tipoProcedimientoService;
     }
 
@@ -34,7 +34,7 @@ public class TipoProcedimientoController {
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<TipoProcedimientoDTO>> getAll() {
         TipoProcedimientoDTO tipoProcedimientoDTO = new TipoProcedimientoDTO();
-        return new ResponseEntity<>( tipoProcedimientoService.findAll(tipoProcedimientoDTO), HttpStatus.OK);
+        return new ResponseEntity<>(tipoProcedimientoService.findAll(tipoProcedimientoDTO), HttpStatus.OK);
     }
 
 }

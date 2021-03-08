@@ -57,17 +57,17 @@ public class AntecedenteAccidenteTrabajoController {
 
     @Operation(summary = "Guarda un nuevo antecedente")
     @PostMapping("")
-    public ResponseEntity<AntecedenteAccidenteTrabajoDTO> save(@RequestBody AntecedenteAccidenteTrabajoDTO antecedente){
+    public ResponseEntity<AntecedenteAccidenteTrabajoDTO> save(@RequestBody AntecedenteAccidenteTrabajoDTO antecedente) {
         return new ResponseEntity<>(serviceAntecedente.save(antecedente), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina un antecedente por su código")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @Parameter(description = "El ID del antecedente por accidente de trabajo", required = true, example = "1")
             @PathVariable("id") Long id
     ) {
-        serviceAntecedente.delete(id);
+        return new ResponseEntity<>(serviceAntecedente.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un antecedente por su id")
@@ -86,9 +86,9 @@ public class AntecedenteAccidenteTrabajoController {
         newAntecedenteAccidenteTrabajoDTO.setFecha(antecedenteDTO.getFecha());
         newAntecedenteAccidenteTrabajoDTO.setHorasReposo(antecedenteDTO.getHorasReposo());
         newAntecedenteAccidenteTrabajoDTO.setObservaciones(antecedenteDTO.getObservaciones());
-        newAntecedenteAccidenteTrabajoDTO.setRecibioAtencion(antecedenteDTO.getRecibioAtencion()                );
+        newAntecedenteAccidenteTrabajoDTO.setRecibioAtencion(antecedenteDTO.getRecibioAtencion());
         newAntecedenteAccidenteTrabajoDTO.setRiesgoImplicado(antecedenteDTO.getRiesgoImplicado());
         newAntecedenteAccidenteTrabajoDTO.setSecuelas(antecedenteDTO.getSecuelas());
-        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteAccidenteTrabajoDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceAntecedente.update(newAntecedenteAccidenteTrabajoDTO), HttpStatus.CREATED);
     }
 }

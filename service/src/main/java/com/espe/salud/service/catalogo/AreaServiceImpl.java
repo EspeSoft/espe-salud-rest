@@ -38,5 +38,6 @@ public class AreaServiceImpl implements AreaService {
     public AreaDTO findById(Long id) {
         return areaRepository.findById(id)
                 .map(mapper::toAreaDTO)
-                .orElseThrow(() -> new EntityNotFoundException("No se ha encontrado el recurso para el id: " + id));    }
+                .orElseThrow(() -> new EntityNotFoundException("No se ha encontrado el recurso para el id: " + id));
+    }
 }

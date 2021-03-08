@@ -11,8 +11,12 @@ import java.util.Optional;
 
 public interface EmpleadoService {
     EmpleadoDTO save(EmpleadoDTO empleado);
+
     Optional<Empleado> findExisting(EmpleadoDTO empleadoDTO);
+
     Optional<EmpleadoDTO> findById(Long codigo);
+
     EmpleadoDTO toDTO(Empleado empleado);
+
     Empleado toEntity(EmpleadoDTO dto);
 }

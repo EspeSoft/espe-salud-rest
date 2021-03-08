@@ -26,26 +26,26 @@ public class CertificadoServiceImpl implements CertificadoService {
     @Override
     @Transactional
     public CertificadoDTO save(CertificadoDTO certificadoDTO) {
-        Optional<Certificado> optional=certificadoRepository.findById(certificadoDTO.getId());
-        if (optional.isPresent()){
-            Certificado domainObject=toEntity(certificadoDTO);
+        Optional<Certificado> optional = certificadoRepository.findById(certificadoDTO.getId());
+        if (optional.isPresent()) {
+            Certificado domainObject = toEntity(certificadoDTO);
             return toDTO(certificadoRepository.save(domainObject));
-        }else {
-            throw  new ConflictException(String.format("Ya existe un certificado para el codigo [%s]",certificadoDTO.getId()));
+        } else {
+            throw new ConflictException(String.format("Ya existe un certificado para el codigo [%s]", certificadoDTO.getId()));
         }
     }
 
     @Override
     @Transactional
     public CertificadoDTO update(CertificadoDTO certificadoDTO) {
-        Certificado domainObject=toEntity(certificadoDTO);
+        Certificado domainObject = toEntity(certificadoDTO);
         return toDTO(certificadoRepository.save(domainObject));
     }
 
     @Override
     @Transactional(readOnly = true)
     public Optional<CertificadoDTO> findById(Long codigo) {
-       return certificadoRepository.findByCodigo(codigo).map(certificado -> toDTO(certificado));
+        return certificadoRepository.findByCodigo(codigo).map(certificado -> toDTO(certificado));
     }
 
     @Override
@@ -62,9 +62,9 @@ public class CertificadoServiceImpl implements CertificadoService {
     @Override
     public boolean deleteById(Long id) {
         return certificadoRepository.findByCodigo(id).map(certificado -> {
-                    certificadoRepository.deleteById(id);
-                    return true;
-                }).orElse(false);
+            certificadoRepository.deleteById(id);
+            return true;
+        }).orElse(false);
     }
 
     @Override

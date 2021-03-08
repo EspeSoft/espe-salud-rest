@@ -19,13 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_ANTE_QUIRURGICO;
 
 @RestController
-@Tag(description = "Gestiona antecedente quirurgico", name = "Antecedentes quirúrgicos")
+@Tag(description = "Gestiona los antecedente quirúrgicos de un paciente", name = "Antecedentes quirúrgicos")
 @RequestMapping(value = {URI_API_V1_ANTE_QUIRURGICO})
 public class AntecedenteQuirurgicoController {
 
@@ -36,47 +37,47 @@ public class AntecedenteQuirurgicoController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares de un antecedente personal")
+    @Operation(summary = "Retorna el listado de los antecedentes quirúrgicos de un paciente")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<AntecedenteQuirurgicoDTO>> getByCodigoAntecedentePersonal(@RequestParam Long idAntecedentePersonal) {
-        return new ResponseEntity<>(service.findByIdAntecedente(idAntecedentePersonal), HttpStatus.OK);
+    public ResponseEntity<List<AntecedenteQuirurgicoDTO>> findByPaciente(
+            @Parameter(description = "El ID del paciente", required = true, example = "1")
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes quirurgicos")
-    @GetMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<AntecedenteQuirurgicoDTO>> getAll() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    @Operation(summary = "Retorna un antecedente quirúrgico por su ID")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<AntecedenteQuirurgicoDTO> getById(
+            @Parameter(description = "ID del antecedente quirúrgicos", required = true, example = "1")
+            @PathVariable("id") Long id) {
+        return service.findById(id)
+                .map(antecedente -> new ResponseEntity<>(antecedente, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @Operation(summary = "Retorna un antecedente quirurgico por su codigo")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<AntecedenteQuirurgicoDTO> getById(@Parameter(description = "El codigo del antecedente quirurgico", required = true, example = "1") @PathVariable("codigo") Long id) {
-        return new ResponseEntity(service.findById(id), HttpStatus.OK);
+    @Operation(summary = "Edita un antecedente quirúrgico por su ID")
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<AntecedenteQuirurgicoDTO> update(
+            @Valid @RequestBody AntecedenteQuirurgicoDTO dto, @PathVariable("id") Long id) {
+        Optional<AntecedenteQuirurgicoDTO> optional = service.findById(id);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
+        }
     }
 
-    @Operation(summary = "Edita un antecedente quirurgico por su codigo")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<AntecedenteQuirurgicoDTO> update(@RequestBody AntecedenteQuirurgicoDTO dto, @RequestParam Long codigo) {
-
-        Optional<AntecedenteQuirurgicoDTO> newAntecedenteQuirurgicoDTOoptional = service.findById(codigo);
-        AntecedenteQuirurgicoDTO newAntecedenteQuirurgicoDTO = newAntecedenteQuirurgicoDTOoptional.get();
-        newAntecedenteQuirurgicoDTO.setDiagnosticoPreQuirurgico(dto.getDiagnosticoPreQuirurgico());
-        newAntecedenteQuirurgicoDTO.setProcedimientoQuirurgico(dto.getProcedimientoQuirurgico());
-        newAntecedenteQuirurgicoDTO.setFechaProcedimiento(dto.getFechaProcedimiento());
-        newAntecedenteQuirurgicoDTO.setSecuelas(dto.getSecuelas());
-        newAntecedenteQuirurgicoDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
-        return new ResponseEntity<>(service.update(newAntecedenteQuirurgicoDTO), HttpStatus.ACCEPTED);
-    }
-
-    @Operation(summary = "Guardar un nuevo antecedente quirurgico")
+    @Operation(summary = "Guardar un nuevo antecedente quirúrgico")
     @PostMapping("/")
-    public ResponseEntity<AntecedenteQuirurgicoDTO> save(@RequestBody AntecedenteQuirurgicoDTO dto) {
+    public ResponseEntity<AntecedenteQuirurgicoDTO> save(@Valid @RequestBody AntecedenteQuirurgicoDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Elimina un antecedente quirurgico por su codigo")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        service.deleteById(codigo);
+    @Operation(summary = "Elimina un antecedente quirúrgico por su ID")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(
+            @Parameter(description = "ID del antecedente quirúrgico", required = true, example = "1")
+            @PathVariable Long id) {
+        return new ResponseEntity<>(service.deleteById(id), HttpStatus.OK);
     }
 }

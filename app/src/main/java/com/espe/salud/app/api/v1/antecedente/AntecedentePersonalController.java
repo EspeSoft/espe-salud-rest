@@ -65,13 +65,13 @@ public class AntecedentePersonalController {
             nuevo.setHoraDespertar(antecedentePersonalDTO.getHoraDespertar());
             nuevo.setObservacionAlimentacion(antecedentePersonalDTO.getObservacionAlimentacion());
             nuevo.setObservacionHabitoSuenio(antecedentePersonalDTO.getObservacionHabitoSuenio());
-            return new ResponseEntity<>(antecedentePersonalService.update(nuevo), HttpStatus.OK) ;
+            return new ResponseEntity<>(antecedentePersonalService.update(nuevo), HttpStatus.OK);
         }
     }
 
     @Operation(summary = "Guarda un nuevo antecedente personal")
     @PostMapping("/")
-    public ResponseEntity<AntecedentePersonalDTO> save(@RequestBody AntecedentePersonalDTO antecedentePersonal){
+    public ResponseEntity<AntecedentePersonalDTO> save(@RequestBody AntecedentePersonalDTO antecedentePersonal) {
         return new ResponseEntity<>(antecedentePersonalService.save(antecedentePersonal), HttpStatus.CREATED);
     }
 }

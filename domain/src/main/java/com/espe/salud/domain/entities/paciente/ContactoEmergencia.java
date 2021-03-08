@@ -24,9 +24,6 @@ public class ContactoEmergencia {
     @Column(name = "MZSTCONEME_NOMBRE_CONTACTO")
     private String nombreContacto;
 
-    @Column(name = "MZSTCONEME_APELLIDO_CONTACTO")
-    private String apellidoContacto;
-
     @Column(name = "MZSTCONEME_DIRECCION")
     private String direccion;
 

@@ -35,12 +35,12 @@ public class ExamenInternoController {
     public ResponseEntity<List<ExamenInternoDTO>> findByPaciente(
             @Parameter(description = "El ID de un paciente", required = true, example = "1")
             @RequestParam Long idPaciente) {
-        return new ResponseEntity<>( service.findByPaciente(idPaciente), HttpStatus.OK);
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
     @PostMapping("/")
     @Operation(summary = "Guarda y retorna un nuevo examen interno")
-    public ResponseEntity<ExamenInternoDTO> save(@Valid @RequestBody ExamenInternoDTO dto){
+    public ResponseEntity<ExamenInternoDTO> save(@Valid @RequestBody ExamenInternoDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
@@ -67,7 +67,7 @@ public class ExamenInternoController {
             ExamenInternoDTO nuevo = optional.get();
             nuevo.setDescripcion(dto.getDescripcion());
             nuevo.setIdOrganoSistema(dto.getIdOrganoSistema());
-            return new ResponseEntity<>( service.update(nuevo), HttpStatus.OK);
+            return new ResponseEntity<>(service.update(nuevo), HttpStatus.OK);
         }
     }
 

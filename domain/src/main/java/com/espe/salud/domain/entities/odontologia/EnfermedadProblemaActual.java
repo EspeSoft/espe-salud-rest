@@ -15,15 +15,15 @@ public class EnfermedadProblemaActual {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTENFPROACT_CODIGO")
+    @Column(name = "MZSTENFPROACT_CODIGO")
     private Long codigo;
 
-    @Column(name="MZSTENFPROACT_DESCRIPCION")
+    @Column(name = "MZSTENFPROACT_DESCRIPCION")
     @NotEmpty
     private String descripcion;
 
-    @Column(name="MZSTENFPROACT_CODIGO_CIE")
-    @Size(max=12)
+    @Column(name = "MZSTENFPROACT_CODIGO_CIE")
+    @Size(max = 12)
     @NotEmpty
     private String codigoCie;
 

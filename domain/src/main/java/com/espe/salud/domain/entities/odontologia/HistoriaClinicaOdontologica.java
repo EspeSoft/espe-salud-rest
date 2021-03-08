@@ -20,7 +20,7 @@ public class HistoriaClinicaOdontologica {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name="MZSTHISCLIODO_CODIGO", updatable = false, nullable = false)
+    @Column(name = "MZSTHISCLIODO_CODIGO", updatable = false, nullable = false)
     private Long codigo;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -35,12 +35,12 @@ public class HistoriaClinicaOdontologica {
     @Column(name = "MZSTHISCLIODO_FECHA_CONTROL")
     private LocalDateTime fechaControl;
 
-    @Size(max=50)
+    @Size(max = 50)
     @NotEmpty
     @Column(name = "MZSTHISCLIODO_PROFESIONAL")
     private String profesional;
 
-    @Size(max=20)
+    @Size(max = 20)
     @NotEmpty
     @Column(name = "MZSTHISCLIODO_CODIGOPROFESIONAL")
     private String codigoProfesional;

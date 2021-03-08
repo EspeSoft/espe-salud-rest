@@ -7,8 +7,12 @@ import java.util.Optional;
 
 public interface AntecedentePatologicoPersonalService {
     AntecedentePatologicoPersonalDTO save(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO);
+
     AntecedentePatologicoPersonalDTO update(AntecedentePatologicoPersonalDTO antecedentePatologicoPersonalDTO);
+
     Optional<AntecedentePatologicoPersonalDTO> findById(Long codigo);
+
     boolean deleteById(Long id);
-    List<AntecedentePatologicoPersonalDTO> findByAntecedente(Long idAntecedente);
+
+    List<AntecedentePatologicoPersonalDTO> findByPaciente(Long idPaciente);
 }

@@ -9,7 +9,6 @@ import java.util.Optional;
 public interface EvolucionService {
    EvolucionDTO save(EvolucionDTO evolucion);
    Optional<Evolucion> findExisting(EvolucionDTO evolucionDTO);
-
    EvolucionDTO toDTO(Evolucion evolucion);
    Evolucion toEntity(EvolucionDTO dto);
    Boolean delete(String id);
@@ -17,4 +16,5 @@ public interface EvolucionService {
    Optional<EvolucionDTO> findById(String id);
    List<EvolucionDTO> findByUsuario(Long pidm);
    List<EvolucionDTO> findByPaciente(Long id);
+   byte[] getCertificadoMedico(String idEvolucion);
 }

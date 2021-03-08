@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface TipoEstudioComplementarioRepository extends JpaRepository<TipoEstudioComplementario, Long> {
     List<TipoEstudioComplementario> findAllByOrderByNombreAsc();
+
     Optional<TipoEstudioComplementario> findByCodigo(Long codigo);
 }

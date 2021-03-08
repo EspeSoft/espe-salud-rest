@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;
 
-public interface DiagnosticoRepository extends JpaRepository<Diagnostico , Long> {
+public interface DiagnosticoRepository extends JpaRepository<Diagnostico, Long> {
 
-    Optional< Diagnostico > findByCodigo(Long codigo);
+    Optional<Diagnostico> findByCodigo(Long codigo);
+
     List<Diagnostico> findAllByCodigo(Long codigo);
+    List<Diagnostico> findByEvolucionCodigo(String codigo);
 }

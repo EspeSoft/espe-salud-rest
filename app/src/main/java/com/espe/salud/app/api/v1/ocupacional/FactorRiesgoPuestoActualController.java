@@ -57,19 +57,19 @@ public class FactorRiesgoPuestoActualController {
 
     @Operation(summary = "Guarda un nuevo factor de riesgo")
     @PostMapping("")
-    public ResponseEntity<FactorRiesgoPuestoActualDTO> save(@RequestBody FactorRiesgoPuestoActualDTO antecedente){
+    public ResponseEntity<FactorRiesgoPuestoActualDTO> save(@RequestBody FactorRiesgoPuestoActualDTO antecedente) {
         return new ResponseEntity<>(serviceFactor.save(antecedente), HttpStatus.CREATED);
     }
 
     @Operation(summary = "Elimina un factor de riesgo por su id")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @Parameter(description = "El ID del factor de riesgo del puesto actual", required = true, example = "1")
             @PathVariable("id") Long id
     ) {
-        serviceFactor.delete(id);
+        return new ResponseEntity<>(serviceFactor.delete(id), HttpStatus.OK);
     }
-    
+
     @Operation(summary = "Edita un factor de riesgo por su id")
     @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<FactorRiesgoPuestoActualDTO> update(
@@ -79,7 +79,7 @@ public class FactorRiesgoPuestoActualController {
     ) {
         Optional<FactorRiesgoPuestoActualDTO> newFactorRiesgoPuestoActualDTOoptional = serviceFactor.findByCodigo(id);
         FactorRiesgoPuestoActualDTO newFactorRiesgoPuestoActualDTO = newFactorRiesgoPuestoActualDTOoptional.get();
-        return new ResponseEntity<>(serviceFactor.update(newFactorRiesgoPuestoActualDTO), HttpStatus.CREATED) ;
+        return new ResponseEntity<>(serviceFactor.update(newFactorRiesgoPuestoActualDTO), HttpStatus.CREATED);
     }
 
 }

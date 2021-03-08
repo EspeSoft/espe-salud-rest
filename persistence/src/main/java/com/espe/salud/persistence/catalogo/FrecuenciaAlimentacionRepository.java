@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface FrecuenciaAlimentacionRepository extends JpaRepository<FrecuenciaAlimentacion, Long> {
     List<FrecuenciaAlimentacion> findAllByOrderByNombreAsc();
+
     Optional<FrecuenciaAlimentacion> findByCodigo(Long codigo);
 }

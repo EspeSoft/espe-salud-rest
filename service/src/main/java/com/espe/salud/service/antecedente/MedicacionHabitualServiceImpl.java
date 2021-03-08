@@ -1,11 +1,13 @@
 package com.espe.salud.service.antecedente;
 
+import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.antecedente.MedicacionHabitual;
-import com.espe.salud.dto.antecedente.MedicacionHabitalDTO;
+import com.espe.salud.dto.antecedente.MedicacionHabitualDTO;
 import com.espe.salud.mapper.antecedente.MedicacionHabitualMapper;
 import com.espe.salud.persistence.antecedente.MedicacionHabitualRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,62 +15,53 @@ import java.util.Optional;
 @Service
 public class MedicacionHabitualServiceImpl implements MedicacionHabitualService {
 
-    private final MedicacionHabitualRepository medicacionHabitualRepository;
+    private final MedicacionHabitualRepository repository;
     private final MedicacionHabitualMapper mapper;
 
     @Autowired
-    public MedicacionHabitualServiceImpl(MedicacionHabitualRepository medicacionHabitualRepository, MedicacionHabitualMapper mapper) {
-        this.medicacionHabitualRepository = medicacionHabitualRepository;
+    public MedicacionHabitualServiceImpl(
+            MedicacionHabitualRepository medicacionHabitualRepository,
+            MedicacionHabitualMapper mapper) {
+        this.repository = medicacionHabitualRepository;
         this.mapper = mapper;
     }
 
     @Override
-    public MedicacionHabitalDTO save(MedicacionHabitalDTO medicacionHabitalDTO) {
-        MedicacionHabitual domainObject = toEntity(medicacionHabitalDTO);
-        return toDTO(medicacionHabitualRepository.save(domainObject));
+    @Transactional
+    public MedicacionHabitualDTO save(MedicacionHabitualDTO medicacionHabitualDTO) {
+        Optional<MedicacionHabitual> optional = repository.findByCodigo(medicacionHabitualDTO.getId());
+        if (optional.isEmpty()) {
+            MedicacionHabitual domainObject = mapper.toMedicacionHabitual(medicacionHabitualDTO);
+            return mapper.toMedicacionHabitualDTO(repository.save(domainObject));
+        } else {
+            throw new ConflictException("Ya existe una medicación habitual para ese ID");
+        }
     }
 
     @Override
-    public MedicacionHabitalDTO update(MedicacionHabitalDTO medicacionHabitalDTO) {
-        MedicacionHabitual domainObject = toEntity(medicacionHabitalDTO);
-        return toDTO(medicacionHabitualRepository.save(domainObject));
+    @Transactional
+    public MedicacionHabitualDTO update(MedicacionHabitualDTO medicacionHabitualDTO) {
+        MedicacionHabitual domainObject = mapper.toMedicacionHabitual(medicacionHabitualDTO);
+        return mapper.toMedicacionHabitualDTO(repository.save(domainObject));
     }
 
     @Override
-    public Optional<MedicacionHabitalDTO> findById(Long codigo) {
-        return medicacionHabitualRepository.findById(codigo).map(this::toDTO);
+    @Transactional(readOnly = true)
+    public Optional<MedicacionHabitualDTO> findById(Long codigo) {
+        return repository.findByCodigo(codigo).map(mapper::toMedicacionHabitualDTO);
     }
 
     @Override
-    public Optional<MedicacionHabitual> findExisting(MedicacionHabitalDTO medicacionHabitalDTO) {
-        return medicacionHabitualRepository.findByCodigo(medicacionHabitalDTO.getId());
-    }
-
-    @Override
-    public List<MedicacionHabitalDTO> findAll() {
-        return mapper.toMedicacionHabitualDTO(medicacionHabitualRepository.findAll());
-    }
-
-    @Override
-    public List<MedicacionHabitalDTO> findByIdAntecedentePersonal(Long idAntecedentePersonal) {
-        return mapper.toMedicacionHabitualDTO(medicacionHabitualRepository.findByIdAntecedentePersonal(idAntecedentePersonal));
-    }
-
-    @Override
+    @Transactional
     public boolean deleteById(Long id) {
-        return medicacionHabitualRepository.findById(id).map(medicacionHabitual -> {
-            medicacionHabitualRepository.deleteById(id);
+        return repository.findById(id).map(antecedentePatologicoFamiliar -> {
+            repository.deleteById(id);
             return true;
-        }).orElse(false);
-    }
+        }).orElse(false);    }
 
     @Override
-    public MedicacionHabitalDTO toDTO(MedicacionHabitual medicacionHabitual) {
-        return mapper.toMedicacionHabitualDTO(medicacionHabitual);
-    }
-
-    @Override
-    public MedicacionHabitual toEntity(MedicacionHabitalDTO dto) {
-        return mapper.toMedicacionHabitual(dto);
+    @Transactional(readOnly = true)
+    public List<MedicacionHabitualDTO> findByPaciente(Long idPaciente) {
+        return mapper.toMedicacionesHabitualesDTO(repository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }
