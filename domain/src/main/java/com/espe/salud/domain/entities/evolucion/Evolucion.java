@@ -80,14 +80,14 @@ public class Evolucion {
     private Long idPaciente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false)
+    @JoinColumn(name = "FK_PAC_EVO", insertable = false, updatable = false, nullable = false)
     private Paciente paciente;
 
     @Column(name = "FK_USU_EVO")
     private Long responsablePidm;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_USU_EVO",insertable = false,updatable = false)
+    @JoinColumn(name = "FK_USU_EVO",insertable = false, updatable = false, nullable = false)
     private Usuario usuario;
 
     @Column(name = "FK_CARESAL_EVO")
@@ -126,7 +126,6 @@ public class Evolucion {
             this.diagnosticos = diagnosticosEv;
         }
     }
-
 
     @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Procedimiento> procedimientos;
