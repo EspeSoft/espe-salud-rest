@@ -106,4 +106,18 @@ public class EvolucionController {
                 .contentType(MediaType.parseMediaType("application/octet-stream"))
                 .body(new InputStreamResource(new ByteArrayInputStream(pdfContent)));
     }
+    @GetMapping(value = "/reporte/receta-medica/pdf")
+    public ResponseEntity<Object> generateRecetaMedica(
+            @RequestParam String idEvolucion) {
+        byte[] pdfContent = evolucionService.getRecetaMedica(idEvolucion);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("content-disposition", "inline; filename=" + idEvolucion + ".pdf");
+        headers.add("Cache-Control", "no-cache, no-store, must-revalidate");
+        headers.add("Pragma", "no-cache");
+        headers.add("Expires", "0");
+        return ResponseEntity.ok().headers(headers).contentLength(pdfContent.length)
+                .contentType(MediaType.parseMediaType("application/octet-stream"))
+                .body(new InputStreamResource(new ByteArrayInputStream(pdfContent)));
+    }
+
 }

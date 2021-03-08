@@ -41,6 +41,7 @@
 		<field name="medicamento" class="com.espe.salud.domain.entities.catalogo.RepertorioMedicamento">
 			<property name="com.jaspersoft.studio.field.label" value="medicamento"/>
 		</field>
+		<field name="presentacion" class="java.lang.String"/>
 	</subDataset>
 	<parameter name="unidadOperativa" class="java.lang.String"/>
 	<parameter name="instituacionSistema" class="java.lang.String"/>
@@ -67,7 +68,7 @@
 				<reportElement x="180" y="120" width="500" height="30" uuid="1ea16598-173a-469c-86f9-f12b37c4717a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="prescripcionDataSet" uuid="bb0369b0-8325-40bd-a49d-5f539d460cad">
 						<dataSourceExpression><![CDATA[$P{prescripcionesDataSource}]]></dataSourceExpression>
 					</datasetRun>
@@ -79,6 +80,10 @@
 						<textField>
 							<reportElement x="110" y="0" width="100" height="30" uuid="eb933607-7b99-47ac-aa11-4b3ae6f72873"/>
 							<textFieldExpression><![CDATA[$F{medicamento}.toString()]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="220" y="0" width="100" height="30" uuid="ed0315aa-5223-4d4b-946f-659c784cdb66"/>
+							<textFieldExpression><![CDATA[$F{presentacion}]]></textFieldExpression>
 						</textField>
 					</jr:listContents>
 				</jr:list>

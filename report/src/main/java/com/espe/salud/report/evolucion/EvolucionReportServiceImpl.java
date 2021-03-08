@@ -4,6 +4,7 @@ import com.espe.salud.common.exception.EspeSaludException;
 import com.espe.salud.common.exception.enums.TipoReporte;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
+//import static com.espe.salud.app.common.Constants.pathImageReportRecetaMedica;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -15,6 +16,8 @@ import java.util.Map;
 
 @Service
 public class EvolucionReportServiceImpl implements EvolucionReportService {
+    public static final String pathImageReportRecetaMedica = "report/src/main/resources/com.espe.salud.report/images/logo.png";
+
 
     @Override
     public byte[] generateCertificadoMedicoGeneral(Evolucion evolucion) {
@@ -34,6 +37,40 @@ public class EvolucionReportServiceImpl implements EvolucionReportService {
             final Map<String, Object> parameters = new HashMap<>();
             parameters.put("unidadOperativa", dispensario.getUnidadOperativa());
             parameters.put("instituacionSistema", dispensario.getInstitucionSistema());
+            parameters.put("areaSalud", areaSalud.getNombre());
+            parameters.put("prescripcionesDataSource", new JRBeanCollectionDataSource(evolucion.getPrescripciones()));
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JREmptyDataSource());
+            if (jasperPrint == null) {
+                throw new EspeSaludException("No se pudo generar el certificado");
+            }
+            return JasperExportManager.exportReportToPdf(jasperPrint);
+        } catch (Exception e) {
+            throw new EspeSaludException("Ocurrió un error interno al generar el certificado médico en PDF");
+        }
+    }
+
+    @Override
+    public byte[] generateCertificadoRecetaMedica(Evolucion evolucion) {
+        try {
+            //Select template
+            StringBuilder sbTemplate = new StringBuilder("com.espe.salud.report/");
+            sbTemplate.append(TipoReporte.RECETA_MEDICO.getKey());
+            sbTemplate.append(".jrxml");
+            String template = sbTemplate.toString();
+            InputStream reportStream = ClassLoader.getSystemResources(template).nextElement().openStream();
+
+            JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
+
+            Dispensario dispensario = evolucion.getDispensario();
+            AreaSalud areaSalud = evolucion.getAreaSalud();
+
+            final Map<String, Object> parameters = new HashMap<>();
+            parameters.put("pathImage", pathImageReportRecetaMedica);
+            parameters.put("unidadOperativo", dispensario.getUnidadOperativa());
+            parameters.put("direccion", dispensario.getDireccion());
+            parameters.put("telefono", dispensario.getTelefono());
+            parameters.put("fax", dispensario.getFax());
             parameters.put("areaSalud", areaSalud.getNombre());
             parameters.put("prescripcionesDataSource", new JRBeanCollectionDataSource(evolucion.getPrescripciones()));
 

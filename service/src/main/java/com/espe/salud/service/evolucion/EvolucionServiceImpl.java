@@ -138,4 +138,14 @@ public class EvolucionServiceImpl implements EvolucionService {
             throw new ConflictException(String.format("El código[%s] de Evolución no existe", idEvolucion));
         }
     }
+
+    @Override
+    public byte[] getRecetaMedica(String idEvolucion) {
+        if(evolucionRepository.findByCodigo(idEvolucion).isPresent()){
+            Evolucion evolucion = evolucionRepository.findByCodigo(idEvolucion).get();
+            return this.reportService.generateCertificadoRecetaMedica(evolucion);
+        }else {
+            throw new ConflictException(String.format("El código[%s] de Evolución no existe", idEvolucion));
+        }
+    }
 }

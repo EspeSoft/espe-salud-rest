@@ -17,4 +17,5 @@ public interface EvolucionService {
    List<EvolucionDTO> findByUsuario(Long pidm);
    List<EvolucionDTO> findByPaciente(Long id);
    byte[] getCertificadoMedico(String idEvolucion);
+   byte[] getRecetaMedica(String idEvolucion);
 }

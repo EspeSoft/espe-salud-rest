@@ -1,10 +1,12 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "MZSTCREPMED", schema = "SALUD")
 public class RepertorioMedicamento {
@@ -16,4 +18,9 @@ public class RepertorioMedicamento {
 
     @Column(name = "MZSTCREPMED_NOMBRE")
     private String nombre;
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
 }
