@@ -11,6 +11,9 @@ services:
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=staging
+      - VIRTUAL_HOST=api.saludespe.live
+      - LETSENCRYPT_HOST=api.saludespe.live
+      - LETSENCRYPT_EMAIL=lpillaga@gmail.com
     networks:
       - saludespe
     depends_on:
