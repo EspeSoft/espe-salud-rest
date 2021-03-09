@@ -80,9 +80,15 @@ public class Persona {
     @Column(name = "MZSTPER_PROVINCIA_NACIMIENTO")
     private String provinciaNacimiento;
 
+    @Column(name = "MZSTPER_ID_PROVINCIA_NACIMIENTO")
+    private Integer idProvinciaNacimiento;
+
     @NotNull
     @Column(name = "MZSTPER_CANTON_NACIMIENTO")
     private String cantonNacimiento;
+
+    @Column(name = "MZSTPER_ID_CANTON_NACIMIENTO")
+    private String idCantonNacimiento;
 
     @NotNull
     @Column(name = "MZSTPER_NACIONALIDAD")

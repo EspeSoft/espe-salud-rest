@@ -47,7 +47,9 @@ public class PacienteDTO implements Serializable {
     private String asociacionAfiliada;
     private String paisNacimiento;
     private String provinciaNacimiento;
+    private Integer idProvinciaNacimiento;
     private String cantonNacimiento;
+    private String idCantonNacimiento;
     private String nacionalidad;
     private String nacionalidad2;
     private String status;

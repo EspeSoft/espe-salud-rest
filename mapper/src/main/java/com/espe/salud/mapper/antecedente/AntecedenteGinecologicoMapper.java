@@ -12,12 +12,10 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface AntecedenteGinecologicoMapper {
 
-    @Mappings({
-            @Mapping(source = "codigo", target = "id")
-    })
+    @Mapping(source = "codigo", target = "id")
     AntecedenteGinecologicoDTO toAntecedenteGinecologicoDTO(AntecedenteGinecologico antecedenteGinecologico);
 
-    List<AntecedenteGinecologicoDTO> toAntecedenteGinecologicoDTO(List<AntecedenteGinecologico> antecedenteGinecologico);
+    List<AntecedenteGinecologicoDTO> toAntecedentesGinecologicosDTO(List<AntecedenteGinecologico> antecedenteGinecologico);
 
     @InheritInverseConfiguration
     AntecedenteGinecologico toAntecedenteGinecologico(AntecedenteGinecologicoDTO dto);

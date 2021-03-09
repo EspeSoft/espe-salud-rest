@@ -44,7 +44,7 @@ public class PlanificacionFamiliar {
     private Long idTipoPlanificacionFamiliar;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_TIPPLAFAM_PLAFAM", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "FK_TIPPLAFAM_PLAFAM", insertable = false, updatable = false)
     private TipoPlanificacionFamiliar tipoPlanificacionFamiliar;
 
     @Column(name = "MZSTPLAFAM_HIJOS_VIVOS")
@@ -78,4 +78,9 @@ public class PlanificacionFamiliar {
     @LastModifiedDate
     @Column(name = "MZSTPLAFAM_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
+
+    @PrePersist
+    void prePersist() {
+        fecha = LocalDate.now();
+    }
 }

@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -43,11 +44,7 @@ public class Prescripcion {
     @JoinColumn(name = "FK_EVO_PRES")
     private Evolucion evolucion;
 
-    @ManyToOne(fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.MERGE,
-                    CascadeType.ALL
-            })
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
     @JoinColumn(name = "FK_REPMED_PRES")
     private RepertorioMedicamento medicamento;
 

@@ -8,6 +8,7 @@ import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Data
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "MZSTANTPER", schema = "SALUD")
 public class AntecedentePersonal {
 
@@ -67,34 +69,32 @@ public class AntecedentePersonal {
     @JoinColumn(name = "FK_PAC_ANTPER", updatable = false, insertable = false, nullable = false)
     private Paciente paciente;
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_ANTPER_ACTFIS", insertable = false, updatable = false)
-    private ActividadFisica actividadFisica;*/
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<MedicacionHabitual> medicacionesHabituales;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<MedicacionHabitual> medicacionHabitual;
+    private List<AntecedentePatologicoPersonal> antecedentesPatologicoPersonales;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AntecedentePatologicoPersonal> antecedentePatologicoPersonal;
+    private List<AntecedentePatologicoFamiliar> antecedentesPatologicoFamiliares;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AntecedentePatologicoFamiliar> antecedentePatologicoFamiliar;
+    private List<AntecedenteQuirurgico> antecedentesQuirurgicos;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<AntecedenteQuirurgico> antecedenteQuirurgico;
+    private List<Discapacidad> discapacidades;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Discapacidad> discapacidad;
+    private List<ActividadFisica> actividadesFisicas;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ActividadFisica> actividadFisica;
-
-
-    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ConsumoNocivo> consumoNocivo;
+    private List<ConsumoNocivo> consumosNocivos;
 
     @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ExamenSexual> examenesSexuales;
+
+    @OneToMany(mappedBy = "antecedentePersonal", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<PlanificacionFamiliar> planificacionesFamiliares;
 
     @CreatedBy
     @Column(name = "MZSTANTPER_USUARIO_CREACION")

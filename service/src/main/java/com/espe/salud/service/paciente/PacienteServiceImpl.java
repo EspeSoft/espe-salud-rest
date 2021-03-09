@@ -74,8 +74,45 @@ public class PacienteServiceImpl implements PacienteService {
     }
 
     @Override
-    public PacienteDTO updatePacienteExterno(PacienteExternoDTO paciente) {
-        return null;
+    @Transactional
+    public PacienteDTO updatePacienteExterno(PacienteExternoDTO paciente, Paciente actual) {
+        Paciente domainObject = mapper.fromPacienteExternoDTOToPaciente(paciente);
+        Persona personaNueva = domainObject.getPersona();
+        Persona personaActual = actual.getPersona();
+        personaActual.setApellidoPaterno(personaNueva.getApellidoPaterno());
+        personaActual.setApellidoMaterno(personaNueva.getApellidoMaterno());
+        personaActual.setPrimerNombre(personaNueva.getPrimerNombre());
+        personaActual.setSegundoNombre(personaNueva.getSegundoNombre());
+        personaActual.setCedula(personaNueva.getCedula());
+        personaActual.setFechaNacimiento(personaNueva.getFechaNacimiento());
+        personaActual.setSexo(personaNueva.getSexo());
+        personaActual.setEstadoCivil(personaNueva.getEstadoCivil());
+        personaActual.setReligion(personaNueva.getReligion());
+        personaActual.setGrupoSanguineo(personaNueva.getGrupoSanguineo());
+        personaActual.setInstruccion(personaNueva.getInstruccion());
+        personaActual.setProfesion(personaNueva.getProfesion());
+        personaActual.setPueblos(personaNueva.getPueblos());
+        personaActual.setEtnia(personaNueva.getEtnia());
+        personaActual.setPaisNacimiento(personaNueva.getPaisNacimiento());
+        personaActual.setProvinciaNacimiento(personaNueva.getProvinciaNacimiento());
+        personaActual.setIdProvinciaNacimiento(personaNueva.getIdProvinciaNacimiento());
+        personaActual.setCantonNacimiento(personaNueva.getCantonNacimiento());
+        personaActual.setIdCantonNacimiento(personaNueva.getIdCantonNacimiento());
+        personaActual.setNacionalidad(personaNueva.getNacionalidad());
+        personaActual.setNacionalidad2(personaNueva.getNacionalidad2());
+        personaActual.setContacto(personaNueva.getContacto());
+
+        actual.setNombreCompleto(personaNueva.getFullName());
+        actual.setAceptaTransfucion(domainObject.getAceptaTransfucion());
+        actual.setLateralidad(domainObject.getLateralidad());
+        actual.setVinculadoEspe(domainObject.getVinculadoEspe());
+        actual.setSeguroSalud(domainObject.getSeguroSalud());
+        actual.setAsociacionAfiliada(domainObject.getAsociacionAfiliada());
+        actual.setInstruccion(domainObject.getInstruccion());
+        actual.setIdDispensario(domainObject.getIdDispensario());
+
+        actual.setPersona(personaActual);
+        return mapPacienteInfo(pacienteRepository.save(actual));
     }
 
     @Override
@@ -125,5 +162,11 @@ public class PacienteServiceImpl implements PacienteService {
             return mapper.toPacienteDTO(paciente);
         }
         return mapper.fromExternalPacienteToPacienteDTO(paciente);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Paciente> findExisting(Long id) {
+        return pacienteRepository.findByCodigo(id);
     }
 }

@@ -21,7 +21,7 @@ public class RepertorioMedicamento {
     @Column(name = "MZSTCREPMED_NOMBRE")
     private String nombre;
 
-    @OneToMany(mappedBy = "medicamento")
+    @OneToMany(mappedBy = "medicamento", fetch = FetchType.LAZY)
     private List<Prescripcion> prescripciones;
 
     @Override
