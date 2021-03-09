@@ -7,6 +7,7 @@ import com.espe.salud.mapper.antecedente.AntecedenteGinecologicoMapper;
 import com.espe.salud.persistence.antecedente.AntecedenteGinecologicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,33 +25,32 @@ public class AntecedenteGinecologicoServiceImpl implements AntecedenteGinecologi
     }
 
     @Override
-    public AntecedenteGinecologicoDTO save(AntecedenteGinecologicoDTO antecedenteGinecologicoDTO) {
-        Optional<AntecedenteGinecologico> optional = domainRepository.findById(antecedenteGinecologicoDTO.getId());
-        if (!optional.isPresent()) {
-            AntecedenteGinecologico domainObject = toEntity(antecedenteGinecologicoDTO);
-            return toDTO(domainRepository.save(domainObject));
+    @Transactional
+    public AntecedenteGinecologicoDTO save(AntecedenteGinecologicoDTO dto) {
+        Optional<AntecedenteGinecologico> optional = domainRepository.findByCodigo(dto.getId());
+        if (optional.isEmpty()) {
+            AntecedenteGinecologico domainObject = mapper.toAntecedenteGinecologico(dto);
+            return mapper.toAntecedenteGinecologicoDTO(domainRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un antecedente ginecológico para el codigo [%s]", antecedenteGinecologicoDTO.getId()));
+            throw new ConflictException(String.format("Ya existe un antecedente ginecológico para el codigo [%s]", dto.getId()));
         }
     }
 
     @Override
-    public AntecedenteGinecologicoDTO update(AntecedenteGinecologicoDTO antecedenteGinecologicoDTO) {
-        AntecedenteGinecologico domainObject = toEntity(antecedenteGinecologicoDTO);
-        return toDTO(domainRepository.save(domainObject));
+    @Transactional
+    public AntecedenteGinecologicoDTO update(AntecedenteGinecologicoDTO dto) {
+        AntecedenteGinecologico domainObject = mapper.toAntecedenteGinecologico(dto);
+        return mapper.toAntecedenteGinecologicoDTO(domainRepository.save(domainObject));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<AntecedenteGinecologicoDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(antecedenteGinecologico -> toDTO(antecedenteGinecologico));
+        return domainRepository.findByCodigo(codigo).map(mapper::toAntecedenteGinecologicoDTO);
     }
 
     @Override
-    public List<AntecedenteGinecologicoDTO> findAll() {
-        return mapper.toAntecedenteGinecologicoDTO(domainRepository.findAll());
-    }
-
-    @Override
+    @Transactional
     public boolean deleteById(Long id) {
         return domainRepository.findById(id).map(antecedenteGinecologico -> {
             domainRepository.deleteById(id);
@@ -59,12 +59,8 @@ public class AntecedenteGinecologicoServiceImpl implements AntecedenteGinecologi
     }
 
     @Override
-    public AntecedenteGinecologicoDTO toDTO(AntecedenteGinecologico antecedenteGinecologico) {
-        return mapper.toAntecedenteGinecologicoDTO(antecedenteGinecologico);
-    }
-
-    @Override
-    public AntecedenteGinecologico toEntity(AntecedenteGinecologicoDTO dto) {
-        return mapper.toAntecedenteGinecologico(dto);
+    @Transactional(readOnly = true)
+    public List<AntecedenteGinecologicoDTO> findByPaciente(Long idPaciente) {
+        return mapper.toAntecedentesGinecologicosDTO(domainRepository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }

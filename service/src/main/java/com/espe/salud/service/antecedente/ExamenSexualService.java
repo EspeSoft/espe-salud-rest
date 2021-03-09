@@ -1,26 +1,20 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.domain.entities.antecedente.ExamenSexual;
 import com.espe.salud.dto.antecedente.ExamenSexualDTO;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ExamenSexualService {
 
-    ExamenSexualDTO save(ExamenSexualDTO examenSexualDTO);
+    ExamenSexualDTO save(ExamenSexualDTO dto);
 
-    ExamenSexualDTO update(ExamenSexualDTO examenSexualDTO);
+    ExamenSexualDTO update(ExamenSexualDTO dto);
 
     Optional<ExamenSexualDTO> findById(Long codigo);
 
-    List<ExamenSexualDTO> findAll();
-
     boolean deleteById(Long id);
 
-    ExamenSexualDTO toDTO(ExamenSexual examenSexual);
-
-    ExamenSexual toEntity(ExamenSexualDTO dto);
+    List<ExamenSexualDTO> findByPaciente(Long idPaciente);
 
 }

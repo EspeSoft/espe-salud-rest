@@ -5,6 +5,7 @@ import com.espe.salud.domain.entities.antecedente.ConsumoNocivo;
 import com.espe.salud.dto.antecedente.ConsumoNocivoDTO;
 import com.espe.salud.mapper.antecedente.ConsumoNocivoMapper;
 import com.espe.salud.persistence.antecedente.ConsumoNocivoRepository;
+import com.espe.salud.persistence.catalogo.TipoConsumoNocivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,11 +17,16 @@ import java.util.Optional;
 public class ConsumoNocivoServicelmpl implements ConsumoNocivoService {
 
     private final ConsumoNocivoRepository repository;
+    private final TipoConsumoNocivoRepository consumoNocivoRepository;
     private final ConsumoNocivoMapper mapper;
 
     @Autowired
-    public ConsumoNocivoServicelmpl(ConsumoNocivoRepository consumoNocivoRepository, ConsumoNocivoMapper mapper) {
+    public ConsumoNocivoServicelmpl(
+            ConsumoNocivoRepository consumoNocivoRepository,
+            TipoConsumoNocivoRepository tipoConsumoNocivoRepository,
+            ConsumoNocivoMapper mapper) {
         this.repository = consumoNocivoRepository;
+        this.consumoNocivoRepository = tipoConsumoNocivoRepository;
         this.mapper = mapper;
     }
 
@@ -30,6 +36,9 @@ public class ConsumoNocivoServicelmpl implements ConsumoNocivoService {
         Optional<ConsumoNocivo> optional = repository.findByCodigo(dto.getId());
         if (optional.isEmpty()) {
             ConsumoNocivo domainObject = mapper.toConsumoNocivo(dto);
+            if (domainObject.getNombreConsumoNocivo().getCodigo() == null) {
+                consumoNocivoRepository.save(domainObject.getNombreConsumoNocivo());
+            }
             return mapper.toConsumoNocivoDTO(repository.save(domainObject));
         } else {
             throw new ConflictException("Ya existe un consumo nocivo para ese ID");

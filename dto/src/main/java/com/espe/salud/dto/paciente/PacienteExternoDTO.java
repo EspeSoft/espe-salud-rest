@@ -75,8 +75,12 @@ public class PacienteExternoDTO implements Serializable {
     @NotEmpty
     private String provinciaNacimiento;
 
+    private Integer idProvinciaNacimiento;
+
     @NotEmpty
     private String cantonNacimiento;
+
+    private String idCantonNacimiento;
 
     @NotEmpty
     private String nacionalidad;

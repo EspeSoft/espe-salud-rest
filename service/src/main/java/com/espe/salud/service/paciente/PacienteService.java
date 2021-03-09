@@ -13,7 +13,7 @@ public interface PacienteService {
 
     PacienteDTO saveBanner(PacienteBannerDTO pacienteBannerDTO);
 
-    PacienteDTO updatePacienteExterno(PacienteExternoDTO paciente);
+    PacienteDTO updatePacienteExterno(PacienteExternoDTO paciente, Paciente actual);
 
     Optional<PacienteDTO> findById(Long codigo);
 
@@ -26,4 +26,6 @@ public interface PacienteService {
     List<PacienteDTO> findByFullName(String query);
 
     PacienteDTO mapPacienteInfo(Paciente paciente);
+
+    Optional<Paciente> findExisting(Long id);
 }

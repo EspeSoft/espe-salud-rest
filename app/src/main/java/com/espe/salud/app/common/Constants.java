@@ -83,8 +83,8 @@ public class Constants {
     public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipos-enfermedad-personal";
 
     public static final String URI_API_V1_ANTGIN = URI_API_V1 + "antecedentes-ginecologicos";
-    public static final String URI_API_V1_EXASEX = URI_API_V1 + "examen-sexual";
-    public static final String URI_API_V1_PLAFAM = URI_API_V1 + "planificacion-familiar";
+    public static final String URI_API_V1_EXASEX = URI_API_V1 + "examenes-sexuales";
+    public static final String URI_API_V1_PLAFAM = URI_API_V1 + "planificaciones-familiares";
     public static final String URI_API_V1_TIP_CON_NOC = URI_API_V1 + "tipos-consumo-nocivo";
     public static final String URI_API_V1_NIVEL_INSTRUCCION = URI_API_V1 + "niveles-instruccion";
     public static final String URI_API_V1_ACT_ENF = URI_API_V1 + "actividades-enfermeria";

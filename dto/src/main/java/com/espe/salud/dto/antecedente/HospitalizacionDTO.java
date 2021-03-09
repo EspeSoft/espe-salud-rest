@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -26,5 +27,7 @@ public class HospitalizacionDTO implements Serializable {
     private String tipoEgreso;
     private String medicoTratante;
     private String especialidadMedico;
+
+    @NotNull
     private Long idPaciente;
 }
