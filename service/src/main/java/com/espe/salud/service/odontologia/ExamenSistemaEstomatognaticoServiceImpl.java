@@ -2,33 +2,39 @@ package com.espe.salud.service.odontologia;
 
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.odontologia.ExamenSistemaEstomatognatico;
+import com.espe.salud.domain.entities.odontologia.HistoriaClinicaOdontologica;
 import com.espe.salud.dto.odontologia.ExamenSistemaEstomatognaticoDTO;
 import com.espe.salud.mapper.odontologia.ExamenSistemaEstomatognaticoMapper;
 import com.espe.salud.persistence.odontologia.ExamenSistemaEstomatognaticoRepository;
+import com.espe.salud.persistence.odontologia.HistoriaClinicaOdontologicaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ExamenSistemaEstomatognaticoServiceImpl implements ExamenSistemaEstomatognaticoService {
 
+    private final HistoriaClinicaOdontologicaRepository historiaClinicaOdontologicaRepository;
     private final ExamenSistemaEstomatognaticoRepository domainRepository;
     private final ExamenSistemaEstomatognaticoMapper mapper;
 
-    public ExamenSistemaEstomatognaticoServiceImpl(ExamenSistemaEstomatognaticoRepository domainRepository, ExamenSistemaEstomatognaticoMapper mapper) {
+    public ExamenSistemaEstomatognaticoServiceImpl(HistoriaClinicaOdontologicaRepository historiaClinicaOdontologicaRepository, ExamenSistemaEstomatognaticoRepository domainRepository, ExamenSistemaEstomatognaticoMapper mapper) {
+        this.historiaClinicaOdontologicaRepository = historiaClinicaOdontologicaRepository;
         this.domainRepository = domainRepository;
         this.mapper = mapper;
     }
 
     @Override
-    public ExamenSistemaEstomatognaticoDTO save(ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO) {
-        Optional<ExamenSistemaEstomatognatico> optional = domainRepository.findByCodigo(examenSistemaEstomatognaticoDTO.getId());
-        if (optional.isEmpty()) {
-            ExamenSistemaEstomatognatico domainObject = toEntity(examenSistemaEstomatognaticoDTO);
+    public ExamenSistemaEstomatognaticoDTO save(ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognatico, Long idPaciente) {
+        Optional<HistoriaClinicaOdontologica> optional = historiaClinicaOdontologicaRepository.findByCodigo(idPaciente);
+        if (optional.isPresent()) {
+            examenSistemaEstomatognatico.setIdHistoria(optional.get().getCodigo());
+            ExamenSistemaEstomatognatico domainObject = toEntity(examenSistemaEstomatognatico);
             return toDTO(domainRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un exámen de sistema estomatognático registrado para ese código[%s]", examenSistemaEstomatognaticoDTO.getId()));
+            throw new EntityNotFoundException(String.format("No existe una historia clinica registrada para este paciente [%s]", idPaciente));
         }
     }
 

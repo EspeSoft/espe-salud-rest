@@ -7,73 +7,60 @@ import com.espe.salud.mapper.antecedente.ConsumoNocivoMapper;
 import com.espe.salud.persistence.antecedente.ConsumoNocivoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ConsumoNocivoServicelmpl implements ConsumoNocivoService {
 
-    private final ConsumoNocivoRepository consumoNocivoRepository;
+    private final ConsumoNocivoRepository repository;
     private final ConsumoNocivoMapper mapper;
 
     @Autowired
     public ConsumoNocivoServicelmpl(ConsumoNocivoRepository consumoNocivoRepository, ConsumoNocivoMapper mapper) {
-        this.consumoNocivoRepository = consumoNocivoRepository;
+        this.repository = consumoNocivoRepository;
         this.mapper = mapper;
     }
 
     @Override
-    public ConsumoNocivoDTO save(ConsumoNocivoDTO consumoNocivoDTO) {
-        Optional<ConsumoNocivo> optional = consumoNocivoRepository.findById(consumoNocivoDTO.getId());
-        //Optional<ConsumoNocivo> optional = findExisting(consumoNocivo);
-        if (!optional.isEmpty()) {
-            ConsumoNocivo domainObject = toEntity(consumoNocivoDTO);
-            return toDTO(consumoNocivoRepository.save(domainObject));
+    @Transactional
+    public ConsumoNocivoDTO save(ConsumoNocivoDTO dto) {
+        Optional<ConsumoNocivo> optional = repository.findByCodigo(dto.getId());
+        if (optional.isEmpty()) {
+            ConsumoNocivo domainObject = mapper.toConsumoNocivo(dto);
+            return mapper.toConsumoNocivoDTO(repository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe un paciente registrada para ese código[%s]", consumoNocivoDTO.getId()));
+            throw new ConflictException("Ya existe un consumo nocivo para ese ID");
         }
     }
 
     @Override
-    public ConsumoNocivoDTO update(ConsumoNocivoDTO consumoNocivo) {
-        ConsumoNocivo domainObject = toEntity(consumoNocivo);
-        return toDTO(consumoNocivoRepository.save(domainObject));
+    @Transactional
+    public ConsumoNocivoDTO update(ConsumoNocivoDTO dto) {
+        ConsumoNocivo domainObject = mapper.toConsumoNocivo(dto);
+        return mapper.toConsumoNocivoDTO(repository.save(domainObject));
     }
 
     @Override
-    public Optional<ConsumoNocivo> findExisting(ConsumoNocivoDTO pacienteDTO) {
-        return consumoNocivoRepository.findByCodigo(pacienteDTO.getId());
+    @Transactional(readOnly = true)
+    public Optional<ConsumoNocivoDTO> findById(Long codigo) {
+        return repository.findByCodigo(codigo).map(mapper::toConsumoNocivoDTO);
     }
 
     @Override
-    public Boolean delete(Long id) {
-        return consumoNocivoRepository.findById(id).map(object -> {
-            consumoNocivoRepository.deleteById(id);
+    @Transactional
+    public boolean deleteById(Long id) {
+        return repository.findById(id).map(object -> {
+            repository.deleteById(id);
             return true;
         }).orElse(false);
     }
 
     @Override
-    public Optional<ConsumoNocivoDTO> findByCodigo(Long codigo) {
-        return consumoNocivoRepository.findByCodigo(codigo).map(consumoNocivo -> mapper.toConsumoNocivoDTO(consumoNocivo));
-    }
-
-    @Override
-    public ConsumoNocivoDTO toDTO(ConsumoNocivo consumoNocivo) {
-        return mapper.toConsumoNocivoDTO(consumoNocivo);
-    }
-
-    @Override
-    public ConsumoNocivo toEntity(ConsumoNocivoDTO dto) {
-        return mapper.toConsumoNocivo(dto);
-    }
-
-    @Override
-    public List<ConsumoNocivoDTO> findAll() {
-        List<ConsumoNocivo> consumoNocivos = new ArrayList<>();
-        consumoNocivoRepository.findAll().forEach(consumoNocivos::add);
-        return mapper.toConsumosNocivosDTO(consumoNocivos);
+    @Transactional(readOnly = true)
+    public List<ConsumoNocivoDTO> findByPaciente(Long idPaciente) {
+        return mapper.toConsumosNocivosDTO(repository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }

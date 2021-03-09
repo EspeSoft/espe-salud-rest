@@ -1,9 +1,11 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.antecedente.ConsumoNocivo;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,4 +21,6 @@ public class TipoConsumoNocivo {
     @Column(name = "MZSTCTIPCONNOC_NOMBRE")
     private String nombre;
 
+    @OneToMany(mappedBy = "nombreConsumoNocivo", fetch = FetchType.LAZY)
+    private List<ConsumoNocivo> consumosNocivos;
 }

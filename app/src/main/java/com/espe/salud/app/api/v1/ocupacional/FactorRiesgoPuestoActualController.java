@@ -63,11 +63,11 @@ public class FactorRiesgoPuestoActualController {
 
     @Operation(summary = "Elimina un factor de riesgo por su id")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @Parameter(description = "El ID del factor de riesgo del puesto actual", required = true, example = "1")
             @PathVariable("id") Long id
     ) {
-        serviceFactor.delete(id);
+        return new ResponseEntity<>(serviceFactor.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un factor de riesgo por su id")

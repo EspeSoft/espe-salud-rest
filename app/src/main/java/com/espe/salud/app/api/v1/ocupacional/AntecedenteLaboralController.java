@@ -68,10 +68,10 @@ public class AntecedenteLaboralController {
 
     @Operation(summary = "Elimina un antecedente por su id")
     @DeleteMapping("/{id}")
-    public void delete(
+    public ResponseEntity<Boolean> delete(
             @PathVariable("id") Long id
     ) {
-        serviceAntecedente.delete(id);
+        return new ResponseEntity<>(serviceAntecedente.delete(id), HttpStatus.OK);
     }
 
     @Operation(summary = "Edita un antecedente por su ID")

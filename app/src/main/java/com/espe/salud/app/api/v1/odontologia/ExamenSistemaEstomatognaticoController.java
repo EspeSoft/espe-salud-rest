@@ -30,11 +30,13 @@ public class ExamenSistemaEstomatognaticoController {
 
     @PostMapping("")
     @Operation(summary = "Guarda y retorna una nueva exámen del sistema estomatognático")
-    public ResponseEntity<ExamenSistemaEstomatognaticoDTO> save(@RequestBody ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO) {
-        return new ResponseEntity<>(examenSistemaEstomatognaticoService.save(examenSistemaEstomatognaticoDTO), HttpStatus.CREATED);
+    public ResponseEntity<ExamenSistemaEstomatognaticoDTO> save(
+            @RequestBody ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO,
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(examenSistemaEstomatognaticoService.save(examenSistemaEstomatognaticoDTO, idPaciente), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "/historiaClinica", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Retorna una lista de exámenes del sistema estomatognático de un paciente")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
@@ -42,8 +44,8 @@ public class ExamenSistemaEstomatognaticoController {
     })
     public ResponseEntity<List<ExamenSistemaEstomatognaticoDTO>> getByHistoriaClinica(
             @Parameter(required = true, description = "El ID de la historia clinica", example = "1")
-            @RequestParam Long historiaClinica) {
-        return new ResponseEntity<>(examenSistemaEstomatognaticoService.findByHistoriaClinica(historiaClinica), HttpStatus.OK);
+            @RequestParam Long idHistoria) {
+        return new ResponseEntity<>(examenSistemaEstomatognaticoService.findByHistoriaClinica(idHistoria), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -61,17 +63,17 @@ public class ExamenSistemaEstomatognaticoController {
     }
 
     @Operation(summary = "Elimina una historia clínica por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        examenSistemaEstomatognaticoService.delete(codigo);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        examenSistemaEstomatognaticoService.delete(id);
     }
 
     @Operation(summary = "Actualiza una historia clínica por su código")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<ExamenSistemaEstomatognaticoDTO> update(
             @RequestBody ExamenSistemaEstomatognaticoDTO dto,
-            @PathVariable Long codigo) {
-        Optional<ExamenSistemaEstomatognaticoDTO> examenSistemaEstomatognaticoDTOOptional = examenSistemaEstomatognaticoService.findById(codigo);
+            @PathVariable Long id) {
+        Optional<ExamenSistemaEstomatognaticoDTO> examenSistemaEstomatognaticoDTOOptional = examenSistemaEstomatognaticoService.findById(id);
         if (examenSistemaEstomatognaticoDTOOptional.isPresent()) {
             ExamenSistemaEstomatognaticoDTO ExamenSistemaEstomatognaticoDTO = examenSistemaEstomatognaticoDTOOptional.get();
             ExamenSistemaEstomatognaticoDTO.setCodigoCIEAsociado(dto.getCodigoCIEAsociado());

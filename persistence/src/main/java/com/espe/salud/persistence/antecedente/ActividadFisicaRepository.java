@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface ActividadFisicaRepository extends JpaRepository<ActividadFisica, Long> {
     Optional<ActividadFisica> findByCodigo(Long codigo);
 
-    List<ActividadFisica> findAllByCodigo(Long codigo);
+    List<ActividadFisica> findByAntecedentePersonalPacienteCodigo(Long idPaciente);
 }
