@@ -3,9 +3,7 @@ package com.espe.salud.domain.entities.evolucion;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.catalogo.MotivoAtencion;
 import com.espe.salud.domain.entities.certificado.Certificado;
-import com.espe.salud.domain.entities.enfermeria.Antropometria;
 import com.espe.salud.domain.entities.enfermeria.NotaEnfermeria;
-import com.espe.salud.domain.entities.paciente.ContactoEmergencia;
 import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
@@ -127,7 +125,6 @@ public class Evolucion {
         }
     }
 
-
     @OneToMany(mappedBy = "evolucion",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<Procedimiento> procedimientos;
 
@@ -142,6 +139,7 @@ public class Evolucion {
             this.prescripciones = prescripcionesEv;
         }
     }
+
     @CreatedDate
     @Column(name = "MZSTEVO_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
