@@ -16,5 +16,5 @@ public class ExamenSistemaEstomatognaticoDTO implements Serializable {
     private Long id;
     private String unidadEstomatognatica;
     private String codigoCIEAsociado;
-    private Long historiaId;
+    private Long idHistoria;
 }

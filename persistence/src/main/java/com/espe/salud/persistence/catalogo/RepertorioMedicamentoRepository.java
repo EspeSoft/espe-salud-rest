@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface RepertorioMecicamentoRepository extends JpaRepository<RepertorioMedicamento, Long> {
+public interface RepertorioMedicamentoRepository extends JpaRepository<RepertorioMedicamento, Long> {
     List<RepertorioMedicamento> findAllByOrderByNombreAsc();
     Optional<RepertorioMedicamento> findByCodigo(Long codigo);
 }

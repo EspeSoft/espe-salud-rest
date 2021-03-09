@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface ExamenSistemaEstomatognaticoService {
 
-    ExamenSistemaEstomatognaticoDTO save(ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO);
+    ExamenSistemaEstomatognaticoDTO save(ExamenSistemaEstomatognaticoDTO examenSistemaEstomatognaticoDTO, Long idPaciente);
 
     boolean delete(Long id);
 

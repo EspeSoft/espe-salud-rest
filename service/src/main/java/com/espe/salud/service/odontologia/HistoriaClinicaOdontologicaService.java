@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface HistoriaClinicaOdontologicaService {
 
-    HistoriaClinicaOdontologicaDTO save(HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO);
+    HistoriaClinicaOdontologicaDTO save(HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO, Long idPaciente);
 
     boolean delete(Long id);
 

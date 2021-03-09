@@ -45,6 +45,9 @@ public class HistoriaClinicaOdontologica {
     @Column(name = "MZSTHISCLIODO_CODIGOPROFESIONAL")
     private String codigoProfesional;
 
+    @Column(name = "FK_PAC_HISCLIODO")
+    private Long idPaciente;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "FK_PAC_HISCLIODO", updatable = false, insertable = false)
     private Paciente paciente;

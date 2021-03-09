@@ -27,8 +27,11 @@ public class EnfermedadProblemaActual {
     @NotEmpty
     private String codigoCie;
 
+    @Column(name = "FK_HISCLIODO_ENFPROACT")
+    private Long idHistoria;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_HISCLIODO_ENFPROACT", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "FK_HISCLIODO_ENFPROACT", insertable = false, updatable = false)
     private HistoriaClinicaOdontologica historia;
 
 }

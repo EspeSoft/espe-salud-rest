@@ -35,6 +35,11 @@
         </dependency>
         <dependency>
             <groupId>com.espe.salud</groupId>
+            <artifactId>dto</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.espe.salud</groupId>
             <artifactId>common</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
