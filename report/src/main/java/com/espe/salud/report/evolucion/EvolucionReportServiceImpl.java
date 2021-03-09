@@ -4,16 +4,13 @@ import com.espe.salud.common.exception.EspeSaludException;
 import com.espe.salud.common.exception.enums.TipoReporte;
 import com.espe.salud.domain.entities.catalogo.Dispensario;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
-//import static com.espe.salud.app.common.Constants.pathImageReportRecetaMedica;
 import com.espe.salud.domain.entities.usuario.AreaSalud;
 import com.espe.salud.domain.entities.usuario.Usuario;
-import com.espe.salud.dto.evolucion.ReposoDTO;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
