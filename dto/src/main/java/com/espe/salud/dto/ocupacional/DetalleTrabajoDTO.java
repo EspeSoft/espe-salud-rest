@@ -19,4 +19,7 @@ public abstract class DetalleTrabajoDTO implements Serializable {
     private Boolean usabanSeguridad;
     private Boolean vigilanciaSalud;
     private String observacion;
+
+    private String riesgo;
+
 }
