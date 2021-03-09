@@ -52,18 +52,18 @@ public class AntecedentePatologicoFamiliar {
     private AntecedentePersonal antecedentePersonal;
 
     @CreatedBy
-    @Column(name = "MZSTPATFAM_USUARIO_CREACION")
+    @Column(name = "MZSTANTPATFAM_USUARIO_CREACION")
     private String usuarioCreacion;
 
     @LastModifiedBy
-    @Column(name = "MZSTPATFAM_USUARIO_MODIFICACION")
+    @Column(name = "MZSTANTPATFAM_USUARIO_MODIFICACION")
     private String usuarioModificacion;
 
     @CreatedDate
-    @Column(name = "MZSTPATFAM_FECHA_CREACION")
+    @Column(name = "MZSTANTPATFAM_FECHA_CREACION")
     private LocalDateTime fechaCreacion;
 
     @LastModifiedDate
-    @Column(name = "MZSTPATFAM_FECHA_MODIFICACION")
+    @Column(name = "MZSTANTPATFAM_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
 }

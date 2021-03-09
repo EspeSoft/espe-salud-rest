@@ -33,18 +33,19 @@ public class HistoriaClinicaOdontologicaController {
     @PostMapping("")
     @Operation(summary = "Guarda y retorna una nueva historia clínica")
     public ResponseEntity<HistoriaClinicaOdontologicaDTO> save(
-            @RequestBody HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO) {
-        return new ResponseEntity<>(historiaClinicaOdontologicaService.save(historiaClinicaOdontologicaDTO), HttpStatus.CREATED);
+            @RequestBody HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO,
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(historiaClinicaOdontologicaService.save(historiaClinicaOdontologicaDTO, idPaciente), HttpStatus.CREATED);
     }
 
-    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/lista", produces = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Retorna el listado de todas las historias clínicas")
     @ApiResponse(responseCode = "200", description = "OK")
     public ResponseEntity<List<HistoriaClinicaOdontologicaDTO>> getAll() {
         return new ResponseEntity<>(historiaClinicaOdontologicaService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(value = "/paciente", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     @Operation(summary = "Retorna la historia clínica de un paciente")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "OK"),
@@ -52,8 +53,8 @@ public class HistoriaClinicaOdontologicaController {
     })
     public ResponseEntity<HistoriaClinicaOdontologicaDTO> getByPaciente(
             @Parameter(required = true, description = "El ID del paciente", example = "1")
-            @RequestParam Long paciente) {
-        return historiaClinicaOdontologicaService.findByPaciente(paciente)
+            @RequestParam Long idPaciente) {
+        return historiaClinicaOdontologicaService.findByPaciente(idPaciente)
                 .map(historiaClinicaOdontologicaDTO -> new ResponseEntity<>(historiaClinicaOdontologicaDTO, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
@@ -73,23 +74,23 @@ public class HistoriaClinicaOdontologicaController {
     }
 
     @Operation(summary = "Elimina una historia clínica por su código")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        historiaClinicaOdontologicaService.delete(codigo);
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        historiaClinicaOdontologicaService.delete(id);
     }
 
     @Operation(summary = "Actualiza una historia clínica por su código")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<HistoriaClinicaOdontologicaDTO> update(
             @RequestBody HistoriaClinicaOdontologicaDTO dto,
-            @PathVariable Long codigo) {
-        Optional<HistoriaClinicaOdontologicaDTO> historiaClinicaOdontologicaOptional = historiaClinicaOdontologicaService.findById(codigo);
+            @PathVariable Long id) {
+        Optional<HistoriaClinicaOdontologicaDTO> historiaClinicaOdontologicaOptional = historiaClinicaOdontologicaService.findById(id);
         if (historiaClinicaOdontologicaOptional.isPresent()) {
             HistoriaClinicaOdontologicaDTO historiaClinicaOdontologicaDTO = historiaClinicaOdontologicaOptional.get();
             historiaClinicaOdontologicaDTO.setCodigoProfesional(dto.getCodigoProfesional());
             historiaClinicaOdontologicaDTO.setFechaApertura(dto.getFechaApertura());
             historiaClinicaOdontologicaDTO.setFechaControl(dto.getFechaControl());
-            historiaClinicaOdontologicaDTO.setPacienteId(dto.getPacienteId());
+            historiaClinicaOdontologicaDTO.setIdPaciente(dto.getIdPaciente());
             historiaClinicaOdontologicaDTO.setProfesional(dto.getProfesional());
             return new ResponseEntity<>(historiaClinicaOdontologicaService.update(historiaClinicaOdontologicaDTO), HttpStatus.ACCEPTED);
         } else {

@@ -1,23 +1,18 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.domain.entities.antecedente.Discapacidad;
 import com.espe.salud.dto.antecedente.DiscapacidadDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface DiscapacidadService {
-    DiscapacidadDTO save(DiscapacidadDTO discapacidadDTO);
+    DiscapacidadDTO save(DiscapacidadDTO dto);
 
-    DiscapacidadDTO update(DiscapacidadDTO discapacidadDTO);
+    DiscapacidadDTO update(DiscapacidadDTO dto);
 
     Optional<DiscapacidadDTO> findById(Long codigo);
 
-    List<DiscapacidadDTO> findAll();
-    List<DiscapacidadDTO> findByIdAntecedentePersonal(Long idAntecedentePersonal);
     boolean deleteById(Long id);
 
-    DiscapacidadDTO toDTO(Discapacidad discapacidad);
-
-    Discapacidad toEntity(DiscapacidadDTO dto);
+    List<DiscapacidadDTO> findByPaciente(Long idPaciente);
 }

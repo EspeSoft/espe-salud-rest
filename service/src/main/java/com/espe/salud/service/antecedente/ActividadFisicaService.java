@@ -1,25 +1,18 @@
 package com.espe.salud.service.antecedente;
 
-import com.espe.salud.domain.entities.antecedente.ActividadFisica;
 import com.espe.salud.dto.antecedente.ActividadFisicaDTO;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ActividadFisicaService {
-    ActividadFisicaDTO save(ActividadFisicaDTO actividadFisicaDTO);
+    ActividadFisicaDTO save(ActividadFisicaDTO dto);
 
-    ActividadFisicaDTO update(ActividadFisicaDTO actividadFisica);
+    ActividadFisicaDTO update(ActividadFisicaDTO dto);
 
-    Optional<ActividadFisica> findExisting(ActividadFisicaDTO actividadFisicaDTO);
+    Optional<ActividadFisicaDTO> findById(Long codigo);
 
-    Boolean delete(Long id);
+    boolean deleteById(Long id);
 
-    Optional<ActividadFisicaDTO> findByCodigo(Long codigo);
-
-    ActividadFisicaDTO toDTO(ActividadFisica actividadFisica);
-
-    ActividadFisica toEntity(ActividadFisicaDTO dto);
-
-    List<ActividadFisicaDTO> findAll();
+    List<ActividadFisicaDTO> findByPaciente(Long idPaciente);
 }

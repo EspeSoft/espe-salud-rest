@@ -28,8 +28,11 @@ public class ExamenSistemaEstomatognatico {
     @NotEmpty
     private String codigoCIEAsociado;
 
+    @Column(name = "FK_HISCLIODO_EXASISEST")
+    private Long idHistoria;
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "FK_HISCLIODO_EXASISEST", insertable = false, updatable = false, nullable = false)
+    @JoinColumn(name = "FK_HISCLIODO_EXASISEST", insertable = false, updatable = false)
     private HistoriaClinicaOdontologica historia;
 
 }

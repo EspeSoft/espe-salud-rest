@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,49 +37,47 @@ public class DiscapacidadController {
         this.service = service;
     }
 
-    @Operation(summary = "Retorna el listado de todos los antecedentes patologicos familiares de un antecedente personal")
+    @Operation(summary = "Retorna el listado de todas las discapacidades de un paciente")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<DiscapacidadDTO>> getByCodigoAntecedentePersonal(@RequestParam Long idAntecedentePersonal) {
-        return new ResponseEntity<>(service.findByIdAntecedentePersonal(idAntecedentePersonal), HttpStatus.OK);
+    public ResponseEntity<List<DiscapacidadDTO>> findByPaciente(
+            @Parameter(description = "El ID del paciente", required = true, example = "1")
+            @RequestParam Long idPaciente) {
+        return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
     }
 
-    @Operation(summary = "Retorna el listado de todas las dicapacidades")
-    @GetMapping(value = "/all", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<DiscapacidadDTO>> getAll() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    @Operation(summary = "Retorna una discapacidad por su ID")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<DiscapacidadDTO> getById(
+            @Parameter(description = "ID de la discapacidad", required = true, example = "1")
+            @PathVariable("id") Long id) {
+        return service.findById(id)
+                .map(discapacidadDTO -> new ResponseEntity<>(discapacidadDTO, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @Operation(summary = "Retorna una discapacidad por su codigo")
-    @GetMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<DiscapacidadDTO> getById(@Parameter(description = "El codigo de la discapacidad", required = true, example = "1") @PathVariable("codigo") Long id) {
-        return new ResponseEntity(service.findById(id), HttpStatus.OK);
+    @Operation(summary = "Edita una discapacidad por su ID")
+    @PutMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<DiscapacidadDTO> update(
+            @Valid @RequestBody DiscapacidadDTO dto, @PathVariable("id") Long id) {
+        Optional<DiscapacidadDTO> optional = service.findById(id);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
+        }
     }
 
-    @Operation(summary = "Edita una discapacidad por su codigo")
-    @PutMapping(value = "/{codigo}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<DiscapacidadDTO> update(@RequestBody DiscapacidadDTO dto, @RequestParam Long codigo) {
-
-        Optional<DiscapacidadDTO> newDiscapacidadDTOoptional = service.findById(codigo);
-        DiscapacidadDTO newDiscapacidadDTO = newDiscapacidadDTOoptional.get();
-        newDiscapacidadDTO.setGradoDiscapacidad(dto.getGradoDiscapacidad());
-        newDiscapacidadDTO.setColaboradorDiscapacidad(dto.getColaboradorDiscapacidad());
-        newDiscapacidadDTO.setTipoDiscapacidad(dto.getTipoDiscapacidad());
-        newDiscapacidadDTO.setPorcentajeDiscapacidad(dto.getPorcentajeDiscapacidad());
-        newDiscapacidadDTO.setDiagnosticoRelacionDiscapacidad(dto.getDiagnosticoRelacionDiscapacidad());
-        newDiscapacidadDTO.setEsColaboradorSustituto(dto.getEsColaboradorSustituto());
-        newDiscapacidadDTO.setIdAntecedentePersonal(dto.getIdAntecedentePersonal());
-        return new ResponseEntity<>(service.update(newDiscapacidadDTO), HttpStatus.ACCEPTED);
-    }
-
-    @Operation(summary = "Guardar una nueva discapacidad")
+    @Operation(summary = "Guardar una nueva discapacidad de un paciente")
     @PostMapping("/")
-    public ResponseEntity<DiscapacidadDTO> save(@RequestBody DiscapacidadDTO dto) {
+    public ResponseEntity<DiscapacidadDTO> save(@Valid @RequestBody DiscapacidadDTO dto) {
         return new ResponseEntity<>(service.save(dto), HttpStatus.CREATED);
     }
 
-    @Operation(summary = "Elimina una discapacidad por su codigo")
-    @DeleteMapping("/{codigo}")
-    public void delete(@PathVariable Long codigo) {
-        service.deleteById(codigo);
+    @Operation(summary = "Elimina una discapacidad por su ID")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Boolean> delete(
+            @Parameter(description = "ID de la discapacidad", required = true, example = "1")
+            @PathVariable Long id) {
+        return new ResponseEntity<>(service.deleteById(id), HttpStatus.OK);
     }
 }
