@@ -1,6 +1,7 @@
 package com.espe.salud.domain.entities.evolucion;
 
 import com.espe.salud.domain.entities.catalogo.RepertorioMedicamento;
+import com.espe.salud.domain.entities.paciente.ContactoEmergencia;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
@@ -11,6 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -41,7 +43,11 @@ public class Prescripcion {
     @JoinColumn(name = "FK_EVO_PRES")
     private Evolucion evolucion;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.MERGE,
+                    CascadeType.ALL
+            })
     @JoinColumn(name = "FK_REPMED_PRES")
     private RepertorioMedicamento medicamento;
 

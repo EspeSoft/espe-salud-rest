@@ -33,6 +33,15 @@ public class Dispensario {
     @Column(name = "MZSTCDIS_CAMPUS")
     private String campus;
 
+    @Column(name = "MZSTCDIS_DIRECCION")
+    private String direccion;
+
+    @Column(name = "MZSTCDIS_TELEFONO")
+    private String telefono;
+
+    @Column(name = "MZSTCDIS_FAX")
+    private String fax;
+
     @Column(name = "MZSTCDIS_CANTON")
     private String canton;
 

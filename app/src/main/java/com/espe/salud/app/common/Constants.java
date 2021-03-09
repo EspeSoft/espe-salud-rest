@@ -110,6 +110,9 @@ public class Constants {
     public static final String URI_API_V1_REP_MED = URI_API_V1 + "repertorios-medicamento";
     public static final String URI_API_V1_HOS = URI_API_V1 + "hospitalizaciones";
     public static final String URI_API_V1_FRE_MED_HAB = URI_API_V1 + "frecuencias-medicacion-habitual";
+    public static final String URI_API_V1_CERT_REPO = URI_API_V1 + "reposo";
+    public static final String pathImageReportRecetaMedica = "report/src/main/resources/com.espe.salud.report/images/logo.png";
     public static final String URI_API_V1_TIP_EXA_SEX = URI_API_V1 + "tipos-examenes-sexuales";
+
 
 }
