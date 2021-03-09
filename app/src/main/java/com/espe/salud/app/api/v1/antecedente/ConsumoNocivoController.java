@@ -32,7 +32,7 @@ public class ConsumoNocivoController {
 
     @Operation(summary = "Retorna el listado de los consumos nocivos de un paciente")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<List<ConsumoNocivoDTO>> findByPaciente(
+    public ResponseEntity<List<ConsumoNocivoDTO>> findByPaciente (
             @Parameter(description = "El ID del paciente", required = true, example = "1")
             @RequestParam Long idPaciente) {
         return new ResponseEntity<>(service.findByPaciente(idPaciente), HttpStatus.OK);
