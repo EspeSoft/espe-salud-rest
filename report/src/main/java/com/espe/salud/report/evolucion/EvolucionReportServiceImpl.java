@@ -78,6 +78,7 @@ public class EvolucionReportServiceImpl implements EvolucionReportService {
             parameters.put("fax", dispensario.getFax());
             parameters.put("areaSalud", areaSalud.getNombre());
             parameters.put("prescripcionesDataSource", new JRBeanCollectionDataSource(evolucion.getPrescripciones()));
+            parameters.put("diagnosticoDataSource", new JRBeanCollectionDataSource(evolucion.getDiagnosticos()));
             parameters.put("usuario", usuario.getNombres());
             parameters.put("cedula", usuario.getCedula());
 
