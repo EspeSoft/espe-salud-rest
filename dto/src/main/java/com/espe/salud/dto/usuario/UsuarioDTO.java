@@ -20,6 +20,9 @@ public class UsuarioDTO implements Serializable {
     @NotEmpty
     private String nombres;
 
+    @NotEmpty
+    private String cedula;
+
     private Boolean activo;
 
     private Long idAreaSalud;

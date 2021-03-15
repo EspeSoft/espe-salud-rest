@@ -83,8 +83,8 @@ public class Constants {
     public static final String URI_API_V1_TIPENFPER = URI_API_V1 + "tipos-enfermedad-personal";
 
     public static final String URI_API_V1_ANTGIN = URI_API_V1 + "antecedentes-ginecologicos";
-    public static final String URI_API_V1_EXASEX = URI_API_V1 + "examen-sexual";
-    public static final String URI_API_V1_PLAFAM = URI_API_V1 + "planificacion-familiar";
+    public static final String URI_API_V1_EXASEX = URI_API_V1 + "examenes-sexuales";
+    public static final String URI_API_V1_PLAFAM = URI_API_V1 + "planificaciones-familiares";
     public static final String URI_API_V1_TIP_CON_NOC = URI_API_V1 + "tipos-consumo-nocivo";
     public static final String URI_API_V1_NIVEL_INSTRUCCION = URI_API_V1 + "niveles-instruccion";
     public static final String URI_API_V1_ACT_ENF = URI_API_V1 + "actividades-enfermeria";
@@ -110,6 +110,9 @@ public class Constants {
     public static final String URI_API_V1_REP_MED = URI_API_V1 + "repertorios-medicamento";
     public static final String URI_API_V1_HOS = URI_API_V1 + "hospitalizaciones";
     public static final String URI_API_V1_FRE_MED_HAB = URI_API_V1 + "frecuencias-medicacion-habitual";
+    public static final String URI_API_V1_CERT_REPO = URI_API_V1 + "reposo";
+    public static final String pathImageReportRecetaMedica = "report/src/main/resources/com.espe.salud.report/images/logo.png";
     public static final String URI_API_V1_TIP_EXA_SEX = URI_API_V1 + "tipos-examenes-sexuales";
+
 
 }

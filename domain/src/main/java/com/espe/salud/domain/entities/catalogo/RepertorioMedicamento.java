@@ -1,10 +1,14 @@
 package com.espe.salud.domain.entities.catalogo;
 
-import lombok.Data;
+import com.espe.salud.domain.entities.evolucion.Prescripcion;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "MZSTCREPMED", schema = "SALUD")
 public class RepertorioMedicamento {
@@ -17,4 +21,11 @@ public class RepertorioMedicamento {
     @Column(name = "MZSTCREPMED_NOMBRE")
     private String nombre;
 
+    @OneToMany(mappedBy = "medicamento", fetch = FetchType.LAZY)
+    private List<Prescripcion> prescripciones;
+
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
 }

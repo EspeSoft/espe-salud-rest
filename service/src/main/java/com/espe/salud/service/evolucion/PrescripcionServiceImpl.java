@@ -4,7 +4,7 @@ import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.evolucion.Prescripcion;
 import com.espe.salud.dto.evolucion.PrescripcionDTO;
 import com.espe.salud.mapper.evolucion.PrescripcionMapper;
-import com.espe.salud.persistence.catalogo.RepertorioMecicamentoRepository;
+import com.espe.salud.persistence.catalogo.RepertorioMedicamentoRepository;
 import com.espe.salud.persistence.evolucion.PrescripcionRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,9 +16,9 @@ import java.util.Optional;
 public class PrescripcionServiceImpl implements PrescripcionService{
     private final PrescripcionRepository repository;
     private final PrescripcionMapper mapper;
-    private final RepertorioMecicamentoRepository repositoryMed;
+    private final RepertorioMedicamentoRepository repositoryMed;
 
-    public PrescripcionServiceImpl(PrescripcionRepository repository, PrescripcionMapper mapper, RepertorioMecicamentoRepository repositoryMed) {
+    public PrescripcionServiceImpl(PrescripcionRepository repository, PrescripcionMapper mapper, RepertorioMedicamentoRepository repositoryMed) {
         this.repository = repository;
         this.mapper = mapper;
         this.repositoryMed = repositoryMed;

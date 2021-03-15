@@ -16,6 +16,8 @@ public class PlanificacionFamiliarDTO implements Serializable {
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
+
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private LocalDate fecha;
     private String vidaSexualActiva;
     private Boolean metodoPlanificacion;

@@ -1,5 +1,6 @@
 package com.espe.salud.domain.entities.antecedente;
 
+import com.espe.salud.domain.entities.catalogo.TipoExamenSexual;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,9 +28,12 @@ public class ExamenSexual {
     @Column(name = "MZSTEXASEX_FECHA")
     private LocalDate fecha;
 
-    @Lob
-    @Column(name = "MZSTEXASEX_NOMBRE_EXAMEN")
-    private String nombreExamen;
+    @Column(name = "FK_TIPEXASEX_EXASEX")
+    private Long idNombreExamen;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "FK_TIPEXASEX_EXASEX", insertable = false, updatable = false, nullable = false)
+    private TipoExamenSexual nombreExamen;
 
     @Column(name = "MZSTEXASEX_TIEMPO_ANIOS")
     private Integer tiempoAnios;
@@ -59,4 +63,9 @@ public class ExamenSexual {
     @LastModifiedDate
     @Column(name = "MZSTEXASEX_FECHA_MODIFICACION")
     private LocalDateTime fechaModificacion;
+
+    @PrePersist
+    void prePersist() {
+        fecha = LocalDate.now();
+    }
 }

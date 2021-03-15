@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import java.io.Serializable;
 
 @Getter
@@ -18,6 +19,9 @@ public class DispensarioDTO implements Serializable {
     private String unidadOperativa;
     private String uniCodigo;
     private String nombreImagen;
+    private String direccion;
+    private String telefono;
+    private String fax;
     private String campus;
     private String canton;
     private String provincia;

@@ -1,5 +1,6 @@
 package com.espe.salud.app.api.v1.paciente;
 
+import com.espe.salud.domain.entities.paciente.Paciente;
 import com.espe.salud.dto.paciente.PacienteBannerDTO;
 import com.espe.salud.dto.paciente.PacienteDTO;
 import com.espe.salud.dto.paciente.PacienteExternoDTO;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 import static com.espe.salud.app.common.Constants.URI_API_V1_PAC;
 
@@ -90,5 +92,21 @@ public class PacienteController {
             @Parameter(required = true, description = "Número de archivo del paciente", example = "0301971495")
             @RequestParam String numeroArchivo) {
         return new ResponseEntity<>(pacienteService.existsByNumeroArchivo(numeroArchivo), HttpStatus.OK);
+    }
+
+    @Operation(summary = "Actualizar los datos de un paciente externo")
+    @ApiResponse(responseCode = "200", description = "OK")
+    @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
+    @PutMapping(value = "/externo/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<PacienteDTO> update(
+            @Valid @RequestBody PacienteExternoDTO dto,
+            @Parameter(description = "El ID del paciente ", required = true, example = "1")
+            @PathVariable("id") Long id) {
+        Optional<Paciente> optional = pacienteService.findExisting(id);
+        if (optional.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>( pacienteService.updatePacienteExterno(dto, optional.get()), HttpStatus.OK);
+        }
     }
 }

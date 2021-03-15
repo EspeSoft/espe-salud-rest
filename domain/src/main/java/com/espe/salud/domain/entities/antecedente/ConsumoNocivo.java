@@ -35,7 +35,7 @@ public class ConsumoNocivo {
     @Column(name = "MZSTCONNOC_FECHA_TENTATIVA_INICIO")
     private LocalDate fechaTentativaInicio;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "FK_TIPCONNOC_CONNOC")
     private TipoConsumoNocivo nombreConsumoNocivo;
 

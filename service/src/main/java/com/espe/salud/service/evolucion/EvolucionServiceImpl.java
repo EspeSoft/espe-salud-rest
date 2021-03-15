@@ -2,9 +2,13 @@ package com.espe.salud.service.evolucion;
 
 import com.espe.salud.common.exception.ConflictException;
 import com.espe.salud.domain.entities.catalogo.MotivoAtencion;
+import com.espe.salud.domain.entities.catalogo.RepertorioMedicamento;
 import com.espe.salud.domain.entities.evolucion.Evolucion;
+import com.espe.salud.domain.entities.evolucion.Prescripcion;
 import com.espe.salud.dto.catalogo.MotivoAtencionDTO;
+import com.espe.salud.dto.catalogo.RepertorioMedicamentoDTO;
 import com.espe.salud.dto.evolucion.EvolucionDTO;
+import com.espe.salud.dto.evolucion.ReposoDTO;
 import com.espe.salud.mapper.evolucion.EvolucionMapper;
 import com.espe.salud.persistence.evolucion.EvolucionRepository;
 import com.espe.salud.report.evolucion.EvolucionReportService;
@@ -18,6 +22,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,11 +67,13 @@ public class EvolucionServiceImpl implements EvolucionService {
             Evolucion domainObject = toEntity(evolucion);
             domainObject.addToDiagnosticos(domainObject.getDiagnosticos());
             domainObject.addToPrescripciones(domainObject.getPrescripciones());
+
             EvolucionDTO evolucionNuevo= toDTO(evolucionRepository.save(domainObject));
-            evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
+
+            evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).orElse(null));
             evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).orElse(null));
-            evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
-            evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).get());
+            evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).orElse(null));
+            evolucionNuevo.setUsuario(serviceUsu.findById(evolucionNuevo.getResponsablePidm()).orElse(null));
             evolucionNuevo.setMotivoAtencion(serviceMot.findById(evolucionNuevo.getIdMotivoAtencion()));
             return evolucionNuevo;
         } else {
@@ -102,7 +109,7 @@ public class EvolucionServiceImpl implements EvolucionService {
     @Override
     public EvolucionDTO update(EvolucionDTO dto) {
         Evolucion domainObject = toEntity(dto);
-        EvolucionDTO evolucionNuevo= toDTO(evolucionRepository.save(domainObject));
+        EvolucionDTO evolucionNuevo = toDTO(evolucionRepository.save(domainObject));
         evolucionNuevo.setAreaSalud(serviceArea.findById(evolucionNuevo.getIdAreaSalud()).get());
         evolucionNuevo.setNotaEnfermeria(serviceNotEnf.findById(evolucionNuevo.getIdNotaEnfermeria()).get());
         evolucionNuevo.setDispensario(serviceDisp.findById(evolucionNuevo.getIdDispensario()).get());
@@ -128,8 +135,34 @@ public class EvolucionServiceImpl implements EvolucionService {
 
     @Override
     public byte[] getCertificadoMedico(String idEvolucion) {
-//        Optional<Evolucion> evolucion = evolucionRepository.find
-        Evolucion evolucion = new Evolucion();
-        return this.reportService.generateCertificadoMedicoGeneral(evolucion);
+        if (evolucionRepository.findByCodigo(idEvolucion).isPresent()) {
+            Evolucion evolucion = evolucionRepository.findByCodigo(idEvolucion).get();
+            return this.reportService.generateCertificadoMedicoGeneral(evolucion);
+        } else {
+            throw new ConflictException(String.format("El código[%s] de Evolución no existe", idEvolucion));
+        }
     }
+
+    @Override
+    public byte[] getRecetaMedica(String idEvolucion) {
+        if (evolucionRepository.findByCodigo(idEvolucion).isPresent()) {
+            Evolucion evolucion = evolucionRepository.findByCodigo(idEvolucion).get();
+            return this.reportService.generateCertificadoRecetaMedica(evolucion);
+        } else {
+            throw new ConflictException(String.format("El código[%s] de Evolución no existe", idEvolucion));
+        }
+    }
+
+    @Override
+    public byte[] getCertificadoReposo(String fechaInicio, String fechaFin, String condicionPaciente, String recomrndacion, String idEvolucion) {
+        if (evolucionRepository.findByCodigo(idEvolucion).isPresent()) {
+            Evolucion evolucion = evolucionRepository.findByCodigo(idEvolucion).get();
+            return this.reportService.generateCertificadoReposo(fechaInicio, fechaFin, condicionPaciente, recomrndacion, evolucion);
+        } else {
+            throw new ConflictException(String.format("El código[%s] de Evolución no existe", idEvolucion));
+        }
+    }
+
+
 }
+

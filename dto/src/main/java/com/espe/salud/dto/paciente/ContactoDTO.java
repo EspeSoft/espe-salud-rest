@@ -41,5 +41,9 @@ public class ContactoDTO implements Serializable {
 
     private String cantonResidencia;
 
+    private String idCantonResidencia;
+
     private String provinciaResidencia;
+
+    private Integer idProvinciaResidencia;
 }

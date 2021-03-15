@@ -7,6 +7,7 @@ import com.espe.salud.mapper.antecedente.PlanificacionFamiliarMapper;
 import com.espe.salud.persistence.antecedente.PlanificacionFamiliarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,33 +25,32 @@ public class PlanificacionFamiliarServiceImpl implements PlanificacionFamiliarSe
     }
 
     @Override
-    public PlanificacionFamiliarDTO save(PlanificacionFamiliarDTO planificacionFamiliarDTO) {
-        Optional<PlanificacionFamiliar> optional = domainRepository.findById(planificacionFamiliarDTO.getId());
-        if (!optional.isPresent()) {
-            PlanificacionFamiliar domainObject = toEntity(planificacionFamiliarDTO);
-            return toDTO(domainRepository.save(domainObject));
+    @Transactional
+    public PlanificacionFamiliarDTO save(PlanificacionFamiliarDTO dto) {
+        Optional<PlanificacionFamiliar> optional = domainRepository.findByCodigo(dto.getId());
+        if (optional.isEmpty()) {
+            PlanificacionFamiliar domainObject = mapper.toPlanificacionFamiliar(dto);
+            return mapper.toPlanificacionFamiliarDTO(domainRepository.save(domainObject));
         } else {
-            throw new ConflictException(String.format("Ya existe una planificacion familiar para el codigo [%s]", planificacionFamiliarDTO.getId()));
+            throw new ConflictException(String.format("Ya existe una planificacion familiar para el codigo [%s]", dto.getId()));
         }
     }
 
     @Override
-    public PlanificacionFamiliarDTO update(PlanificacionFamiliarDTO planificacionFamiliarDTO) {
-        PlanificacionFamiliar domainObject = toEntity(planificacionFamiliarDTO);
-        return toDTO(domainRepository.save(domainObject));
+    @Transactional
+    public PlanificacionFamiliarDTO update(PlanificacionFamiliarDTO dto) {
+        PlanificacionFamiliar domainObject = mapper.toPlanificacionFamiliar(dto);
+        return mapper.toPlanificacionFamiliarDTO(domainRepository.save(domainObject));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Optional<PlanificacionFamiliarDTO> findById(Long codigo) {
-        return domainRepository.findById(codigo).map(planificacionFamiliar -> toDTO(planificacionFamiliar));
+        return domainRepository.findByCodigo(codigo).map(mapper::toPlanificacionFamiliarDTO);
     }
 
     @Override
-    public List<PlanificacionFamiliarDTO> findAll() {
-        return mapper.toPlanificacionFamiliarDTO(domainRepository.findAll());
-    }
-
-    @Override
+    @Transactional
     public boolean deleteById(Long id) {
         return domainRepository.findById(id).map(planificacionFamiliar -> {
             domainRepository.deleteById(id);
@@ -59,13 +59,9 @@ public class PlanificacionFamiliarServiceImpl implements PlanificacionFamiliarSe
     }
 
     @Override
-    public PlanificacionFamiliarDTO toDTO(PlanificacionFamiliar planificacionFamiliar) {
-        return mapper.toPlanificacionFamiliarDTO(planificacionFamiliar);
-    }
-
-    @Override
-    public PlanificacionFamiliar toEntity(PlanificacionFamiliarDTO dto) {
-        return mapper.toPlanificacionFamiliar(dto);
+    @Transactional(readOnly = true)
+    public List<PlanificacionFamiliarDTO> findByPaciente(Long idPaciente) {
+        return mapper.toPlanificacionesFamiliaresDTO(domainRepository.findByAntecedentePersonalPacienteCodigo(idPaciente));
     }
 }
 

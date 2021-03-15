@@ -13,7 +13,7 @@ public class Contacto {
     @NotEmpty
     private String callePrincipal;
 
-    @Column(name = "MZSTPER_CALL_SECUNDARIA")
+    @Column(name = "MZSTPER_CALLE_SECUNDARIA")
     private String calleSecundaria;
 
     @Column(name = "MZSTPER_ZONA_GEOGRAFICA")
@@ -48,6 +48,12 @@ public class Contacto {
     @Column(name = "MZSTPER_CANTON_RESIDENCIA")
     private String cantonResidencia;
 
+    @Column(name = "MZSTPER_ID_CANTON_RESIDENCIA")
+    private String idCantonResidencia;
+
     @Column(name = "MZSTPER_PROVINCIA_RESIDENCIA")
     private String provinciaResidencia;
+
+    @Column(name = "MZSTPER_ID_PROVINCIA_RESIDENCIA")
+    private Integer idProvinciaResidencia;
 }

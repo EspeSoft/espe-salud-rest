@@ -1,10 +1,12 @@
 package com.espe.salud.domain.entities.catalogo;
 
+import com.espe.salud.domain.entities.antecedente.ExamenSexual;
 import com.espe.salud.domain.enums.SexoTipoPlanificacionFamiliar;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -24,4 +26,5 @@ public class TipoExamenSexual {
     @Column(name = "MZSTCTIPEXASEX_SEXO")
     @Enumerated(EnumType.STRING)
     private SexoTipoPlanificacionFamiliar sexo;
+
 }

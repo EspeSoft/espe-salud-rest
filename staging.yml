@@ -1,0 +1,41 @@
+version: '3.8'
+
+volumes:
+  production_postgres_data: {}
+  production_postgres_data_backups: {}
+
+services:
+  salud-espe-backend:
+    build: .
+    container_name: salud-espe-backend
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=staging
+      - TZ=America/Guayaquil
+      - VIRTUAL_HOST=api.saludespe.live
+      - LETSENCRYPT_HOST=api.saludespe.live
+      - LETSENCRYPT_EMAIL=lpillaga@gmail.com
+    networks:
+      - saludespe
+    depends_on:
+      - postgres
+
+  postgres:
+    build:
+      context: .
+      dockerfile: ./compose/postgres/Dockerfile
+    container_name: saludespe_postgres
+    restart: always
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+      - production_postgres_data_backups:/backups
+    ports:
+      - "5432:5432"
+    env_file:
+      - ./compose/postgres/postgres.env
+    networks:
+      - saludespe
+
+networks:
+  saludespe:
+    external: true
