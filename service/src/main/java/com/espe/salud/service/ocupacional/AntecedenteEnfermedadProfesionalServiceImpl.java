@@ -56,9 +56,10 @@ public class AntecedenteEnfermedadProfesionalServiceImpl implements AntecedenteE
     }
 
     @Override
-    public List<AntecedenteEnfermedadProfesionalDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral) {
-        return mapper.toAntecedentesEnfermedadesProfesionalDto(repository.findByAntecedenteLaboralCodigo(idAntecedenteLaboral));
+    public List<AntecedenteEnfermedadProfesionalDTO> findByPaciente(Long idPaciente) {
+        return mapper.toAntecedentesEnfermedadesProfesionalDto(repository.findByEnfermedadProfesionalPacienteCodigo(idPaciente));
     }
+
 
     @Override
     public AntecedenteEnfermedadProfesionalDTO toDTO(AntecedenteEnfermedadProfesional antecedente) {

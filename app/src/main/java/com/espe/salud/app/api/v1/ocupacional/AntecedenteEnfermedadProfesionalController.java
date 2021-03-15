@@ -33,15 +33,15 @@ public class AntecedenteEnfermedadProfesionalController {
         this.serviceAntecedente = serviceAntecedente;
     }
 
-    @Operation(summary = "Retorna los antecedentes de enfermedades profesionales de un antecedente laboral")
+    @Operation(summary = "Retorna los antecedentes de enfermedades profesionales de un  Paciente")
     @GetMapping(value = "", produces = {MediaType.APPLICATION_JSON_VALUE})
     @ApiResponse(responseCode = "200", description = "OK")
     @ApiResponse(responseCode = "404", description = "Recurso no encontrado")
     public ResponseEntity<List<AntecedenteEnfermedadProfesionalDTO>> retrieveByAntecedenteLaboral(
-            @Parameter(description = "El ID de un Antecedente Laboral", required = true, example = "1")
-            @RequestParam Long idAntecedente
+            @Parameter(description = "El ID de un Paciente", required = true, example = "1")
+            @RequestParam Long idPaciente
     ) {
-        return new ResponseEntity<>(serviceAntecedente.findByAntecedenteLaboral(idAntecedente), HttpStatus.OK);
+        return new ResponseEntity<>(serviceAntecedente.findByPaciente(idPaciente), HttpStatus.OK);//chequear aqui
     }
 
     @Operation(summary = "Retorna un antecedente por su id")

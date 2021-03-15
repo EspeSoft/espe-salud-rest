@@ -16,7 +16,7 @@ public interface AntecedenteEnfermedadProfesionalService {
 
     Optional<AntecedenteEnfermedadProfesionalDTO> findByCodigo(Long codigo);
 
-    List<AntecedenteEnfermedadProfesionalDTO> findByAntecedenteLaboral(Long idAntecedenteLaboral);
+    List<AntecedenteEnfermedadProfesionalDTO> findByPaciente(Long idPaciente);
 
     AntecedenteEnfermedadProfesionalDTO toDTO(AntecedenteEnfermedadProfesional antecedente);
 

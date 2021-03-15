@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface AntecedenteEnfermedadProfesionalRepository extends JpaRepository<AntecedenteEnfermedadProfesional, Long> {
     Optional<AntecedenteEnfermedadProfesional> findByCodigo(Long codigo);
 
-    List<AntecedenteEnfermedadProfesional> findByAntecedenteLaboralCodigo(Long idAntecedenteLaboral);
+    List<AntecedenteEnfermedadProfesional> findByEnfermedadProfesionalPacienteCodigo(Long idPaciente);
 }
